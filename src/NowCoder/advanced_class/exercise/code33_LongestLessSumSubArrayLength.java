@@ -30,27 +30,27 @@ public class code33_LongestLessSumSubArrayLength {
         min_sum_index[arr.length - 1] = arr.length - 1;
 
         for (int i = arr.length - 2; i >= 0; i--) {
-            if (min_sum[i + 1] <= 0){
+            if (min_sum[i + 1] <= 0) {
                 min_sum[i] = arr[i] + min_sum[i + 1];
                 min_sum_index[i] = min_sum_index[i + 1];
-            }else {
+            } else {
                 min_sum[i] = arr[i];
                 min_sum_index[i] = i;
             }
         }
 
-        int len = 0;
-        int sum = 0;
         int L = 0;
         int R = 0;
+        int len = 0;
+        int sum = 0;
 
-        while (L < arr.length) {
-            while (R < arr.length && sum + min_sum[R] <= aim) {
+        while (L < arr.length){
+            while (R < arr.length && sum + min_sum[R] <= aim){
                 sum += min_sum[R];
                 R = min_sum_index[R] + 1;
             }
 
-            len = Math.max(len, (R - 1) - L + 1);
+            len = Math.max(len, (R-1) - L + 1);
 
             sum -= R > L ? arr[L] : 0;
 
@@ -60,6 +60,7 @@ public class code33_LongestLessSumSubArrayLength {
         }
 
         return len;
+
     }
 
     public static void main(String[] args) {

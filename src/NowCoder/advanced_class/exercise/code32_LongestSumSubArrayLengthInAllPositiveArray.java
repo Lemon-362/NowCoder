@@ -1,5 +1,7 @@
 package NowCoder.advanced_class.exercise;
 
+import java.util.HashMap;
+
 /*
 	累加和等于aim的最长子数组：
 		给定一个数组arr，全为正数，和一个整数aim
@@ -15,8 +17,8 @@ public class code32_LongestSumSubArrayLengthInAllPositiveArray {
 
         int L = 0;
         int R = 0;
-        int len = 0;
         int sum = 0;
+        int len = 0;
 
         while (L < arr.length && R < arr.length){
             if (sum == aim){
@@ -30,6 +32,32 @@ public class code32_LongestSumSubArrayLengthInAllPositiveArray {
                 sum += arr[R];
             }else {
                 sum -= arr[L++];
+            }
+        }
+
+        return len;
+    }
+
+    public static int getMaxLength2(int[] arr, int aim){
+        if (arr == null || arr.length < 1) {
+            return 0;
+        }
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0, -1);
+        int len = 0;
+        int sum = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+
+            if (map.containsKey(sum - aim)){
+                // TODO sum的子数组范围是 sum-aim的下一个位置到 当前i位置 --> i - (map.get(sum-aim)+1) + 1
+                len = Math.max(len, i - map.get(sum - aim));
+            }
+
+            if (!map.containsKey(sum)) {
+                map.put(sum, i);
             }
         }
 
@@ -54,6 +82,7 @@ public class code32_LongestSumSubArrayLengthInAllPositiveArray {
     public static void main(String[] args) {
         int[] arr = {1, 2, 1, 1, 1};
         System.out.println(getMaxLength(arr, 3)); // 3
+        System.out.println(getMaxLength2(arr, 3));
 
         int len = 20;
         int k = 15;
