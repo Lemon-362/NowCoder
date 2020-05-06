@@ -1,0 +1,50 @@
+package NowCoder.basic_class.exercise;
+
+/*
+    随机快速排序：O(NlogN)    额外空间复杂度 O(logN)
+        从数组中随机选择一个数，和最后一个交换，然后经典快排，划分为<x, =x, >x, x四部分
+        每次partition后只会处理好 =x 的部分，然后再对左右进行递归
+        再对<x, >x进行递归快排
+
+    partition优点：O(N), O(1)
+ */
+public class code07_QuickSort {
+    public static void quickSort(int[] arr) {
+        if (arr == null || arr.length < 2) {
+            return;
+        }
+        quickSort(arr, 0, arr.length - 1);
+    }
+
+    public static void quickSort(int[] arr, int l, int r) {
+        if (l < r) {
+            swap(arr, l + (int) (Math.random() * (r - l + 1)), r);
+            int[] p = partition(arr, l, r);
+            quickSort(arr, l, p[0] - 1);
+            quickSort(arr, p[1] + 1, r);
+        }
+    }
+
+    public static int[] partition(int[] arr, int l, int r) {
+        int less = l - 1;
+        int more = r;
+        int cur = l;
+        while (cur < more) {
+            if (arr[cur] < arr[r]) {
+                swap(arr, ++less, cur++);
+            } else if (arr[cur] > arr[r]) {
+                swap(arr, --more, cur);
+            } else {
+                cur++;
+            }
+        }
+        swap(arr, r, more);
+        return new int[]{less + 1, more};
+    }
+
+    public static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+}
