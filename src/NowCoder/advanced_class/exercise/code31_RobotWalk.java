@@ -15,7 +15,6 @@ public class code31_RobotWalk {
      */
     // curP: 当前位置  leftK: 剩余步数
     public static int process(int N, int curP, int leftK, int P) {
-        // base case
         if (leftK == 0) {
             return curP == P ? 1 : 0;
         }
@@ -25,7 +24,8 @@ public class code31_RobotWalk {
         } else if (curP == N) {
             return process(N, curP - 1, leftK - 1, P);
         } else {
-            return process(N, curP + 1, leftK - 1, P) +
+            return process(N, curP + 1, leftK - 1, P)
+                    +
                     process(N, curP - 1, leftK - 1, P);
         }
     }
@@ -38,9 +38,6 @@ public class code31_RobotWalk {
         2. 动态规划:
      */
     public static int ways2(int N, int M, int K, int P) {
-        // leftK: 0 - K
-        // curP: 1 - N --> 0 - N
-
         int[][] dp = new int[K + 1][N + 1];
 
         dp[0][P] = 1;

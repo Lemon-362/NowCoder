@@ -20,22 +20,21 @@ public class code29_CoinsWay {
             3) base case: index == len时,此时所有钱都用完了
             如果aim==0,说明是1种组合方法,如果aim!=0,说明不是1种组合方法
      */
-    public static int process1(int[] arr, int index, int aim) {
+    public static int process1(int[] arr, int index, int aim){
         int res = 0;
 
-        if (index == arr.length) {
+        if (index == arr.length){
             res = aim == 0 ? 1 : 0;
-        } else {
+        }else {
             for (int zhang = 0; arr[index] * zhang <= aim; zhang++) {
-                int leftAim = aim - arr[index] * zhang;
-                res += process1(arr, index + 1, leftAim);
+                res += process1(arr, index + 1, aim - arr[index] * zhang);
             }
         }
 
         return res;
     }
 
-    public static int getWay1(int[] arr, int aim) {
+    public static int getWay1(int[] arr, int aim){
         return process1(arr, 0, aim);
     }
 
@@ -45,19 +44,18 @@ public class code29_CoinsWay {
      */
     public static HashMap<String, Integer> map = new HashMap<>();
 
-    public static int process2(int[] arr, int index, int aim) {
+    public static int process2(int[] arr, int index, int aim){
         int res = 0;
 
-        if (index == arr.length) {
+        if (index == arr.length){
             res = aim == 0 ? 1 : 0;
-        } else {
+        }else {
             for (int zhang = 0; arr[index] * zhang <= aim; zhang++) {
                 int leftAim = aim - arr[index] * zhang;
-
                 String f = index + 1 + "_" + leftAim;
-                if (map.containsKey(f)) {
+                if (map.containsKey(f)){
                     res += map.get(f);
-                } else {
+                }else {
                     res += process1(arr, index + 1, leftAim);
                 }
             }
@@ -68,7 +66,7 @@ public class code29_CoinsWay {
         return res;
     }
 
-    public static int getWay2(int[] arr, int aim) {
+    public static int getWay2(int[] arr, int aim){
         return process2(arr, 0, aim);
     }
 
@@ -79,21 +77,20 @@ public class code29_CoinsWay {
             3) 看process递归里的base case,确定不依赖其他位置的值,直接填到dp表里
             4) 看process递归里的递归过程,确定普遍位置需要依赖哪些位置的值
      */
-    public static int getWay3(int[] arr, int aim) {
-        if (arr == null || arr.length == 0 || aim < 0) {
-            return 0;
+    public static int getWay3(int[] arr, int aim){
+        if (arr == null || arr.length < 1 || aim < 0){
+            return -1;
         }
 
         int[][] dp = new int[arr.length + 1][aim + 1];
 
         dp[arr.length][0] = 1;
 
-//        for (int zhang = 0; arr[index] * zhang <= aim; zhang++) {
-//            int leftAim = aim - arr[index] * zhang;
-//            res += process1(arr, index + 1, leftAim);
-//        }
         for (int index = arr.length - 1; index >= 0; index--) {
             for (int leftAim = 0; leftAim < dp[0].length; leftAim++) {
+//                for (int zhang = 0; arr[index] * zhang <= aim; zhang++) {
+//                    res += process1(arr, index + 1, aim - arr[index] * zhang);
+//                }
                 int num = 0;
                 for (int zhang = 0; leftAim - arr[index] * zhang >= 0; zhang++) {
                     num += dp[index + 1][leftAim - arr[index] * zhang];
@@ -111,24 +108,19 @@ public class code29_CoinsWay {
             所以后一个位置一定和前一个位置有重复状态,
             也就是说后一个位置 = 前一个位置(num1) + 当前位置的下一行的值(zhang=0)(num2)
      */
-    public static int getWay4(int[] arr, int aim) {
-        if (arr == null || arr.length == 0 || aim < 0) {
-            return 0;
+    public static int getWay4(int[] arr, int aim){
+        if (arr == null || arr.length < 1 || aim < 0){
+            return -1;
         }
 
         int[][] dp = new int[arr.length + 1][aim + 1];
 
         dp[arr.length][0] = 1;
 
-//        for (int zhang = 0; arr[index] * zhang <= aim; zhang++) {
-//            int leftAim = aim - arr[index] * zhang;
-//            res += process1(arr, index + 1, leftAim);
-//        }
         for (int index = arr.length - 1; index >= 0; index--) {
             for (int leftAim = 0; leftAim < dp[0].length; leftAim++) {
                 int num1 = leftAim - arr[index] >= 0 ? dp[index][leftAim - arr[index]] : 0;
                 int num2 = dp[index + 1][leftAim];
-
                 dp[index][leftAim] = num1 + num2;
             }
         }

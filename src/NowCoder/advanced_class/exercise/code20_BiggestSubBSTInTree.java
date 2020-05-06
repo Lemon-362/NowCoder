@@ -67,34 +67,28 @@ public class code20_BiggestSubBSTInTree {
     }
 
     public static ReturnData process(Node head){
-        // base case
         if (head == null){
             return new ReturnData(0, null, Integer.MIN_VALUE, Integer.MAX_VALUE);
         }
 
-        // 假设黑盒
-        ReturnData leftData = process(head.left);
-        ReturnData rightData = process(head.right);
+        ReturnData left = process(head.left);
+        ReturnData right = process(head.right);
 
-        // 1
-        int leftSize = leftData.size;
-        // 2
-        int rightSize = rightData.size;
-        // 3
+        int leftSize = left.size;
+        int rightSize = right.size;
         int curSize = 0;
-        if (leftData.head == head.left && rightData.head == head.right
-        && head.value > leftData.max && head.value < rightData.min){
-            curSize = leftData.size + rightData.size + 1;
+        if (left.head == head.left && right.head == head.right
+        && head.value > left.max && head.value < right.min){
+            curSize = leftSize + rightSize + 1;
         }
 
-        // 解黑盒
         int maxSize = Math.max(Math.max(leftSize, rightSize), curSize);
-        Node maxHead = leftData.size > rightData.size ? leftData.head : rightData.head;
+        Node maxHead = leftSize > rightSize ? left.head : right.head;
         if (maxSize == curSize){
             maxHead = head;
         }
-        int maxMax = Math.max(Math.max(leftData.max, rightData.max), head.value);
-        int minMin = Math.min(Math.min(leftData.min, rightData.min), head.value);
+        int maxMax = Math.max(Math.max(left.max, right.max), head.value);
+        int minMin = Math.min(Math.min(left.min, right.min), head.value);
 
         return new ReturnData(maxSize, maxHead, maxMax, minMin);
     }

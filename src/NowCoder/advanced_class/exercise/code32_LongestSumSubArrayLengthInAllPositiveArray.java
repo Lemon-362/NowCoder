@@ -38,13 +38,13 @@ public class code32_LongestSumSubArrayLengthInAllPositiveArray {
         return len;
     }
 
+    // HashMap的应用
     public static int getMaxLength2(int[] arr, int aim){
         if (arr == null || arr.length < 1) {
             return 0;
         }
 
         HashMap<Integer, Integer> map = new HashMap<>();
-        map.put(0, -1);
         int len = 0;
         int sum = 0;
 
@@ -52,11 +52,10 @@ public class code32_LongestSumSubArrayLengthInAllPositiveArray {
             sum += arr[i];
 
             if (map.containsKey(sum - aim)){
-                // TODO sum的子数组范围是 sum-aim的下一个位置到 当前i位置 --> i - (map.get(sum-aim)+1) + 1
-                len = Math.max(len, i - map.get(sum - aim));
+                len = Math.max(len, i - (map.get(sum - aim) + 1) + 1);
             }
 
-            if (!map.containsKey(sum)) {
+            if (!map.containsKey(sum)){
                 map.put(sum, i);
             }
         }
