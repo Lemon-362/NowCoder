@@ -84,7 +84,7 @@ public class code28_MaxEOR {
             }
         }
 
-        public int getMaxXor(int num){
+        public int getMaxEor(int num){
             Node cur = head;
             int res = 0;
 
@@ -95,7 +95,7 @@ public class code28_MaxEOR {
 
                 best = cur.next[best] == null ? (1 ^ best) : best;
 
-                res |= (path ^ best) << i;
+                res |= (best ^ path) << i;
 
                 cur = cur.next[best];
             }
@@ -105,24 +105,25 @@ public class code28_MaxEOR {
     }
 
     public static int getMaxEOR3(int[] arr){
-        if (arr == null || arr.length < 1) {
+        if (arr == null || arr.length == 0) {
             return 0;
         }
 
-        int res = Integer.MIN_VALUE;
+        int max = Integer.MIN_VALUE;
+        int xor = 0;
+
         TrieTree trieTree = new TrieTree();
         trieTree.add(0);
-        int xor = 0;
 
         for (int i = 0; i < arr.length; i++) {
             xor ^= arr[i];
 
-            res = Math.max(res, trieTree.getMaxXor(xor));
+            max = Math.max(max, trieTree.getMaxEor(xor));
 
             trieTree.add(xor);
         }
 
-        return res;
+        return max;
     }
 
     // for test
