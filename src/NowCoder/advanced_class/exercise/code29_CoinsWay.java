@@ -22,12 +22,13 @@ public class code29_CoinsWay {
      */
     public static int process1(int[] arr, int index, int aim){
         int res = 0;
-
+        // base case
         if (index == arr.length){
             res = aim == 0 ? 1 : 0;
         }else {
             for (int zhang = 0; arr[index] * zhang <= aim; zhang++) {
-                res += process1(arr, index + 1, aim - arr[index] * zhang);
+                int leftAim = aim - arr[index] * zhang;
+                res += process1(arr, index + 1, leftAim);
             }
         }
 
@@ -46,7 +47,7 @@ public class code29_CoinsWay {
 
     public static int process2(int[] arr, int index, int aim){
         int res = 0;
-
+        // base case
         if (index == arr.length){
             res = aim == 0 ? 1 : 0;
         }else {
@@ -56,7 +57,7 @@ public class code29_CoinsWay {
                 if (map.containsKey(f)){
                     res += map.get(f);
                 }else {
-                    res += process1(arr, index + 1, leftAim);
+                    res += process2(arr, index + 1, leftAim);
                 }
             }
         }
@@ -78,24 +79,17 @@ public class code29_CoinsWay {
             4) 看process递归里的递归过程,确定普遍位置需要依赖哪些位置的值
      */
     public static int getWay3(int[] arr, int aim){
-        if (arr == null || arr.length < 1 || aim < 0){
-            return -1;
-        }
-
         int[][] dp = new int[arr.length + 1][aim + 1];
 
         dp[arr.length][0] = 1;
 
         for (int index = arr.length - 1; index >= 0; index--) {
             for (int leftAim = 0; leftAim < dp[0].length; leftAim++) {
-//                for (int zhang = 0; arr[index] * zhang <= aim; zhang++) {
-//                    res += process1(arr, index + 1, aim - arr[index] * zhang);
-//                }
                 int num = 0;
                 for (int zhang = 0; leftAim - arr[index] * zhang >= 0; zhang++) {
                     num += dp[index + 1][leftAim - arr[index] * zhang];
                 }
-                dp[index][leftAim] = num;
+                dp[index][leftAim ] = num;
             }
         }
 
@@ -109,10 +103,6 @@ public class code29_CoinsWay {
             也就是说后一个位置 = 前一个位置(num1) + 当前位置的下一行的值(zhang=0)(num2)
      */
     public static int getWay4(int[] arr, int aim){
-        if (arr == null || arr.length < 1 || aim < 0){
-            return -1;
-        }
-
         int[][] dp = new int[arr.length + 1][aim + 1];
 
         dp[arr.length][0] = 1;
@@ -121,7 +111,7 @@ public class code29_CoinsWay {
             for (int leftAim = 0; leftAim < dp[0].length; leftAim++) {
                 int num1 = leftAim - arr[index] >= 0 ? dp[index][leftAim - arr[index]] : 0;
                 int num2 = dp[index + 1][leftAim];
-                dp[index][leftAim] = num1 + num2;
+                dp[index][leftAim ] = num1 + num2;
             }
         }
 

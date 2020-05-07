@@ -43,7 +43,7 @@ public class code27_IsBSTAndCBT {
                 } else {
                     mostRight.right = null;
 
-                    if (pre != null && pre.value >= cur.value) {
+                    if (pre != null && pre.value > cur.value) {
                         res = false;
                         break;
                     }
@@ -52,7 +52,7 @@ public class code27_IsBSTAndCBT {
                     cur = cur.right;
                 }
             } else {
-                if (pre != null && pre.value >= cur.value) {
+                if (pre != null && pre.value > cur.value) {
                     res = false;
                     break;
                 }
@@ -71,16 +71,16 @@ public class code27_IsBSTAndCBT {
         }
 
         Queue<Node> queue = new LinkedList<>();
-        queue.offer(head);
         boolean res = true;
         boolean leaf = false;
+        queue.offer(head);
 
         while (!queue.isEmpty()) {
             Node cur = queue.poll();
             Node left = cur.left;
             Node right = cur.right;
 
-            if (    (leaf && (left != null || right != null))
+            if ((leaf && (left != null || right != null))
                     ||
                     (left == null && right != null)) {
                 res = false;

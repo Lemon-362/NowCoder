@@ -34,6 +34,7 @@ public class code13_MorrisOrder {
 
         Node cur = head;
         Node mostRight = null;
+
         while (cur != null) {
             mostRight = cur.left;
             if (mostRight != null) {
@@ -63,21 +64,21 @@ public class code13_MorrisOrder {
 
         Node cur = head;
         Node mostRight = null;
-        while (cur != null){
+        while (cur != null) {
             mostRight = cur.left;
-            if (mostRight != null){
-                while (mostRight.right != null && mostRight.right != cur){
+            if (mostRight != null) {
+                while (mostRight.right != null && mostRight.right != cur) {
                     mostRight = mostRight.right;
                 }
-                if (mostRight.right == null){
+                if (mostRight.right == null) {
                     mostRight.right = cur;
                     cur = cur.left;
-                }else {
+                } else {
                     mostRight.right = null;
                     System.out.print(cur.value + " ");
                     cur = cur.right;
                 }
-            }else {
+            } else {
                 System.out.print(cur.value + " ");
                 cur = cur.right;
             }
@@ -92,21 +93,21 @@ public class code13_MorrisOrder {
 
         Node cur = head;
         Node mostRight = null;
-        while (cur != null){
+        while (cur != null) {
             mostRight = cur.left;
-            if (mostRight != null){
-                while (mostRight.right != null && mostRight.right != cur){
+            if (mostRight != null) {
+                while (mostRight.right != null && mostRight.right != cur) {
                     mostRight = mostRight.right;
                 }
-                if (mostRight.right == null){
+                if (mostRight.right == null) {
                     mostRight.right = cur;
                     cur = cur.left;
-                }else {
+                } else {
                     mostRight.right = null;
                     printRightEdge(cur.left);
                     cur = cur.right;
                 }
-            }else {
+            } else {
                 cur = cur.right;
             }
         }
@@ -114,21 +115,27 @@ public class code13_MorrisOrder {
         System.out.println();
     }
 
-    public static void printRightEdge(Node node){
+    public static void printRightEdge(Node node) {
+        if (node == null) {
+            return;
+        }
+
         Node head = reverse(node);
         Node cur = head;
-        while (cur != null){
+        while (cur != null) {
             System.out.print(cur.value + " ");
             cur = cur.right;
         }
+
         reverse(head);
     }
 
-    public static Node reverse(Node node){
+    public static Node reverse(Node node) {
+        Node cur = node;
         Node pre = null;
         Node next = null;
-        Node cur = node;
-        while (cur != null){
+
+        while (cur != null) {
             next = cur.right;
 
             cur.right = pre;
@@ -136,6 +143,7 @@ public class code13_MorrisOrder {
             pre = cur;
             cur = next;
         }
+
         return pre;
     }
 

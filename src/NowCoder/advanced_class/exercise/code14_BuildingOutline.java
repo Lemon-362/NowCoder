@@ -26,11 +26,8 @@ public class code14_BuildingOutline {
     }
 
     public static List<List<Integer>> buildingOutline(int[][] arr) {
-        if (arr == null || arr.length < 1) {
-            return null;
-        }
+        Node[] nodes = new Node[arr.length * 2];
 
-        Node[] nodes = new Node[2 * arr.length];
         for (int i = 0; i < arr.length; i++) {
             nodes[2 * i] = new Node(arr[i][0], arr[i][2], true);
             nodes[2 * i + 1] = new Node(arr[i][1], arr[i][2], false);
@@ -42,58 +39,60 @@ public class code14_BuildingOutline {
         TreeMap<Integer, Integer> pmMap = new TreeMap<>();
 
         for (int i = 0; i < nodes.length; i++) {
-            Node cur = nodes[i];
-            if (cur.isUp) {
-                if (htMap.containsKey(cur.height)) {
-                    htMap.put(cur.height, htMap.get(cur.height) + 1);
-                } else {
-                    htMap.put(cur.height, 1);
+            if (nodes[i].isUp){
+                if (htMap.containsKey(nodes[i].height)) {
+                    htMap.put(nodes[i].height, htMap.get(nodes[i].height) + 1);
+                }else {
+                    htMap.put(nodes[i].height, 1);
                 }
-            } else {
-                if (htMap.containsKey(cur.height)) {
-                    if (htMap.get(cur.height) == 1) {
-                        htMap.remove(cur.height);
-                    } else {
-                        htMap.put(cur.height, htMap.get(cur.height) - 1);
+            }else {
+                if (htMap.containsKey(nodes[i].height)){
+                    if (htMap.get(nodes[i].height) == 1){
+                        htMap.remove(nodes[i].height);
+                    }else {
+                        htMap.put(nodes[i].height, htMap.get(nodes[i].height) - 1);
                     }
                 }
             }
 
-            if (htMap.isEmpty()) {
-                pmMap.put(cur.position, 0);
-            } else {
-                pmMap.put(cur.position, htMap.lastKey());
+            if (htMap.isEmpty()){
+                pmMap.put(nodes[i].position, 0);
+            }else {
+                pmMap.put(nodes[i].position, htMap.lastKey());
             }
         }
 
-        List<List<Integer>> res = new ArrayList<>();
+        List<List<Integer>> lists = new ArrayList<>();
         int start = 0;
         int height = 0;
-        for (Map.Entry<Integer, Integer> entry : pmMap.entrySet()) {
-            int curHeight = entry.getValue();
+
+        for (Map.Entry<Integer, Integer> entry : pmMap.entrySet()){
             int curPosition = entry.getKey();
-            if (height != curHeight) {
-                if (height != 0) {
+            int curHeight = entry.getValue();
+
+            if (height != curHeight){
+                if (height != 0){
                     List<Integer> list = new ArrayList<>();
                     list.add(start);
                     list.add(curPosition);
                     list.add(height);
-                    res.add(list);
+                    lists.add(list);
                 }
-                start = curPosition;
                 height = curHeight;
+                start = curPosition;
             }
         }
 
-        return res;
+        return lists;
+
     }
 
     public static class myComparator implements Comparator<Node> {
-        public int compare(Node o1, Node o2) {
-            if (o1.position != o2.position) {
+        public int compare(Node o1, Node o2){
+            if (o1.position != o2.position){
                 return o1.position - o2.position;
-            } else {
-                if (o1.isUp != o2.isUp) {
+            }else {
+                if (o1.isUp != o2.isUp){
                     return o1.isUp ? -1 : 1;
                 }
             }

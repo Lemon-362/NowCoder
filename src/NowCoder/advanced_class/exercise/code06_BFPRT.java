@@ -7,7 +7,7 @@ package NowCoder.advanced_class.exercise;
 public class code06_BFPRT {
     public static class getMinNumByHeap {
         public static int[] getMinByHeap(int[] arr, int k) {
-            if (arr == null || arr.length < 1) {
+            if (arr == null || arr.length < 1 || k < 1) {
                 return null;
             }
 
@@ -57,21 +57,25 @@ public class code06_BFPRT {
 
     public static class getMinNumByBFPRT {
         public static int[] getMinByBFPRT(int[] arr, int k) {
-            if (arr == null || arr.length < 1) {
+            if (arr == null || arr.length < 1 || k < 1) {
                 return null;
             }
 
             int kthMinNum = getKthMinNum(arr, k);
+
             int[] res = new int[k];
             int index = 0;
+
             for (int i = 0; i < arr.length; i++) {
                 if (arr[i] < kthMinNum) {
                     res[index++] = arr[i];
                 }
             }
-            while (index < k) {
+
+            while (index < res.length) {
                 res[index++] = kthMinNum;
             }
+
             return res;
         }
 
@@ -100,6 +104,7 @@ public class code06_BFPRT {
             int less = l - 1;
             int more = r + 1;
             int cur = l;
+
             while (cur < more) {
                 if (arr[cur] < num) {
                     swap(arr, ++less, cur++);
@@ -109,6 +114,7 @@ public class code06_BFPRT {
                     cur++;
                 }
             }
+
             return new int[]{less + 1, more - 1};
         }
 
@@ -138,7 +144,7 @@ public class code06_BFPRT {
         }
 
         public static void insertSort(int[] arr, int l, int r) {
-            for (int i = l; i < r; i++) {
+            for (int i = l + 1; i < r; i++) {
                 for (int j = i - 1; j >= 0 && arr[j] > arr[j + 1]; j--) {
                     swap(arr, j, j + 1);
                 }
@@ -147,7 +153,7 @@ public class code06_BFPRT {
 
         public static int[] copyArray(int[] arr) {
             int[] res = new int[arr.length];
-            for (int i = 0; i < arr.length; i++) {
+            for (int i = 0; i < res.length; i++) {
                 res[i] = arr[i];
             }
             return res;

@@ -40,30 +40,30 @@ public class code08_AllLessNumSubArray {
     }
 
     // 窗口更新结构法
-    public static int getNum02(int[] arr, int num) {
-        if (arr == null || arr.length < 1) {
+    public static int getNum02(int[] arr, int num){
+        if (arr == null || arr.length < 1 || num < 1){
             return -1;
         }
 
-        LinkedList<Integer> minList = new LinkedList<>();
-        LinkedList<Integer> maxList = new LinkedList<>();
+        LinkedList<Integer> minQ = new LinkedList<>();
+        LinkedList<Integer> maxQ = new LinkedList<>();
         int res = 0;
         int L = 0;
         int R = 0;
 
         while (L < arr.length){
             while (R < arr.length){
-                while (!minList.isEmpty() && arr[R] <= arr[minList.peekLast()]){
-                    minList.pollLast();
+                while (!minQ.isEmpty() && arr[R] <= arr[minQ.peekLast()]){
+                    minQ.pollLast();
                 }
-                minList.addLast(R);
+                minQ.addLast(R);
 
-                while (!maxList.isEmpty() && arr[R] >= arr[maxList.peekLast()]){
-                    maxList.pollLast();
+                while (!maxQ.isEmpty() && arr[R] >= arr[maxQ.peekLast()]){
+                    maxQ.pollLast();
                 }
-                maxList.addLast(R);
+                maxQ.addLast(R);
 
-                if (arr[maxList.peekFirst()] - arr[minList.peekFirst()] > num){
+                if (arr[maxQ.peekFirst()] - arr[minQ.peekFirst()] > num){
                     break;
                 }
 
@@ -72,11 +72,12 @@ public class code08_AllLessNumSubArray {
 
             res += (R - L);
 
-            if (minList.peekFirst() == L){
-                minList.pollFirst();
+            if (minQ.peekFirst() == L){
+                minQ.pollFirst();
             }
-            if (maxList.peekFirst() == L){
-                maxList.pollFirst();
+
+            if (maxQ.peekFirst() == L){
+                maxQ.peekFirst();
             }
 
             L++;

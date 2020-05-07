@@ -24,6 +24,15 @@ public class code23_MaxHappy {
             1) 当前节点来的活跃度
             2) 当前节点不来的活跃度
      */
+    public static class Node {
+        private int huo;
+        private List<Node> next;
+
+        public Node(int huo) {
+            this.huo = huo;
+            this.next = new ArrayList<>();
+        }
+    }
 
     public static class ReturnData {
         private int lai;
@@ -35,29 +44,16 @@ public class code23_MaxHappy {
         }
     }
 
-    public static class Node {
-        private int huo;
-        private List<Node> next;
-
-        public Node(int huo) {
-            this.huo = huo;
-            this.next = new ArrayList<>();
-        }
-    }
-
     public static ReturnData process(Node head){
         int lai_huo = head.huo;
         int bu_lai_huo = 0;
 
         for (int i = 0; i < head.next.size(); i++) {
             Node cur = head.next.get(i);
-
-            // 假设黑盒
             ReturnData returnData = process(cur);
 
-            // 1
             lai_huo += returnData.bu_lai;
-            // 2
+
             bu_lai_huo += Math.max(returnData.lai, returnData.bu_lai);
         }
 
@@ -65,14 +61,12 @@ public class code23_MaxHappy {
     }
 
     public static int getMaxHappy(int[][] arr){
-        int n = arr.length;
-        Node[] nodes = new Node[n];
-
-        for (int i = 0; i < n; i++) {
+        Node[] nodes = new Node[arr.length];
+        for (int i = 0; i < arr.length; i++) {
             nodes[i] = new Node(arr[i][1]);
         }
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < nodes.length; i++) {
             int boss = arr[i][0];
             if (i != boss){
                 nodes[boss].next.add(nodes[i]);
@@ -80,7 +74,7 @@ public class code23_MaxHappy {
         }
 
         Node head = null;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < nodes.length; i++) {
             if (i == arr[i][0]){
                 head = nodes[i];
                 break;

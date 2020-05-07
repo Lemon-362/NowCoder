@@ -25,44 +25,42 @@ public class code12_MountainsFlame {
 
     public static int mountainsFlame(int[] arr) {
         if (arr == null || arr.length < 1) {
-            return 0;
+            return -1;
         }
-
-        Stack<Pair> stack = new Stack<>();
-        int res = 0;
 
         int maxIndex = 0;
         for (int i = 0; i < arr.length; i++) {
-            maxIndex = arr[i] > arr[maxIndex] ? i : maxIndex;
+            maxIndex = arr[maxIndex] < arr[i] ? i : maxIndex;
         }
-        int len = arr.length;
         int maxValue = arr[maxIndex];
+        int len = arr.length;
         int next = getNextIndex(maxIndex, len);
 
+        Stack<Pair> stack = new Stack<>();
         stack.push(new Pair(maxValue));
+        int res = 0;
 
         while (next != maxIndex) {
-            while (!stack.isEmpty() && arr[next] > stack.peek().value) {
+            int cur = arr[next];
+            while (!stack.isEmpty() && cur > stack.peek().value) {
                 int k = stack.pop().times;
                 res += getCk2(k) + 2 * k;
             }
-
-            if (arr[next] == stack.peek().value){
+            if (cur == stack.peek().value) {
                 stack.peek().times++;
-            }else {
-                stack.push(new Pair(arr[next]));
+            } else {
+                stack.push(new Pair(cur));
             }
-
             next = getNextIndex(next, len);
         }
 
-        while (!stack.isEmpty()){
+        while (!stack.isEmpty()) {
             int k = stack.pop().times;
-            if (stack.size() >= 2){
+            if (stack.size() >= 2) {
                 res += getCk2(k) + 2 * k;
-            }else if (stack.size() == 1){
+            } else if (stack.size() == 1) {
                 int a = stack.peek().times;
-                if (a >= 2){
+                if (a >= 2) {
                     res += getCk2(k) + 2 * k;
                 }else {
                     res += getCk2(k) + k;
@@ -80,7 +78,7 @@ public class code12_MountainsFlame {
     }
 
     public static int getCk2(int k) {
-        return k >= 2 ? k * (k - 1) / 2 : 0;
+        return k > 1 ? k * (k - 1) / 2 : 0;
     }
 
     public static int getNextIndex(int index, int len) {

@@ -33,14 +33,15 @@ public class code07_SlidingWindowMaxArray {
             }
             list.addLast(i);
 
-            if (list.peekFirst() == i - w){ // L: i - w
+            if (list.peekFirst() == i - w){
                 list.pollFirst();
             }
 
-            if (i >= w -1){
+            if (i >= w - 1){
                 res[index++] = arr[list.peekFirst()];
             }
         }
+
         return res;
     }
 

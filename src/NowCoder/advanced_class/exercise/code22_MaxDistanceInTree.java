@@ -37,7 +37,6 @@ public class code22_MaxDistanceInTree {
             2) 深度
         4. 改递归
      */
-
     public static class ReturnData {
         private int maxDistance;
         private int depth;

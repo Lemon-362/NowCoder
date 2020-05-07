@@ -25,8 +25,7 @@ public class code31_RobotWalk {
             return process(N, curP - 1, leftK - 1, P);
         } else {
             return process(N, curP + 1, leftK - 1, P)
-                    +
-                    process(N, curP - 1, leftK - 1, P);
+                    + process(N, curP - 1, leftK - 1, P);
         }
     }
 

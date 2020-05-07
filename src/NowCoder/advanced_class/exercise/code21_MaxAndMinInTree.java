@@ -33,7 +33,6 @@ public class code21_MaxAndMinInTree {
             2) 子树上的min
         4. 改递归
      */
-
     public static class ReturnData {
         private int max;
         private int min;
@@ -50,21 +49,20 @@ public class code21_MaxAndMinInTree {
             return new ReturnData(Integer.MIN_VALUE, Integer.MAX_VALUE);
         }
 
-        // 假设黑盒
         ReturnData leftData = process(head.left);
         ReturnData rightData = process(head.right);
 
-        // 1 2 3中取max和min
-        int maxMax = Math.max(Math.max(leftData.max, rightData.max), head.value);
-        int minMin = Math.min(Math.min(leftData.min, rightData.min), head.value);
+        int max = Math.max(Math.max(leftData.max, rightData.max), head.value);
+        int min = Math.min(Math.min(leftData.min, rightData.min), head.value);
 
-        return new ReturnData(maxMax, minMin);
+        return new ReturnData(max, min);
     }
 
     public static void printMaxAndMin(Node head){
         ReturnData returnData = process(head);
         int max = returnData.max;
         int min = returnData.min;
+
         System.out.println("max: " + max);
         System.out.println("min: " + min);
     }

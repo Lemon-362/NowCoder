@@ -19,38 +19,41 @@ public class code02_KMP_ShortestHaveTwice {
         }
     }
 
-    public static KMP shortestHaveTwice(String s) {
-        if (s == null || s.length() < 1) {
-            return null;
+    public static KMP shortestHaveTwice(String s){
+        if (s == null){
+            return new KMP(0, null);
         }
 
-        if (s.length() == 1) {
+        if (s.length() == 1){
             return new KMP(1, s);
         }
 
         char[] str = s.toCharArray();
+
         int len = getNextArr(str);
+
         return new KMP(len, s.substring(len));
     }
 
-    public static int getNextArr(char[] str) {
+    public static int getNextArr(char[] str){
         int[] next = new int[str.length + 1];
         next[0] = -1;
         next[1] = 0;
         int p = 2;
         int cn = 0;
-        while (p < next.length) {
-            if (str[p - 1] == str[cn]) {
+
+        while (p < next.length){
+            if (str[p - 1] == str[cn]){
                 next[p++] = ++cn;
-            } else if (cn > 0) {
+            }else if (cn > 0){
                 cn = next[cn];
-            } else {
+            }else {
                 next[p++] = 0;
             }
         }
+
         return next[next.length - 1];
     }
-
 
     public static void main(String[] args) {
         String test1 = "a";

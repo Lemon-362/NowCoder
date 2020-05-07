@@ -18,8 +18,8 @@ public class code03_KMP_Tree1ContainTree2 {
         }
     }
 
-    public static boolean isSubTree(Node head1, Node head2) {
-        if (head1 == null || head2 == null) {
+    public static boolean isSubTree(Node head1, Node head2){
+        if (head1 == null || head2 == null){
             return false;
         }
 
@@ -27,17 +27,17 @@ public class code03_KMP_Tree1ContainTree2 {
         char[] str2 = serial(head2).toCharArray();
 
         int[] next = getNextArr(str2);
+
         int p1 = 0;
         int p2 = 0;
-
-        while (p1 < str1.length && p2 < str2.length) {
-            if (str1[p1] == str2[p2]) {
+        while (p1 < str1.length && p2 < str2.length){
+            if (str1[p1] == str2[p2]){
                 p1++;
                 p2++;
-            } else {
-                if (next[p2] == -1) {
+            }else {
+                if (next[p2] == -1){
                     p1++;
-                } else {
+                }else {
                     p2 = next[p2];
                 }
             }
@@ -45,21 +45,22 @@ public class code03_KMP_Tree1ContainTree2 {
 
         int len = p2 == str2.length ? p1 - p2 : -1;
         return len != -1;
-
     }
 
-    public static int[] getNextArr(char[] str) {
+    public static int[] getNextArr(char[] str){
         int[] next = new int[str.length];
+
         next[0] = -1;
         next[1] = 0;
         int p = 2;
         int cn = 0;
-        while (p < next.length) {
-            if (str[p - 1] == str[cn]) {
+
+        while (p < next.length){
+            if (str[p - 1] == str[cn]){
                 next[p++] = ++cn;
-            } else if (cn > 0) {
+            }else if (cn > 0){
                 cn = next[cn];
-            } else {
+            }else {
                 next[p++] = 0;
             }
         }
@@ -67,10 +68,11 @@ public class code03_KMP_Tree1ContainTree2 {
         return next;
     }
 
-    public static String serial(Node head) {
-        if (head == null) {
+    public static String serial(Node head){
+        if (head == null){
             return "#_";
         }
+
         String res = head.val + "_";
         res += serial(head.left);
         res += serial(head.right);

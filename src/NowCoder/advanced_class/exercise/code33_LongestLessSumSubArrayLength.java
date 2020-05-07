@@ -1,7 +1,7 @@
 package NowCoder.advanced_class.exercise;
 
 /*
-    累加和等于aim的最长子数组：
+    累加和小于等于aim的最长子数组：
 		给定一个数组arr，可正可负可0，和一个整数num
 		求累加和小于等于aim的最长子数组，要求时间复杂度O(N)
 		TODO 可正可负可0，小于等于aim
@@ -41,8 +41,8 @@ public class code33_LongestLessSumSubArrayLength {
 
         int L = 0;
         int R = 0;
-        int sum = 0;
         int len = 0;
+        int sum = 0;
 
         while (L < arr.length) {
             while (R < arr.length && sum + min_sum[R] <= aim) {

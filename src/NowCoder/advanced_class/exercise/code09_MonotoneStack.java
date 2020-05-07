@@ -29,7 +29,7 @@ public class code09_MonotoneStack {
         HashMap<Integer, Integer> rBigMap = new HashMap<>();
 
         for (int i = 0; i < arr.length; i++) {
-            while (!stack.isEmpty() && arr[i] > arr[stack.peek()]){
+            while (!stack.isEmpty() && arr[i] >= arr[stack.peek()]){
                 int popIndex = stack.pop();
                 rBigMap.put(popIndex, i);
                 if (stack.isEmpty()){
@@ -38,6 +38,7 @@ public class code09_MonotoneStack {
                     lBigMap.put(popIndex, stack.peek());
                 }
             }
+
             stack.push(i);
         }
 

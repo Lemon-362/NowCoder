@@ -20,25 +20,27 @@ public class code01_KMP {
     // 法三：KMP算法 利用匹配程度对暴力法加速
     // 匹配程度：对于一个字符，它前面的字符串的前缀和后缀相同时最长的长度
     // TODO next数组求解的是前缀和后缀相同时的最大长度
-    public static int getIndexOf(String s, String m) {
-        if (s == null || m == null || s.length() < 1 || m.length() > s.length()) {
+    public static int getIndexOf(String s1, String s2){
+        if (s1 == null || s2 == null || s2.length() > s1.length()){
             return -1;
         }
-        char[] str1 = s.toCharArray();
-        char[] str2 = m.toCharArray();
+
+        char[] str1 = s1.toCharArray();
+        char[] str2 = s2.toCharArray();
 
         int[] next = getNextArr(str2);
+
         int p1 = 0;
         int p2 = 0;
 
-        while (p1 < str1.length && p2 < str2.length) {
-            if (str1[p1] == str2[p2]) {
+        while (p1 < str1.length && p2 < str2.length){
+            if (str1[p1] == str2[p2]){
                 p1++;
                 p2++;
-            } else {
-                if (next[p2] == -1) {
+            }else {
+                if (next[p2] == -1){
                     p1++;
-                } else {
+                }else {
                     p2 = next[p2];
                 }
             }
@@ -47,21 +49,23 @@ public class code01_KMP {
         return p2 == str2.length ? p1 - p2 : -1;
     }
 
-    public static int[] getNextArr(char[] str) {
+    public static int[] getNextArr(char[] str){
         int[] next = new int[str.length];
         next[0] = -1;
         next[1] = 0;
         int p = 2;
         int cn = 0;
-        while (p < next.length) {
-            if (str[p - 1] == str[cn]) {
+
+        while (p < next.length){
+            if (str[p - 1] == str[cn]){
                 next[p++] = ++cn;
-            } else if (cn > 0) {
+            }else if (cn > 0){
                 cn = next[cn];
-            } else {
+            }else {
                 next[p++] = 0;
             }
         }
+
         return next;
     }
 

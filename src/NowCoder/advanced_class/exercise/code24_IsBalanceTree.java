@@ -42,7 +42,6 @@ public class code24_IsBalanceTree {
             2) 高度
         4. 改递归
      */
-
     public static class ReturnData {
         private boolean isB;
         private int height;
@@ -66,10 +65,12 @@ public class code24_IsBalanceTree {
         if (!leftData.isB){
             return new ReturnData(false, 0);
         }
+
         // 2
         if (!rightData.isB){
             return new ReturnData(false, 0);
         }
+
         // 3
         if (Math.abs(leftData.height - rightData.height) > 1){
             return new ReturnData(false, 0);

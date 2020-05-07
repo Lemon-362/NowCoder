@@ -52,7 +52,7 @@ public class code20_BiggestSubBSTInTree {
         4. 改递归
      */
 
-    public static class ReturnData {
+    public static class ReturnData{
         private int size;
         private Node head;
         private int max;
@@ -67,30 +67,34 @@ public class code20_BiggestSubBSTInTree {
     }
 
     public static ReturnData process(Node head){
+        // base case
         if (head == null){
             return new ReturnData(0, null, Integer.MIN_VALUE, Integer.MAX_VALUE);
         }
 
-        ReturnData left = process(head.left);
-        ReturnData right = process(head.right);
+        ReturnData leftData = process(head.left);
+        ReturnData rightData = process(head.right);
 
-        int leftSize = left.size;
-        int rightSize = right.size;
+        // 1
+        int leftSize = leftData.size;
+        // 2
+        int rightSize = rightData.size;
+        // 3
         int curSize = 0;
-        if (left.head == head.left && right.head == head.right
-        && head.value > left.max && head.value < right.min){
+        if (leftData.head == head.left && rightData.head == head.right
+        && head.value > leftData.max && head.value < rightData.min){
             curSize = leftSize + rightSize + 1;
         }
 
         int maxSize = Math.max(Math.max(leftSize, rightSize), curSize);
-        Node maxHead = leftSize > rightSize ? left.head : right.head;
+        Node maxNode = leftData.size > rightData.size ? leftData.head : rightData.head;
         if (maxSize == curSize){
-            maxHead = head;
+            maxNode = head;
         }
-        int maxMax = Math.max(Math.max(left.max, right.max), head.value);
-        int minMin = Math.min(Math.min(left.min, right.min), head.value);
+        int maxMax = Math.max(Math.max(leftData.max, rightData.max), head.value);
+        int minMin = Math.min(Math.min(leftData.min, rightData.min), head.value);
 
-        return new ReturnData(maxSize, maxHead, maxMax, minMin);
+        return new ReturnData(maxSize, maxNode, maxMax, minMin);
     }
 
     public static Node getMaxBST(Node head){

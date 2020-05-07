@@ -15,36 +15,29 @@ public class code18_Longest012SubArrayLength {
             return 0;
         }
 
-        int[] newArr = new int[arr.length];
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == 2) {
-                newArr[i] = -1;
-            } else {
-                newArr[i] = arr[i];
-            }
+        int[] res = new int[arr.length];
+        for (int i = 0; i < res.length; i++) {
+            res[i] = arr[i] == 2 ? -1 : arr[i];
         }
 
         HashMap<Integer, Integer> map = new HashMap<>();
         int sum = 0;
-        int len = 0;
-        int max = 0;
-        // TODO 一定要加！
-        map.put(0,-1);
+        int len =0;
+        map.put(0, -1);
 
-        for (int i = 0; i < newArr.length; i++) {
-            sum += newArr[i];
+        for (int i = 0; i < res.length; i++) {
+            sum += res[i];
 
-            if (map.containsKey(sum - 0)) {
-                len = i - map.get(sum - 0);
-                max = Math.max(len, max);
+            if (map.containsKey(sum - 0)){
+                len = Math.max(len, i - (map.get(sum - 0) + 1) + 1);
             }
 
-            if (!map.containsKey(sum)) {
+            if (!map.containsKey(sum)){
                 map.put(sum, i);
             }
         }
 
-        return max;
+        return len;
     }
 
     public static void main(String[] args) {

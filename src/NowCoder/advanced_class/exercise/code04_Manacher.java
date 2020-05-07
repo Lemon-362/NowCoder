@@ -26,10 +26,10 @@ public class code04_Manacher {
         int[] pArr = new int[str.length];
         int R = -1;
         int C = -1;
-        int max = 0;
+        int len = 0;
 
         for (int i = 0; i < str.length; i++) {
-            pArr[i] = i < R ? Math.min(R - i, pArr[2 * C - i]) : 1;
+            pArr[i] = R > i ? Math.min(R - i, pArr[2 * C - i]) : 1;
             while (i + pArr[i] < str.length && i - pArr[i] > -1) {
                 if (str[i + pArr[i]] == str[i - pArr[i]]) {
                     pArr[i]++;
@@ -38,15 +38,15 @@ public class code04_Manacher {
                 }
             }
 
-            if (i + pArr[i] > R) {
+            if (i + pArr[i] > R){
                 R = i + pArr[i];
                 C = i;
             }
 
-            max = Math.max(max, pArr[i]);
+            len = Math.max(len, pArr[i]);
         }
 
-        return max - 1;
+        return len - 1;
     }
 
     public static char[] manacherString(String s) {

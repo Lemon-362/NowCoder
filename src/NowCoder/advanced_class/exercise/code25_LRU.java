@@ -14,8 +14,8 @@ public class code25_LRU {
     public static class Node<K, V> {
         private K key;
         private V value;
-        private Node<K, V> next;
         private Node<K, V> last;
+        private Node<K, V> next;
 
         public Node(K key, V value) {
             this.key = key;
@@ -60,21 +60,20 @@ public class code25_LRU {
             }
         }
 
-        public Node<K, V> removeNodeFromHead(){
+        public Node<K, V> removeHeadNode(){
             if (this.head == null){
                 return null;
             }
             Node<K, V> headNode = this.head;
             if (this.tail == headNode){
-                this.head = null;
                 this.tail = null;
-                return headNode;
+                this.head = null;
             }else {
                 Node<K, V> lastNode = headNode.last;
                 lastNode.next = null;
-                headNode.last = null;
-                return headNode;
+                this.head = lastNode;
             }
+            return headNode;
         }
 
         public void addNodeToTail(Node<K, V> node){
@@ -115,15 +114,15 @@ public class code25_LRU {
         }
 
         public void set(K key, V value){
-            if (map.containsKey(key)){
+            if (map.containsKey(key)) {
                 Node<K, V> setNode = map.get(key);
                 setNode.value = value;
                 map.put(key, setNode);
 
                 list.moveNodeToTail(setNode);
             }else {
-                if (map.size() == this.capacity){
-                    this.removeNode();
+                if (this.capacity == map.size()){
+                    removeNode();
                 }
                 Node<K, V> setNode = new Node<>(key, value);
                 map.put(key, setNode);
@@ -132,8 +131,8 @@ public class code25_LRU {
         }
 
         public void removeNode(){
-            Node<K, V> head = list.removeNodeFromHead();
-            this.map.remove(head.key);
+            Node<K, V> headNode = list.removeHeadNode();
+            map.remove(headNode.key);
         }
     }
 

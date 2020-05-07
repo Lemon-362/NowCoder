@@ -39,10 +39,10 @@ public class code30_CardsInLine {
             return arr[i];
         }
 
-        int a = arr[i] + s(arr, i + 1, j);
-        int b = arr[j] + s(arr, i, j - 1);
+        int f_a = arr[i] + s(arr, i + 1, j);
+        int f_b = arr[j] + s(arr, i, j - 1);
 
-        return Math.max(a, b);
+        return Math.max(f_a, f_b);
     }
 
     public static int s(int[] arr, int i, int j) {
@@ -50,10 +50,10 @@ public class code30_CardsInLine {
             return 0;
         }
 
-        int a = f(arr, i + 1, j);
-        int b = f(arr, i, j - 1);
+        int s_a = f(arr, i + 1, j);
+        int s_b = f(arr, i, j - 1);
 
-        return Math.min(a, b);
+        return Math.min(s_a, s_b);
     }
 
     public static int getMaxScore1(int[] arr) {
@@ -72,7 +72,7 @@ public class code30_CardsInLine {
         int[][] s = new int[arr.length][arr.length];
 
         for (int j = 0; j < arr.length; j++) {
-            f[j][j] = arr[j];
+            f[j][j] = 1;
             s[j][j] = 0;
             for (int i = j - 1; i >= 0; i--) {
                 int f_a = arr[i] + s[i + 1][j];
@@ -85,11 +85,7 @@ public class code30_CardsInLine {
             }
         }
 
-
-        int f_score = f[0][arr.length - 1];
-        int s_score = s[0][arr.length - 1];
-
-        return Math.max(f_score, s_score);
+        return Math.max(f[0][arr.length - 1], s[0][arr.length - 1]);
     }
 
     public static void main(String[] args) {

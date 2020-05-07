@@ -15,20 +15,21 @@ public class code17_Longest01SubArrayLength {
             return 0;
         }
 
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = arr[i] == 0 ? -1 : arr[i];
+        int[] res = new int[arr.length];
+        for (int i = 0; i < res.length; i++) {
+            res[i] = arr[i] == 0 ? -1 : 1;
         }
 
         HashMap<Integer, Integer> map = new HashMap<>();
-        int len = 0;
         int sum = 0;
+        int len =0;
         map.put(0, -1);
 
-        for (int i = 0; i < arr.length; i++) {
-            sum += arr[i];
+        for (int i = 0; i < res.length; i++) {
+            sum += res[i];
 
             if (map.containsKey(sum - 0)){
-                len = Math.max(len, i - map.get(sum - 0));
+                len = Math.max(len, i - (map.get(sum - 0) + 1) + 1);
             }
 
             if (!map.containsKey(sum)){

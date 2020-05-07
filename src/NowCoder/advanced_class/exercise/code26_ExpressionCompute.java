@@ -40,6 +40,7 @@ public class code26_ExpressionCompute {
 
         addNum(list, preNum);
         int result = getNum(list);
+
         return new ReturnData(result, i);
     }
 

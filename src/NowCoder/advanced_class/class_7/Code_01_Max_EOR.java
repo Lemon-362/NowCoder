@@ -116,6 +116,7 @@ public class Code_01_Max_EOR {
     }
 
     public static int maxXorSubArray(int[] arr) {
+        // TODO 不能少，少了就报错
         if (arr == null || arr.length == 0) {
             return 0;
         }
