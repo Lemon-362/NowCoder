@@ -43,7 +43,7 @@ public class code10_GetMaxTree {
 
         for (int i = 0; i < nodes.length; i++) {
             Node cur = nodes[i];
-            while (!stack.isEmpty() && cur.value >= stack.peek().value){
+            while (!stack.isEmpty() && cur.value > stack.peek().value){
                 Node popNode = stack.pop();
                 rBigMap.put(popNode, cur);
                 if (stack.isEmpty()){
@@ -52,7 +52,6 @@ public class code10_GetMaxTree {
                     lBigMap.put(popNode, stack.peek());
                 }
             }
-
             stack.push(cur);
         }
 
@@ -71,6 +70,7 @@ public class code10_GetMaxTree {
             Node cur = nodes[i];
             Node left = lBigMap.get(cur);
             Node right = rBigMap.get(cur);
+
             if (left == null && right == null){
                 head = cur;
             }else if (left == null){

@@ -77,7 +77,7 @@ public class code08_AllLessNumSubArray {
             }
 
             if (maxQ.peekFirst() == L){
-                maxQ.peekFirst();
+                maxQ.pollFirst();
             }
 
             L++;

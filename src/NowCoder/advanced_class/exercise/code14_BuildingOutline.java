@@ -27,7 +27,6 @@ public class code14_BuildingOutline {
 
     public static List<List<Integer>> buildingOutline(int[][] arr) {
         Node[] nodes = new Node[arr.length * 2];
-
         for (int i = 0; i < arr.length; i++) {
             nodes[2 * i] = new Node(arr[i][0], arr[i][2], true);
             nodes[2 * i + 1] = new Node(arr[i][1], arr[i][2], false);
@@ -40,7 +39,7 @@ public class code14_BuildingOutline {
 
         for (int i = 0; i < nodes.length; i++) {
             if (nodes[i].isUp){
-                if (htMap.containsKey(nodes[i].height)) {
+                if (htMap.containsKey(nodes[i].height)){
                     htMap.put(nodes[i].height, htMap.get(nodes[i].height) + 1);
                 }else {
                     htMap.put(nodes[i].height, 1);
@@ -65,11 +64,9 @@ public class code14_BuildingOutline {
         List<List<Integer>> lists = new ArrayList<>();
         int start = 0;
         int height = 0;
-
-        for (Map.Entry<Integer, Integer> entry : pmMap.entrySet()){
+        for(Map.Entry<Integer, Integer> entry : pmMap.entrySet()){
             int curPosition = entry.getKey();
             int curHeight = entry.getValue();
-
             if (height != curHeight){
                 if (height != 0){
                     List<Integer> list = new ArrayList<>();
@@ -84,7 +81,6 @@ public class code14_BuildingOutline {
         }
 
         return lists;
-
     }
 
     public static class myComparator implements Comparator<Node> {

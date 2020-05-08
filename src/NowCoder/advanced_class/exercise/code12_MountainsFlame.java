@@ -23,8 +23,8 @@ public class code12_MountainsFlame {
         }
     }
 
-    public static int mountainsFlame(int[] arr) {
-        if (arr == null || arr.length < 1) {
+    public static int mountainsFlame(int[] arr){
+        if (arr == null || arr.length < 1){
             return -1;
         }
 
@@ -33,34 +33,32 @@ public class code12_MountainsFlame {
             maxIndex = arr[maxIndex] < arr[i] ? i : maxIndex;
         }
         int maxValue = arr[maxIndex];
+        int res = 0;
         int len = arr.length;
-        int next = getNextIndex(maxIndex, len);
-
+        int nextIndex = getNextIndex(maxIndex, len);
         Stack<Pair> stack = new Stack<>();
         stack.push(new Pair(maxValue));
-        int res = 0;
 
-        while (next != maxIndex) {
-            int cur = arr[next];
-            while (!stack.isEmpty() && cur > stack.peek().value) {
+        while (nextIndex != maxIndex){
+            while (!stack.isEmpty() && arr[nextIndex] > stack.peek().value){
                 int k = stack.pop().times;
                 res += getCk2(k) + 2 * k;
             }
-            if (cur == stack.peek().value) {
+            if (arr[nextIndex] == stack.peek().value){
                 stack.peek().times++;
-            } else {
-                stack.push(new Pair(cur));
+            }else {
+                stack.push(new Pair(arr[nextIndex]));
             }
-            next = getNextIndex(next, len);
+            nextIndex = getNextIndex(nextIndex, len);
         }
 
-        while (!stack.isEmpty()) {
+        while (!stack.isEmpty()){
             int k = stack.pop().times;
-            if (stack.size() >= 2) {
+            if (stack.size() >= 2){
                 res += getCk2(k) + 2 * k;
-            } else if (stack.size() == 1) {
+            }else if (stack.size() == 1){
                 int a = stack.peek().times;
-                if (a >= 2) {
+                if (a >= 2){
                     res += getCk2(k) + 2 * k;
                 }else {
                     res += getCk2(k) + k;
@@ -77,11 +75,11 @@ public class code12_MountainsFlame {
         return res;
     }
 
-    public static int getCk2(int k) {
-        return k > 1 ? k * (k - 1) / 2 : 0;
+    public static int getCk2(int k){
+        return k >= 2 ? k * (k - 1) / 2 : 0;
     }
 
-    public static int getNextIndex(int index, int len) {
+    public static int getNextIndex(int index, int len){
         return index == len - 1 ? 0 : index + 1;
     }
 

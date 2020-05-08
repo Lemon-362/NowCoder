@@ -21,8 +21,8 @@ public class code16_LongestOddSubArrayLength {
         }
 
         HashMap<Integer, Integer> map = new HashMap<>();
+        int len = 0;
         int sum = 0;
-        int len =0;
         map.put(0, -1);
 
         for (int i = 0; i < res.length; i++) {

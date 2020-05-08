@@ -17,11 +17,10 @@ public class code19_MostEORSubArray {
         }
 
         HashMap<Integer, Integer> map = new HashMap<>();
-        int[] dp = new int[arr.length];
         map.put(0, -1);
-
-        int xor = 0;
         int res = 0;
+        int xor = 0;
+        int[] dp = new int[arr.length]; // 用来存储以该位置结尾的最多的子数组个数
 
         for (int i = 0; i < arr.length; i++) {
             xor ^= arr[i];

@@ -36,56 +36,56 @@ public class code28_MaxEOR {
         }
 
         int xor = 0;
-        int max = Integer.MIN_VALUE;
+        int res = 0;
         int[] dp = new int[arr.length];
 
         for (int i = 0; i < arr.length; i++) {
             xor ^= arr[i];
-            max = Math.max(max, xor);
+            res = Math.max(xor, res);
 
             for (int start = 1; start <= i; start++) {
                 int startToI = xor ^ dp[start - 1];
-                max = Math.max(max, startToI);
+                res = Math.max(startToI, res);
             }
 
             dp[i] = xor;
         }
 
-        return max;
+        return res;
     }
 
     // 3. 前缀树: 将每个xor转换为二进制存储 O(N)
-    public static class Node{
-        private Node[] nodes;
+    public static class Node {
+        private Node[] next;
 
         public Node() {
-            this.nodes = new Node[2];
+            this.next = new Node[2];
         }
     }
 
     public static class TrieTree {
-        private Node root;
+        private Node head;
 
         public TrieTree() {
-            this.root = new Node();
+            this.head = new Node();
         }
 
         public void add(int num){
-            Node cur = root;
+            Node cur = head;
 
             for (int i = 31; i >= 0; i--) {
                 int path = (num >> i) & 1;
 
-                if (cur.nodes[path] == null){
-                    cur.nodes[path] = new Node();
+                if (cur.next[path] == null){
+                    cur.next[path] = new Node();
                 }
 
-                cur = cur.nodes[path];
+                cur = cur.next[path];
             }
         }
 
         public int getMaxEor(int num){
-            Node cur = root;
+            Node cur = head;
             int res = 0;
 
             for (int i = 31; i >= 0; i--) {
@@ -93,11 +93,11 @@ public class code28_MaxEOR {
 
                 int best = i == 31 ? path : (1 ^ path);
 
-                best = cur.nodes[best] == null ? (1 ^ best) : best;
+                best = cur.next[best] == null ? (1 ^ best) : best;
 
                 res |= (best ^ path) << i;
 
-                cur = cur.nodes[best];
+                cur = cur.next[best];
             }
 
             return res;
@@ -105,25 +105,24 @@ public class code28_MaxEOR {
     }
 
     public static int getMaxEOR3(int[] arr){
-        // TODO 不能少，少了就报错
         if (arr == null || arr.length < 1){
             return 0;
         }
 
-        int xor = 0;
-        int max = Integer.MIN_VALUE;
         TrieTree trieTree = new TrieTree();
         trieTree.add(0);
+        int xor = 0;
+        int res = Integer.MIN_VALUE;
 
         for (int i = 0; i < arr.length; i++) {
             xor ^= arr[i];
 
-            max = Math.max(max, trieTree.getMaxEor(xor));
+            res = Math.max(res, trieTree.getMaxEor(xor));
 
             trieTree.add(xor);
         }
 
-        return max;
+        return res;
     }
 
     // for test
