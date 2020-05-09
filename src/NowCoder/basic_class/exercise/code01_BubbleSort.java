@@ -11,7 +11,17 @@ public class code01_BubbleSort {
             return;
         }
 
-        for (int i = arr.length - 1; i > 0; i--) { // 每次遍历的长度
+        /*
+            每次比较一对并交换，一路走到最后
+            最后一个位置永远是处理好的，是当前长度中最大的数
+            长度是从尾开始减小的
+            (0, 1), (1, 2), ..., (len-2, len-1)
+            (0, 1), (1, 2), ..., (len-3, len-2)
+            ......
+            (0, 1), (1, 2)
+            (0, 1)
+         */
+        for (int i = arr.length - 1; i > 0; i--) { // 每次要处理的长度
             for (int j = 0; j < i; j++) { // 在一个长度里每次比较一对相邻元素并交换
                 if (arr[j] > arr[j + 1]) {
                     swap(arr, j, j + 1);

@@ -11,9 +11,19 @@ public class code02_SelectionSort {
             return;
         }
 
-        for (int i = 0; i < arr.length; i++) {
+        /*
+            每次选出最小的放在最前面
+            最前面的一个位置永远是处理好的，是当前长度中最小的数
+            长度是从头开始减小的
+            (0, 1, 2, ..., len-1)
+            (1, 2, ..., len-1)
+            ......
+            (len-2, len-1)
+            (len-1)
+         */
+        for (int i = 0; i < arr.length; i++) { // 每次最小数所放的位置
             int minIndex = i;
-            for (int j = i + 1; j < arr.length; j++) {
+            for (int j = i + 1; j < arr.length; j++) { // 在后续选出最小的数
                 minIndex = arr[minIndex] > arr[j] ? j : minIndex;
             }
             swap(arr, minIndex, i);

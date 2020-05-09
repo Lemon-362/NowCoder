@@ -1,18 +1,11 @@
-package NowCoder.basic_class.exercise;
+package NowCoder.basic_class.exercise.exercise02;
 
-/*
-    随机快速排序：O(NlogN)    额外空间复杂度 O(logN)
-        从数组中随机选择一个数，和最后一个交换，然后经典快排，划分为<x, =x, >x, x四部分
-        每次partition后只会处理好 =x 的部分，然后再对左右进行递归
-        再对<x, >x进行递归快排
-
-    partition优点：O(N), O(1)
- */
-public class code07_QuickSort {
+public class code07 {
     public static void quickSort(int[] arr) {
-        if (arr == null || arr.length < 2) {
+        if (arr == null || arr.length < 1) {
             return;
         }
+
         quickSort(arr, 0, arr.length - 1);
     }
 
@@ -29,6 +22,7 @@ public class code07_QuickSort {
         int less = l - 1;
         int more = r;
         int cur = l;
+
         while (cur < more) {
             if (arr[cur] < arr[r]) {
                 swap(arr, ++less, cur++);
@@ -38,7 +32,9 @@ public class code07_QuickSort {
                 cur++;
             }
         }
-        swap(arr, r, more);
+
+        swap(arr, more, r);
+
         return new int[]{less + 1, more};
     }
 
