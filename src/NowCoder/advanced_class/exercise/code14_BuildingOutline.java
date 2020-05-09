@@ -25,11 +25,12 @@ public class code14_BuildingOutline {
         }
     }
 
-    public static List<List<Integer>> buildingOutline(int[][] arr) {
-        Node[] nodes = new Node[arr.length * 2];
+    public static List<List<Integer>> buildingOutline(int[][] arr){
+        Node[] nodes = new Node[2 * arr.length];
+
         for (int i = 0; i < arr.length; i++) {
-            nodes[2 * i] = new Node(arr[i][0], arr[i][2], true);
-            nodes[2 * i + 1] = new Node(arr[i][1], arr[i][2], false);
+            nodes[2*i] = new Node(arr[i][0], arr[i][2], true);
+            nodes[2*i+1] = new Node(arr[i][1], arr[i][2], false);
         }
 
         Arrays.sort(nodes, new myComparator());
@@ -45,10 +46,10 @@ public class code14_BuildingOutline {
                     htMap.put(nodes[i].height, 1);
                 }
             }else {
-                if (htMap.containsKey(nodes[i].height)){
-                    if (htMap.get(nodes[i].height) == 1){
+                if (htMap.containsKey(nodes[i].height)) {
+                    if (htMap.get(nodes[i].height) == 1) {
                         htMap.remove(nodes[i].height);
-                    }else {
+                    } else {
                         htMap.put(nodes[i].height, htMap.get(nodes[i].height) - 1);
                     }
                 }
@@ -64,7 +65,8 @@ public class code14_BuildingOutline {
         List<List<Integer>> lists = new ArrayList<>();
         int start = 0;
         int height = 0;
-        for(Map.Entry<Integer, Integer> entry : pmMap.entrySet()){
+
+        for (Map.Entry<Integer, Integer> entry : pmMap.entrySet()){
             int curPosition = entry.getKey();
             int curHeight = entry.getValue();
             if (height != curHeight){

@@ -51,6 +51,7 @@ public class code03_EndToHeadPrintLinkedList {
 
     // 法三：改成递归形式 注意：arrayList要在外面定义好
     static ArrayList<Integer> arrayList = new ArrayList<>();
+
     public static ArrayList<Integer> endToHeadPrint03(ListNode listNode){
         if (listNode == null) {
             return null;
