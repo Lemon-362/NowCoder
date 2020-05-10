@@ -23,12 +23,12 @@ public class code07 {
         int more = r;
         int cur = l;
 
-        while (cur < more) {
-            if (arr[cur] < arr[r]) {
+        while (cur < more){
+            if (arr[cur] < arr[r]){
                 swap(arr, ++less, cur++);
-            } else if (arr[cur] > arr[r]) {
+            }else if (arr[cur] > arr[r]){
                 swap(arr, --more, cur);
-            } else {
+            }else {
                 cur++;
             }
         }

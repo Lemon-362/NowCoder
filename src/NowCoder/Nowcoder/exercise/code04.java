@@ -17,35 +17,32 @@ public class code04 {
 
     public static Node process(int[] preArr, int[] inArr) {
         // base case
-        if (preArr.length == 0 || inArr.length == 0) {
+        if (preArr.length == 0 || inArr.length == 0){
             return null;
         }
 
         Node head = new Node(preArr[0]);
-
         int mid = 0;
         for (int i = 0; i < inArr.length; i++) {
-            if (inArr[i] == preArr[0]) {
+            if (inArr[i] == preArr[0]){
                 mid = i;
                 break;
             }
         }
 
-        // 复制数组
-        int[] leftPreArr = Arrays.copyOfRange(preArr, 1, mid + 1);
-        int[] leftInArr = Arrays.copyOfRange(inArr, 0, mid);
-        int[] rightPreArr = Arrays.copyOfRange(preArr, mid + 1, preArr.length);
-        int[] rightInArr = Arrays.copyOfRange(inArr, mid + 1, inArr.length);
+        int[] lPre = Arrays.copyOfRange(preArr, 1, mid + 1);
+        int[] lIn = Arrays.copyOfRange(inArr, 0, mid);
+        int[] rPre = Arrays.copyOfRange(preArr, mid + 1, preArr.length);
+        int[] rIn = Arrays.copyOfRange(inArr, mid + 1, inArr.length);
 
-        head.left = process(leftPreArr, leftInArr);
-
-        head.right = process(rightPreArr, rightInArr);
+        head.left = process(lPre, lIn);
+        head.right = process(rPre, rIn);
 
         return head;
     }
 
-    public static Node recon(int[] preArr, int[] inArr) {
-        return process(preArr, inArr);
+    public static Node recon(int[] pre, int[] in){
+        return process(pre, in);
     }
 
     // print

@@ -14,17 +14,17 @@ public class code02 {
         }
 
         int oldLen = sb.length();
-        int newLen = oldLen + 2 * spaceNum;
-        int newIndex = newLen - 1;
+        int newLen = sb.length() + 2 * spaceNum;
         sb.setLength(newLen);
+        int newIndex = newLen - 1;
 
-        for (int i = oldLen - 1; i >= 0; i--) {
-            if (sb.charAt(i) == ' '){
+        for (int oldIndex = oldLen - 1; oldIndex >= 0; oldIndex--) {
+            if (sb.charAt(oldIndex) == ' '){
                 sb.setCharAt(newIndex--, '0');
                 sb.setCharAt(newIndex--, '2');
                 sb.setCharAt(newIndex--, '%');
             }else {
-                sb.setCharAt(newIndex--, sb.charAt(i));
+                sb.setCharAt(newIndex-- ,sb.charAt(oldIndex));
             }
         }
 

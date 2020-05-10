@@ -18,8 +18,23 @@ public class code11_NumberOf1 {
         return count;
     }
 
+    public static int method2(int n){
+        int res = 0;
+
+        // TODO 前缀树的思路
+        for (int i = 31; i >= 0; i--) {
+            int path = (n >> i) & 1;
+            if (path == 1){
+                res++;
+            }
+        }
+
+        return res;
+    }
+
     public static void main(String[] args) {
-        System.out.println(method(11)); // 3
+        System.out.println(method(33211)); // 8
         System.out.println(method(5)); // 2
+        System.out.println(method2(33211)); // 8
     }
 }

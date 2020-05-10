@@ -1,10 +1,11 @@
 package NowCoder.basic_class.exercise;
 
-/*
-    小和问题：
-        每个数左边比当前数小的数累加之和
-    归并排序思想，在拆和合的时候计算小和
+/**
+ *     小和问题：
+ *         每个数左边比当前数小的数累加之和
+ *     归并排序思想，在拆和合的时候计算小和
  */
+
 public class code05_SmallSum {
     public static int smallSum(int[] arr) {
         if (arr == null || arr.length < 2) {
