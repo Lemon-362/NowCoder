@@ -29,6 +29,7 @@ public class code16_MergeTwoLinkedList {
         ListNode p2 = list2;
         ListNode head = null;
         ListNode cur = null;
+        // TODO 类似于初级的code22_SmallEqualBig
         while (p1 != null && p2 != null) {
             if (p1.value <= p2.value) {
                 if (head == null) {
@@ -91,7 +92,7 @@ public class code16_MergeTwoLinkedList {
         head2.next.next.next = new ListNode(7);
 
 //        printList(Merge(head1, head2));
-        printList(Merge02(head1, head2));
+        printList(Merge02(head1, head2)); // 1 3 4 5 6 7 10 20
     }
 
     public static void printList(ListNode head) {

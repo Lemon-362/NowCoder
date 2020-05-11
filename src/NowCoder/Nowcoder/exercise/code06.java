@@ -10,14 +10,13 @@ public class code06 {
         int j = arr.length - 1;
         int mid;
 
-        while (i < j) {
-            if (arr[i] < arr[j]) {
+        while (i < j){
+            if (arr[i] < arr[j]){
                 return arr[i];
             }
 
             mid = (i + j) >> 1;
-
-            if (arr[j] > arr[mid]) {
+            if (arr[j] > arr[mid]){
                 j = mid;
             }else if (arr[j] < arr[mid]){
                 i = mid + 1;

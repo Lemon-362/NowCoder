@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /*
-    操作给定的二叉树，将其变换为源二叉树的镜像。
+    操作给定的二叉树，将其变换为原二叉树的镜像。
  */
 public class code18_MirrorTree {
     public static class TreeNode {
@@ -29,17 +29,19 @@ public class code18_MirrorTree {
         while (!queue.isEmpty()) {
             while (queue.size() != 0) {
                 cur = queue.poll();
-                tmp = cur.left;
 
-                cur.left = cur.right;
-                cur.right = tmp;
-
+                // TODO 先存, 再交换
                 if (cur.left != null) {
                     queue.offer(cur.left);
                 }
+
                 if (cur.right != null) {
                     queue.offer(cur.right);
                 }
+
+                tmp = cur.left;
+                cur.left = cur.right;
+                cur.right = tmp;
             }
         }
     }

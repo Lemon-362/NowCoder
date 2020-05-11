@@ -2,6 +2,9 @@ package NowCoder.Nowcoder;
 
 /*
     输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构）
+    TODO 这里判断的是 子结构!!! 而不是子树
+    TODO 子树: 从某一节点往下的所有节点
+    TODO 子结构: 树里的一个分支
  */
 public class code17_HasSubTree {
     public static class TreeNode {
@@ -14,22 +17,20 @@ public class code17_HasSubTree {
         }
     }
 
-    // 首先头节点必须相同，然后才能往下比较
-    public static boolean method(TreeNode root1, TreeNode root2) {
-        boolean res = false;
-        if (root1 != null && root2 != null) {
-            // 只有当两个树的头节点相同时，才往下比较
-            if (root1.value == root2.value) {
-                res = isSubTree(root1, root2);
-            }
-            // 如果当前两个头节点不同，res肯定为false，则树1往左/右
-            if (!res) {
-                res = method(root1.left, root2);
-            }
-            if (!res) {
-                res = method(root1.right, root2);
-            }
+    // TODO 首先头节点必须相同，然后才能往下比较
+    public static boolean method(TreeNode head1, TreeNode head2) {
+        if (head1 == null || head2 == null){
+            return false;
         }
+
+        boolean res = false;
+
+        if (head1.value == head2.value){ // 头节点相同, 则可以递归往下继续判断
+            res = isSubTree(head1, head2);
+        }else { // 头节点不同, 则让主树往下移动, 直到找到头节点相同的位置
+            res = method(head1.left, head2) || method(head1.right, head2);
+        }
+
         return res;
     }
 

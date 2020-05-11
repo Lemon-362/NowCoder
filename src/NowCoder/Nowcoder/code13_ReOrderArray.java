@@ -39,10 +39,11 @@ public class code13_ReOrderArray {
             return;
         }
         boolean flag = false; // 判断遍历数组后有没有交换过，如果没有交换过直接返回
+        // flag为true, 表示该轮交换过
         for (int i = arr.length - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {
                 if (arr[j] % 2 == 0 && arr[j+1] % 2 == 1){
-                    // 只有在前一个是偶数，后一个是奇数时交换
+                    // TODO 只有在前一个是偶数，后一个是奇数时交换
                     swap(arr, j, j+1);
                     flag = true;
                 }
@@ -63,6 +64,7 @@ public class code13_ReOrderArray {
         }
         System.out.println();
     }
+
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
         method01(arr);

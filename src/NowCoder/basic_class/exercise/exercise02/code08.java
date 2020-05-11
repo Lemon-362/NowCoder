@@ -12,6 +12,7 @@ public class code08 {
 
         int size = arr.length;
         swap(arr, 0, --size);
+
         while (size > 0){
             heapify(arr, 0, size);
             swap(arr, 0, --size);
@@ -32,8 +33,8 @@ public class code08 {
         }
     }
 
-    public static void heapInsert(int[] arr, int index) {
-        while (arr[index] > arr[(index - 1) / 2]) {
+    public static void heapInsert(int[] arr, int index){
+        while (arr[index] > arr[(index - 1) / 2]){
             swap(arr, index, (index - 1) / 2);
             index = (index - 1) / 2;
         }

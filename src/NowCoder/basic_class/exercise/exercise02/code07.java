@@ -11,7 +11,7 @@ public class code07 {
 
     public static void quickSort(int[] arr, int l, int r) {
         if (l < r) {
-            swap(arr, l + (int) (Math.random() * (r - l + 1)), r);
+            swap(arr, r, l + (int) (Math.random() * (r - l + 1)));
             int[] p = partition(arr, l, r);
             quickSort(arr, l, p[0] - 1);
             quickSort(arr, p[1] + 1, r);
@@ -23,12 +23,12 @@ public class code07 {
         int more = r;
         int cur = l;
 
-        while (cur < more){
-            if (arr[cur] < arr[r]){
+        while (cur < more) {
+            if (arr[cur] < arr[r]) {
                 swap(arr, ++less, cur++);
-            }else if (arr[cur] > arr[r]){
+            } else if (arr[cur] > arr[r]) {
                 swap(arr, --more, cur);
-            }else {
+            } else {
                 cur++;
             }
         }

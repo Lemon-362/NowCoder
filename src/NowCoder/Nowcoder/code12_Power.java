@@ -3,6 +3,9 @@ package NowCoder.Nowcoder;
 /*
     给定一个double类型的浮点数base和int类型的整数exponent。
     求base的exponent次方。
+
+    x^n = x^(n/2) * x^(n/2), n为偶数
+          x^((n-1)/2) * x^((n-1)/2) * x, n为奇数
  */
 public class code12_Power {
     // Power(x, n) = x^n = (x^2)^(n/2)，讨论n的取值
