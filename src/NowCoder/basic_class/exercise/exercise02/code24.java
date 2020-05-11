@@ -12,8 +12,8 @@ public class code24 {
         }
     }
 
-    public static Node findFirstIntersectNode(Node head1, Node head2){
-        if (head1 == null || head2 == null){
+    public static Node findFirstIntersectNode(Node head1, Node head2) {
+        if (head1 == null || head2 == null) {
             return null;
         }
 
@@ -111,24 +111,24 @@ public class code24 {
             return null;
         }
 
-        Node n1 = head.next;
-        Node n2 = head.next.next;
+        Node p1 = head.next;
+        Node p2 = head.next.next;
 
-        while (n1 != n2){
-            if (n2.next == null || n2.next.next == null){
+        while (p1 != p2){
+            if (p2.next == null || p2.next.next == null){
                 return null;
             }
-            n1 = n1.next;
-            n2 = n2.next.next;
+            p1 = p1.next;
+            p2 = p2.next.next;
         }
 
-        n2 = head;
-        while (n1 != n2){
-            n1 = n1.next;
-            n2 = n2.next;
+        p2 = head;
+        while (p1 != p2){
+            p1 = p1.next;
+            p2 = p2.next;
         }
 
-        return n1;
+        return p1;
     }
 
     public static void main(String[] args) {

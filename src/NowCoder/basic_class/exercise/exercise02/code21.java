@@ -14,15 +14,15 @@ public class code21 {
         }
     }
 
-    public static boolean isHuiWen01(Node head){
-        if (head == null || head.next == null){
+    public static boolean isHuiWen01(Node head) {
+        if (head == null || head.next == null) {
             return true;
         }
 
         Stack<Node> stack = new Stack<>();
         Node cur = head;
 
-        while (cur != null){
+        while (cur != null) {
             stack.push(cur);
             cur = cur.next;
         }
@@ -30,8 +30,8 @@ public class code21 {
         cur = head;
         boolean res = true;
 
-        while (cur != null){
-            if (cur.value != stack.pop().value){
+        while (cur != null) {
+            if (cur.value != stack.pop().value) {
                 res = false;
                 break;
             }
@@ -41,14 +41,15 @@ public class code21 {
         return res;
     }
 
-    public static boolean isHuiWen02(Node head){
-        if (head == null || head.next == null){
+    public static boolean isHuiWen02(Node head) {
+        if (head == null || head.next == null) {
             return true;
         }
 
-        Node n1 = head;
-        Node n2 = head;
-        while (n2.next != null && n2.next.next != null){
+        Node n1 = head.next;
+        Node n2 = head.next.next;
+
+        while (n2.next != null && n2.next.next != null) {
             n1 = n1.next;
             n2 = n2.next.next;
         }
@@ -56,11 +57,11 @@ public class code21 {
         n2 = n1.next;
         n1.next = null;
         Node n3 = null;
-        while (n2 != null){
+
+        while (n2 != null) {
             n3 = n2.next;
 
             n2.next = n1;
-
             n1 = n2;
             n2 = n3;
         }
@@ -68,8 +69,9 @@ public class code21 {
         n3 = n1;
         n2 = head;
         boolean res = true;
-        while (n1 != null && n2 != null){
-            if (n1.value != n2.value){
+
+        while (n1 != null && n2 != null) {
+            if (n1.value != n2.value) {
                 res = false;
                 break;
             }
@@ -77,16 +79,16 @@ public class code21 {
             n2 = n2.next;
         }
 
-        while (n3 != null){
+        while (n3 != null) {
             n1 = n3.next;
 
             n3.next = n2;
-
             n2 = n3;
             n3 = n1;
         }
 
         return res;
+
     }
 
     public static void print(Node headNode) {

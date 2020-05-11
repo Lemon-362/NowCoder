@@ -44,7 +44,7 @@ public class code23 {
         }
 
         Node cur = head;
-        Node next;
+        Node next = null;
         while (cur != null){
             next = cur.next;
 
@@ -60,7 +60,7 @@ public class code23 {
 
             cur.next.rand = cur.rand == null ? null : cur.rand.next;
 
-            cur = next;
+            cur =next;
         }
 
         cur = head;

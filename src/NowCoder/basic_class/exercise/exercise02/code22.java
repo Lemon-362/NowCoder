@@ -62,8 +62,8 @@ public class code22 {
         nodes[j] = node;
     }
 
-    public static Node SmallEqualBig02(Node head, int num){
-        if (head == null){
+    public static Node SmallEqualBig02(Node head, int num) {
+        if (head == null) {
             return null;
         }
 
@@ -76,31 +76,31 @@ public class code22 {
         Node cur = head;
         Node next = null;
 
-        while (cur != null){
+        while (cur != null) {
             next = cur.next;
             cur.next = null;
 
-            if (cur.value < num){
-                if (sh == null){
+            if (cur.value < num) {
+                if (sh == null) {
                     sh = cur;
                     st = cur;
-                }else {
+                } else {
                     st.next = cur;
                     st = cur;
                 }
-            }else if (cur.value > num){
-                if (bh == null){
+            } else if (cur.value > num) {
+                if (bh == null) {
                     bh = cur;
                     bt = cur;
-                }else {
+                } else {
                     bt.next = cur;
                     bt = cur;
                 }
-            }else {
-                if (eh == null){
+            } else {
+                if (eh == null) {
                     eh = cur;
                     et = cur;
-                }else {
+                } else {
                     et.next = cur;
                     et = cur;
                 }
@@ -109,19 +109,19 @@ public class code22 {
             cur = next;
         }
 
-        if (st != null){
+        if (st != null) {
             st.next = eh;
-            et = et != null ? et : st;
+            et = et == null ? st : et;
         }
-        if (et != null){
+        if (et != null) {
             et.next = bh;
         }
 
-        if (sh != null){
+        if (sh != null) {
             return sh;
-        }else if (eh != null){
+        } else if (eh != null) {
             return eh;
-        }else {
+        } else {
             return bh;
         }
     }

@@ -14,8 +14,8 @@ public class code17 {
     }
 
     // TODO 子结构: 必须先找到相同节点, 然后再往下比较, 如果直接递归process, 头节点不同直接返回false了
-    public static boolean isSubStructure(Node head1, Node head2){
-        if (head1 == null || head2 == null){
+    public static boolean isSubStructure(Node head1, Node head2) {
+        if (head1 == null || head2 == null) {
             return false;
         }
 
@@ -26,11 +26,7 @@ public class code17 {
         }
 
         if (!res){
-            res = isSubStructure(head1.left, head2);
-        }
-
-        if (!res){
-            res = isSubStructure(head1.right, head2);
+            res = isSubStructure(head1.left, head2) || isSubStructure(head1.right, head2);
         }
 
         return res;
@@ -38,12 +34,10 @@ public class code17 {
 
     public static boolean process(Node head1, Node head2){
         // base case
-        if (head2 == null){
-            return true;
-        }
-
-        if (head1 == null){
+        if (head1 == null && head2 != null){
             return false;
+        }else if (head2 == null){
+            return true;
         }
 
         if (head1.value == head2.value){
