@@ -49,19 +49,20 @@ public class code21 {
         Node n1 = head.next;
         Node n2 = head.next.next;
 
-        while (n2.next != null && n2.next.next != null) {
+        while (n2.next != null && n2.next.next != null){
             n1 = n1.next;
             n2 = n2.next.next;
         }
 
+        Node n3 = null;
         n2 = n1.next;
         n1.next = null;
-        Node n3 = null;
 
-        while (n2 != null) {
+        while (n2 != null){
             n3 = n2.next;
 
             n2.next = n1;
+
             n1 = n2;
             n2 = n3;
         }
@@ -70,25 +71,25 @@ public class code21 {
         n2 = head;
         boolean res = true;
 
-        while (n1 != null && n2 != null) {
-            if (n1.value != n2.value) {
+        while (n2 != null && n3 != null){
+            if (n2.value != n3.value){
                 res = false;
                 break;
             }
-            n1 = n1.next;
             n2 = n2.next;
+            n3 = n3.next;
         }
 
-        while (n3 != null) {
-            n1 = n3.next;
+        while (n1 != null){
+            n3 = n1.next;
 
-            n3.next = n2;
-            n2 = n3;
-            n3 = n1;
+            n1.next = n2;
+
+            n2 = n1;
+            n1 = n3;
         }
 
         return res;
-
     }
 
     public static void print(Node headNode) {

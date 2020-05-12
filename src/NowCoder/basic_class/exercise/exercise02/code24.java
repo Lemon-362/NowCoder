@@ -41,7 +41,6 @@ public class code24 {
                 n++;
                 n1 = n1.next;
             }
-
             while (n2 != loop1){
                 n--;
                 n2 = n2.next;
@@ -52,8 +51,8 @@ public class code24 {
             n = Math.abs(n);
 
             while (n > 0){
-                n1 = n1.next;
                 n--;
+                n1 = n1.next;
             }
 
             while (n1 != n2){
@@ -83,7 +82,6 @@ public class code24 {
             n++;
             n1 = n1.next;
         }
-
         while (n2 != null){
             n--;
             n2 = n2.next;
@@ -94,8 +92,8 @@ public class code24 {
         n = Math.abs(n);
 
         while (n > 0){
-            n1 = n1.next;
             n--;
+            n1 = n1.next;
         }
 
         while (n1 != n2){
@@ -111,24 +109,24 @@ public class code24 {
             return null;
         }
 
-        Node p1 = head.next;
-        Node p2 = head.next.next;
+        Node n1 = head.next;
+        Node n2 = head.next.next;
 
-        while (p1 != p2){
-            if (p2.next == null || p2.next.next == null){
+        while (n1 != n2){
+            if (n2.next == null || n2.next.next == null){
                 return null;
             }
-            p1 = p1.next;
-            p2 = p2.next.next;
+            n1 = n1.next;
+            n2 = n2.next.next;
         }
 
-        p2 = head;
-        while (p1 != p2){
-            p1 = p1.next;
-            p2 = p2.next;
+        n2 = head;
+        while (n1 != n2){
+            n1 = n1.next;
+            n2 = n2.next;
         }
 
-        return p1;
+        return n1;
     }
 
     public static void main(String[] args) {

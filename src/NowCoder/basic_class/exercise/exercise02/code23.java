@@ -60,10 +60,10 @@ public class code23 {
 
             cur.next.rand = cur.rand == null ? null : cur.rand.next;
 
-            cur =next;
+            cur = next;
         }
 
-        cur = head;
+        cur= head;
         Node res = cur.next;
         Node copy = null;
         while (cur != null){

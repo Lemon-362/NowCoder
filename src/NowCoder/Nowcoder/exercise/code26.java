@@ -22,9 +22,9 @@ public class code26 {
             return null;
         }
 
-        inOrder(head);
+        ArrayList<Node> res = MorrisIn(head);
 
-        return Connection(list);
+        return Connection(res);
     }
 
     public static void inOrder(Node head){
@@ -34,6 +34,38 @@ public class code26 {
         inOrder(head.left);
         list.add(head);
         inOrder(head.right);
+    }
+
+    public static ArrayList<Node> MorrisIn(Node head){
+        if (head == null){
+            return null;
+        }
+
+        Node cur = head;
+        Node mostRight = null;
+        ArrayList<Node> res = new ArrayList<>();
+
+        while (cur != null){
+            mostRight = cur.left;
+            if (mostRight != null){
+                while (mostRight.right != null && mostRight.right != cur){
+                    mostRight = mostRight.right;
+                }
+                if (mostRight.right == null){
+                    mostRight.right = cur;
+                    cur = cur.left;
+                }else {
+                    mostRight.right = null;
+                    res.add(cur);
+                    cur = cur.right;
+                }
+            }else {
+                res.add(cur);
+                cur = cur.right;
+            }
+        }
+
+        return res;
     }
 
     public static Node Connection(ArrayList<Node> list){

@@ -10,7 +10,7 @@ package NowCoder.basic_class.exercise;
 	3. 递归求右(1)/左(2)子树的节点个数
  */
 
-public class code30_TreeNodeNumber {
+public class code30_CBTNodeNumber {
     public static class Node {
         private int data;
         private Node left;
@@ -62,6 +62,6 @@ public class code30_TreeNodeNumber {
         head.left.right = new Node(5);
         head.right.left = new Node(6);
         head.right.right = new Node(7);
-        System.out.println(TreeNodeNumber(head)); // 6
+        System.out.println(TreeNodeNumber(head)); // 7
     }
 }
