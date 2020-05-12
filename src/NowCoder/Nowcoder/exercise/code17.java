@@ -21,7 +21,7 @@ public class code17 {
 
         boolean res = false;
 
-        if (head1.value == head2.value){
+        if (head1.value == head2.value) {
             res = process(head1, head2);
         }
 
@@ -32,24 +32,24 @@ public class code17 {
         return res;
     }
 
-    public static boolean process(Node head1, Node head2){
+    public static boolean process(Node head1, Node head2) {
         // base case
-        if (head1 == null && head2 != null){
-            return false;
-        }else if (head2 == null){
+        if (head2 == null) {
             return true;
+        } else if (head1 == null) {
+            return false;
         }
 
-        if (head1.value == head2.value){
+        if (head1.value == head2.value) {
             return process(head1.left, head2.left) && process(head1.right, head2.right);
-        }else {
+        } else {
             return false;
         }
     }
 
     // TODO KMP算法可以判断 子树!!! 但不能判断子结构
-    public static boolean isSubTreeByKMP(Node head1, Node head2){
-        if (head1 == null || head2 == null){
+    public static boolean isSubTreeByKMP(Node head1, Node head2) {
+        if (head1 == null || head2 == null) {
             return false;
         }
 
@@ -61,14 +61,14 @@ public class code17 {
         int p1 = 0;
         int p2 = 0;
 
-        while (p1 < str1.length && p2 < str2.length){
-            if (str1[p1] == str2[p2]){
+        while (p1 < str1.length && p2 < str2.length) {
+            if (str1[p1] == str2[p2]) {
                 p1++;
                 p2++;
-            }else {
-                if (next[p2] == -1){
+            } else {
+                if (next[p2] == -1) {
                     p1++;
-                }else {
+                } else {
                     p2 = next[p2];
                 }
             }
@@ -79,7 +79,7 @@ public class code17 {
         return len != -1;
     }
 
-    public static int[] getNextArr(char[] str){
+    public static int[] getNextArr(char[] str) {
         int[] next = new int[str.length];
 
         next[0] = -1;
@@ -87,12 +87,12 @@ public class code17 {
         int p = 2;
         int cn = 0;
 
-        while (p < next.length){
-            if (str[p - 1] == str[cn]){
+        while (p < next.length) {
+            if (str[p - 1] == str[cn]) {
                 next[p++] = ++cn;
-            }else if (cn > 0){
+            } else if (cn > 0) {
                 cn = next[cn];
-            }else {
+            } else {
                 next[p++] = 0;
             }
         }
@@ -100,8 +100,8 @@ public class code17 {
         return next;
     }
 
-    public static String serial(Node head){
-        if (head == null){
+    public static String serial(Node head) {
+        if (head == null) {
             return "#_";
         }
 

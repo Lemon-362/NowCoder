@@ -1,8 +1,8 @@
 package NowCoder.Nowcoder.exercise;
 
 public class code13 {
-    public static void exchange(int[] arr){
-        if (arr == null || arr.length < 1){
+    public static void exchange(int[] arr) {
+        if (arr == null || arr.length < 1) {
             return;
         }
 
@@ -10,25 +10,25 @@ public class code13 {
 
         for (int i = arr.length - 1; i >= 0; i--) {
             for (int j = 0; j < i; j++) {
-                if (arr[j] % 2 == 0 && arr[j + 1] % 2 == 1){
+                if (arr[j] % 2 == 0 && arr[j + 1] % 2 == 1) {
                     swap(arr, j, j + 1);
                     flag = true;
                 }
             }
-            if (!flag){
+            if (!flag) {
                 break;
             }
         }
     }
 
-    public static void swap(int[] arr, int i, int j){
+    public static void swap(int[] arr, int i, int j) {
         int tmp = arr[i];
         arr[i] = arr[j];
         arr[j] = tmp;
     }
 
-    public static void printArr(int[] arr){
-        if (arr == null){
+    public static void printArr(int[] arr) {
+        if (arr == null) {
             return;
         }
         for (int i = 0; i < arr.length; i++) {

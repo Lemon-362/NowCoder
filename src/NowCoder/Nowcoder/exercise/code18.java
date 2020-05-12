@@ -30,15 +30,15 @@ public class code18 {
             Node left = cur.left;
             Node right = cur.right;
 
+            cur.left = right;
+            cur.right = left;
+
             if (left != null){
                 queue.offer(left);
             }
             if (right != null){
                 queue.offer(right);
             }
-
-            cur.left = right;
-            cur.right = left;
         }
     }
 

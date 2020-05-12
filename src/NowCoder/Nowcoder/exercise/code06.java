@@ -16,10 +16,10 @@ public class code06 {
             }
 
             mid = (i + j) >> 1;
-            if (arr[j] > arr[mid]){
-                j = mid;
-            }else if (arr[j] < arr[mid]){
+            if (arr[j] < arr[mid]){
                 i = mid + 1;
+            }else if (arr[j] > arr[mid]){
+                j = mid;
             }else {
                 j = mid;
             }

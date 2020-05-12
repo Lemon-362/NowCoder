@@ -1,42 +1,43 @@
 package NowCoder.Nowcoder.exercise;
 
 public class code02 {
-    public static String replaceSpace(StringBuffer sb){
-        if (sb == null){
+    public static String replaceSpace(StringBuffer sb) {
+        if (sb == null) {
             return null;
         }
 
         int spaceNum = 0;
+
         for (int i = 0; i < sb.length(); i++) {
-            if (sb.charAt(i) == ' '){
+            if (sb.charAt(i) == ' ') {
                 spaceNum++;
             }
         }
 
         int oldLen = sb.length();
-        int newLen = sb.length() + 2 * spaceNum;
+        int newLen = oldLen + 2 * spaceNum;
         sb.setLength(newLen);
         int newIndex = newLen - 1;
 
         for (int oldIndex = oldLen - 1; oldIndex >= 0; oldIndex--) {
-            if (sb.charAt(oldIndex) == ' '){
+            if (sb.charAt(oldIndex) == ' ') {
                 sb.setCharAt(newIndex--, '0');
                 sb.setCharAt(newIndex--, '2');
                 sb.setCharAt(newIndex--, '%');
-            }else {
-                sb.setCharAt(newIndex-- ,sb.charAt(oldIndex));
+            } else {
+                sb.setCharAt(newIndex--, sb.charAt(oldIndex));
             }
         }
 
         return sb.toString();
     }
 
-    public static String replaceSpace2(StringBuffer stringBuffer){
+    public static String replaceSpace2(StringBuffer stringBuffer) {
         StringBuffer res = new StringBuffer();
         for (int i = 0; i < stringBuffer.length(); i++) {
-            if (stringBuffer.charAt(i) == ' '){
+            if (stringBuffer.charAt(i) == ' ') {
                 res.append("%20");
-            }else {
+            } else {
                 res.append(stringBuffer.charAt(i));
             }
         }

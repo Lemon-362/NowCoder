@@ -17,18 +17,12 @@ public class code14 {
 
         Node cur = head;
         int len = 0;
-
         while (cur != null){
             len++;
             cur = cur.next;
         }
 
-        if (k > len){
-            return null;
-        }
-
         cur = head;
-
         for (int i = 0; i < len - k; i++) {
             cur = cur.next;
         }

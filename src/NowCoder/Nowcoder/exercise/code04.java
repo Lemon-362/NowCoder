@@ -15,25 +15,26 @@ public class code04 {
         }
     }
 
-    public static Node process(int[] preArr, int[] inArr) {
+    public static Node process(int[] pre, int[] in){
         // base case
-        if (preArr.length == 0 || inArr.length == 0){
+        if (pre.length == 0 || in.length == 0){
             return null;
         }
 
-        Node head = new Node(preArr[0]);
+        Node head = new Node(pre[0]);
+
         int mid = 0;
-        for (int i = 0; i < inArr.length; i++) {
-            if (inArr[i] == preArr[0]){
+        for (int i = 0; i < in.length; i++) {
+            if (in[i] == pre[0]){
                 mid = i;
                 break;
             }
         }
 
-        int[] lPre = Arrays.copyOfRange(preArr, 1, mid + 1);
-        int[] lIn = Arrays.copyOfRange(inArr, 0, mid);
-        int[] rPre = Arrays.copyOfRange(preArr, mid + 1, preArr.length);
-        int[] rIn = Arrays.copyOfRange(inArr, mid + 1, inArr.length);
+        int[] lPre = Arrays.copyOfRange(pre, 1, mid + 1);
+        int[] lIn = Arrays.copyOfRange(in, 0, mid);
+        int[] rPre = Arrays.copyOfRange(pre, mid + 1, pre.length);
+        int[] rIn = Arrays.copyOfRange(in, mid + 1, in.length);
 
         head.left = process(lPre, lIn);
         head.right = process(rPre, rIn);

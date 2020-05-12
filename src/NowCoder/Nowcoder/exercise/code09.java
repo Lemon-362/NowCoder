@@ -1,7 +1,7 @@
 package NowCoder.Nowcoder.exercise;
 
 public class code09 {
-    public static int jump(int n){
+    public static int jump(int n) {
         if (n <= 1){
             return n;
         }
@@ -10,13 +10,13 @@ public class code09 {
     }
 
     public static int process(int n){
-        int len = n + 1;
-        int[] dp = new int[len];
+        int[] dp = new int[n + 1];
 
         dp[0] = 0;
         dp[1] = 1;
+        dp[2] = 2;
 
-        for (int i = 2; i < len; i++) {
+        for (int i = 3; i < dp.length; i++) {
             dp[i] = 2 * dp[i - 1];
         }
 

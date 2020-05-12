@@ -51,7 +51,7 @@ public class code22_PrintByLevel {
 
         ArrayList<Integer> list = PrintFromTopToBottom(head);
         for (Integer num : list) {
-            System.out.print(num + " ");
+            System.out.print(num + " "); // 1 3 2 4 6
         }
     }
 }
