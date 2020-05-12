@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class code27 {
-    public static class Node{
+    public static class Node {
         private int value;
         private Node left;
         private Node right;
@@ -16,8 +16,8 @@ public class code27 {
         }
     }
 
-    public static String SerialByPre(Node head){
-        if (head == null){
+    public static String SerialByPre(Node head) {
+        if (head == null) {
             return "#_";
         }
 
@@ -28,10 +28,10 @@ public class code27 {
         return res;
     }
 
-    public static Node ReconByPre(String str){
+    public static Node ReconByPre(String str) {
         String[] s = str.split("_");
-        Queue<String> queue = new LinkedList<>();
 
+        Queue<String> queue = new LinkedList<>();
         for (int i = 0; i < s.length; i++) {
             queue.offer(s[i]);
         }
@@ -39,22 +39,22 @@ public class code27 {
         return recon(queue);
     }
 
-    public static Node recon(Queue<String> queue){
+    public static Node recon(Queue<String> queue) {
         String value = queue.poll();
-
         if (value.equals("#")) {
             return null;
         }
 
         Node head = new Node(Integer.parseInt(value));
+
         head.left = recon(queue);
         head.right = recon(queue);
 
         return head;
     }
 
-    public static String SerialByLevel(Node head){
-        if (head == null){
+    public static String SerialByLevel(Node head) {
+        if (head == null) {
             return "#_";
         }
 
@@ -62,22 +62,22 @@ public class code27 {
         Queue<Node> queue = new LinkedList<>();
         queue.offer(head);
 
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             Node cur = queue.poll();
             Node left = cur.left;
             Node right = cur.right;
 
-            if (left != null){
+            if (left != null) {
                 res += left.value + "_";
                 queue.offer(left);
-            }else {
+            } else {
                 res += "#_";
             }
 
-            if (right != null){
+            if (right != null) {
                 res += right.value + "_";
                 queue.offer(right);
-            }else {
+            } else {
                 res += "#_";
             }
         }
@@ -89,8 +89,8 @@ public class code27 {
         String[] s = str.split("_");
         int index = 0;
         Node head = generateNode(s[index++]);
-        Queue<Node> queue = new LinkedList<>();
 
+        Queue<Node> queue = new LinkedList<>();
         if (head != null){
             queue.offer(head);
         }
@@ -103,6 +103,7 @@ public class code27 {
             if (cur.left != null){
                 queue.offer(cur.left);
             }
+
             if (cur.right != null){
                 queue.offer(cur.right);
             }
@@ -119,7 +120,7 @@ public class code27 {
         }
     }
 
-        // for test -- print tree
+    // for test -- print tree
     public static void printTree(Node head) {
         System.out.println("Binary Tree:");
         printInOrder(head, 0, "H", 17);

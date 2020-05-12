@@ -17,33 +17,36 @@ public class code24 {
         }
     }
 
-    public static LinkedList<List<Integer>> res = new LinkedList<>();
-
     public static LinkedList<Integer> list = new LinkedList<>();
 
-    public static List<List<Integer>> findPath(Node head, int num) {
-        if (head == null) {
+    public static LinkedList<List<Integer>> res = new LinkedList<>();
+
+    public static List<List<Integer>> findPath(Node head, int target){
+        if (head == null){
             return null;
         }
-        process(head, num);
+
+        process(head, target);
+
         return res;
     }
 
-    public static void process(Node head, int num) {
-        if (head == null) {
+    public static void process(Node head, int target){
+        // base case
+        if (head == null){
             return;
         }
 
-        list.addLast(head.value);
+        list.add(head.value);
 
-        num -= head.value;
+        target -= head.value;
 
-        if (num == 0 && head.left == null && head.right == null) {
-            res.add(new LinkedList<>(list));
+        if (target == 0 && head.left == null && head.right == null){
+            res.add(new ArrayList<>(list));
         }
 
-        process(head.left, num);
-        process(head.right, num);
+        process(head.left, target);
+        process(head.right, target);
 
         list.removeLast();
     }

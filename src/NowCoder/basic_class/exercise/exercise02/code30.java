@@ -22,9 +22,6 @@ public class code30 {
 
     public static int process(Node head, int level, int H){
         // base case
-        if (head == null){
-            return 0;
-        }
         if (level == H){
             return 1;
         }
