@@ -7,17 +7,15 @@ public class code30 {
         }
 
         int[] dp = new int[arr.length];
-
         dp[0] = arr[0];
         int res = dp[0];
 
         for (int i = 1; i < arr.length; i++) {
-            if (dp[i - 1] < 0){
-                dp[i] = arr[i];
-            }else {
+            if (dp[i - 1] >= 0){
                 dp[i] = dp[i - 1] + arr[i];
+            }else {
+                dp[i] = arr[i];
             }
-
             res = Math.max(res, dp[i]);
         }
 

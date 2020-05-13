@@ -1,6 +1,7 @@
 package NowCoder.Nowcoder.exercise;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class code28 {
     public static int getMoreThanHalfNum(int[] arr){
@@ -10,19 +11,18 @@ public class code28 {
             return arr[0];
         }
 
-        HashMap<Integer, Integer> map = new HashMap<>();
-
+        HashMap<Integer, Integer> ntMap = new HashMap<>();
         int halfLen = arr.length / 2;
 
         for (int i = 0; i < arr.length; i++) {
-            if (!map.containsKey(arr[i])){
-                map.put(arr[i], 1);
+            if (!ntMap.containsKey(arr[i])){
+                ntMap.put(arr[i], 1);
             }else {
-                int times = map.get(arr[i]) + 1;
+                int times = ntMap.get(arr[i]) + 1;
                 if (times > halfLen){
                     return arr[i];
                 }else {
-                    map.put(arr[i], times);
+                    ntMap.put(arr[i], times);
                 }
             }
         }

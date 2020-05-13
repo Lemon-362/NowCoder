@@ -4,23 +4,21 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class code27 {
-    public static ArrayList<String> res = new ArrayList<>();
-
-    public static ArrayList<String> printAllPermutations(String str){
+    public static void printAllPermutations(String str){
         if (str == null || str.length() < 1){
-            return res;
+            return;
         }
 
         char[] s = str.toCharArray();
 
         process(s, 0, s.length - 1);
-
-        return res;
     }
 
     public static void process(char[] s, int l, int r){
+        // base case
         if (l == r){
-            res.add(String.valueOf(s));
+            System.out.println(String.valueOf(s));
+            return;
         }
 
         HashSet<Character> set = new HashSet<>();
@@ -29,11 +27,11 @@ public class code27 {
             if (!set.contains(s[i])){
                 set.add(s[i]);
 
-                swap(s, l, i);
+                swap(s, i, l);
 
                 process(s, l + 1, r);
 
-                swap(s, l, i);
+                swap(s, i, l);
             }
         }
     }
@@ -45,12 +43,13 @@ public class code27 {
     }
 
     // 字符串的子序列
-    public static void printAllSubSequence(String str){
-        if (str == null || str.length() < 1){
+    public static void printAllSubSequence(String str) {
+        if (str == null || str.length() < 1) {
             return;
         }
 
         char[] s = str.toCharArray();
+
         process2(s, 0, "");
     }
 
@@ -61,10 +60,8 @@ public class code27 {
             return;
         }
 
-        // 可能性1：对于当前字符，我不要
         process2(s, index + 1, res);
 
-        // 可能性2：对于当前字符，我要
         process2(s, index + 1, res + s[index]);
     }
 
@@ -72,7 +69,7 @@ public class code27 {
         String s1 = "abc";
         printAllPermutations(s1);
 //        abc
-//        cb
+//        acb
 //        bac
 //        bca
 //        cba
@@ -84,8 +81,8 @@ public class code27 {
 //        acc
 //        cac
 //        cca
-//
+
         System.out.println("============");
-        printAllSubSequence(s1); // null a b c ab ac bc abc
+        printAllSubSequence(s1); // null c b bc a ac ab abc
     }
 }
