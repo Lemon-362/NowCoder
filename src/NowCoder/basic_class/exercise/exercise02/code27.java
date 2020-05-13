@@ -17,7 +17,7 @@ public class code27 {
     }
 
     public static String SerialByPre(Node head) {
-        if (head == null) {
+        if (head == null){
             return "#_";
         }
 
@@ -30,7 +30,6 @@ public class code27 {
 
     public static Node ReconByPre(String str) {
         String[] s = str.split("_");
-
         Queue<String> queue = new LinkedList<>();
         for (int i = 0; i < s.length; i++) {
             queue.offer(s[i]);
@@ -39,14 +38,13 @@ public class code27 {
         return recon(queue);
     }
 
-    public static Node recon(Queue<String> queue) {
+    public static Node recon(Queue<String> queue){
         String value = queue.poll();
-        if (value.equals("#")) {
+        if (value.equals("#")){
             return null;
         }
 
         Node head = new Node(Integer.parseInt(value));
-
         head.left = recon(queue);
         head.right = recon(queue);
 
@@ -54,7 +52,7 @@ public class code27 {
     }
 
     public static String SerialByLevel(Node head) {
-        if (head == null) {
+        if (head == null){
             return "#_";
         }
 
@@ -62,22 +60,22 @@ public class code27 {
         Queue<Node> queue = new LinkedList<>();
         queue.offer(head);
 
-        while (!queue.isEmpty()) {
+        while (!queue.isEmpty()){
             Node cur = queue.poll();
             Node left = cur.left;
             Node right = cur.right;
 
-            if (left != null) {
+            if (left != null){
                 res += left.value + "_";
                 queue.offer(left);
-            } else {
+            }else {
                 res += "#_";
             }
 
-            if (right != null) {
+            if (right != null){
                 res += right.value + "_";
                 queue.offer(right);
-            } else {
+            }else {
                 res += "#_";
             }
         }
@@ -88,17 +86,17 @@ public class code27 {
     public static Node ReconByLevel(String str) {
         String[] s = str.split("_");
         int index = 0;
-        Node head = generateNode(s[index++]);
-
+        Node head = generate(s[index++]);
         Queue<Node> queue = new LinkedList<>();
+
         if (head != null){
             queue.offer(head);
         }
 
         while (!queue.isEmpty()){
             Node cur = queue.poll();
-            cur.left = generateNode(s[index++]);
-            cur.right = generateNode(s[index++]);
+            cur.left = generate(s[index++]);
+            cur.right = generate(s[index++]);
 
             if (cur.left != null){
                 queue.offer(cur.left);
@@ -112,8 +110,8 @@ public class code27 {
         return head;
     }
 
-    public static Node generateNode(String str){
-        if (str.equals("#")){
+    public static Node generate(String str){
+        if (str.equals("#")) {
             return null;
         }else {
             return new Node(Integer.parseInt(str));

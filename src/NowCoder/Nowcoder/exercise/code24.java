@@ -32,20 +32,20 @@ public class code24 {
     }
 
     public static void process(Node head, int target){
-        // base case
         if (head == null){
             return;
         }
 
-        list.add(head.value);
+        list.addLast(head.value);
 
         target -= head.value;
 
         if (target == 0 && head.left == null && head.right == null){
-            res.add(new ArrayList<>(list));
+            res.addLast(new LinkedList<>(list));
         }
 
         process(head.left, target);
+
         process(head.right, target);
 
         list.removeLast();

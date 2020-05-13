@@ -31,16 +31,16 @@ public class code26 {
         }
     }
 
-    public static Node getLeftMost(Node node){
-        if (node == null){
+    public static Node getLeftMost(Node head){
+        if (head == null){
             return null;
         }
 
-        while (node.left != null){
-            node = node.left;
+        while (head.left != null){
+            head = head.left;
         }
 
-        return node;
+        return head;
     }
 
     public static void main(String[] args) {
