@@ -32,7 +32,7 @@ public class code33_LongestLessSumSubArrayLength {
             if (min_sum[i + 1] <= 0) {
                 min_sum[i] = arr[i] + min_sum[i + 1];
                 min_sum_index[i] = min_sum_index[i + 1];
-            }else {
+            } else {
                 min_sum[i] = arr[i];
                 min_sum_index[i] = i;
             }
@@ -43,13 +43,13 @@ public class code33_LongestLessSumSubArrayLength {
         int len = 0;
         int sum = 0;
 
-        while (L < arr.length){
-            while (R < arr.length && sum + min_sum[R] <= aim){
+        while (L < arr.length) {
+            while (R < arr.length && sum + min_sum[R] <= aim) {
                 sum += min_sum[R];
                 R = min_sum_index[R] + 1;
             }
 
-            len = Math.max(len, (R-1) - L + 1);
+            len = Math.max(len, (R - 1) - L + 1);
 
             sum -= R > L ? arr[L] : 0;
 

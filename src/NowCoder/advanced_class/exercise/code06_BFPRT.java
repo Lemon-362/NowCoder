@@ -144,7 +144,7 @@ public class code06_BFPRT {
         }
 
         public static void insertSort(int[] arr, int l, int r) {
-            for (int i = l + 1; i < r; i++) {
+            for (int i = l + 1; i <= r; i++) {
                 for (int j = i - 1; j >= 0 && arr[j] > arr[j + 1]; j--) {
                     swap(arr, j, j + 1);
                 }
