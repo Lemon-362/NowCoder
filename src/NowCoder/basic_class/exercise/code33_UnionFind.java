@@ -6,7 +6,7 @@ import java.util.Stack;
 
 /*
 	并查集：
-		查询两个元素是否属于同意集合
+		查询两个元素是否属于同一集合
 		合并两个元素所在的集合
 
 	makeSet  findHead  isSameSet  union

@@ -1,7 +1,5 @@
 package NowCoder.Nowcoder.exercise;
 
-import NowCoder.Nowcoder.code24_FindPath;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,6 +30,7 @@ public class code24 {
     }
 
     public static void process(Node head, int target){
+        // base case
         if (head == null){
             return;
         }
@@ -41,11 +40,10 @@ public class code24 {
         target -= head.value;
 
         if (target == 0 && head.left == null && head.right == null){
-            res.addLast(new LinkedList<>(list));
+            res.add(new LinkedList<>(list));
         }
 
         process(head.left, target);
-
         process(head.right, target);
 
         list.removeLast();

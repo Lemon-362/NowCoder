@@ -56,9 +56,9 @@ public class code27 {
             return "#_";
         }
 
-        String res = head.value + "_";
         Queue<Node> queue = new LinkedList<>();
         queue.offer(head);
+        String res = head.value + "_";
 
         while (!queue.isEmpty()){
             Node cur = queue.poll();
@@ -88,7 +88,6 @@ public class code27 {
         int index = 0;
         Node head = generate(s[index++]);
         Queue<Node> queue = new LinkedList<>();
-
         if (head != null){
             queue.offer(head);
         }

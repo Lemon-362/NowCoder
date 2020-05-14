@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class code27 {
-    public static void printAllPermutations(String str){
-        if (str == null || str.length() < 1){
+    public static void printAllPermutations(String str) {
+        if (str == null || str.length() < 1) {
             return;
         }
 
@@ -16,7 +16,7 @@ public class code27 {
 
     public static void process(char[] s, int l, int r){
         // base case
-        if (l == r){
+        if (l >= r){
             System.out.println(String.valueOf(s));
             return;
         }
@@ -27,11 +27,11 @@ public class code27 {
             if (!set.contains(s[i])){
                 set.add(s[i]);
 
-                swap(s, i, l);
+                swap(s, l, i);
 
                 process(s, l + 1, r);
 
-                swap(s, i, l);
+                swap(s, l, i);
             }
         }
     }

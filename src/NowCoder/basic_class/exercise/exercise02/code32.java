@@ -1,44 +1,37 @@
- package NowCoder.basic_class.exercise;
+package NowCoder.basic_class.exercise.exercise02;
 
-/*
-	岛问题：
-		一个矩阵只有0和1两个值，如果有一片1连在一起，则称为一个岛
-		求一个矩阵中有多少个岛？
-	0	0	1	0	1	0
-	1	1	1	0	1	0
-	1	0	0	1	0	0
-	0	0	0	0	0	0
-		共有三个岛
- */
-public class code32_Islands {
+public class code32 {
     public static int islandsCount(int[][] arr) {
-        if (arr == null || arr.length == 0) {
+        if (arr == null || arr.length < 1) {
             return 0;
         }
+
         int res = 0;
-        int row = arr.length;
-        int col = arr[0].length;
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
+
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
                 if (arr[i][j] == 1) {
                     res++;
-                    infect(arr, i, j, row, col);
+                    infect(arr, i, j);
                 }
             }
         }
+
         return res;
     }
 
-    // 感染函数，当前(i, j)处为1，要将周围的1都感染
-    public static void infect(int[][] arr, int i, int j, int row, int col) {
-        if (i < 0 || i >= row || j < 0 || j >= col || arr[i][j] != 1) {
+    public static void infect(int[][] arr, int i, int j) {
+        // base case
+        if (i < 0 || i >= arr.length || j < 0 || j >= arr[0].length || arr[i][j] != 1) {
             return;
         }
+
         arr[i][j] = 2;
-        infect(arr, i + 1, j, row, col);
-        infect(arr, i - 1, j, row, col);
-        infect(arr, i, j + 1, row, col);
-        infect(arr, i, j - 1, row, col);
+
+        infect(arr, i + 1, j);
+        infect(arr, i - 1, j);
+        infect(arr, i, j + 1);
+        infect(arr, i, j - 1);
     }
 
     public static void main(String[] args) {
