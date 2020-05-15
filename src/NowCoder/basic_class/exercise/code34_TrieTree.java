@@ -10,9 +10,10 @@ import NowCoder.basic_class.basic_class.class_07.Code_01_TrieTree;
  */
 public class code34_TrieTree {
     public static class TrieNode {
-        private int path;
-        private int end;
-        private TrieNode[] nodes;
+        private int path; // 到达，经过次数
+        private int end; // 结尾，重复次数
+        // end <= path
+        private TrieNode[] nodes; // 路径
 
         public TrieNode() {
             this.path = 0;
@@ -46,6 +47,7 @@ public class code34_TrieTree {
             node.end++;
         }
 
+        // 查询完整的字符串：重复次数
         public int search(String str) {
             if (str == null) {
                 return 0;
@@ -63,6 +65,7 @@ public class code34_TrieTree {
             return node.end;
         }
 
+        // 查询前缀：经过次数
         public int prefixNumber(String str) {
             if (str == null) {
                 return 0;
@@ -90,12 +93,14 @@ public class code34_TrieTree {
                 TrieNode node = head;
                 for (int i = 0; i < s.length; i++) {
                     index = s[i] - 'a';
+                    // 先将经过次数-1，然后看是否==0，等于0说明从他开始往后的字符都只经过了一次，可以直接删掉
                     if (--node.nodes[index].path == 0) {
                         node.nodes[index] = null;
                         return;
                     }
                     node = node.nodes[index];
                 }
+                // TODO 最后重复次数也要-1
                 node.end--;
             }
         }
