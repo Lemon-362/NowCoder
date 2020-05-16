@@ -15,15 +15,15 @@ public class code31 {
             return 0;
         }
 
-        String s = String.valueOf(n);
-        int high = Integer.parseInt(String.valueOf(s.charAt(0)));
-        int power = (int) (Math.pow(10, s.length() - 1));
+        char[] s = String.valueOf(n).toCharArray();
+        int high = Integer.parseInt(String.valueOf(s[0]));
+        int power = (int) (Math.pow(10, s.length - 1));
         int last = n - high * power;
 
         if (high == 1){
             return f(power - 1) + last + 1 + f(last);
         }else {
-            return high * f(power - 1) + f(last) + power;
+            return high * f(power - 1) + power + f(last);
         }
     }
 

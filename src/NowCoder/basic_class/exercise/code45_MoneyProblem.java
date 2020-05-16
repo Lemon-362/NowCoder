@@ -38,6 +38,8 @@ public class code45_MoneyProblem {
         // 普遍位置：根据暴力递归的普遍位置语句，从倒数第二行开始往上依次填值
         for (int i = row - 2; i >= 0; i--) {
             for (int j = 0; j < col; j++) {
+                dp[i][j] = dp[i + 1][j];
+                // TODO 对于范围内的可以 或，而对于范围外的只能是 dp[i + 1][j]
                 if (j + arr[i] <= a) { // 限制范围：如果j（之前的和）加上当前位置的值 大于 a，那么一定为false
                     dp[i][j] = dp[i + 1][j] || dp[i + 1][j + arr[i]];
                 }
@@ -48,7 +50,7 @@ public class code45_MoneyProblem {
 
     public static void main(String[] args) {
         int[] arr = {1, 4, 8};
-        int a = 11;
+        int a = 5;
         System.out.println(isSum(arr, a, 0, 0));
         System.out.println(isSum02(arr, a));
 //        boolean[][] dp = isSum02(arr, a);

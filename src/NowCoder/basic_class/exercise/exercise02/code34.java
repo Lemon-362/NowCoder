@@ -1,15 +1,17 @@
 package NowCoder.basic_class.exercise.exercise02;
 
+
+
 public class code34 {
-    public static class TrieNode {
+    public static class TrieNode{
         private int path;
         private int end;
-        private TrieNode[] nexts;
+        private TrieNode[] next;
 
         public TrieNode() {
             this.path = 0;
             this.end = 0;
-            this.nexts = new TrieNode[26];
+            this.next = new TrieNode[26];
         }
     }
 
@@ -20,9 +22,8 @@ public class code34 {
             this.head = new TrieNode();
         }
 
-        // 插入
-        public void insert(String str) {
-            if (str == null) {
+        public void insert(String str){
+            if (str == null){
                 return;
             }
 
@@ -32,20 +33,19 @@ public class code34 {
             for (int i = 0; i < s.length; i++) {
                 int index = s[i] - 'a';
 
-                if (cur.nexts[index] == null){
-                    cur.nexts[index] = new TrieNode();
+                if (cur.next[index] == null){
+                    cur.next[index] = new TrieNode();
                 }
 
-                cur = cur.nexts[index];
+                cur = cur.next[index];
                 cur.path++;
             }
 
             cur.end++;
         }
 
-        // 查询完整字符串
-        public int search(String str) {
-            if (str == null) {
+        public int search(String str){
+            if (str == null){
                 return 0;
             }
 
@@ -55,41 +55,18 @@ public class code34 {
             for (int i = 0; i < s.length; i++) {
                 int index = s[i] - 'a';
 
-                if (cur.nexts[index] == null){
+                if (cur.next[index] == null){
                     return 0;
                 }
 
-                cur = cur.nexts[index];
+                cur = cur.next[index];
             }
 
             return cur.end;
         }
 
-        // 查询前缀
-        public int prefixNumber(String str) {
-            if (str == null) {
-                return 0;
-            }
-
-            char[] s = str.toCharArray();
-            TrieNode cur = head;
-
-            for (int i = 0; i < s.length; i++) {
-                int index = s[i] - 'a';
-
-                if (cur.nexts[index] == null){
-                    return 0;
-                }
-
-                cur = cur.nexts[index];
-            }
-
-            return cur.path;
-        }
-
-        // 删除
-        public void delete(String str) {
-            if (str == null) {
+        public void delete(String str){
+            if (str == null){
                 return;
             }
 
@@ -99,15 +76,36 @@ public class code34 {
             for (int i = 0; i < s.length; i++) {
                 int index = s[i] - 'a';
 
-                if (--cur.nexts[index].path == 0){
-                    cur.nexts[index] = null;
+                if (--cur.next[index].path == 0){
+                    cur.next[index] = null;
                     return;
                 }
 
-                cur = cur.nexts[index];
+                cur = cur.next[index];
             }
 
             cur.end--;
+        }
+
+        public int prefixNumber(String str){
+            if (str == null){
+                return 0;
+            }
+
+            char[] s = str.toCharArray();
+            TrieNode cur = head;
+
+            for (int i = 0; i < s.length; i++) {
+                int index = s[i] - 'a';
+
+                if (cur.next[index] == null){
+                    return 0;
+                }
+
+                cur = cur.next[index];
+            }
+
+            return cur.path;
         }
     }
 

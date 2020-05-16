@@ -21,12 +21,12 @@ public class code38_BestArrange {
         }
     }
 
-    public static int BestArrange(Program[] programs, int start){
+    public static int BestArrange(Program[] programs, int start) {
         Arrays.sort(programs, new minEndComparator());
         int cur = start;
         int res = 0;
         for (int i = 0; i < programs.length; i++) {
-            if (cur <= programs[i].start){
+            if (cur <= programs[i].start) {
                 res++;
                 cur = programs[i].end;
             }
@@ -35,8 +35,21 @@ public class code38_BestArrange {
     }
 
     public static class minEndComparator implements Comparator<Program> {
-        public int compare(Program o1, Program o2){
+        public int compare(Program o1, Program o2) {
             return o1.end - o2.end;
         }
+    }
+
+    public static void main(String[] args) {
+        int[] start = {1, 2, 4, 6, 8};
+        int[] end = {3, 5, 7, 9, 10};
+
+        Program[] programs = new Program[start.length];
+        for (int i = 0; i < programs.length; i++) {
+            programs[i] = new Program(start[i], end[i]);
+        }
+
+        System.out.println(BestArrange(programs, 0)); // 3
+
     }
 }

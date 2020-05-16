@@ -21,7 +21,7 @@ public class Code_08_Money_Problem {
         return process1(arr, i + 1, sum, aim) || process1(arr, i + 1, sum + arr[i], aim);
     }
 
-    public static boolean[][] money2(int[] arr, int aim) {
+    public static boolean money2(int[] arr, int aim) {
         boolean[][] dp = new boolean[arr.length + 1][aim + 1];
         for (int i = 0; i < dp.length; i++) {
             dp[i][aim] = true;
@@ -34,7 +34,7 @@ public class Code_08_Money_Problem {
                 }
             }
         }
-        return dp;
+        return dp[0][0];
     }
 
     // 暴力递归
@@ -47,18 +47,19 @@ public class Code_08_Money_Problem {
 
     public static void main(String[] args) {
         int[] arr = {1, 4, 8};
-        int aim = 12;
+        int aim = 5;
 //		System.out.println(isSum(arr, 0, 0, aim));
 //
 //        System.out.println(money1(arr, aim));
-//        System.out.println(money2(arr, aim));
-        boolean[][] dp = money2(arr, aim);
-        for (int i = 0; i < dp.length; i++) {
-            for (int j = 0; j < dp[0].length; j++) {
-                System.out.print(dp[i][j] + " ");
-            }
-            System.out.println();
-        }
+        System.out.println(money2(arr, aim));
+
+//        boolean[][] dp = money2(arr, aim);
+//        for (int i = 0; i < dp.length; i++) {
+//            for (int j = 0; j < dp[0].length; j++) {
+//                System.out.print(dp[i][j] + " ");
+//            }
+//            System.out.println();
+//        }
     }
 
 }

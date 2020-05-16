@@ -3,6 +3,7 @@ package NowCoder.basic_class.exercise;
 /*
 	母牛每年生一只母牛,新出生的母牛三年后也能每年生一只母牛,假设不会死亡。
 	求N年后，母牛的数量。
+	TODO 类似于 斐波那契数列 剑指Offer code07 08
  */
 
 public class code43_CowNumber {

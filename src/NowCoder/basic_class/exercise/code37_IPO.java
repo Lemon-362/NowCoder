@@ -38,12 +38,14 @@ public class code37_IPO {
         }
 
         for (int i = 0; i < k; i++) {
+            // 把可解锁的项目都存到maxProfit中
             while (!minCostQ.isEmpty() && minCostQ.peek().cost <= w){
                 maxProfitQ.add(minCostQ.poll());
             }
             if (maxProfitQ.isEmpty()){
                 return w;
             }
+            // 每次只拿一个
             w += maxProfitQ.poll().profit;
         }
         return w;

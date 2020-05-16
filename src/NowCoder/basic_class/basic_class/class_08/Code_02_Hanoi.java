@@ -36,7 +36,7 @@ public class Code_02_Hanoi {
     // 法二：6个过程，相互嵌套（每个过程都是三步）
     // 左--右，左--中，右--左，右--中，中--左，中--右
 
-    // 左--右，1-N-1从左到中，N从左到右，1-N-1从中到右
+    // 左--右，1 - N-1从左到中，N从左到右，1 - N-1从中到右
     public static void moveLeftToRight(int N) {
         if (N == 1) {
             System.out.println("move 1 from left to right");
@@ -105,9 +105,9 @@ public class Code_02_Hanoi {
         int n = 3;
 //        hanoi(n);
 
-        process(n, "left", "right", "mid");
+//        process(n, "left", "right", "mid");
 
-//        moveLeftToRight(n);
+        moveLeftToRight(n);
 
 //        move 1 from left to right
 //        move 2 from left to mid

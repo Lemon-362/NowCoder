@@ -18,7 +18,6 @@ public class code33 {
             this.sizeMap = new HashMap<>();
         }
 
-        // 制作每个节点的集合
         public void makeSet(List<Node> list){
             if (list == null){
                 return;
@@ -30,17 +29,16 @@ public class code33 {
             }
         }
 
-        // 向上查找代表节点
-        public Node findParentNode(Node node){
+        public Node findParent(Node node){
             if (node == null){
                 return null;
             }
 
-            Stack<Node> stack = new Stack<>();
             Node cur = node;
             Node parent = this.parentMap.get(cur);
+            Stack<Node> stack = new Stack<>();
 
-            while (parent != cur){
+            while (cur != parent){
                 stack.push(cur);
                 cur = parent;
                 parent = this.parentMap.get(cur);
@@ -49,23 +47,21 @@ public class code33 {
             return parent;
         }
 
-        // 查询是否在同一集合
-        public boolean isSameSet(Node node1, Node node2){
-            if (node1 == null || node2 == null){
+        public boolean isSameSet(Node a, Node b){
+            if (a == null || b == null){
                 return false;
             }
 
-            return findParentNode(node1) == findParentNode(node2);
+            return this.findParent(a) == this.findParent(b);
         }
 
-        // 合并两个集合
-        public void union(Node node1, Node node2){
-            if (node1 == null || node2 == null){
+        public void union(Node a, Node b){
+            if (a == null || b == null){
                 return;
             }
 
-            Node parent1 = findParentNode(node1);
-            Node parent2 = findParentNode(node2);
+            Node parent1 = this.findParent(a);
+            Node parent2 = this.findParent(b);
 
             if (parent1 != parent2){
                 int size1 = this.sizeMap.get(parent1);
