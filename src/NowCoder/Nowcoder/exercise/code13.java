@@ -6,16 +6,16 @@ public class code13 {
             return;
         }
 
-        boolean flag = false;
+        boolean res = false;
 
         for (int i = arr.length - 1; i >= 0; i--) {
             for (int j = 0; j < i; j++) {
                 if (arr[j] % 2 == 0 && arr[j + 1] % 2 == 1) {
                     swap(arr, j, j + 1);
-                    flag = true;
+                    res = true;
                 }
             }
-            if (!flag) {
+            if (!res) {
                 break;
             }
         }

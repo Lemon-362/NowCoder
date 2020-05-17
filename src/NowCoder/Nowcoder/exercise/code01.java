@@ -8,20 +8,18 @@ public class code01 {
 
         int curR = 0;
         int curC = arr[0].length - 1;
-        boolean res = false;
 
         while (curR < arr.length && curC > -1){
-            if (num < arr[curR][curC]){
-                curC--;
-            }else if (num > arr[curR][curC]){
+            if (arr[curR][curC] < num){
                 curR++;
+            }else if (arr[curR][curC] > num){
+                curC--;
             }else {
-                res = true;
-                break;
+                return true;
             }
         }
 
-        return res;
+        return false;
     }
 
     public static void main(String[] args) {

@@ -28,6 +28,7 @@ public class code03 {
         }
 
         ArrayList<Integer> list = new ArrayList<>();
+
         while (!stack.isEmpty()){
             list.add(stack.pop().value);
         }

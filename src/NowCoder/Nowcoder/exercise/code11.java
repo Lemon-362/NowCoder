@@ -6,6 +6,7 @@ public class code11 {
 
         for (int i = 31; i >= 0; i--) {
             int path = (n >> i) & 1;
+
             if (path == 1){
                 res++;
             }

@@ -7,25 +7,26 @@ public class code02 {
         }
 
         int spaceNum = 0;
-
         for (int i = 0; i < sb.length(); i++) {
-            if (sb.charAt(i) == ' ') {
+            if (sb.charAt(i) == ' '){
                 spaceNum++;
             }
         }
 
         int oldLen = sb.length();
-        int newLen = oldLen + 2 * spaceNum;
+        int newLen = oldLen + 3 * spaceNum;
         sb.setLength(newLen);
-        int newIndex = newLen - 1;
 
-        for (int oldIndex = oldLen - 1; oldIndex >= 0; oldIndex--) {
-            if (sb.charAt(oldIndex) == ' ') {
-                sb.setCharAt(newIndex--, '0');
-                sb.setCharAt(newIndex--, '2');
-                sb.setCharAt(newIndex--, '%');
-            } else {
-                sb.setCharAt(newIndex--, sb.charAt(oldIndex));
+        int index = newLen - 1;
+
+        for (int i = oldLen - 1; i >= 0; i--) {
+            if (sb.charAt(i) == ' '){
+                sb.setCharAt(index--, '0');
+                sb.setCharAt(index--, '2');
+                sb.setCharAt(index--, '5');
+                sb.setCharAt(index--, '%');
+            }else {
+                sb.setCharAt(index--, sb.charAt(i));
             }
         }
 
@@ -36,7 +37,7 @@ public class code02 {
         StringBuffer res = new StringBuffer();
         for (int i = 0; i < stringBuffer.length(); i++) {
             if (stringBuffer.charAt(i) == ' ') {
-                res.append("%20");
+                res.append("%520");
             } else {
                 res.append(stringBuffer.charAt(i));
             }

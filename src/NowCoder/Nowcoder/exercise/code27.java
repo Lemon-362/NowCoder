@@ -14,9 +14,9 @@ public class code27 {
         process(s, 0, s.length - 1);
     }
 
-    public static void process(char[] s, int l, int r){
+    public static void process(char[] s, int l, int r) {
         // base case
-        if (l >= r){
+        if (l == r) {
             System.out.println(String.valueOf(s));
             return;
         }
@@ -24,7 +24,7 @@ public class code27 {
         HashSet<Character> set = new HashSet<>();
 
         for (int i = l; i <= r; i++) {
-            if (!set.contains(s[i])){
+            if (!set.contains(s[i])) {
                 set.add(s[i]);
 
                 swap(s, l, i);
@@ -36,7 +36,7 @@ public class code27 {
         }
     }
 
-    public static void swap(char[] s, int i, int j){
+    public static void swap(char[] s, int i, int j) {
         char tmp = s[i];
         s[i] = s[j];
         s[j] = tmp;
@@ -53,9 +53,9 @@ public class code27 {
         process2(s, 0, "");
     }
 
-    public static void process2(char[] s, int index, String res){
+    public static void process2(char[] s, int index, String res) {
         // base case
-        if (index == s.length){
+        if (index == s.length) {
             System.out.println(res);
             return;
         }
