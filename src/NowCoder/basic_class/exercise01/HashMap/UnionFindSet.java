@@ -18,13 +18,14 @@ public class UnionFindSet {
             this.sizeMap = new HashMap<>();
         }
 
-        public void makeSet(List<Node> nodes) {
-            if (nodes == null) {
+        public void makeSet(List<Node> list) {
+            if (list == null) {
                 return;
             }
-            for (Node node : nodes) {
-                this.fatherMap.put(node, node);
-                this.sizeMap.put(node, 1);
+
+            for (Node node : list) {
+                fatherMap.put(node, node);
+                sizeMap.put(node, 1);
             }
         }
 
@@ -32,17 +33,21 @@ public class UnionFindSet {
             if (node == null) {
                 return null;
             }
+
             Node cur = node;
-            Node father = this.fatherMap.get(node);
+            Node father = fatherMap.get(cur);
             Stack<Node> stack = new Stack<>();
+
             while (cur != father) {
                 stack.push(cur);
                 cur = father;
-                father = this.fatherMap.get(cur);
+                father = fatherMap.get(cur);
             }
+
             while (!stack.isEmpty()) {
-                this.fatherMap.put(stack.pop(), father);
+                fatherMap.put(stack.pop(), father);
             }
+
             return father;
         }
 
@@ -50,6 +55,7 @@ public class UnionFindSet {
             if (a == null || b == null) {
                 return false;
             }
+
             return findHead(a) == findHead(b);
         }
 
@@ -57,18 +63,20 @@ public class UnionFindSet {
             if (a == null || b == null) {
                 return;
             }
-            Node aHead = findHead(a);
-            Node bHead = findHead(b);
 
-            if (aHead != bHead){
-                int aSetSize = this.sizeMap.get(aHead);
-                int bSetSize = this.sizeMap.get(bHead);
-                if (aSetSize <= bSetSize) {
-                    this.fatherMap.put(aHead, bHead);
-                    this.sizeMap.put(bHead, aSetSize + bSetSize);
+            Node father1 = fatherMap.get(a);
+            Node father2 = fatherMap.get(b);
+
+            if (father1 != father2) {
+                int size1 = sizeMap.get(father1);
+                int size2 = sizeMap.get(father2);
+
+                if (size1 < size2) {
+                    fatherMap.put(father1, father2);
+                    sizeMap.put(father2, size1 + size2);
                 } else {
-                    this.fatherMap.put(bHead, aHead);
-                    this.sizeMap.put(aHead, aSetSize + bSetSize);
+                    fatherMap.put(father2, father2);
+                    sizeMap.put(father1, size1 + size2);
                 }
             }
         }

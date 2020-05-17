@@ -7,25 +7,27 @@ public class PrintMatrixSpiralOrder {
         if (arr == null) {
             return;
         }
+
         int tR = 0;
         int tC = 0;
         int dR = arr.length - 1;
         int dC = arr[0].length - 1;
+
         while (tR <= dR && tC <= dC) {
             print(arr, tR++, tC++, dR--, dC--);
         }
     }
 
     public static void print(int[][] arr, int tR, int tC, int dR, int dC) {
-        if (tR == dR){
+        if (tR == dR) {
             for (int i = tC; i <= dC; i++) {
                 System.out.print(arr[tR][i] + " ");
             }
-        }else if (tC == dC){
+        } else if (tC == dC) {
             for (int i = tR; i <= dR; i++) {
                 System.out.print(arr[i][tC] + " ");
             }
-        }else {
+        } else {
             int curR = tR;
             int curC = tC;
             while (curC < dC){
@@ -34,7 +36,7 @@ public class PrintMatrixSpiralOrder {
             while (curR < dR){
                 System.out.print(arr[curR++][curC] + " ");
             }
-            while (curC >tC){
+            while (curC > tC){
                 System.out.print(arr[curR][curC--] + " ");
             }
             while (curR > tR){

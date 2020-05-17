@@ -5,31 +5,33 @@ public class ZhiPrintMatrix {
         if (arr == null) {
             return;
         }
-        int AR = 0;
-        int AC = 0;
-        int BR = 0;
-        int BC = 0;
-        int endR = arr.length - 1;
-        int endC = arr[0].length - 1;
-        boolean flag = true;
-        while (AR != endR + 1) {
-            print(arr, AR, AC, BR, BC, flag);
-            AR = AC == endC ? AR + 1 : AR;
-            AC = AC == endC ? AC : AC + 1;
-            BC = BR == endR ? BC + 1 : BC;
-            BR = BR == endR ? BR : BR + 1;
+
+        int tR = 0;
+        int tC = 0;
+        int dR = 0;
+        int dC = 0;
+        int endR = arr.length;
+        int endC = arr[0].length;
+        boolean flag = false;
+
+        while (tR < endR) {
+            print(arr, tR, tC, dR, dC, flag);
+            tR = tC == endC - 1 ? tR + 1 : tR;
+            tC = tC == endC - 1 ? tC : tC + 1;
+            dC = dR == endR - 1 ? dC + 1 : dC;
+            dR = dR == endR - 1 ? dR : dR + 1;
             flag = !flag;
         }
     }
 
-    public static void print(int[][] arr, int AR, int AC, int BR, int BC, boolean flag) {
+    public static void print(int[][] arr, int tR, int tC, int dR, int dC, boolean flag) {
         if (flag) {
-            while (BR != AR - 1) {
-                System.out.print(arr[BR--][BC++] + " ");
+            while (tR != dR + 1) {
+                System.out.print(arr[tR++][tC--] + " ");
             }
         } else {
-            while (AR != BR + 1) {
-                System.out.print(arr[AR++][AC--] + " ");
+            while (dR != tR - 1) {
+                System.out.print(arr[dR--][dC++] + " ");
             }
         }
     }

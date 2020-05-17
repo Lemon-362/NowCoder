@@ -1,7 +1,7 @@
 package NowCoder.basic_class.exercise01.Tree;
 
 public class SuccessorNode {
-    public static class Node{
+    public static class Node {
         private int value;
         private Node left;
         private Node right;
@@ -12,16 +12,16 @@ public class SuccessorNode {
         }
     }
 
-    public static Node getSuccessorNode(Node node){
-        if (node == null){
+    public static Node getSuccessorNode(Node node) {
+        if (node == null) {
             return null;
         }
 
-        if (node.right != null){
+        if (node.right != null) {
             return getLeftMost(node.right);
-        }else {
+        } else {
             Node parent = node.parent;
-            while (parent != null && parent.left != node){
+            while (parent != null && parent.left != node) {
                 node = parent;
                 parent = node.parent;
             }
@@ -29,14 +29,16 @@ public class SuccessorNode {
         }
     }
 
-    public static Node getLeftMost(Node node){
-        if (node == null){
+    public static Node getLeftMost(Node head) {
+        if (head == null) {
             return null;
         }
-        while (node.left != null){
-            node = node.left;
+
+        while (head.left != null) {
+            head = head.left;
         }
-        return node;
+
+        return head;
     }
 
     public static void main(String[] args) {

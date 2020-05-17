@@ -97,6 +97,66 @@ public class PreInPosBinaryTree {
         }
     }
 
+    public static void morrisPos(Node head){
+        if (head == null){
+            return;
+        }
+
+        Node cur = head;
+        Node mostRight = null;
+
+        while (cur != null){
+            mostRight = cur.left;
+            if (mostRight != null){
+                while (mostRight.right != null && mostRight.right != cur){
+                    mostRight = mostRight.right;
+                }
+                if (mostRight.right == null){
+                    mostRight.right = cur;
+                    cur = cur.left;
+                }else {
+                    mostRight.right = null;
+
+                    printEdge(cur.left);
+
+                    cur = cur.right;
+                }
+            }else {
+                cur = cur.right;
+            }
+        }
+
+        printEdge(head);
+        System.out.println();
+    }
+
+    public static void printEdge(Node head){
+        Node cur = reverse(head);
+        Node node = cur;
+        while (node != null){
+            System.out.print(node.value + " ");
+            node = node.right;
+        }
+        reverse(cur);
+    }
+
+    public static Node reverse(Node head){
+        Node cur = head;
+        Node pre = null;
+        Node next = null;
+
+        while (cur != null){
+            next = cur.right;
+
+            cur.right = pre;
+
+            pre = cur;
+            cur = next;
+        }
+
+        return pre;
+    }
+
     public static void main(String[] args) {
         Node head = new Node(5);
         head.left = new Node(3);
@@ -120,6 +180,7 @@ public class PreInPosBinaryTree {
         System.out.print("pos-order: ");
         posOrderRecur(head); // 1 2 4 3 6 7 9 11 10 8 5
         System.out.println();
+        morrisPos(head);
 
         // unrecursive
         System.out.println("============unrecursive=============");

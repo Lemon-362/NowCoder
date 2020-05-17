@@ -11,36 +11,39 @@ public class TreeNodeNumber {
         }
     }
 
-    public static int method(Node head){
-        if (head == null){
+    public static int method(Node head) {
+        if (head == null) {
             return 0;
         }
+
         int H = getLeftMost(head, 1);
+
         return process(head, 1, H);
     }
 
-    public static int process(Node node, int level, int h){
-        if (node == null){
-            return 0;
-        }
-        if (level == h){
+    public static int process(Node head, int level, int H) {
+        // base case
+        if (level == H) {
             return 1;
         }
-        if (getLeftMost(node.right, level + 1) == h){
-            return (1 << (h - level)) + process(node.right, level + 1, h);
-        }else {
-            return (1 << (h - level - 1)) + process(node.left, level + 1, h);
+
+        if (getLeftMost(head.right, level + 1) == H) {
+            return (1 << (H - level)) + process(head.right, level + 1, H);
+        } else {
+            return (1 << (H - level - 1)) + process(head.left, level + 1, H);
         }
     }
 
-    public static int getLeftMost(Node node, int level){
-        if (node == null){
+    public static int getLeftMost(Node head, int level) {
+        if (head == null) {
             return 0;
         }
-        while (node != null){
+
+        while (head != null) {
             level++;
-            node = node.left;
+            head = head.left;
         }
+
         return level - 1;
     }
 
@@ -51,7 +54,7 @@ public class TreeNodeNumber {
         head.left.left = new Node(4);
         head.left.right = new Node(5);
         head.right.left = new Node(6);
-//        head.right.right = new Node(7);
-        System.out.println(method(head));
+        head.right.right = new Node(7);
+        System.out.println(method(head)); // 7
     }
 }

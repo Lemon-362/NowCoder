@@ -37,7 +37,6 @@ public class code37 {
             }
 
             w += maxProfit.poll().profit;
-
         }
 
         return w;

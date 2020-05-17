@@ -3,115 +3,132 @@ package NowCoder.basic_class.exercise01.Trie;
 import NowCoder.basic_class.exercise.code34_TrieTree;
 
 public class TrieTree {
-    public static class TrieNode {
+    public static class Node {
         private int path;
         private int end;
-        private TrieNode[] nodes;
+        private Node[] nexts;
 
-        public TrieNode() {
+        public Node() {
             this.path = 0;
             this.end = 0;
-            this.nodes = new TrieNode[26];
+            this.nexts = new Node[26];
         }
     }
 
     public static class trieTree {
-        private TrieNode head;
+        private Node head;
 
         public trieTree() {
-            this.head = new TrieNode();
+            this.head = new Node();
         }
 
         public void insert(String str) {
-            if (str == null) {
+            if (str == null){
                 return;
             }
+
             char[] s = str.toCharArray();
-            int index = 0;
-            TrieNode node = head;
+            Node cur = head;
+
             for (int i = 0; i < s.length; i++) {
-                index = s[i] - 'a';
-                if (node.nodes[index] == null) {
-                    node.nodes[index] = new TrieNode();
+                int index = s[i] - 'a';
+
+                if (cur.nexts[index] == null){
+                    cur.nexts[index] = new Node();
                 }
-                node = node.nodes[index];
-                node.path++;
+
+                cur = cur.nexts[index];
+                cur.path++;
             }
-            node.end++;
+
+            cur.end++;
         }
 
-        public int search(String str) {
-            if (str == null) {
+        public int search(String str){
+            if (str == null){
                 return 0;
             }
+
             char[] s = str.toCharArray();
-            int index = 0;
-            TrieNode node = head;
+            Node cur = head;
+
             for (int i = 0; i < s.length; i++) {
-                index = s[i] - 'a';
-                if (node.nodes[index] == null) {
+                int index = s[i] - 'a';
+
+                if (cur.nexts[index] == null){
                     return 0;
                 }
-                node = node.nodes[index];
+
+                cur = cur.nexts[index];
             }
-            return node.end;
+
+            return cur.end;
         }
 
-        public void delete(String str) {
-            if (str == null) {
+        public void delete(String str){
+            if (str == null){
                 return;
             }
+
             char[] s = str.toCharArray();
-            int index = 0;
-            TrieNode node = head;
+            Node cur = head;
+
             for (int i = 0; i < s.length; i++) {
-                index = s[i] - 'a';
-                if (--node.nodes[index].path == 0) {
-                    node.nodes[index] = null;
+                int index = s[i] - 'a';
+
+                if (--cur.nexts[index].path == 0){
+                    cur.nexts[index] = null;
                     return;
                 }
-                node = node.nodes[index];
+
+                cur = cur.nexts[index];
             }
-            node.end--;
+
+            cur.end--;
         }
 
-        public int prefixNumber(String str) {
-            if (str == null) {
+        public int prefixNumber(String str){
+            if (str == null){
                 return 0;
             }
-            char[] s = str.toCharArray();
-            int index = 0;
-            TrieNode node = head;
-            for (int i = 0; i < s.length; i++) {
-                index = s[i] - 'a';
-                if (node.nodes[index] == null) {
-                    return 0;
-                }
-                node = node.nodes[index];
-            }
-            return node.path;
-        }
 
-        public static void main(String[] args) {
-            trieTree trie = new trieTree();
-            System.out.println(trie.search("zuo")); // 0
-            trie.insert("zuo");
-            System.out.println(trie.search("zuo")); // 1
-            trie.delete("zuo");
-            System.out.println(trie.search("zuo")); // 0
-            trie.insert("zuo");
-            trie.insert("zuo");
-            trie.delete("zuo");
-            System.out.println(trie.search("zuo")); // 1
-            trie.delete("zuo");
-            System.out.println(trie.search("zuo")); // 0
-            trie.insert("zuoa");
-            trie.insert("zuoac");
-            trie.insert("zuoab");
-            trie.insert("zuoad");
-            trie.delete("zuoa");
-            System.out.println(trie.search("zuoa")); // 0
-            System.out.println(trie.prefixNumber("zuo")); // 3
+            char[] s = str.toCharArray();
+            Node cur = head;
+
+            for (int i = 0; i < s.length; i++) {
+                int index = s[i] - 'a';
+
+                if (cur.nexts[index] == null){
+                    return 0;
+
+                }
+
+                cur = cur.nexts[index];
+            }
+
+            return cur.path;
         }
+    }
+
+    public static void main(String[] args) {
+        trieTree trie = new trieTree();
+        System.out.println(trie.search("zuo")); // 0
+        trie.insert("zuo");
+        System.out.println(trie.search("zuo")); // 1
+        trie.delete("zuo");
+        System.out.println(trie.search("zuo")); // 0
+        trie.insert("zuo");
+        trie.insert("zuo");
+        trie.delete("zuo");
+        System.out.println(trie.search("zuo")); // 1
+        trie.delete("zuo");
+        System.out.println(trie.search("zuo")); // 0
+        trie.insert("zuoa");
+        trie.insert("zuoac");
+        trie.insert("zuoab");
+        trie.insert("zuoad");
+        trie.delete("zuoa");
+        System.out.println(trie.search("zuoa")); // 0
+        System.out.println(trie.prefixNumber("zuo")); // 3
     }
 }

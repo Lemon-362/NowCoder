@@ -21,8 +21,8 @@ public class Comparator {
             // 两个方法分别对两个数组使用
             test(newArr);
             // TODO 此处加上 排序方法
-//            code01_BubbleSort.bubbleSort(arr);
-            code02_SelectionSort.selectionSort(arr);
+            code01_BubbleSort.bubbleSort(arr);
+//            code02_SelectionSort.selectionSort(arr);
 //            code03_InsertionSort.insertionSort(arr);
 //            code04_MergeSort.mergeSort(arr);
 //            code07_QuickSort.quickSort(arr);
@@ -41,8 +41,8 @@ public class Comparator {
         // 打印排序前的数组
         printArr(arr);
         // TODO 此处加上 排序方法
-//        code01_BubbleSort.bubbleSort(arr);
-        code02_SelectionSort.selectionSort(arr);
+        code01_BubbleSort.bubbleSort(arr);
+//        code02_SelectionSort.selectionSort(arr);
 //        code03_InsertionSort.insertionSort(arr);
 //        code04_MergeSort.mergeSort(arr);
 //        code07_QuickSort.quickSort(arr);

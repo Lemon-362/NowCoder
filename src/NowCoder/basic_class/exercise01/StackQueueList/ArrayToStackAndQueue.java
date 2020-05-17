@@ -10,25 +10,28 @@ public class ArrayToStackAndQueue {
             this.index = 0;
         }
 
-        public void push(int num) {
-            if (this.index == this.stack.length) {
+        public void push(int num){
+            if (index == stack.length){
                 System.out.println("栈满");
             }
+
             stack[index++] = num;
         }
 
-        public int pop() {
-            if (this.index == 0) {
+        public Integer pop(){
+            if (index == 0){
                 System.out.println("栈空");
             }
+
             return stack[--index];
         }
 
-        public int peek() {
-            if (this.index == 0) {
+        public Integer peek(){
+            if (index == 0){
                 System.out.println("栈空");
             }
-            return stack[index - 1];
+
+            return stack[index-1];
         }
     }
 
@@ -45,29 +48,37 @@ public class ArrayToStackAndQueue {
             this.end = 0;
         }
 
-        public void push(int num) {
-            if (this.size == this.queue.length) {
+        public void push(int num){
+            if (size == queue.length){
                 System.out.println("队列满");
             }
-            size++;
+
             queue[end] = num;
-            end = end == this.queue.length - 1 ? 0 : end + 1;
+
+            size++;
+
+            end = end == queue.length - 1 ? 0 : end + 1;
         }
 
-        public int poll() {
-            if (this.size == 0) {
+        public Integer poll(){
+            if (size == 0){
                 System.out.println("队列空");
             }
-            size--;
+
             int res = queue[start];
-            start = start == this.queue.length - 1 ? 0 : start + 1;
+
+            size--;
+
+            start = start == queue.length - 1 ? 0 : start + 1;
+
             return res;
         }
 
-        public int peek(){
-            if (this.size == 0) {
+        public Integer peek(){
+            if (size == 0){
                 System.out.println("队列空");
             }
+
             return queue[start];
         }
     }

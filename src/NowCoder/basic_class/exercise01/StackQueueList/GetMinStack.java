@@ -12,32 +12,31 @@ public class GetMinStack {
             this.minStack = new Stack<>();
         }
 
-        public void push(int num) {
-            if (this.minStack.isEmpty()) {
-                this.minStack.push(num);
-            } else {
-                if (num <= this.getMin()) {
-                    this.minStack.push(num);
-                } else {
-                    this.minStack.push(this.getMin());
+        public void push(int num){
+            if (minStack.isEmpty()){
+                minStack.push(num);
+            }else {
+                if (this.getMin() > num){
+                    minStack.push(num);
+                }else {
+                    minStack.push(this.getMin());
                 }
             }
+
             this.numStack.push(num);
         }
 
-        public int getMin() {
-            if (this.minStack.isEmpty()) {
-                System.out.println("栈空");
+        public Integer getMin(){
+            if (minStack.isEmpty() && numStack.isEmpty()){
+                return null;
+            }else {
+                return minStack.peek();
             }
-            return this.minStack.peek();
         }
 
-        public int pop() {
-            if (this.minStack.isEmpty() && this.numStack.isEmpty()) {
-                System.out.println("栈空");
-            }
-            this.minStack.pop();
-            return this.numStack.pop();
+        public Integer pop(){
+            minStack.pop();
+            return numStack.pop();
         }
     }
 

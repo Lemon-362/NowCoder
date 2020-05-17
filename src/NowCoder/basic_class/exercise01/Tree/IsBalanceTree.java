@@ -13,38 +13,45 @@ public class IsBalanceTree {
 
     public static class ReturnData {
         private boolean isB;
-        private int h;
+        private int height;
 
-        public ReturnData(boolean isB, int h) {
+        public ReturnData(boolean isB, int height) {
             this.isB = isB;
-            this.h = h;
+            this.height = height;
         }
     }
 
-    public static boolean isBalance(Node head) {
-        return process(head).isB;
-    }
-
-    public static ReturnData process(Node head) {
-        if (head == null) {
+    public static ReturnData process(Node head){
+        // base case
+        if (head == null){
             return new ReturnData(true, 0);
         }
 
         ReturnData left = process(head.left);
-        if (!left.isB) {
-            return new ReturnData(false, 0);
-        }
-
         ReturnData right = process(head.right);
-        if (!right.isB) {
+
+        // 1
+        if (!left.isB){
             return new ReturnData(false, 0);
         }
 
-        if (Math.abs(left.h - right.h) > 1) {
+        // 2
+        if (!right.isB){
             return new ReturnData(false, 0);
         }
 
-        return new ReturnData(true, Math.max(left.h, right.h) + 1);
+        // 3
+        if (Math.abs(left.height - right.height) > 1){
+            return new ReturnData(false, 0);
+        }
+
+        int curHeight = Math.max(left.height, right.height) + 1;
+
+        return new ReturnData(true, curHeight);
+    }
+
+    public static boolean isBalance(Node head){
+        return process(head).isB;
     }
 
     public static void main(String[] args) {

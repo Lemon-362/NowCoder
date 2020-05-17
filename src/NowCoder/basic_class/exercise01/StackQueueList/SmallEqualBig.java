@@ -62,6 +62,7 @@ public class SmallEqualBig {
         if (head == null) {
             return null;
         }
+
         Node sh = null;
         Node st = null;
         Node eh = null;
@@ -70,9 +71,11 @@ public class SmallEqualBig {
         Node bt = null;
         Node cur = head;
         Node next = null;
+
         while (cur != null) {
             next = cur.next;
             cur.next = null;
+
             if (cur.value < num) {
                 if (sh == null) {
                     sh = cur;
@@ -98,15 +101,19 @@ public class SmallEqualBig {
                     et = cur;
                 }
             }
+
             cur = next;
         }
+
         if (st != null) {
             st.next = eh;
-            et = et == null ? st : et;
+            et = et != null ? et : st;
         }
+
         if (et != null) {
             et.next = bh;
         }
+
         if (sh != null) {
             return sh;
         } else if (eh != null) {
@@ -114,6 +121,7 @@ public class SmallEqualBig {
         } else {
             return bh;
         }
+
     }
 
     public static void printLinkedList(Node head) {

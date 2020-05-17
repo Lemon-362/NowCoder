@@ -1,5 +1,7 @@
 package NowCoder.basic_class.exercise01.Tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class IsBST_IsCBT {
@@ -13,30 +15,82 @@ public class IsBST_IsCBT {
         }
     }
 
-    public static boolean isBST(Node head){
-        if (head == null){
+    public static boolean isBST(Node head) {
+        if (head == null) {
             return true;
         }
-        Stack<Node> stack = new Stack<>();
-        Node[] nodes = new Node[100000];
-        int index = 0;
-        while (!stack.isEmpty() || head != null){
-            if (head != null){
-                stack.push(head);
-                head = head.left;
-            }else {
-                head = stack.pop();
-                nodes[index++] = head;
-                head = head.right;
+
+        Node cur = head;
+        Node mostRight = null;
+        Node pre = null;
+
+        while (cur != null) {
+            mostRight = cur.left;
+            if (mostRight != null) {
+                while (mostRight.right != null && mostRight.right != cur) {
+                    mostRight = mostRight.right;
+                }
+                if (mostRight.right == null) {
+                    mostRight.right = cur;
+                    cur = cur.left;
+                } else {
+                    mostRight.right = null;
+
+                    if (pre != null && pre.value > cur.value) {
+                        return false;
+                    }
+                    pre = cur;
+
+                    cur = cur.right;
+                }
+            } else {
+                if (pre != null && pre.value > cur.value) {
+                    return false;
+                }
+                pre = cur;
+
+                cur = cur.right;
             }
         }
+
+        return true;
+    }
+
+    public static boolean isCBT(Node head) {
+        if (head == null) {
+            return true;
+        }
+
         boolean res = true;
-        for (int i = 0; i < index - 2; i++) {
-            if (nodes[i].value > nodes[i+1].value){
+        boolean flag = false;
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(head);
+
+        while (!queue.isEmpty()) {
+            Node cur = queue.poll();
+            Node left = cur.left;
+            Node right = cur.right;
+
+            if ((flag && (left != null || right != null))
+                    ||
+                    (left == null && right != null)) {
                 res = false;
                 break;
             }
+
+            if (left == null || right == null) {
+                flag = true;
+            }
+
+            if (left != null) {
+                queue.offer(left);
+            }
+
+            if (right != null) {
+                queue.offer(right);
+            }
         }
+
         return res;
     }
 
@@ -49,5 +103,6 @@ public class IsBST_IsCBT {
         head.right.left = new Node(5);
 
         System.out.println(isBST(head));
+        System.out.println(isCBT(head));
     }
 }

@@ -28,13 +28,12 @@ public class code38 {
             }
         });
 
-        int cur = start;
         int res = 0;
-
+        int cur = start;
         for (int i = 0; i < programs.length; i++) {
             if (cur <= programs[i].start){
                 res++;
-                cur= programs[i].end;
+                cur = programs[i].end;
             }
         }
 

@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class SerialAndRecon {
-    public static class Node{
+    public static class Node {
         private int value;
         private Node left;
         private Node right;
@@ -16,89 +16,106 @@ public class SerialAndRecon {
         }
     }
 
-    public static String SerialByPre(Node head){
-        if (head == null){
+    public static String SerialByPre(Node head) {
+        if (head == null) {
             return "#_";
         }
+
         String res = head.value + "_";
         res += SerialByPre(head.left);
         res += SerialByPre(head.right);
+
         return res;
     }
 
-    public static Node ReconByPre(String str){
+    public static Node ReconByPre(String str) {
         String[] s = str.split("_");
         Queue<String> queue = new LinkedList<>();
+
         for (int i = 0; i < s.length; i++) {
             queue.offer(s[i]);
         }
+
         return recon(queue);
     }
 
-    public static Node recon(Queue<String> queue){
+    public static Node recon(Queue<String> queue) {
         String value = queue.poll();
-        if (value.equals("#")){
+        if (value.equals("#")) {
             return null;
         }
         Node head = new Node(Integer.parseInt(value));
+
         head.left = recon(queue);
         head.right = recon(queue);
+
         return head;
     }
 
-    public static String SerialByLevel(Node head){
-        if (head == null){
+    public static String SerialByLevel(Node head) {
+        if (head == null) {
             return "#_";
         }
+
         Queue<Node> queue = new LinkedList<>();
         queue.offer(head);
         String res = head.value + "_";
-        while (!queue.isEmpty()){
-            head = queue.poll();
-            if (head.left != null){
-                res += head.left.value + "_";
-                queue.offer(head.left);
-            }else {
+
+        while (!queue.isEmpty()) {
+            Node cur = queue.poll();
+            Node left = cur.left;
+            Node right = cur.right;
+
+            if (left != null) {
+                res += left.value + "_";
+                queue.offer(left);
+            } else {
                 res += "#_";
             }
-            if (head.right != null){
-                res += head.right.value + "_";
-                queue.offer(head.right);
-            }else {
+
+            if (right != null) {
+                res += right.value + "_";
+                queue.offer(right);
+            } else {
                 res += "#_";
             }
         }
+
         return res;
     }
 
-    public static Node ReconByLevel(String str){
+    public static Node ReconByLevel(String str) {
         String[] s = str.split("_");
         int index = 0;
         Node head = generate(s[index++]);
         Queue<Node> queue = new LinkedList<>();
-        if (head != null){
+        if (head != null) {
             queue.offer(head);
         }
-        Node node = null;
-        while (!queue.isEmpty()){
-            node = queue.poll();
-            node.left = generate(s[index++]);
-            node.right = generate(s[index++]);
-            if (node.left != null){
-                queue.offer(node.left);
+
+        while (!queue.isEmpty()) {
+            Node cur = queue.poll();
+            cur.left = generate(s[index++]);
+            cur.right = generate(s[index++]);
+
+            if (cur.left != null) {
+                queue.offer(cur.left);
             }
-            if (node.right != null){
-                queue.offer(node.right);
+
+            if (cur.right != null) {
+                queue.offer(cur.right);
             }
         }
+
         return head;
     }
 
-    public static Node generate(String str){
-        if (str.equals("#")){
+    public static Node generate(String str) {
+        if (str.equals("#")) {
             return null;
+        } else {
+            return new Node(Integer.parseInt(str));
         }
-        return new Node(Integer.parseInt(str));
     }
 
     // for test -- print tree

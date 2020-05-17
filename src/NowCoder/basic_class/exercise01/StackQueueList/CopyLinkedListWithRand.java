@@ -2,6 +2,7 @@ package NowCoder.basic_class.exercise01.StackQueueList;
 
 import NowCoder.basic_class.exercise.code23_CopyLinkedListWithRand;
 
+import javax.print.attribute.standard.NumberUp;
 import java.util.HashMap;
 
 public class CopyLinkedListWithRand {
@@ -19,28 +20,34 @@ public class CopyLinkedListWithRand {
         if (head == null) {
             return null;
         }
+
+        HashMap<Node, Node> map = new HashMap<>();
         Node cur = head;
-        HashMap<Node, Node> hashMap = new HashMap<>();
-        while (cur != null) {
-            hashMap.put(cur, new Node(cur.value));
+
+        while (cur != null){
+            map.put(cur, new Node(cur.value));
             cur = cur.next;
         }
+
         cur = head;
-        while (cur != null) {
-            hashMap.get(cur).next = hashMap.get(cur.next);
-            hashMap.get(cur).rand = hashMap.get(cur.rand);
+        while (cur != null){
+            map.get(cur).next = map.get(cur.next);
+            map.get(cur).rand = map.get(cur.rand);
             cur = cur.next;
         }
-        return hashMap.get(head);
+
+        return map.get(head);
     }
 
     public static Node method02(Node head) {
         if (head == null) {
             return null;
         }
+
         Node cur = head;
         Node next = null;
-        while (cur != null) {
+
+        while (cur != null){
             next = cur.next;
 
             cur.next = new Node(cur.value);
@@ -48,18 +55,21 @@ public class CopyLinkedListWithRand {
 
             cur = next;
         }
+
         cur = head;
-        while (cur != null) {
+        while (cur != null){
             next = cur.next.next;
 
             cur.next.rand = cur.rand == null ? null : cur.rand.next;
 
             cur = next;
         }
+
         cur = head;
         Node res = cur.next;
         Node copy = null;
-        while (cur != null) {
+
+        while (cur != null){
             next = cur.next.next;
             copy = cur.next;
 
@@ -68,6 +78,7 @@ public class CopyLinkedListWithRand {
 
             cur = next;
         }
+
         return res;
     }
 

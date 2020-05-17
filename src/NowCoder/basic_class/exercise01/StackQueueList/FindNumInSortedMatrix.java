@@ -5,17 +5,20 @@ public class FindNumInSortedMatrix {
         if (arr == null) {
             return false;
         }
+
         int curR = 0;
         int curC = arr[0].length - 1;
+
         while (curR < arr.length && curC > -1){
-            if (num < arr[curR][curC]){
+            if (arr[curR][curC] > num){
                 curC--;
-            }else if (num > arr[curR][curC]){
+            }else if (arr[curR][curC] < num){
                 curR++;
             }else {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -29,7 +32,7 @@ public class FindNumInSortedMatrix {
                 {166, 176, 186, 187, 190, 195, 200},// 6
                 {233, 243, 321, 341, 356, 370, 380} // 7
         };
-        int num = 43;
+        int num = 66;
         System.out.println(method(matrix, num));
     }
 }

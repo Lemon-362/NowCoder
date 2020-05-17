@@ -9,16 +9,18 @@ public class code36 {
             return 0;
         }
 
-        PriorityQueue<Integer> pQ = new PriorityQueue<>(new MyComparator());
+        PriorityQueue<Integer> pQ = new PriorityQueue<>();
         for (int i = 0; i < arr.length; i++) {
             pQ.add(arr[i]);
         }
 
         int res = 0;
         int sum = 0;
-        while (pQ.size() > 1) {
+        while (pQ.size() > 1){
             sum = pQ.poll() + pQ.poll();
+
             res += sum;
+
             pQ.add(sum);
         }
 
