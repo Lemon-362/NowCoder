@@ -15,9 +15,9 @@ public class code24 {
         }
     }
 
-    public static LinkedList<List<Integer>> res = new LinkedList<>();
-
     public static LinkedList<Integer> list = new LinkedList<>();
+
+    public static LinkedList<List<Integer>> res = new LinkedList<>();
 
     public static List<List<Integer>> findPath(Node head, int target){
         if (head == null){
@@ -36,14 +36,15 @@ public class code24 {
         }
 
         list.addLast(head.value);
+
         target -= head.value;
 
         if (target == 0 && head.left == null && head.right == null){
             res.addLast(new LinkedList<>(list));
+        } else {
+            process(head.left, target);
+            process(head.right, target);
         }
-
-        process(head.left, target);
-        process(head.right, target);
 
         list.removeLast();
     }

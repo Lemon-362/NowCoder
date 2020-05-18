@@ -33,7 +33,7 @@ public class code32_PrintMinNum {
     }
 
     public static void main(String[] args) {
-        int[] numbers = {3, 5, 1, 4, 2};
-        System.out.println(PrintMinNumber(numbers)); // 12345
+        int[] numbers = {3, 30, 34, 5, 9};
+        System.out.println(PrintMinNumber(numbers)); // 3033459
     }
 }

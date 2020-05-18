@@ -19,22 +19,19 @@ public class code17 {
             return false;
         }
 
-        boolean res = false;
-
         if (head1.value == head2.value){
-            res =  process(head1, head2);
-        } else {
+            return process(head1, head2);
+        }else {
             return isSubStructure(head1.left, head2) || isSubStructure(head1.right, head2);
         }
-
-        return res;
     }
 
     public static boolean process(Node head1, Node head2){
         // base case
         if (head2 == null){
             return true;
-        }else if (head1 == null){
+        }
+        if (head1 == null){
             return false;
         }
 

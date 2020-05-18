@@ -8,17 +8,16 @@ public class code06 {
 
         int i = 0;
         int j = arr.length - 1;
-        int mid;
 
-        while (i < j){
+        while (i != j){
             if (arr[i] < arr[j]){
                 return arr[i];
             }
 
-            mid = (i + j) >> 1;
-            if (arr[j] < arr[mid]){
+            int mid = (i + j) >> 1;
+            if (arr[mid] > arr[j]){
                 i = mid + 1;
-            }else if (arr[j] > arr[mid]){
+            }else if (arr[mid] < arr[j]){
                 j = mid;
             }else {
                 j = mid;

@@ -5,7 +5,7 @@ package NowCoder.Nowcoder;
     并返回它的位置, 如果没有则返回 -1（需要区分大小写）.
  */
 public class code34_FirstNotRepeatingChar {
-    public int FirstNotRepeatingChar(String str) {
+    public static char FirstNotRepeatingChar(String str) {
         // A - Z ： 65 - 90  a - z ： 97 - 122
         // 借助哈希表的思想，但是不需要使用哈希表，因为可以用数组的索引来表示字符的ASCII码值
         // 让A表示0索引，之后的字符只需要 -65，就可以得到对应的索引值
@@ -18,9 +18,14 @@ public class code34_FirstNotRepeatingChar {
         // 再次遍历字符串，依次查看每个字符出现的次数
         for(int i = 0; i < str.length(); i++){
             if(arr[(int)(str.charAt(i)) - 65] == 1){
-                return i; // 返回它的位置
+                return str.charAt(i); // 返回它的位置
             }
         }
-        return -1;
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        String str = "abaccdeff";
+        System.out.println(FirstNotRepeatingChar(str)); // b
     }
 }
