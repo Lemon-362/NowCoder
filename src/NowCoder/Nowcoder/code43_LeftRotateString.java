@@ -7,10 +7,15 @@ package NowCoder.Nowcoder;
         例如，字符序列S=”abcXYZdef”,要求输出循环左移3位后的结果，即“XYZdefabc”。是不是很简单？OK，搞定它！
  */
 public class code43_LeftRotateString {
-    public String LeftRotateString(String str,int n) {
+    public static String LeftRotateString(String str,int n) {
         if(str == null || n > str.length()){
             return str;
         }
         return str.substring(n) + str.substring(0, n);
+    }
+
+    public static void main(String[] args) {
+        String res = LeftRotateString("lrloseumgh", 6);
+        System.out.println(res); // umghlrlose
     }
 }

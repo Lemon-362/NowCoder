@@ -20,9 +20,7 @@ public class code38 {
         int leftDepth = process(head.left);
         int rightDepth = process(head.right);
 
-        int curDepth = Math.max(leftDepth, rightDepth) + 1;
-
-        return curDepth;
+        return Math.max(leftDepth, rightDepth) + 1;
     }
 
     public static int TreeDepth(Node head){

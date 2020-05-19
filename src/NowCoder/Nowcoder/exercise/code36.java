@@ -11,7 +11,121 @@ public class code36 {
     }
 
     public static Node findFirstIntersectNode(Node head1, Node head2) {
+        if (head1 == null || head2 == null){
+            return null;
+        }
+
+        Node loop1 = getLoopNode(head1);
+        Node loop2 = getLoopNode(head2);
+
+        if (loop1 == null && loop2 == null){
+            return bothNoLoop(head1, head2);
+        }
+
+        if (loop1 != null && loop2 != null){
+            return bothLoop(head1, head2, loop1, loop2);
+        }
+
         return null;
+    }
+
+    public static Node bothLoop(Node head1, Node head2, Node loop1, Node loop2){
+        if (loop1 == loop2){
+            Node n1 = head1;
+            Node n2 = head2;
+            int n = 0;
+
+            while (n1 != loop1){
+                n++;
+                n1 = n1.next;
+            }
+            while (n2 != loop1){
+                n--;
+                n2 = n2.next;
+            }
+
+            n1 = n > 0 ? head1 : head2;
+            n2 = n1 == head1 ? head2 : head1;
+            n = Math.abs(n);
+
+            while (n > 0){
+                n1 = n1.next;
+                n--;
+            }
+
+            while (n1 != n2){
+                n1 = n1.next;
+                n2 = n2.next;
+            }
+
+            return n1;
+        }else {
+            Node cur = loop1.next;
+            while (cur != loop1){
+                if (cur == loop2){
+                    return loop1;
+                }
+                cur = cur.next;
+            }
+            return null;
+        }
+    }
+
+    public static Node bothNoLoop(Node head1, Node head2){
+        Node n1 = head1;
+        Node n2 = head2;
+        int n = 0;
+
+        while (n1 != null){
+            n++;
+            n1 = n1.next;
+        }
+        while (n2 != null){
+            n--;
+            n2 = n2.next;
+        }
+
+        n1 = n > 0 ? head1 : head2;
+        n2 = n1 == head1 ? head2 : head1;
+        n = Math.abs(n);
+
+        while (n > 0){
+            n1 = n1.next;
+            n--;
+        }
+
+        while (n1 != n2){
+            n1 = n1.next;
+            n2 = n2.next;
+        }
+
+        return n1;
+    }
+
+    public static Node getLoopNode(Node head){
+        if (head == null){
+            return null;
+        }
+
+        Node n1 = head.next;
+        Node n2 = head.next.next;
+
+        while (n1 != n2){
+            if (n2.next == null || n2.next.next == null){
+                return null;
+            }
+            n1 = n1.next;
+            n2 = n2.next.next;
+        }
+
+        n2 = head;
+
+        while (n1 != n2){
+            n1 = n1.next;
+            n2 = n2.next;
+        }
+
+        return n1;
     }
 
     public static void main(String[] args) {

@@ -34,7 +34,7 @@ public class code37 {
                 i = mid + 1;
             }
         }
-        int right= j;
+        int right = j;
 
         return right - left + 1;
     }
