@@ -127,8 +127,10 @@ public class Code_04_RegularExpressionMatch {
 //    }
 
     public static void main(String[] args) {
-        String str = "abcccdefg";
-        String exp = "ab.*d.*e.*";
+//        String str = "abcccdefg";
+//        String exp = "ab.*d.*e.*";
+        String str = "mississippi";
+        String exp = "mis*is*p*.";
         System.out.println(isMatch(str, exp));
         System.out.println(isMatchDP(str, exp));
 

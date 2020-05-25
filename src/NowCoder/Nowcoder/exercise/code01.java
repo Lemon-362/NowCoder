@@ -10,10 +10,10 @@ public class code01 {
         int curC = arr[0].length - 1;
 
         while (curR < arr.length && curC > -1){
-            if (arr[curR][curC] < num){
-                curR++;
-            }else if (arr[curR][curC] > num){
+            if (num < arr[curR][curC]){
                 curC--;
+            }else if (num > arr[curR][curC]){
+                curR++;
             }else {
                 return true;
             }
@@ -33,6 +33,6 @@ public class code01 {
                 {233, 243, 321, 341, 356, 370, 380} // 7
         };
 
-        System.out.println(findNum(matrix, 50));
+        System.out.println(findNum(matrix, 64));
     }
 }

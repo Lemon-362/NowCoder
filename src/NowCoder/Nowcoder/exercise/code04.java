@@ -15,14 +15,15 @@ public class code04 {
         }
     }
 
-    public static Node process(int[] pre, int [] in){
+    public static Node process(int[] pre, int[] in){
         // base case
-        if (pre.length == 0 || in.length == 0){
+        if (pre.length < 1 || in.length < 1){
             return null;
         }
 
         Node head = new Node(pre[0]);
         int mid = 0;
+
         for (int i = 0; i < in.length; i++) {
             if (in[i] == pre[0]){
                 mid = i;

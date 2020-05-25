@@ -12,14 +12,14 @@ public class code23 {
 
     public static boolean process(int[] arr, int l, int r){
         // base case
-        if (l == r){
+        if (l >= r){
             return true;
         }
 
         int head = arr[r];
-        int right = l;
 
-        for (int i = l; i <= r; i++) {
+        int right = l;
+        for (int i = l; i < r; i++) {
             if (arr[i] > head){
                 right = i;
                 break;

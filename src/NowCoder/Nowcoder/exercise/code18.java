@@ -33,13 +33,13 @@ public class code18 {
             if (left != null){
                 queue.offer(left);
             }
+
             if (right != null){
                 queue.offer(right);
             }
 
-            Node temp = cur.left;
-            cur.left = cur.right;
-            cur.right = temp;
+            cur.left = right;
+            cur.right = left;
         }
     }
 

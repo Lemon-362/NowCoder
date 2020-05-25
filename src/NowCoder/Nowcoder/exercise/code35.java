@@ -9,7 +9,7 @@ public class code35 {
         return mergeSort(arr, 0, arr.length - 1);
     }
 
-    public static int mergeSort(int[] arr, int l, int r){
+    public static int mergeSort(int[] arr, int l, int r) {
         // base case
         if (l == r){
             return 0;
@@ -22,19 +22,20 @@ public class code35 {
 
     public static int merge(int[] arr, int l, int r, int mid){
         int[] help = new int[r - l + 1];
+        int index = 0;
         int p1 = l;
         int p2 = mid + 1;
-        int index = 0;
         int res = 0;
 
         while (p1 <= mid && p2 <= r){
-            res += arr[p1] > arr[p2] ? r - p2 + 1 : 0;
+            res += arr[p1] > arr[p2] ? (r - p2 + 1) : 0;
             help[index++] = arr[p1] > arr[p2] ? arr[p1++] : arr[p2++];
         }
 
         while (p1 <= mid){
             help[index++] = arr[p1++];
         }
+
         while (p2 <= r){
             help[index++] = arr[p2++];
         }

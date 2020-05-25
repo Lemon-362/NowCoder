@@ -11,14 +11,13 @@ public class code42 {
         int sum = 0;
         int[] res = new int[2];
 
-        while (i < j) {
+        while (i <= j){
             sum = arr[i] + arr[j];
-
-            if (sum > target) {
-                j--;
-            } else if (sum < target) {
+            if (sum < target){
                 i++;
-            } else {
+            }else if (sum > target){
+                j--;
+            }else {
                 res[0] = arr[i];
                 res[1] = arr[j];
                 break;

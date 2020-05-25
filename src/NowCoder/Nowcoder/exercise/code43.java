@@ -7,11 +7,10 @@ public class code43 {
         }
 
         int len = str.length();
+
         n = n % len;
 
-        String res = str + str;
-
-        return res.substring(n, len + n);
+        return (str + str).substring(n, n + len);
     }
 
     public static void main(String[] args) {

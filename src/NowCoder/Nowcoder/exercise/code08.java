@@ -6,7 +6,7 @@ public class code08 {
             return n;
         }
 
-        return process(n);
+        return process1(n);
     }
 
     public static int process(int n){
@@ -22,6 +22,15 @@ public class code08 {
         }
 
         return dp[n];
+    }
+
+    public static int process1(int n){
+        // base case
+        if (n <= 2){
+            return n;
+        }else {
+            return process1(n - 1) + process1(n - 2);
+        }
     }
 
     public static void main(String[] args) {

@@ -79,8 +79,8 @@ public class code46_LastRemaining {
 	}
 
     public static void main(String[] args) {
-        System.out.println(lastRemaining(5, 3));
+        System.out.println(lastRemaining(5, 3)); // 3
 
-        System.out.println(lastRemaining2(10, 17));
+        System.out.println(lastRemaining2(10, 17)); // 2
     }
 }

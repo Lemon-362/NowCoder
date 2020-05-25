@@ -1,7 +1,6 @@
 package NowCoder.Nowcoder.exercise;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 public class code03 {
@@ -14,7 +13,7 @@ public class code03 {
         }
     }
 
-    public static ArrayList<Integer> print(Node head){
+    public static ArrayList<Integer> reversePrint(Node head){
         if (head == null){
             return null;
         }
@@ -42,7 +41,7 @@ public class code03 {
         head.next.next = new Node(7);
         head.next.next.next = new Node(9);
 
-        ArrayList<Integer> list = print(head);
+        ArrayList<Integer> list = reversePrint(head);
 
         for (Integer num : list) {
             System.out.print(num + " ");

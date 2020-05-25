@@ -15,9 +15,8 @@ public class code02 {
 
         int oldLen = sb.length();
         int newLen = oldLen + 3 * spaceNum;
-        sb.setLength(newLen);
-
         int index = newLen - 1;
+        sb.setLength(newLen);
 
         for (int i = oldLen - 1; i >= 0; i--) {
             if (sb.charAt(i) == ' '){

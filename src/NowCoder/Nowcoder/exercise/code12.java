@@ -2,16 +2,16 @@ package NowCoder.Nowcoder.exercise;
 
 public class code12 {
     public static double myPower(double x, int n) {
-        if (n < 0) {
-            return 1 / process(x, -n);
-        } else if (n == 1) {
+        if (n < 0){
+            return 1 / myPower(x, -n);
+        }else if (n == 1){
             return x;
-        } else {
+        }else {
             return process(x, n);
         }
     }
 
-    public static double process(double x, int n) {
+    public static double process(double x, int n){
         // base case
         if (n == 1){
             return x;

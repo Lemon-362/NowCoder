@@ -1,6 +1,7 @@
 package NowCoder.Nowcoder.exercise;
 
 public class code06 {
+    // 旋转数组：将一个数组最开始的几个数搬到数组末尾
     public static int getMin(int[] arr) {
         if (arr == null || arr.length < 1) {
             return 0;
@@ -9,16 +10,12 @@ public class code06 {
         int i = 0;
         int j = arr.length - 1;
 
-        while (i != j){
-            if (arr[i] < arr[j]){
-                return arr[i];
-            }
-
+        while (i < j){
             int mid = (i + j) >> 1;
-            if (arr[mid] > arr[j]){
-                i = mid + 1;
-            }else if (arr[mid] < arr[j]){
+            if (arr[mid] < arr[j]){
                 j = mid;
+            }else if (arr[mid] > arr[j]){
+                i = mid + 1;
             }else {
                 j = mid;
             }

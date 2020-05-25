@@ -10,13 +10,22 @@ public class code09 {
     }
 
     public static int process(int n){
-        int[] dp = new int[n + 1];
+        // base case
+        if (n <= 1){
+            return n;
+        }else {
+            return 2 * process(n - 1);
+        }
+    }
+
+    public static int jump1(int n){
+        int len = n + 1;
+        int[] dp = new int[len];
 
         dp[0] = 0;
         dp[1] = 1;
-        dp[2] = 2;
 
-        for (int i = 3; i < dp.length; i++) {
+        for (int i = 2; i < len; i++) {
             dp[i] = 2 * dp[i - 1];
         }
 
@@ -25,5 +34,6 @@ public class code09 {
 
     public static void main(String[] args) {
         System.out.println(jump(10)); // 512
+        System.out.println(jump1(10));
     }
 }

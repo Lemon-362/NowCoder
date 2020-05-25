@@ -1,5 +1,7 @@
 package NowCoder.Nowcoder.exercise;
 
+import java.util.Stack;
+
 public class code14 {
     public static class Node {
         private int value;
@@ -17,12 +19,14 @@ public class code14 {
 
         Node cur = head;
         int len = 0;
+
         while (cur != null){
             len++;
             cur = cur.next;
         }
 
         cur = head;
+
         for (int i = 0; i < len - k; i++) {
             cur = cur.next;
         }

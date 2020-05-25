@@ -18,10 +18,10 @@ public class code20 {
             if (this.minStack.isEmpty()){
                 this.minStack.push(num);
             }else {
-                if (this.getMin() > num){
-                    this.minStack.push(num);
-                }else {
+                if (this.getMin() < num){
                     this.minStack.push(this.getMin());
+                }else {
+                    this.minStack.push(num);
                 }
             }
 
@@ -37,8 +37,8 @@ public class code20 {
         }
 
         public Integer pop(){
-            this.minStack.pop();
-            return this.numStack.pop();
+           this.minStack.pop();
+           return this.numStack.pop();
         }
     }
 
