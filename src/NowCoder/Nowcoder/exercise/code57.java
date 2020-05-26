@@ -1,32 +1,27 @@
-package NowCoder.Nowcoder;
+package NowCoder.Nowcoder.exercise;
 
-/*
-    给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。
-    注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针。
-    也就是找 后继节点：中序遍历顺序的下一个结点
- */
-public class code57_SuccessorNode {
+public class code57 {
     public static class Node {
-        int value;
-        Node left = null;
-        Node right = null;
-        Node parent = null;
+        private int value;
+        private Node left;
+        private Node right;
+        private Node parent;
 
-        Node(int value) {
+        public Node(int value) {
             this.value = value;
         }
     }
 
     public static Node getSuccessorNode(Node node) {
-        if (node == null){
+        if (node == null) {
             return null;
         }
 
-        if (node.right != null){
+        if (node.right != null) {
             return getLeftMost(node.right);
-        }else {
+        } else {
             Node parent = node.parent;
-            while (parent != null && parent.left != node){
+            while (parent != null && parent.left != node) {
                 node = parent;
                 parent = node.parent;
             }
@@ -34,14 +29,16 @@ public class code57_SuccessorNode {
         }
     }
 
-    public static Node getLeftMost(Node node){
-        Node cur = node;
-
-        while (cur.left != null){
-            cur = cur.left;
+    public static Node getLeftMost(Node node) {
+        if (node == null) {
+            return null;
         }
 
-        return cur;
+        while (node.left != null) {
+            node = node.left;
+        }
+
+        return node;
     }
 
     public static void main(String[] args) {

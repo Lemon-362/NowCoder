@@ -1,10 +1,13 @@
 package NowCoder.Nowcoder;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Stack;
 
 /*
     在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。
-    例如，链表1->2->3->3->4->4->5 处理后为 1->2->5
+    TODO 要求是如果有连续的节点，那么删除所有连续节点，不保留任何一个
+        例如，链表1->2->3->3->4->4->5 处理后为 1->2->5
  */
 public class code56_DeleteDuplicationNode {
     public static class ListNode {
@@ -23,6 +26,7 @@ public class code56_DeleteDuplicationNode {
         newHead.next = pHead;
         ListNode cur = pHead;
         ListNode pre = newHead;
+
         while(cur != null){
             // 首先要cur.next不为空，才能比较
             if(cur.next != null && cur.val == cur.next.val){
@@ -42,6 +46,38 @@ public class code56_DeleteDuplicationNode {
         return res;
     }
 
+    public static ListNode method(ListNode head){
+        if (head == null){
+            return null;
+        }
+
+        ListNode newHead = new ListNode(Integer.MIN_VALUE);
+        newHead.next = head;
+
+        ListNode cur = head;
+        ListNode pre = newHead;
+
+        while (cur != null){
+
+            if (cur.next != null && cur.val == cur.next.val){
+                while (cur.next != null && cur.val == cur.next.val){
+                    cur = cur.next;
+                }
+
+                cur = cur.next;
+                pre.next = cur;
+            }else {
+                pre = cur;
+                cur = cur.next;
+            }
+        }
+
+        ListNode res = newHead.next;
+        newHead.next = null;
+
+        return res;
+    }
+
     public static void print(ListNode head){
         if (head == null){
             return;
@@ -55,16 +91,16 @@ public class code56_DeleteDuplicationNode {
 
     public static void main(String[] args) {
         ListNode head = new ListNode(1);
-        head.next = new ListNode(1);
-        head.next.next = new ListNode(1);
-        head.next.next.next = new ListNode(1);
-        head.next.next.next.next = new ListNode(1);
-        head.next.next.next.next.next = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(3);
+        head.next.next.next.next = new ListNode(4);
+        head.next.next.next.next.next = new ListNode(4);
         head.next.next.next.next.next.next = new ListNode(5);
 
-        print(head);
+        print(head); // 1 2 3 3 4 4 5
 
         ListNode newHead = deleteDuplication(head);
-        print(newHead);
+        print(newHead); // 1 2 5
     }
 }

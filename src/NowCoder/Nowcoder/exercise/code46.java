@@ -6,13 +6,14 @@ public class code46 {
             return -1;
         }
 
-        int res = 0;
+        int[] dp = new int[n + 1];
+        dp[1] = 0;
 
-        for (int i = 2; i <= n; i++) {
-            res = (res + m) % i;
+        for (int i = 2; i < dp.length; i++) {
+            dp[i] = (dp[i - 1] + m) % i;
         }
 
-        return res;
+        return dp[n];
     }
 
     public static void main(String[] args) {

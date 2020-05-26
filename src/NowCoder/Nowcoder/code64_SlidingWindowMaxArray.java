@@ -51,7 +51,7 @@ public class code64_SlidingWindowMaxArray {
         int w = 3;
         ArrayList<Integer> list = maxInWindows(arr, w);
         for (Integer num : list) {
-            System.out.print(num + " ");
+            System.out.print(num + " "); // 4 4 6 6 6 5
         }
     }
 }

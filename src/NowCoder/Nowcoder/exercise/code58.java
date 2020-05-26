@@ -1,28 +1,21 @@
-package NowCoder.Nowcoder;
+package NowCoder.Nowcoder.exercise;
 
-/*
-    请实现一个函数，用来判断一颗二叉树是不是对称的。
-    注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。
-    也就是说，以头节点为中心的对称轴，左右是镜像的。
- */
-public class code58_IsMirrorTree {
-    public static class Node {
-        int value = 0;
-        Node left = null;
-        Node right = null;
+public class code58 {
+    public static class Node{
+        private int value;
+        private Node left;
+        private Node right;
 
         public Node(int value) {
             this.value = value;
-
         }
-
     }
 
-    public static boolean isMirrorTree(Node head) {
-        if (head == null) {
+    public static boolean isMirrorTree(Node head){
+        if (head == null){
             return true;
         }
-        // 一层一层的比较每个节点，递归
+
         return process(head.left, head.right);
     }
 
@@ -30,7 +23,7 @@ public class code58_IsMirrorTree {
         // base case
         if (left == null && right == null){
             return true;
-        }else if (left == null || right == null){
+        } else if (left == null || right == null) {
             return false;
         }
 

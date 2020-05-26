@@ -33,5 +33,8 @@ public class code50_DuplicateInArr {
         int[] arr = {2, 3, 1, 0, 2, 5, 3};
         int[] res = new int[1];
         System.out.println(duplicate(arr, arr.length, res));
+        for (int i = 0; i < res.length; i++) {
+            System.out.println(res[i]);
+        }
     }
 }
