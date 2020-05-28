@@ -9,9 +9,9 @@ public class code67 {
         int[] dp = new int[n + 1];
         dp[2] = 1;
 
-        for (int N = 3; N < dp.length; N++) {
-            for (int i = 1; i < N; i++) {
-                dp[N] = Math.max(dp[N], Math.max(i * (N - i), i * dp[N - i]));
+        for (int i = 3; i < dp.length; i++) {
+            for (int j = 1; j < i; j++) {
+                dp[i] = Math.max(dp[i], Math.max(j * (i - j), j * dp[i - j]));
             }
         }
 

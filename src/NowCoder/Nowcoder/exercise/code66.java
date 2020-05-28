@@ -6,29 +6,35 @@ public class code66 {
             return 0;
         }
 
-        boolean[][] flag = new boolean[m][n];
+        int[][] flag = new int[m][n];
 
         return process(m, n, k, 0, 0, flag);
     }
 
-    public static int process(int m, int n, int k, int i, int j, boolean[][] flag) {
+    public static int process(int m, int n, int k, int i, int j, int[][] flag) {
         // base case
-        if (i < 0 || i >= m || j < 0 || j >= n || flag[i][j]) {
+        if (i < 0 || i >= m || j < 0 || j >= n) {
             return 0;
         }
-        if (isValid(i, j, k)) {
-            flag[i][j] = true;
-        } else {
+        if (flag[i][j] == 1) {
+            return 0;
+        }
+        if (!isValid(i, j, k)) {
             return 0;
         }
 
-        return 1 + process(m, n, k, i + 1, j, flag) + process(m, n, k, i - 1, j, flag) + process(m, n, k, i, j + 1, flag) + process(m, n, k, i, j - 1, flag);
+        flag[i][j] = 1;
+
+        return 1 + process(m, n, k, i + 1, j, flag)
+                + process(m, n, k, i - 1, j, flag)
+                + process(m, n, k, i, j + 1, flag)
+                + process(m, n, k, i, j - 1, flag);
+
     }
 
     public static boolean isValid(int i, int j, int k) {
         int sum = i % 10 + i / 10;
         sum += j % 10 + j / 10;
-
         return sum <= k;
     }
 

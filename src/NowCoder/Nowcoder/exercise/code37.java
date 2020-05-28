@@ -10,6 +10,7 @@ public class code37 {
         int j = arr.length - 1;
         while (i <= j){
             int mid = (i + j) >> 1;
+
             if (arr[mid] > target){
                 j = mid - 1;
             }else if (arr[mid] < target){
@@ -20,10 +21,11 @@ public class code37 {
         }
         int left = i;
 
-         i = 0;
-         j = arr.length - 1;
+        i = 0;
+        j = arr.length - 1;
         while (i <= j){
             int mid = (i + j) >> 1;
+
             if (arr[mid] > target){
                 j = mid - 1;
             }else if (arr[mid] < target){

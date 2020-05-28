@@ -4,10 +4,10 @@ public class code11 {
     public static int numberOf1(int n){
         int res = 0;
 
-        for (int i = 31; i >=0 ; i--) {
+        for (int i = 31; i >= 0; i--) {
             int path = (n >> i) & 1;
 
-            if(path == 1){
+            if (path == 1){
                 res++;
             }
         }
