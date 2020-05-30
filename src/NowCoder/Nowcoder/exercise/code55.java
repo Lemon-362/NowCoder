@@ -15,24 +15,24 @@ public class code55 {
             return null;
         }
 
-        Node p1 = node.next;
-        Node p2 = node.next.next;
+        Node n1 = node.next;
+        Node n2 = node.next.next;
 
-        while (p1 != p2){
-            if (p2.next == null || p2.next.next == null){
+        while (n1 != n2){
+            if (n2.next == null || n2.next.next == null){
                 return null;
             }
-            p1 = p1.next;
-            p2 = p2.next.next;
+            n1 = n1.next;
+            n2 = n2.next.next;
         }
 
-        p2 = node;
-        while (p1 != p2){
-            p1 = p1.next;
-            p2 = p2.next;
+        n2 = node;
+        while (n1 != n2){
+            n1 = n1.next;
+            n2 = n2.next;
         }
 
-        return p1;
+        return n1;
     }
 
     public static void main(String[] args) {

@@ -20,7 +20,6 @@ public class code64_SlidingWindowMaxArray {
         }
         // LinkedList：双向链表
         LinkedList<Integer> qmax = new LinkedList<Integer>();
-        int index = 0;
         // 依次遍历所有数
         for (int i = 0; i < arr.length; i++) { // 窗口（刚才讲的）的R
             // i -> arr[i]

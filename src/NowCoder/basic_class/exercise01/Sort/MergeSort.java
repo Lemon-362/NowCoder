@@ -9,9 +9,9 @@ public class MergeSort {
         mergeSort(arr, 0, arr.length - 1);
     }
 
-    public static void mergeSort(int[] arr, int l, int r){
+    public static void mergeSort(int[] arr, int l, int r) {
         // base case
-        if (l == r){
+        if (l == r) {
             return;
         }
 
@@ -21,21 +21,20 @@ public class MergeSort {
         merge(arr, l, r, mid);
     }
 
-    public static void merge(int[] arr, int l, int r, int mid){
-        int[] help = new int[r- l + 1];
+    public static void merge(int[] arr, int l, int r, int mid) {
+        int[] help = new int[r - l + 1];
         int index = 0;
         int p1 = l;
         int p2 = mid + 1;
 
-        while (p1 <= mid && p2 <= r){
+        while (p1 <= mid && p2 <= r) {
             help[index++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
         }
 
-        while (p1 <= mid){
+        while (p1 <= mid) {
             help[index++] = arr[p1++];
         }
-
-        while (p2 <= r){
+        while (p2 <= r) {
             help[index++] = arr[p2++];
         }
 

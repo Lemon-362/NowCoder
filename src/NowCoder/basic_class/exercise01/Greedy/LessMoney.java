@@ -20,11 +20,10 @@ public class LessMoney {
             pQ.add(arr[i]);
         }
 
-        int sum = 0;
         int res = 0;
 
         while (pQ.size() > 1){
-            sum = pQ.poll() + pQ.poll();
+            int sum = pQ.poll() + pQ.poll();
 
             res += sum;
 

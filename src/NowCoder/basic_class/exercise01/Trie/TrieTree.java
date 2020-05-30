@@ -3,15 +3,15 @@ package NowCoder.basic_class.exercise01.Trie;
 import NowCoder.basic_class.exercise.code34_TrieTree;
 
 public class TrieTree {
-    public static class Node {
+    public static class Node{
         private int path;
         private int end;
-        private Node[] nexts;
+        private Node[] next;
 
         public Node() {
             this.path = 0;
             this.end = 0;
-            this.nexts = new Node[26];
+            this.next = new Node[26];
         }
     }
 
@@ -27,17 +27,18 @@ public class TrieTree {
                 return;
             }
 
-            char[] s = str.toCharArray();
             Node cur = head;
+
+            char[] s = str.toCharArray();
 
             for (int i = 0; i < s.length; i++) {
                 int index = s[i] - 'a';
 
-                if (cur.nexts[index] == null){
-                    cur.nexts[index] = new Node();
+                if (cur.next[index] == null){
+                    cur.next[index] = new Node();
                 }
 
-                cur = cur.nexts[index];
+                cur = cur.next[index];
                 cur.path++;
             }
 
@@ -49,17 +50,18 @@ public class TrieTree {
                 return 0;
             }
 
-            char[] s = str.toCharArray();
             Node cur = head;
+
+            char[] s = str.toCharArray();
 
             for (int i = 0; i < s.length; i++) {
                 int index = s[i] - 'a';
 
-                if (cur.nexts[index] == null){
+                if (cur.next[index] == null){
                     return 0;
                 }
 
-                cur = cur.nexts[index];
+                cur = cur.next[index];
             }
 
             return cur.end;
@@ -70,18 +72,19 @@ public class TrieTree {
                 return;
             }
 
-            char[] s = str.toCharArray();
             Node cur = head;
+
+            char[] s = str.toCharArray();
 
             for (int i = 0; i < s.length; i++) {
                 int index = s[i] - 'a';
 
-                if (--cur.nexts[index].path == 0){
-                    cur.nexts[index] = null;
+                if (--cur.next[index].path == 0){
+                    cur.next[index] = null;
                     return;
                 }
 
-                cur = cur.nexts[index];
+                cur = cur.next[index];
             }
 
             cur.end--;
@@ -92,18 +95,18 @@ public class TrieTree {
                 return 0;
             }
 
-            char[] s = str.toCharArray();
             Node cur = head;
+
+            char[] s = str.toCharArray();
 
             for (int i = 0; i < s.length; i++) {
                 int index = s[i] - 'a';
 
-                if (cur.nexts[index] == null){
+                if (cur.next[index] == null){
                     return 0;
-
                 }
 
-                cur = cur.nexts[index];
+                cur = cur.next[index];
             }
 
             return cur.path;

@@ -18,32 +18,32 @@ public class RandomPool {
 
         public void insert(K key){
             if (!keyIndexMap.containsKey(key)){
-                keyIndexMap.put(key, size);
-                indexKeyMap.put(size, key);
-                size++;
+                this.keyIndexMap.put(key, this.size);
+                this.indexKeyMap.put(this.size, key);
+                this.size++;
             }
         }
 
         public K getRandom(){
-            if (size == 0){
+            if (this.size == 0){
                 return null;
             }
 
-            int num = (int)(Math.random() * size);
-            return indexKeyMap.get(num);
+            int index = (int)(Math.random() * this.size);
+            return this.indexKeyMap.get(index);
         }
 
         public void delete(K key){
-            if (keyIndexMap.containsKey(key)){
-                int deleteIndex = keyIndexMap.get(key);
-                int lastIndex = --size;
-                K lastValue = indexKeyMap.get(lastIndex);
+            if (this.keyIndexMap.containsKey(key)) {
+                int deleteIndex = this.keyIndexMap.get(key);
+                int lastIndex = --this.size;
+                K lastKey = this.indexKeyMap.get(lastIndex);
 
-                keyIndexMap.put(lastValue, deleteIndex);
-                indexKeyMap.put(deleteIndex, lastValue);
+                this.keyIndexMap.put(lastKey, deleteIndex);
+                this.indexKeyMap.put(deleteIndex, lastKey);
 
-                keyIndexMap.remove(key);
-                indexKeyMap.remove(lastIndex);
+                this.keyIndexMap.remove(key);
+                this.indexKeyMap.remove(lastIndex);
             }
         }
     }

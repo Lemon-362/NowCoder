@@ -17,16 +17,11 @@ public class QuickSort {
         }
     }
 
-    public static void swap(int[] arr, int i, int j) {
-        int tmp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = tmp;
-    }
-
     public static int[] partition(int[] arr, int l, int r) {
         int less = l - 1;
         int more = r;
         int cur = l;
+
         while (cur < more) {
             if (arr[cur] < arr[r]) {
                 swap(arr, ++less, cur++);
@@ -36,7 +31,17 @@ public class QuickSort {
                 cur++;
             }
         }
+
         swap(arr, r, more);
+
         return new int[]{less + 1, more};
     }
+
+    public static void swap(int[] arr, int i, int j) {
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+    }
+
+
 }

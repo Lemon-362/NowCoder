@@ -17,6 +17,10 @@ public class BestArrange {
     }
 
     public static int BestArrange(Program[] programs, int start){
+        if (programs == null || programs.length < 1 || start < 0){
+            return 0;
+        }
+
         Arrays.sort(programs, new Comparator<Program>() {
             @Override
             public int compare(Program o1, Program o2) {
@@ -24,13 +28,12 @@ public class BestArrange {
             }
         });
 
-        int cur = start;
         int res = 0;
-
+        int cur = start;
         for (int i = 0; i < programs.length; i++) {
             if (cur <= programs[i].start){
-                res++;
                 cur = programs[i].end;
+                res++;
             }
         }
 

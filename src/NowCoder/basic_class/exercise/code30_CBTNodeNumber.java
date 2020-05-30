@@ -25,32 +25,31 @@ public class code30_CBTNodeNumber {
         if (head == null) {
             return 0;
         }
+
         int H = getLeftMost(head, 1);
+
         return process(head, 1, H);
     }
 
-    public static int process(Node node, int level, int h){
-        if (node == null){
-            return 0;
-        }
-        if (level == h){
+    public static int process(Node head, int level, int H){
+        // base case
+        if (level == H){
             return 1;
         }
-        if (getLeftMost(node.right, level + 1) == h){
-            return (1 << (h - level)) + process(node.right, level + 1, h);
+
+        if (getLeftMost(head.right, level + 1) == H){
+            return (1 << (H - level)) + process(head.right, level + 1, H);
         }else {
-            return (1 << (h - level - 1)) + process(node.left, level + 1, h);
+            return (1 << (H - level - 1)) + process(head.left, level + 1, H);
         }
     }
 
-    public static int getLeftMost(Node node, int level){
-        if (node == null){
-            return 0;
-        }
-        while (node != null){
+    public static int getLeftMost(Node head, int level){
+        while (head != null){
             level++;
-            node = node.left;
+            head = head.left;
         }
+
         return level - 1;
     }
 

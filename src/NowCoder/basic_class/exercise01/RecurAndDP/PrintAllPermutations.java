@@ -13,9 +13,9 @@ public class PrintAllPermutations {
         process(s, 0, s.length - 1);
     }
 
-    public static void process(char[] s, int l, int r) {
+    public static void process(char[] s, int l, int r){
         // base case
-        if (l >= r) {
+        if (l == r){
             System.out.println(String.valueOf(s));
             return;
         }
@@ -23,7 +23,7 @@ public class PrintAllPermutations {
         HashSet<Character> set = new HashSet<>();
 
         for (int i = l; i <= r; i++) {
-            if (!set.contains(s[i])) {
+            if (!set.contains(s[i])){
                 set.add(s[i]);
 
                 swap(s, l, i);

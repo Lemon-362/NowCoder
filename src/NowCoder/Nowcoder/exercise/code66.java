@@ -6,35 +6,42 @@ public class code66 {
             return 0;
         }
 
-        int[][] flag = new int[m][n];
+        int[][] arr = new int[m][n];
 
-        return process(m, n, k, 0, 0, flag);
+        return process(arr, k, 0, 0);
     }
 
-    public static int process(int m, int n, int k, int i, int j, int[][] flag) {
+    public static int process(int[][] arr, int k, int i, int j) {
         // base case
-        if (i < 0 || i >= m || j < 0 || j >= n) {
+        if (i < 0 || i >= arr.length || j < 0 || j >= arr[0].length) {
             return 0;
         }
-        if (flag[i][j] == 1) {
+        if (arr[i][j] == 1) {
             return 0;
         }
         if (!isValid(i, j, k)) {
+            arr[i][j] = 1;
             return 0;
         }
 
-        flag[i][j] = 1;
+        arr[i][j] = 1;
 
-        return 1 + process(m, n, k, i + 1, j, flag)
-                + process(m, n, k, i - 1, j, flag)
-                + process(m, n, k, i, j + 1, flag)
-                + process(m, n, k, i, j - 1, flag);
-
+        return 1 + process(arr, k, i + 1, j)
+                + process(arr, k, i - 1, j)
+                + process(arr, k, i, j + 1)
+                + process(arr, k, i, j - 1);
     }
 
     public static boolean isValid(int i, int j, int k) {
-        int sum = i % 10 + i / 10;
-        sum += j % 10 + j / 10;
+        int sum = 0;
+        while (i > 0) {
+            sum += i % 10;
+            i = i / 10;
+        }
+        while (j > 0) {
+            sum += j % 10;
+            j = j / 10;
+        }
         return sum <= k;
     }
 

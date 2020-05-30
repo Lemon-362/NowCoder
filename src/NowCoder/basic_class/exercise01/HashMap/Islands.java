@@ -7,9 +7,10 @@ public class Islands {
         }
 
         int res = 0;
+
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[0].length; j++) {
-                if (arr[i][j] == 1){
+                if (arr[i][j] == 1) {
                     res++;
                     infect(arr, i, j);
                 }
@@ -19,13 +20,17 @@ public class Islands {
         return res;
     }
 
-    public static void infect(int[][] arr, int i, int j){
+    public static void infect(int[][] arr, int i, int j) {
         // base case
-        if (i < 0 || i >= arr.length || j < 0 || j >= arr[0].length || arr[i][j] != 1){
+        if (i < 0 || i >= arr.length || j < 0 || j >= arr[0].length) {
+            return;
+        }
+        if (arr[i][j] != 1){
             return;
         }
 
         arr[i][j] = 2;
+
         infect(arr, i + 1, j);
         infect(arr, i - 1, j);
         infect(arr, i, j + 1);

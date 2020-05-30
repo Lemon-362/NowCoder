@@ -19,41 +19,46 @@ public class code63 {
         }
     });
 
-    public void insert(Integer num){
-        if (this.maxHeap.isEmpty()){
-            this.maxHeap.add(num);
+    public void insert(Integer num) {
+        if (maxHeap.isEmpty()) {
+            maxHeap.add(num);
             return;
         }
 
-        if (num <= this.maxHeap.peek()){
-            this.maxHeap.add(num);
-        }else {
-            this.minHeap.add(num);
+        if (num <= maxHeap.peek()) {
+            maxHeap.add(num);
+        } else {
+            if (minHeap.isEmpty()) {
+                minHeap.add(num);
+                return;
+            }
+
+            minHeap.add(num);
         }
 
         modify();
     }
 
-    public Double getMedian(){
-        int minSize = this.minHeap.size();
-        int maxSize = this.maxHeap.size();
+    public Double getMedian() {
+        int maxHeapSize = maxHeap.size();
+        int minHeapSize = minHeap.size();
 
-        Integer minValue = this.minHeap.peek();
-        Integer maxValue = this.maxHeap.peek();
+        Integer maxHeapValue = maxHeap.peek();
+        Integer minHeapValue = minHeap.peek();
 
-        if ((minSize + maxSize) % 2 == 0){
-            return (minValue + maxValue) / 2.0;
-        }else {
-            return minSize > maxSize ? minValue * 1.0 : maxValue * 1.0;
+        if ((maxHeapSize + minHeapSize) % 2 == 0) {
+            return (maxHeapValue + minHeapValue) / 2.0;
+        } else {
+            return maxHeapSize > minHeapSize ? maxHeapValue * 1.0 : minHeapValue * 1.0;
         }
     }
 
-    public void modify(){
-        if (this.maxHeap.size() - this.minHeap.size() > 1){
-            this.minHeap.add(this.maxHeap.poll());
+    public void modify() {
+        if (maxHeap.size() - minHeap.size() > 1) {
+            minHeap.add(maxHeap.poll());
         }
-        if (this.minHeap.size() - this.maxHeap.size() > 1){
-            this.maxHeap.add(this.minHeap.poll());
+        if (minHeap.size() - maxHeap.size() > 1) {
+            maxHeap.add(minHeap.poll());
         }
     }
 

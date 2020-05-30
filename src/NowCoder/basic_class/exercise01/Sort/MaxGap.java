@@ -9,35 +9,36 @@ public class MaxGap {
         }
 
         int len = arr.length;
-        int max = Integer.MIN_VALUE;
         int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
 
         for (int i = 0; i < len; i++) {
-            max = Math.max(arr[i], max);
-            min = Math.min(arr[i], min);
+            min = Math.min(min, arr[i]);
+            max = Math.max(max, arr[i]);
         }
 
-        if (max == min){
+        if (min == max) {
             return 0;
         }
 
-        int[] maxs = new int[len + 1];
         int[] mins = new int[len + 1];
+        int[] maxs = new int[len + 1];
         boolean[] hasNum = new boolean[len + 1];
         int bid;
 
         for (int i = 0; i < len; i++) {
-            bid = bucket(arr[i], max, min, len);
-            maxs[bid] = hasNum[bid] ? Math.max(arr[i], maxs[bid]) : arr[i];
-            mins[bid] = hasNum[bid] ? Math.min(arr[i], mins[bid]) : arr[i];
+            bid = bucket(arr[i], len, min, max);
+            mins[bid] = hasNum[bid] ? Math.min(mins[bid], arr[i]) : arr[i];
+            maxs[bid] = hasNum[bid] ? Math.max(maxs[bid], arr[i]) : arr[i];
             hasNum[bid] = true;
         }
 
         int res = 0;
         int lastMax = maxs[0];
+
         for (int i = 1; i < len + 1; i++) {
             if (hasNum[i]){
-                res = Math.max(mins[i] - lastMax, res);
+                res = Math.max(res, mins[i] - lastMax);
                 lastMax = maxs[i];
             }
         }
@@ -45,7 +46,7 @@ public class MaxGap {
         return res;
     }
 
-    public static int bucket(int num, int max, int min, int len){
+    public static int bucket(int num, int len, int min, int max) {
         return (num - min) * len / (max - min);
     }
 

@@ -21,9 +21,8 @@ public class code56 {
         Node pre = newHead;
 
         while (cur != null){
-
-            if (cur.next != null && cur.value == cur.next.value){
-                while (cur.next != null && cur.value == cur.next.value){
+            if (cur.next != null && cur.next.value == cur.value){
+                while (cur.next != null && cur.next.value == cur.value){
                     cur = cur.next;
                 }
                 cur = cur.next;

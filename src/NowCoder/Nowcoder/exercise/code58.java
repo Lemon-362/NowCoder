@@ -1,7 +1,7 @@
 package NowCoder.Nowcoder.exercise;
 
 public class code58 {
-    public static class Node{
+    public static class Node {
         private int value;
         private Node left;
         private Node right;
@@ -11,25 +11,25 @@ public class code58 {
         }
     }
 
-    public static boolean isMirrorTree(Node head){
-        if (head == null){
+    public static boolean isMirrorTree(Node head) {
+        if (head == null) {
             return true;
         }
 
         return process(head.left, head.right);
     }
 
-    public static boolean process(Node left, Node right){
+    public static boolean process(Node left, Node right) {
         // base case
-        if (left == null && right == null){
+        if (left == null && right == null) {
             return true;
         } else if (left == null || right == null) {
             return false;
         }
 
-        if (left.value == right.value){
+        if (left.value == right.value) {
             return process(left.left, right.right) && process(left.right, right.left);
-        }else {
+        } else {
             return false;
         }
     }

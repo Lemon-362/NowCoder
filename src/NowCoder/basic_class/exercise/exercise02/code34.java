@@ -1,40 +1,39 @@
 package NowCoder.basic_class.exercise.exercise02;
 
 
-
 public class code34 {
-    public static class TrieNode{
+    public static class Node {
         private int path;
         private int end;
-        private TrieNode[] next;
+        private Node[] next;
 
-        public TrieNode() {
+        public Node() {
             this.path = 0;
             this.end = 0;
-            this.next = new TrieNode[26];
+            this.next = new Node[26];
         }
     }
 
     public static class TrieTree {
-        private TrieNode head;
+        private Node head;
 
         public TrieTree() {
-            this.head = new TrieNode();
+            this.head = new Node();
         }
 
-        public void insert(String str){
-            if (str == null){
+        public void insert(String str) {
+            if (str == null) {
                 return;
             }
 
+            Node cur = head;
             char[] s = str.toCharArray();
-            TrieNode cur = head;
 
             for (int i = 0; i < s.length; i++) {
                 int index = s[i] - 'a';
 
-                if (cur.next[index] == null){
-                    cur.next[index] = new TrieNode();
+                if (cur.next[index] == null) {
+                    cur.next[index] = new Node();
                 }
 
                 cur = cur.next[index];
@@ -44,18 +43,18 @@ public class code34 {
             cur.end++;
         }
 
-        public int search(String str){
-            if (str == null){
+        public int search(String str) {
+            if (str == null) {
                 return 0;
             }
 
+            Node cur = head;
             char[] s = str.toCharArray();
-            TrieNode cur = head;
 
             for (int i = 0; i < s.length; i++) {
                 int index = s[i] - 'a';
 
-                if (cur.next[index] == null){
+                if (cur.next[index] == null) {
                     return 0;
                 }
 
@@ -65,18 +64,18 @@ public class code34 {
             return cur.end;
         }
 
-        public void delete(String str){
-            if (str == null){
+        public void delete(String str) {
+            if (str == null) {
                 return;
             }
 
+            Node cur = head;
             char[] s = str.toCharArray();
-            TrieNode cur = head;
 
             for (int i = 0; i < s.length; i++) {
                 int index = s[i] - 'a';
 
-                if (--cur.next[index].path == 0){
+                if (--cur.next[index].path == 0) {
                     cur.next[index] = null;
                     return;
                 }
@@ -87,13 +86,13 @@ public class code34 {
             cur.end--;
         }
 
-        public int prefixNumber(String str){
-            if (str == null){
+        public int prefixNumber(String str) {
+            if (str == null) {
                 return 0;
             }
 
+            Node cur = head;
             char[] s = str.toCharArray();
-            TrieNode cur = head;
 
             for (int i = 0; i < s.length; i++) {
                 int index = s[i] - 'a';

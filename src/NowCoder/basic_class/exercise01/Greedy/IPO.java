@@ -4,20 +4,24 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class IPO {
-    public static class Node {
-        private int profit;
+    public static class Node{
         private int cost;
+        private int profit;
 
-        public Node(int profit, int cost) {
-            this.profit = profit;
+        public Node(int cost, int profit) {
             this.cost = cost;
+            this.profit = profit;
         }
     }
 
     public static int method(int k, int w, int[] costs, int[] profits){
+        if (k < 1 || w < 1){
+            return 0;
+        }
+
         Node[] nodes = new Node[costs.length];
         for (int i = 0; i < nodes.length; i++) {
-            nodes[i] = new Node(profits[i], costs[i]);
+            nodes[i] = new Node(costs[i], profits[i]);
         }
 
         PriorityQueue<Node> minCost = new PriorityQueue<>(new Comparator<Node>() {

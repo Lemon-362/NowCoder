@@ -10,12 +10,12 @@ public class UnionFindSet {
     }
 
     public static class UnionFind {
-        private HashMap<Node, Node> fatherMap;
         private HashMap<Node, Integer> sizeMap;
+        private HashMap<Node, Node> parentMap;
 
         public UnionFind() {
-            this.fatherMap = new HashMap<>();
             this.sizeMap = new HashMap<>();
+            this.parentMap = new HashMap<>();
         }
 
         public void makeSet(List<Node> list) {
@@ -24,59 +24,60 @@ public class UnionFindSet {
             }
 
             for (Node node : list) {
-                fatherMap.put(node, node);
-                sizeMap.put(node, 1);
+                this.sizeMap.put(node, 1);
+                this.parentMap.put(node, node);
             }
         }
 
-        public Node findHead(Node node) {
-            if (node == null) {
+        public Node findHead(Node node){
+            if (node == null){
                 return null;
             }
 
             Node cur = node;
-            Node father = fatherMap.get(cur);
+            Node parent = this.parentMap.get(cur);
             Stack<Node> stack = new Stack<>();
 
-            while (cur != father) {
+            while (cur != parent){
                 stack.push(cur);
-                cur = father;
-                father = fatherMap.get(cur);
+
+                cur = parent;
+                parent = this.parentMap.get(cur);
             }
 
-            while (!stack.isEmpty()) {
-                fatherMap.put(stack.pop(), father);
+            while (!stack.isEmpty()){
+                this.parentMap.put(stack.pop(), parent);
             }
 
-            return father;
+            return parent;
         }
 
-        public boolean isSameSet(Node a, Node b) {
-            if (a == null || b == null) {
+        public boolean isSameSet(Node node1, Node node2){
+            if (node1 == null || node2 == null){
                 return false;
             }
 
-            return findHead(a) == findHead(b);
+            return findHead(node1) == findHead(node2);
         }
 
-        public void union(Node a, Node b) {
-            if (a == null || b == null) {
+        public void union(Node node1, Node node2){
+            if (node1 == null || node2 == null){
                 return;
             }
 
-            Node father1 = fatherMap.get(a);
-            Node father2 = fatherMap.get(b);
+            Node parent1 = findHead(node1);
+            Node parent2 = findHead(node2);
 
-            if (father1 != father2) {
-                int size1 = sizeMap.get(father1);
-                int size2 = sizeMap.get(father2);
+            if (parent1 != parent2){
+                int size1 = this.sizeMap.get(parent1);
+                int size2 = this.sizeMap.get(parent2);
 
-                if (size1 < size2) {
-                    fatherMap.put(father1, father2);
-                    sizeMap.put(father2, size1 + size2);
-                } else {
-                    fatherMap.put(father2, father2);
-                    sizeMap.put(father1, size1 + size2);
+                if (size1 <= size2){
+                    this.sizeMap.put(parent2, size1 + size2);
+                    this.parentMap.put(parent1, parent2);
+                }else {
+                    this.sizeMap.put(parent1, size1 + size2);
+                    this.parentMap.put(parent2, parent1);
                 }
             }
         }

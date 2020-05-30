@@ -50,31 +50,41 @@ public class code29_IsBST_CBT {
         return true;
     }
 
-    public static boolean isCBT(Node head){
-        if (head == null){
+    public static boolean isCBT(Node head) {
+        if (head == null) {
             return true;
         }
-        boolean leaf = false;
-        Node l, r;
+
+        boolean res = true;
+        boolean flag = false;
+
         Queue<Node> queue = new LinkedList<>();
         queue.offer(head);
-        while (!queue.isEmpty()){
-            head = queue.poll();
-            l = head.left;
-            r = head.right;
-            if ((leaf && (l != null || r != null)) || (l == null && r != null)){
-                return false;
+
+        while (!queue.isEmpty()) {
+            Node cur = queue.poll();
+            Node left = cur.left;
+            Node right = cur.right;
+
+            if ((flag && (left != null || right != null))
+                    || (left == null && right != null)) {
+                res = false;
+                break;
             }
-            if (l != null){
-                queue.offer(l);
+
+            if (left == null || right == null){
+                flag = true;
             }
-            if (r != null){
-                queue.offer(r);
-            }else {
-                leaf = true;
+
+            if (left != null){
+                queue.offer(left);
+            }
+            if (right != null){
+                queue.offer(right);
             }
         }
-        return true;
+
+        return res;
     }
 
     public static void main(String[] args) {

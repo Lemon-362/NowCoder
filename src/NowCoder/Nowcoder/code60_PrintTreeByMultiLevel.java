@@ -20,8 +20,8 @@ public class code60_PrintTreeByMultiLevel {
         }
     }
 
-    public static List<List<Integer>> print(Node head){
-        if (head == null){
+    public static List<List<Integer>> print(Node head) {
+        if (head == null) {
             return null;
         }
 
@@ -29,7 +29,7 @@ public class code60_PrintTreeByMultiLevel {
         Queue<Node> queue = new LinkedList<>();
         queue.offer(head);
 
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             int size = queue.size();
             ArrayList<Integer> list = new ArrayList<>();
 
@@ -38,10 +38,10 @@ public class code60_PrintTreeByMultiLevel {
 
                 list.add(cur.value);
 
-                if (cur.left != null){
+                if (cur.left != null) {
                     queue.offer(cur.left);
                 }
-                if (cur.right != null){
+                if (cur.right != null) {
                     queue.offer(cur.right);
                 }
             }

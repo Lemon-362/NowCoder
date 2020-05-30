@@ -28,7 +28,7 @@ public class code59 {
 
         boolean flag = true;
 
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             int size = queue.size();
             LinkedList<Integer> list = new LinkedList<>();
 
@@ -41,16 +41,16 @@ public class code59 {
                     list.addFirst(cur.value);
                 }
 
-                if (cur.left != null){
+                if (cur.left != null) {
                     queue.offer(cur.left);
                 }
-                if (cur.right != null){
+                if (cur.right != null) {
                     queue.offer(cur.right);
                 }
             }
 
-            res.add(list);
             flag = !flag;
+            res.add(list);
         }
 
         return res;

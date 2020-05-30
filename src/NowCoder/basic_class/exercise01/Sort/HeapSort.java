@@ -12,6 +12,7 @@ public class HeapSort {
 
         int size = arr.length;
         swap(arr, 0, --size);
+
         while (size > 0) {
             heapify(arr, 0, size);
             swap(arr, 0, --size);

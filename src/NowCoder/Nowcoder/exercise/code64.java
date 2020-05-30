@@ -4,32 +4,31 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class code64 {
-    public static ArrayList<Integer> maxInWindows(int[] arr, int w){
+    public static ArrayList<Integer> maxInWindows(int[] arr, int w) {
         ArrayList<Integer> res = new ArrayList<>();
 
-        if (arr == null || arr.length < w || w < 1){
+        if (arr == null || arr.length < w || w < 1) {
             return res;
         }
 
         LinkedList<Integer> list = new LinkedList<>();
 
         for (int i = 0; i < arr.length; i++) {
-
-            while (!list.isEmpty() && arr[list.peekLast()]<= arr[i]){
+            while (!list.isEmpty() && arr[list.peekLast()] <= arr[i]) {
                 list.pollLast();
             }
 
             list.addLast(i);
 
-            if (list.peekFirst() == i - w){
+            if (list.peekFirst() == i - w) {
                 list.pollFirst();
             }
 
-            if (i >= w - 1){
+            if (i >= w - 1) {
                 res.add(arr[list.peekFirst()]);
             }
         }
-        
+
         return res;
     }
 

@@ -39,9 +39,9 @@ public class SerialAndRecon {
         return recon(queue);
     }
 
-    public static Node recon(Queue<String> queue) {
+    public static Node recon(Queue<String> queue){
         String value = queue.poll();
-        if (value.equals("#")) {
+        if (value.equals("#")){
             return null;
         }
         Node head = new Node(Integer.parseInt(value));
@@ -89,20 +89,20 @@ public class SerialAndRecon {
         int index = 0;
         Node head = generate(s[index++]);
         Queue<Node> queue = new LinkedList<>();
-        if (head != null) {
+
+        if (head != null){
             queue.offer(head);
         }
 
-        while (!queue.isEmpty()) {
+        while (!queue.isEmpty()){
             Node cur = queue.poll();
             cur.left = generate(s[index++]);
             cur.right = generate(s[index++]);
 
-            if (cur.left != null) {
+            if (cur.left != null){
                 queue.offer(cur.left);
             }
-
-            if (cur.right != null) {
+            if (cur.right != null){
                 queue.offer(cur.right);
             }
         }

@@ -24,7 +24,7 @@ public class code65 {
         if (i < 0 || i >= board.length || j < 0 || j >= board[0].length) {
             return false;
         }
-        if (board[i][j] != s[index]) {
+        if (s[index] != board[i][j]) {
             return false;
         }
         if (index == s.length - 1) {
@@ -32,7 +32,8 @@ public class code65 {
         }
 
         char temp = board[i][j];
-        board[i][j] = '!';
+
+        board[i][j] = '#';
 
         boolean res = process(board, s, i + 1, j, index + 1)
                 || process(board, s, i - 1, j, index + 1)
