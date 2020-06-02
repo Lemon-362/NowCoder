@@ -34,17 +34,18 @@ public class code19 {
         }else {
             int curR = tR;
             int curC = tC;
+
             while (curC < dC){
                 list.add(arr[curR][curC++]);
             }
             while (curR < dR){
                 list.add(arr[curR++][curC]);
             }
-            while (curC > tC){
+            while (curC > tR){
                 list.add(arr[curR][curC--]);
             }
-            while (curR > tR){
-               list.add(arr[curR--][curC]);
+            while (curR > tC){
+                list.add(arr[curR--][curC]);
             }
         }
     }

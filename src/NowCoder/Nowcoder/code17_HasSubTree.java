@@ -3,7 +3,7 @@ package NowCoder.Nowcoder;
 /*
     输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构）
     TODO 这里判断的是 子结构!!! 而不是子树
-    TODO 子树: 从某一节点往下的所有节点
+    TODO 子树: 从某一节点往下的所有节点 进阶code03 ==> 子树可以是子结构，但子结构不是子树
     TODO 子结构: 树里的一个分支
  */
 public class code17_HasSubTree {
@@ -65,5 +65,6 @@ public class code17_HasSubTree {
 //        head1.left.left.left = new TreeNode(6);
 
         System.out.println(method(head, head1));
+
     }
 }

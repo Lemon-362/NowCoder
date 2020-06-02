@@ -17,6 +17,7 @@ public class code30 {
         }
 
         int H = getLeftMost(head, 1);
+
         return process(head, 1, H);
     }
 

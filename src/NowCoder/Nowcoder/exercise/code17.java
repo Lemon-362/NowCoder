@@ -15,7 +15,7 @@ public class code17 {
 
     // TODO 子结构: 必须先找到相同节点, 然后再往下比较, 如果直接递归process, 头节点不同直接返回false了
     public static boolean isSubStructure(Node head1, Node head2) {
-        if (head1 == null && head2 == null){
+        if (head1 == null && head2 == null) {
             return false;
         }
 
@@ -31,16 +31,15 @@ public class code17 {
         if (head2 == null){
             return true;
         }
-
         if (head1 == null){
             return false;
         }
 
         if (head1.value == head2.value){
             return process(head1.left, head2.left) && process(head1.right, head2.right);
+        }else {
+            return false;
         }
-
-        return false;
     }
 
     // TODO KMP算法可以判断 子树!!! 但不能判断子结构

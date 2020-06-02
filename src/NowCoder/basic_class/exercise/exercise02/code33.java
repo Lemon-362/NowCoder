@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Stack;
 
 public class code33 {
-    public static class Node{
+    public static class Node {
 
     }
 
@@ -18,8 +18,8 @@ public class code33 {
             this.fatherMap = new HashMap<>();
         }
 
-        public void makeSet(List<Node> list){
-            if (list == null){
+        public void makeSet(List<Node> list) {
+            if (list == null) {
                 return;
             }
 
@@ -29,8 +29,8 @@ public class code33 {
             }
         }
 
-        public Node findHead(Node node){
-            if (node == null){
+        public Node findHead(Node node) {
+            if (node == null) {
                 return null;
             }
 
@@ -38,46 +38,44 @@ public class code33 {
             Node father = fatherMap.get(cur);
             Stack<Node> stack = new Stack<>();
 
-            while (cur != father){
+            while (cur != father) {
                 stack.push(cur);
+
                 cur = father;
                 father = fatherMap.get(cur);
             }
 
-            while (!stack.isEmpty()){
+            while (!stack.isEmpty()) {
                 fatherMap.put(stack.pop(), father);
             }
 
             return father;
         }
 
-        public boolean isSameSet(Node node1, Node node2){
-            if (node1 == null || node2 == null){
+        public boolean isSameSet(Node a, Node b) {
+            if (a == null || b == null) {
                 return false;
             }
 
-            Node father1 = fatherMap.get(node1);
-            Node father2 = fatherMap.get(node2);
-
-            return father1 == father2;
+            return findHead(a) == findHead(b);
         }
 
-        public void union(Node node1, Node node2){
-            if (node1 == null || node2 == null){
+        public void union(Node node1, Node node2) {
+            if (node1 == null || node2 == null) {
                 return;
             }
 
-            Node father1 = fatherMap.get(node1);
-            Node father2 = fatherMap.get(node2);
+            Node father1 = findHead(node1);
+            Node father2 = findHead(node2);
 
-            if (father1 != father2){
+            if (father1 != father2) {
                 int size1 = sizeMap.get(father1);
                 int size2 = sizeMap.get(father2);
 
-                if (size1 <= size2){
+                if (size1 <= size2) {
                     sizeMap.put(father2, size1 + size2);
                     fatherMap.put(father1, father2);
-                }else {
+                } else {
                     sizeMap.put(father1, size1 + size2);
                     fatherMap.put(father2, father1);
                 }

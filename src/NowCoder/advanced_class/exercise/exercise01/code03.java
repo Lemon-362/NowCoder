@@ -1,20 +1,13 @@
-package NowCoder.advanced_class.exercise;
+package NowCoder.advanced_class.exercise.exercise01;
 
-/*
-    KMP应用2：
-		已知两棵树t1和t2，问t1的某一个子树是否和t2相同？
-			子树：从某一节点开始往下的所有节点，而不是一部分
-	解法：序列化后比较
-	TODO 因为序列化的过程中，节点为null的也算在内了，所以如果只是其中一部分，那么最后为null的序列化和整体是对不上的
- */
-public class code03_KMP_Tree1ContainTree2 {
+public class code03 {
     public static class Node {
-        private int val;
+        private int value;
         private Node left;
         private Node right;
 
-        public Node(int val) {
-            this.val = val;
+        public Node(int value) {
+            this.value = value;
         }
     }
 
@@ -23,40 +16,39 @@ public class code03_KMP_Tree1ContainTree2 {
             return false;
         }
 
-        char[] str1 = serial(head1).toCharArray();
-        char[] str2 = serial(head2).toCharArray();
+        char[] s1 = serial(head1).toCharArray();
+        char[] s2 = serial(head2).toCharArray();
 
-        int[] next = getNextArr(str2);
+        int[] next = getNextArr(s2);
 
-        int p1 = 0;
-        int p2 = 0;
-        while (p1 < str1.length && p2 < str2.length){
-            if (str1[p1] == str2[p2]){
-                p1++;
-                p2++;
-            }else {
-                if (next[p2] == -1){
-                    p1++;
-                }else {
-                    p2 = next[p2];
-                }
-            }
-        }
+       int p1 =0 ;
+       int p2 = 0;
 
-        int len = p2 == str2.length ? p1 - p2 : -1;
-        return len != -1;
+       while (p1 < s1.length && p2 < s2.length){
+           if (s1[p1] == s2[p2]){
+               p1++;
+               p2++;
+           }else {
+               if (next[p2] == -1){
+                   p1++;
+               }else {
+                   p2 = next[p2];
+               }
+           }
+       }
+
+       return p2 == s2.length;
     }
 
-    public static int[] getNextArr(char[] str){
-        int[] next = new int[str.length];
-
+    public static int[] getNextArr(char[] s){
+        int[] next = new int[s.length];
         next[0] = -1;
         next[1] = 0;
         int p = 2;
         int cn = 0;
 
         while (p < next.length){
-            if (str[p - 1] == str[cn]){
+            if (s[p - 1] == s[cn]){
                 next[p++] = ++cn;
             }else if (cn > 0){
                 cn = next[cn];
@@ -73,13 +65,12 @@ public class code03_KMP_Tree1ContainTree2 {
             return "#_";
         }
 
-        String res = head.val + "_";
+        String res = head.value + "_";
         res += serial(head.left);
         res += serial(head.right);
 
         return res;
     }
-
 
     public static void main(String[] args) {
         Node t1 = new Node(1);
@@ -105,5 +96,18 @@ public class code03_KMP_Tree1ContainTree2 {
 
         System.out.println(isSubTree(t1, t2)); // true
 
+        System.out.println("========子结构==============");
+
+        Node head = new Node(1);
+        head.left = new Node(2);
+        head.right = new Node(3);
+        head.left.left = new Node(4);
+        head.left.right = new Node(5);
+        head.left.left.left = new Node(6);
+
+        Node head1 = new Node(2);
+        head1.left = new Node(4);
+
+        System.out.println(isSubTree(head, head1)); // false
     }
 }

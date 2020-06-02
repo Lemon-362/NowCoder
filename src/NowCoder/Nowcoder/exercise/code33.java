@@ -14,7 +14,6 @@ public class code33 {
 
         for (int i = 1; i < n; i++) {
             dp[i] = Math.min(dp[p2] * 2, Math.min(dp[p3] * 3, dp[p5] * 5));
-
             if (dp[i] == dp[p2] * 2){
                 p2++;
             }

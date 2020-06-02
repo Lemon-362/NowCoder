@@ -6,6 +6,7 @@ package NowCoder.advanced_class.exercise;
 		子序列：不连续
 	解法：
 	    在双指针暴力法上用next最长前后缀数组加速，p2往前跳
+	    TODO 这里的双指针不是首位指针，而是分别指向两个string的指针
  */
 public class code01_KMP {
     // 法一：String.indexOf
@@ -19,7 +20,7 @@ public class code01_KMP {
 
     // 法三：KMP算法 利用匹配程度对暴力法加速
     // 匹配程度：对于一个字符，它前面的字符串的前缀和后缀相同时最长的长度
-    // TODO next数组求解的是前缀和后缀相同时的最大长度
+    // TODO next数组求解的是当前位置之前（不包含当前字符）的前缀和后缀相同时的最大长度
     public static int getIndexOf(String s1, String s2){
         if (s1 == null || s2 == null || s2.length() > s1.length()){
             return -1;
@@ -40,7 +41,7 @@ public class code01_KMP {
             }else {
                 if (next[p2] == -1){
                     p1++;
-                }else {
+                }else { // p2往前跳，跳到匹配程度处，相当于将str2的最长前缀对应到str1的对应位置上，然后从最长前缀后一个开始和s1继续比较
                     p2 = next[p2];
                 }
             }
@@ -57,7 +58,7 @@ public class code01_KMP {
         int cn = 0;
 
         while (p < next.length){
-            if (str[p - 1] == str[cn]){
+            if (str[p - 1] == str[cn]){ // TODO 是看str的两个字符是否相等，而不是next数组
                 next[p++] = ++cn;
             }else if (cn > 0){
                 cn = next[cn];

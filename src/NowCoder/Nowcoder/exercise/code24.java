@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class code24 {
+    // TODO 要求从根节点往下开始到叶节点结束
     public static class Node {
         private int value;
         private Node left;
@@ -29,7 +30,7 @@ public class code24 {
         return res;
     }
 
-    public static void process(Node head, int target){
+    public static void process(Node head, int target) {
         // base case
         if (head == null){
             return;
@@ -39,11 +40,11 @@ public class code24 {
         target -= head.value;
 
         if (target == 0 && head.left == null && head.right == null){
-            res.addLast(new LinkedList<>(list));
-        } else {
-            process(head.left, target);
-            process(head.right, target);
+            res.add(new LinkedList<>(list));
         }
+
+        process(head.left, target);
+        process(head.right, target);
 
         list.removeLast();
     }

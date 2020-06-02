@@ -14,8 +14,8 @@ public class code21 {
         for (int i = 0; i < push.length; i++) {
             stack.push(push[i]);
             while (!stack.isEmpty() && stack.peek() == pop[index]){
-                stack.pop();
                 index++;
+                stack.pop();
             }
         }
 

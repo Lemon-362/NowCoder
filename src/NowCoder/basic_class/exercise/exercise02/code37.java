@@ -20,8 +20,19 @@ public class code37 {
             nodes[i] = new Node(costs[i], profits[i]);
         }
 
-        PriorityQueue<Node> minCost = new PriorityQueue<>(new minCostComparator());
-        PriorityQueue<Node> maxProfit = new PriorityQueue<>(new maxProfitComparator());
+        PriorityQueue<Node> minCost = new PriorityQueue<>(new Comparator<Node>() {
+            @Override
+            public int compare(Node o1, Node o2) {
+                return o1.cost - o2.cost;
+            }
+        });
+
+        PriorityQueue<Node> maxProfit = new PriorityQueue<>(new Comparator<Node>() {
+            @Override
+            public int compare(Node o1, Node o2) {
+                return o2.profit - o1.profit;
+            }
+        });
 
         for (int i = 0; i < nodes.length; i++) {
             minCost.add(nodes[i]);
@@ -40,18 +51,6 @@ public class code37 {
         }
 
         return w;
-    }
-
-    public static class minCostComparator implements Comparator<Node> {
-        public int compare(Node o1, Node o2){
-            return o1.cost - o2.cost;
-        }
-    }
-
-    public static class maxProfitComparator implements Comparator<Node> {
-        public int compare(Node o1, Node o2){
-            return o2.profit - o1.profit;
-        }
     }
 
     public static void main(String[] args) {

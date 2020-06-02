@@ -17,7 +17,7 @@ public class code04 {
 
     public static Node process(int[] pre, int[] in){
         // base case
-        if (pre.length < 1 || in.length < 1){
+        if (pre.length == 0 || in.length == 0){
             return null;
         }
 

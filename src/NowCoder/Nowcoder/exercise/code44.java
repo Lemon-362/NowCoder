@@ -12,7 +12,7 @@ public class code44 {
 
         for (int i = s.length - 1; i >= 0; i--) {
             sb.append(s[i]);
-            if (i > 1){
+            if (i > 0){
                 sb.append(" ");
             }
         }

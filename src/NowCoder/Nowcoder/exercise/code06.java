@@ -12,10 +12,15 @@ public class code06 {
 
         while (i < j){
             int mid = (i + j) >> 1;
-            if (arr[mid] < arr[j]){
-                j = mid;
-            }else if (arr[mid] > arr[j]){
+
+            if (arr[i] < arr[j]){
+                return arr[i];
+            }
+
+            if (arr[mid] > arr[j]){
                 i = mid + 1;
+            }else if (arr[mid] < arr[j]){
+                j = mid;
             }else {
                 j = mid;
             }
@@ -28,7 +33,6 @@ public class code06 {
         if (arr == null || arr.length < 1) {
             return 0;
         }
-
 
         for (int i = 0; i < arr.length - 1; i++) {
             if (arr[i] > arr[i + 1]) {

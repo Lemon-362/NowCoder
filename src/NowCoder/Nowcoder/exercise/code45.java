@@ -16,14 +16,12 @@ public class code45 {
             if (arr[i] == 0){
                 continue;
             }
-
-            max = Math.max(max, arr[i]);
-            min = Math.min(min, arr[i]);
-
-            if (set.contains(arr[i])){
-                return false;
-            }else {
+            if (!set.contains(arr[i])){
                 set.add(arr[i]);
+                max = Math.max(max, arr[i]);
+                min = Math.min(min, arr[i]);
+            }else {
+                return false;
             }
         }
 
