@@ -21,22 +21,23 @@ public class code02 {
         }
 
         char[] s = str.toCharArray();
+
         int len = getNextArr(s);
 
         return new KMP(len, str.substring(len));
     }
 
-    public static int getNextArr(char[] s){
-        int[] next = new int[s.length + 1];
+    public static int getNextArr(char[] str){
+        int[] next = new int[str.length + 1];
         next[0] = -1;
         next[1] = 0;
         int p = 2;
         int cn = 0;
 
         while (p < next.length){
-            if (s[p - 1] == s[cn]){
+            if (str[p - 1] == str[cn]){
                 next[p++] = ++cn;
-            }else if (cn > 0 ){
+            }else if (cn > 0){
                 cn = next[cn];
             }else {
                 next[p++] = 0;
@@ -46,7 +47,7 @@ public class code02 {
         return next[next.length - 1];
     }
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
         String test1 = "a";
         System.out.println(shortestHaveTwice(test1).len); // 1
         System.out.println(shortestHaveTwice(test1).s); // a

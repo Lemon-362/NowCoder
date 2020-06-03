@@ -58,7 +58,7 @@ public class code06 {
                 return null;
             }
 
-            int kthMinNum = getKthMinNu(arr, k);
+            int kthMinNum = getKthMinNum(arr, k);
 
             int[] res = new int[k];
             int index = 0;
@@ -76,7 +76,7 @@ public class code06 {
             return res;
         }
 
-        public static int getKthMinNu(int[] arr, int k) {
+        public static int getKthMinNum(int[] arr, int k) {
             int[] copyArr = copyArray(arr);
             return bfprt(copyArr, 0, copyArr.length - 1, k - 1);
         }
@@ -137,16 +137,18 @@ public class code06 {
         }
 
         public static int getMedian(int[] arr, int l, int r) {
-            insertSort(arr, l, r);
+            selectSort(arr, l, r);
             int mid = (l + r) >> 1;
             return arr[mid];
         }
 
-        public static void insertSort(int[] arr, int l, int r) {
-            for (int i = l + 1; i <= r; i++) {
-                for (int j = i - 1; j >= 0 && arr[j] > arr[j + 1]; j--) {
-                    swap(arr, j, j + 1);
+        public static void selectSort(int[] arr, int l, int r) {
+            for (int i = l; i <= r; i++) {
+                int minIndex = i;
+                for (int j = i + 1; j <= r; j++) {
+                    minIndex = arr[minIndex] > arr[j] ? j : minIndex;
                 }
+                swap(arr, minIndex, i);
             }
         }
 

@@ -1,21 +1,20 @@
 package NowCoder.advanced_class.exercise.exercise01;
 
 public class code01 {
-    public static int getIndexOf(String str1, String str2) {
-        if (str1 == null || str2 == null || str2.length() > str1.length()) {
+    public static int getIndexOf(String s1, String s2) {
+        if (s1 == null || s2 == null || s2.length() > s1.length()) {
             return -1;
         }
 
-        char[] s1 = str1.toCharArray();
-        char[] s2 = str2.toCharArray();
+        char[] str1 = s1.toCharArray();
+        char[] str2 = s2.toCharArray();
 
-        int[] next = getNextArr(s2);
-
+        int[] next = getNextArr(str2);
         int p1 = 0;
         int p2 = 0;
 
-        while (p1 < s1.length && p2 < s2.length){
-            if (s1[p1] == s2[p2]){
+        while (p1 < str1.length && p2 < str2.length){
+            if (str1[p1] == str2[p2]){
                 p1++;
                 p2++;
             }else {
@@ -27,18 +26,18 @@ public class code01 {
             }
         }
 
-        return p2 == s2.length ? p1 - p2 : -1;
+        return p2 == str2.length ? p1 - p2 : -1;
     }
 
-    public static int[] getNextArr(char[] s){
-        int[] next = new int[s.length];
+    public static int[] getNextArr(char[] str){
+        int[] next = new int[str.length];
         next[0] = -1;
         next[1] = 0;
         int p = 2;
         int cn = 0;
 
         while (p < next.length){
-            if (s[p - 1] == s[cn]){
+            if (str[p - 1] == str[cn]){
                 next[p++] = ++cn;
             }else if (cn > 0){
                 cn = next[cn];
