@@ -13,8 +13,8 @@ public class code12 {
         }
     }
 
-    public static int mountainsFlame(int[] arr){
-        if (arr == null || arr.length < 1){
+    public static int mountainsFlame(int[] arr) {
+        if (arr == null || arr.length < 1) {
             return 0;
         }
 
@@ -23,13 +23,13 @@ public class code12 {
             maxIndex = arr[i] > arr[maxIndex] ? i : maxIndex;
         }
         int maxValue = arr[maxIndex];
-
-        int res = 0;
         int len = arr.length;
         int nextIndex = getNextIndex(maxIndex, len);
 
         Stack<Pair> stack = new Stack<>();
         stack.push(new Pair(maxValue, 1));
+
+        int res = 0;
 
         while (nextIndex != maxIndex){
             while (!stack.isEmpty() && arr[nextIndex] > stack.peek().value){
@@ -37,7 +37,7 @@ public class code12 {
                 res += getCk2(k) + 2 * k;
             }
 
-            if (stack.peek().value == arr[nextIndex]){
+            if (arr[nextIndex] == stack.peek().value){
                 stack.peek().times++;
             }else {
                 stack.push(new Pair(arr[nextIndex], 1));
@@ -48,6 +48,7 @@ public class code12 {
 
         while (!stack.isEmpty()){
             int k = stack.pop().times;
+
             if (stack.size() >= 2){
                 res += getCk2(k) + 2 * k;
             }else if (stack.size() == 1){

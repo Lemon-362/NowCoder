@@ -29,9 +29,10 @@ public class code10 {
         }
 
         for (int i = 0; i < nodes.length; i++) {
+            Node cur = nodes[i];
             while (!stack.isEmpty() && nodes[i].value > stack.peek().value){
                 Node popNode = stack.pop();
-                rBigMap.put(popNode, nodes[i]);
+                rBigMap.put(popNode, cur);
                 if (stack.isEmpty()){
                     lBigMap.put(popNode, null);
                 }else {
@@ -39,7 +40,7 @@ public class code10 {
                 }
             }
 
-            stack.push(nodes[i]);
+            stack.push(cur);
         }
 
         while (!stack.isEmpty()){
@@ -67,7 +68,7 @@ public class code10 {
                 }else {
                     right.right = cur;
                 }
-            } else if (right == null) {
+            }else if (right == null){
                 if (left.left == null){
                     left.left = cur;
                 }else {

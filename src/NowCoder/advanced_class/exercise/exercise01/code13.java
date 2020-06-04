@@ -11,8 +11,8 @@ public class code13 {
         }
     }
 
-    public static void morrisPre(Node head){
-        if (head == null){
+    public static void morrisPre(Node head) {
+        if (head == null) {
             return;
         }
 
@@ -42,12 +42,11 @@ public class code13 {
                 cur = cur.right;
             }
         }
-
         System.out.println();
     }
 
-    public static void morrisIn(Node head){
-        if (head == null){
+    public static void morrisIn(Node head) {
+        if (head == null) {
             return;
         }
 
@@ -77,12 +76,11 @@ public class code13 {
                 cur = cur.right;
             }
         }
-
         System.out.println();
     }
 
-    public static void morrisPos(Node head){
-        if (head == null){
+    public static void morrisPos(Node head) {
+        if (head == null) {
             return;
         }
 
@@ -150,7 +148,7 @@ public class code13 {
         return pre;
     }
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
         Node head = new Node(4);
         head.left = new Node(2);
         head.right = new Node(6);

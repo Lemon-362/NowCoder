@@ -12,7 +12,7 @@ import java.util.Stack;
     1 1 1 0
        返回6
 
-    TODO 单调栈存索引
+    TODO 单调栈存索引 大找小，从小到大
  */
 public class code11_MaximalRectangle {
     public static int maximalRectangle(int[][] map) {

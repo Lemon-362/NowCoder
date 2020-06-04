@@ -10,7 +10,7 @@ import java.util.Stack;
         2. 不相邻时，要求两者之间的值<=两边的较小值
         求可以看见烽火的数量对？
 
-    TODO 单调栈存类
+    TODO 单调栈存类 小找大，从大到小
  */
 public class code12_MountainsFlame {
     public static class Pair {
