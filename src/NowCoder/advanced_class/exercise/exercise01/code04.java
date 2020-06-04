@@ -7,10 +7,10 @@ public class code04 {
         }
 
         char[] str = manacherString(s);
+        int[] pArr = new int[str.length];
         int R = -1;
         int C = -1;
         int len = 0;
-        int[] pArr = new int[str.length];
 
         for (int i = 0; i < str.length; i++) {
             pArr[i] = R > i ? Math.min(R - i, pArr[2 * C - i]) : 1;

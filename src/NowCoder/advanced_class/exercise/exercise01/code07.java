@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class code07 {
     public static int[] slidingWindow(int[] arr, int w) {
-        if (arr == null || arr.length < 1){
+        if (arr == null || arr.length < 1) {
             return null;
         }
 
@@ -13,16 +13,16 @@ public class code07 {
         int index = 0;
 
         for (int i = 0; i < arr.length; i++) {
-            while (!list.isEmpty() && arr[list.peekLast()] <= arr[i]){
+            while (!list.isEmpty() && arr[list.peekLast()] <= arr[i]) {
                 list.pollLast();
             }
             list.addLast(i);
 
-            if (list.peekFirst() == i - w){
+            if (list.peekFirst() == i - w) {
                 list.pollFirst();
             }
 
-            if (i >= w - 1){
+            if (i >= w - 1) {
                 res[index++] = arr[list.peekFirst()];
             }
         }

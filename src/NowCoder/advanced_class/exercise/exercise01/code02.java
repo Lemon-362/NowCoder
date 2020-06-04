@@ -20,9 +20,7 @@ public class code02 {
             return new KMP(1, str);
         }
 
-        char[] s = str.toCharArray();
-
-        int len = getNextArr(s);
+        int len = getNextArr(str.toCharArray());
 
         return new KMP(len, str.substring(len));
     }
