@@ -14,7 +14,7 @@ public class code06 {
             }
 
             for (int i = k; i < arr.length; i++) {
-                if (arr[i] < heap[0]) {
+                if (arr[i] < heap[0]){
                     heap[0] = arr[i];
                     heapify(heap, 0, k);
                 }
@@ -23,12 +23,12 @@ public class code06 {
             return heap;
         }
 
-        public static void heapify(int[] heap, int index, int size) {
+        public static void heapify(int[] heap, int index, int size){
             int left = 2 * index + 1;
-            while (left < size) {
+            while (left < size){
                 int largest = left + 1 < size && heap[left + 1] > heap[left] ? left + 1 : left;
-                largest = heap[index] > heap[largest] ? index : largest;
-                if (largest == index) {
+                largest = heap[largest] > heap[index] ? largest : index;
+                if (largest == index){
                     break;
                 }
                 swap(heap, index, largest);
@@ -37,9 +37,9 @@ public class code06 {
             }
         }
 
-        public static void heapInsert(int[] heap, int num, int index) {
+        public static void heapInsert(int[] heap, int num, int index){
             heap[index] = num;
-            while (heap[index] > heap[(index - 1) / 2]) {
+            while (heap[index] > heap[(index - 1) / 2]){
                 swap(heap, index, (index - 1) / 2);
                 index = (index - 1) / 2;
             }

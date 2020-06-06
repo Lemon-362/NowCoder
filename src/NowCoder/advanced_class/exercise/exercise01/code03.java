@@ -11,44 +11,43 @@ public class code03 {
         }
     }
 
-    public static boolean isSubTree(Node head1, Node head2){
-        if (head1 == null || head2 == null){
+    public static boolean isSubTree(Node head1, Node head2) {
+        if (head1 == null || head2 == null) {
             return false;
         }
 
-        char[] s1 = serial(head1).toCharArray();
-        char[] s2 = serial(head2).toCharArray();
+        char[] str1 = serial(head1).toCharArray();
+        char[] str2 = serial(head2).toCharArray();
 
-        int[] next = getNextArr(s2);
+        int[] next = getNextArr(str2);
+        int p1 = 0;
+        int p2 = 0;
 
-       int p1 =0 ;
-       int p2 = 0;
+        while (p1 < str1.length && p2 < str2.length){
+            if (str1[p1] == str2[p2]){
+                p1++;
+                p2++;
+            }else {
+                if (next[p2] == -1){
+                    p1++;
+                }else {
+                    p2 = next[p2];
+                }
+            }
+        }
 
-       while (p1 < s1.length && p2 < s2.length){
-           if (s1[p1] == s2[p2]){
-               p1++;
-               p2++;
-           }else {
-               if (next[p2] == -1){
-                   p1++;
-               }else {
-                   p2 = next[p2];
-               }
-           }
-       }
-
-       return p2 == s2.length;
+        return p2 == str2.length;
     }
 
-    public static int[] getNextArr(char[] s){
-        int[] next = new int[s.length];
+    public static int[] getNextArr(char[] str){
+        int[] next = new int[str.length];
         next[0] = -1;
         next[1] = 0;
         int p = 2;
         int cn = 0;
 
         while (p < next.length){
-            if (s[p - 1] == s[cn]){
+            if (str[p - 1] == str[cn]){
                 next[p++] = ++cn;
             }else if (cn > 0){
                 cn = next[cn];

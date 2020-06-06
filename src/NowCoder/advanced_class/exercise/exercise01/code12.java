@@ -18,17 +18,16 @@ public class code12 {
             return 0;
         }
 
+        Stack<Pair> stack = new Stack<>();
         int maxIndex = 0;
         for (int i = 0; i < arr.length; i++) {
             maxIndex = arr[i] > arr[maxIndex] ? i : maxIndex;
         }
         int maxValue = arr[maxIndex];
-        int len = arr.length;
-        int nextIndex = getNextIndex(maxIndex, len);
-
-        Stack<Pair> stack = new Stack<>();
         stack.push(new Pair(maxValue, 1));
 
+        int len = arr.length;
+        int nextIndex = getNextIndex(maxIndex, len);
         int res = 0;
 
         while (nextIndex != maxIndex){
@@ -48,7 +47,6 @@ public class code12 {
 
         while (!stack.isEmpty()){
             int k = stack.pop().times;
-
             if (stack.size() >= 2){
                 res += getCk2(k) + 2 * k;
             }else if (stack.size() == 1){

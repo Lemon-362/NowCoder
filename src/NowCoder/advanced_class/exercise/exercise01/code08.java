@@ -46,12 +46,12 @@ public class code08 {
 
         while (L < arr.length) {
             while (R < arr.length) {
-                while (!minQ.isEmpty() && arr[minQ.peekLast()] >= arr[R]) {
+                while (!minQ.isEmpty() && arr[R] <= arr[minQ.peekLast()]) {
                     minQ.pollLast();
                 }
                 minQ.addLast(R);
 
-                while (!maxQ.isEmpty() && arr[maxQ.peekLast()] <= arr[R]) {
+                while (!maxQ.isEmpty() && arr[R] >= arr[maxQ.peekLast()]) {
                     maxQ.pollLast();
                 }
                 maxQ.addLast(R);
@@ -68,7 +68,6 @@ public class code08 {
             if (minQ.peekFirst() == L) {
                 minQ.pollFirst();
             }
-
             if (maxQ.peekFirst() == L) {
                 maxQ.pollFirst();
             }

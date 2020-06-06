@@ -42,6 +42,7 @@ public class code13 {
                 cur = cur.right;
             }
         }
+
         System.out.println();
     }
 
@@ -76,6 +77,7 @@ public class code13 {
                 cur = cur.right;
             }
         }
+
         System.out.println();
     }
 
