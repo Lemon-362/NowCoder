@@ -6,7 +6,7 @@ package NowCoder.advanced_class.exercise;
 		子序列：不连续
 	解法：
 	    在双指针暴力法上用next最长前后缀数组加速，p2往前跳
-	    TODO 这里的双指针不是首位指针，而是分别指向两个string的指针
+	    TODO 这里的双指针不是首尾指针，而是分别指向两个string的指针
  */
 public class code01_KMP {
     // 法一：String.indexOf
