@@ -9,14 +9,13 @@ public class code37 {
         int i = 0;
         int j = arr.length - 1;
 
-        while (i <= j){
+        while (i <= j) {
             int mid = (i + j) >> 1;
-
-            if (arr[mid] < target){
+            if (arr[mid] < target) {
                 i = mid + 1;
-            }else if (arr[mid] > target){
+            } else if (arr[mid] > target) {
                 j = mid - 1;
-            }else {
+            } else {
                 j = mid - 1;
             }
         }
@@ -25,14 +24,13 @@ public class code37 {
         i = 0;
         j = arr.length - 1;
 
-        while (i <= j){
+        while (i <= j) {
             int mid = (i + j) >> 1;
-
-            if (arr[mid] < target){
+            if (arr[mid] < target) {
                 i = mid + 1;
-            }else if (arr[mid] > target){
+            } else if (arr[mid] > target) {
                 j = mid - 1;
-            }else {
+            } else {
                 i = mid + 1;
             }
         }

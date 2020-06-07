@@ -14,7 +14,7 @@ public class code64 {
         LinkedList<Integer> list = new LinkedList<>();
 
         for (int i = 0; i < arr.length; i++) {
-            while (!list.isEmpty() && arr[list.peekLast()] <= arr[i]) {
+            while (!list.isEmpty() && arr[i] >= arr[list.peekLast()]) {
                 list.pollLast();
             }
 

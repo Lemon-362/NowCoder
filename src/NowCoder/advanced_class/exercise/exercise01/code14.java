@@ -15,7 +15,7 @@ public class code14 {
         }
     }
 
-    public static List<List<Integer>> buildingOutline(int[][] arr){
+    public static List<List<Integer>> buildingOutline(int[][] arr) {
         Node[] nodes = new Node[2 * arr.length];
         for (int i = 0; i < arr.length; i++) {
             nodes[2 * i] = new Node(arr[i][0], arr[i][2], true);
@@ -25,13 +25,14 @@ public class code14 {
         Arrays.sort(nodes, new Comparator<Node>() {
             @Override
             public int compare(Node o1, Node o2) {
-                if (o1.position != o2.position){
+                if (o1.position != o2.position) {
                     return o1.position - o2.position;
-                }else {
-                    if (o1.isUp != o2.isUp){
+                } else {
+                    if (o1.isUp != o2.isUp) {
                         return o1.isUp ? -1 : 1;
                     }
                 }
+
                 return 0;
             }
         });
@@ -40,23 +41,23 @@ public class code14 {
         TreeMap<Integer, Integer> pmMap = new TreeMap<>();
 
         for (int i = 0; i < nodes.length; i++) {
-            if (nodes[i].isUp){
-                if (htMap.containsKey(nodes[i].height)){
+            if (nodes[i].isUp) {
+                if (htMap.containsKey(nodes[i].height)) {
                     htMap.put(nodes[i].height, htMap.get(nodes[i].height) + 1);
-                }else{
+                } else {
                     htMap.put(nodes[i].height, 1);
                 }
-            }else {
-                if (htMap.get(nodes[i].height) == 1){
+            } else {
+                if (htMap.get(nodes[i].height) == 1) {
                     htMap.remove(nodes[i].height);
-                }else {
+                } else {
                     htMap.put(nodes[i].height, htMap.get(nodes[i].height) - 1);
                 }
             }
 
-            if (htMap.isEmpty()){
+            if (htMap.isEmpty()) {
                 pmMap.put(nodes[i].position, 0);
-            }else {
+            } else {
                 pmMap.put(nodes[i].position, htMap.lastKey());
             }
         }
@@ -65,12 +66,12 @@ public class code14 {
         int start = 0;
         int height = 0;
 
-        for(Map.Entry<Integer, Integer> entry : pmMap.entrySet()){
+        for (Map.Entry<Integer, Integer> entry : pmMap.entrySet()) {
             int curPosition = entry.getKey();
             int curHeight = entry.getValue();
 
-            if (height != curHeight){
-                if (height != 0){
+            if (height != curHeight) {
+                if (height != 0) {
                     List<Integer> list = new ArrayList<>();
                     list.add(start);
                     list.add(curPosition);

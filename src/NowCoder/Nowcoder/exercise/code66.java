@@ -20,7 +20,6 @@ public class code66 {
             return 0;
         }
         if (!isValid(i, j, k)) {
-            arr[i][j] = 1;
             return 0;
         }
 
@@ -33,16 +32,18 @@ public class code66 {
     }
 
     public static boolean isValid(int i, int j, int k) {
-        int sum = 0;
+        int res = 0;
+
         while (i > 0) {
-            sum += i % 10;
-            i = i / 10;
+            res += i % 10;
+            i /= 10;
         }
         while (j > 0) {
-            sum += j % 10;
-            j = j / 10;
+            res += j % 10;
+            j /= 10;
         }
-        return sum <= k;
+
+        return res <= k;
     }
 
     public static void main(String[] args) {

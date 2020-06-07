@@ -12,15 +12,16 @@ public class code33 {
         int p3 = 0;
         int p5 = 0;
 
-        for (int i = 1; i < n; i++) {
+        for (int i = 1; i < dp.length; i++) {
             dp[i] = Math.min(dp[p2] * 2, Math.min(dp[p3] * 3, dp[p5] * 5));
-            if (dp[i] == dp[p2] * 2){
+
+            if (dp[i] == dp[p2] * 2) {
                 p2++;
             }
-            if (dp[i] == dp[p3] * 3){
+            if (dp[i] == dp[p3] * 3) {
                 p3++;
             }
-            if (dp[i] == dp[p5] * 5){
+            if (dp[i] == dp[p5] * 5) {
                 p5++;
             }
         }

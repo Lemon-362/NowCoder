@@ -40,24 +40,22 @@ public class code63 {
     }
 
     public Double getMedian() {
-        int maxHeapSize = maxHeap.size();
-        int minHeapSize = minHeap.size();
+        int maxSize = maxHeap.size();
+        int minSize = minHeap.size();
+        Integer maxValue = maxHeap.peek();
+        Integer minValue = minHeap.peek();
 
-        Integer maxHeapValue = maxHeap.peek();
-        Integer minHeapValue = minHeap.peek();
-
-        if ((maxHeapSize + minHeapSize) % 2 == 0) {
-            return (maxHeapValue + minHeapValue) / 2.0;
+        if ((maxSize + minSize) % 2 == 0) {
+            return (maxValue + minValue) / 2.0;
         } else {
-            return maxHeapSize > minHeapSize ? maxHeapValue * 1.0 : minHeapValue * 1.0;
+            return maxSize > minSize ? maxValue * 1.0 : minValue * 1.0;
         }
     }
 
     public void modify() {
         if (maxHeap.size() - minHeap.size() > 1) {
             minHeap.add(maxHeap.poll());
-        }
-        if (minHeap.size() - maxHeap.size() > 1) {
+        } else if (minHeap.size() - maxHeap.size() > 1) {
             maxHeap.add(minHeap.poll());
         }
     }
