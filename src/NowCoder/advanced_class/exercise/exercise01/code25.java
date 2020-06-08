@@ -24,22 +24,22 @@ public class code25 {
             this.tail = null;
         }
 
-        public void moveNodeToTail(Node<K, V> node){
-            if (node == this.tail){
+        public void moveNodeToTail(Node<K, V> node) {
+            if (this.tail == node) {
                 return;
             }
 
-            if (node == this.head){
-                Node<K, V> lastHead = node.last;
-                lastHead.next = null;
-                this.head = lastHead;
+            if (this.head == node) {
+                Node<K, V> lastNode = node.last;
+                lastNode.next = null;
+                this.head = lastNode;
 
                 Node<K, V> tailNode = this.tail;
                 tailNode.last = node;
                 node.next = tailNode;
                 node.last = null;
                 this.tail = node;
-            }else {
+            } else {
                 Node<K, V> lastNode = node.last;
                 Node<K, V> nextNode = node.next;
                 lastNode.next = nextNode;
@@ -53,16 +53,16 @@ public class code25 {
             }
         }
 
-        public Node<K, V> removeHeadNode(){
-            if (this.head == null){
+        public Node<K, V> removeHeadNode() {
+            if (this.head == null) {
                 return null;
             }
 
             Node<K, V> headNode = this.head;
-            if (this.tail == headNode){
+            if (this.tail == headNode) {
                 this.tail = null;
                 this.head = null;
-            }else {
+            } else {
                 Node<K, V> lastNode = headNode.last;
                 lastNode.next = null;
                 this.head = lastNode;
@@ -71,11 +71,11 @@ public class code25 {
             return headNode;
         }
 
-        public void addNodeToTail(Node<K, V> node){
-            if (this.tail == null){
+        public void addNodeToTail(Node<K, V> node) {
+            if (this.tail == null) {
                 this.tail = node;
                 this.head = node;
-            }else {
+            } else {
                 Node<K, V> tailNode = this.tail;
                 tailNode.last = node;
                 node.next = tailNode;
@@ -87,53 +87,53 @@ public class code25 {
 
     public static class LRU<K, V> {
         private int capacity;
-        private HashMap<K, Node<K, V>> keyNodeMap;
+        private HashMap<K, Node<K, V>> map;
         private DoubleLinkedList<K, V> list;
 
         public LRU(int capacity) {
-            this.capacity = capacity;
-            this.keyNodeMap = new HashMap<>();
+            this.map = new HashMap<>();
             this.list = new DoubleLinkedList<>();
+            this.capacity = capacity;
         }
 
-        public V get(K key){
-            if (keyNodeMap.containsKey(key)){
-                Node<K, V> res = keyNodeMap.get(key);
+        public V get(K key) {
+            if (map.containsKey(key)) {
+                Node<K, V> getNode = map.get(key);
 
-                list.moveNodeToTail(res);
+                list.moveNodeToTail(getNode);
 
-                return res.value;
-            }else {
+                return getNode.value;
+            } else {
                 return null;
             }
         }
 
-        public void set(K key, V value){
-            if (keyNodeMap.containsKey(key)){
-                Node<K, V> res = keyNodeMap.get(key);
-                res.value = value;
-                keyNodeMap.put(key, res);
+        public void set(K key, V value) {
+            if (map.containsKey(key)) {
+                Node<K, V> setNode = map.get(key);
+                setNode.value = value;
+                map.put(key, setNode);
 
-                list.moveNodeToTail(res);
-            }else {
-                if (this.capacity == keyNodeMap.size()){
+                list.moveNodeToTail(setNode);
+            } else {
+                if (this.capacity == map.size()) {
                     removeHeadNode();
                 }
 
                 Node<K, V> setNode = new Node<>(key, value);
-                keyNodeMap.put(key, setNode);
+                map.put(key, setNode);
 
                 list.addNodeToTail(setNode);
             }
         }
 
-        public void removeHeadNode(){
+        public void removeHeadNode() {
             Node<K, V> headNode = list.removeHeadNode();
-            keyNodeMap.remove(headNode.key);
+            map.remove(headNode.key);
         }
     }
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
         LRU<String, Integer> lru = new LRU<>(3);
         lru.set("A", 1);
         lru.set("B", 2);

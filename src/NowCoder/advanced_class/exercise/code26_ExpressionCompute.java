@@ -30,6 +30,7 @@ public class code26_ExpressionCompute {
             }else if (str[i] != '('){
                 addNum(list, preNum);
                 list.addLast(String.valueOf(str[i++]));
+                // TODO
                 preNum = 0;
             }else {
                 ReturnData returnData = process(str, i + 1);

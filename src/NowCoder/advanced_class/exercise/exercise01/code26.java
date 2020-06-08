@@ -1,6 +1,7 @@
 package NowCoder.advanced_class.exercise.exercise01;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class code26 {
     public static class ReturnData {
@@ -40,16 +41,15 @@ public class code26 {
     public static int getNum(LinkedList<String> list) {
         int res = 0;
         boolean add = true;
-        String cur = null;
 
         while (!list.isEmpty()) {
-            cur = list.pollFirst();
-            if (cur.equals("+")) {
+            String value = list.pollFirst();
+            if (value.equals("+")) {
                 add = true;
-            } else if (cur.equals("-")) {
+            } else if (value.equals("-")) {
                 add = false;
             } else {
-                int num = Integer.parseInt(cur);
+                int num = Integer.parseInt(value);
                 res += add ? num : -num;
             }
         }
@@ -63,15 +63,15 @@ public class code26 {
             if (operator.equals("+") || operator.equals("-")) {
                 list.addLast(operator);
             } else {
-                int num = Integer.parseInt(list.pollLast());
-                curNum = operator.equals("*") ? num * curNum : num / curNum;
+                int lastNum = Integer.parseInt(list.pollLast());
+                curNum = operator.equals("*") ? lastNum * curNum : lastNum / curNum;
             }
         }
 
         list.addLast(String.valueOf(curNum));
     }
 
-    public static int getValue(String str) {
+    public static int getValue(String str){
         return process(str.toCharArray(), 0).result;
     }
 
