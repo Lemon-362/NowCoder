@@ -22,8 +22,8 @@ public class code01 {
 
         for (int i = 0; i < arr.length; i++) {
             int minIndex = i;
-            for (int j = i + 1; j < arr.length; j++) {
-                minIndex = arr[minIndex] > arr[j] ? j : minIndex;
+            for (int j = i; j < arr.length; j++) {
+                minIndex = arr[j] < arr[minIndex] ? j : minIndex;
             }
             swap(arr, i, minIndex);
         }
@@ -50,8 +50,8 @@ public class code01 {
     public static void main(String[] args) {
         int[] arr = {6, 4, 2, 54, 61, 23, 5, 1};
 //        bubbleSort(arr);
-        selectSort(arr);
-//        insertSort(arr);
+//        selectSort(arr);
+        insertSort(arr);
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }

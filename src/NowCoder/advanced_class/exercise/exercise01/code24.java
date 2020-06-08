@@ -13,11 +13,11 @@ public class code24 {
 
     public static class ReturnData {
         private boolean isB;
-        private int height;
+        private int depth;
 
-        public ReturnData(boolean isB, int height) {
+        public ReturnData(boolean isB, int depth) {
             this.isB = isB;
-            this.height = height;
+            this.depth = depth;
         }
     }
 
@@ -41,11 +41,11 @@ public class code24 {
         }
 
         // 3
-        if (Math.abs(leftData.height - rightData.height) > 1){
+        if (Math.abs(leftData.depth - rightData.depth) > 1){
             return new ReturnData(false, 0);
         }
 
-        return new ReturnData(true, Math.max(leftData.height, rightData.height) + 1);
+        return new ReturnData(true, Math.max(leftData.depth, rightData.depth) + 1);
     }
 
     public static boolean isBalanceTree(Node head){

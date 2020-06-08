@@ -25,10 +25,10 @@ public class code17 {
             if (map.containsKey(sum - 0)){
                 int right = i;
                 int left = map.get(sum - 0) + 1;
-                len = Math.max(len, right - left + 1);
+                len = Math.max(left, right - left + 1);
             }
 
-            if (!map.containsKey(sum)){
+            if (!map.containsKey(sum)) {
                 map.put(sum, i);
             }
         }

@@ -12,18 +12,18 @@ public class code22 {
     }
 
     public static class ReturnData {
-        private int distance;
+        private int maxDistance;
         private int depth;
 
-        public ReturnData(int distance, int depth) {
-            this.distance = distance;
+        public ReturnData(int maxDistance, int depth) {
+            this.maxDistance = maxDistance;
             this.depth = depth;
         }
     }
 
-    public static ReturnData process(Node head) {
+    public static ReturnData process(Node head){
         // base case
-        if (head == null) {
+        if (head == null){
             return new ReturnData(0, 0);
         }
 
@@ -31,22 +31,22 @@ public class code22 {
         ReturnData rightData = process(head.right);
 
         // 1
-        int leftDistance = leftData.distance;
+        int leftDistance = leftData.maxDistance;
 
         // 2
-        int rightDistance = rightData.distance;
+        int rightDistance = rightData.maxDistance;
 
         // 3
         int curDistance = leftData.depth + rightData.depth + 1;
 
         int maxDistance = Math.max(curDistance, Math.max(leftDistance, rightDistance));
-        int maxDepth = Math.max(leftData.depth, rightData.depth) + 1;
+        int curDepth = Math.max(leftData.depth, rightData.depth) + 1;
 
-        return new ReturnData(maxDistance, maxDepth);
+        return new ReturnData(maxDistance, curDepth);
     }
 
-    public static int getMaxDistance(Node head) {
-        return process(head).distance;
+    public static int getMaxDistance(Node head){
+        return process(head).maxDistance;
     }
 
     public static void main(String[] args) {

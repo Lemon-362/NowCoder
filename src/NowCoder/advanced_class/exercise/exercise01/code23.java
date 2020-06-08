@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class code23 {
-    public static class Node{
+    public static class Node {
         private int huo;
-        private List<Node> list;
+        private List<Node> nexts;
 
         public Node(int huo) {
             this.huo = huo;
-            this.list = new ArrayList<>();
+            this.nexts = new ArrayList<>();
         }
     }
 
@@ -28,8 +28,8 @@ public class code23 {
         int lai = head.huo;
         int bu_lai = 0;
 
-        for (int i = 0; i < head.list.size(); i++) {
-            Node next = head.list.get(i);
+        for (int i = 0; i < head.nexts.size(); i++) {
+            Node next = head.nexts.get(i);
 
             ReturnData nextData = process(next);
 
@@ -45,6 +45,7 @@ public class code23 {
 
     public static int getMaxHappy(int[][] arr){
         Node[] nodes = new Node[arr.length];
+
         for (int i = 0; i < arr.length; i++) {
             nodes[i] = new Node(arr[i][1]);
         }
@@ -52,7 +53,7 @@ public class code23 {
         for (int i = 0; i < nodes.length; i++) {
             int boss = arr[i][0];
             if (i != boss){
-                nodes[boss].list.add(nodes[i]);
+                nodes[boss].nexts.add(nodes[i]);
             }
         }
 

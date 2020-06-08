@@ -8,13 +8,12 @@ public class code29 {
             }
 
             int[] heap = new int[k];
-
             for (int i = 0; i < k; i++) {
                 heapInsert(heap, arr[i], i);
             }
 
             for (int i = k; i < arr.length; i++) {
-                if (arr[i] < heap[0]){
+                if (arr[i] < heap[0]) {
                     heap[0] = arr[i];
                     heapify(heap, 0, k);
                 }
@@ -23,12 +22,12 @@ public class code29 {
             return heap;
         }
 
-        public static void heapify(int[] heap, int index, int size){
+        public static void heapify(int[] heap, int index, int size) {
             int left = 2 * index + 1;
-            while (left < size){
+            while (left < size) {
                 int largest = left + 1 < size && heap[left + 1] > heap[left] ? left + 1 : left;
                 largest = heap[largest] > heap[index] ? largest : index;
-                if (largest == index){
+                if (largest == index) {
                     break;
                 }
                 swap(heap, index, largest);
@@ -37,9 +36,9 @@ public class code29 {
             }
         }
 
-        public static void heapInsert(int[] heap, int num, int index){
+        public static void heapInsert(int[] heap, int num, int index) {
             heap[index] = num;
-            while (heap[index] > heap[(index - 1) / 2]){
+            while (heap[index] > heap[(index - 1) / 2]) {
                 swap(heap, index, (index - 1) / 2);
                 index = (index - 1) / 2;
             }
@@ -123,12 +122,12 @@ public class code29 {
             int group = len / 5 + offset;
             int[] mArr = new int[group];
 
-            for (int i = 0; i < group; i++) {
+            for (int i = 0; i < mArr.length; i++) {
                 int start = l + 5 * i;
                 int end = start + 4;
-                if (i == group - 1) {
+                if (i == mArr.length - 1){
                     mArr[i] = getMedian(arr, start, r);
-                } else {
+                }else {
                     mArr[i] = getMedian(arr, start, end);
                 }
             }
@@ -136,34 +135,16 @@ public class code29 {
             return bfprt(mArr, 0, mArr.length - 1, mArr.length / 2);
         }
 
-        public static int getMedian(int[] arr, int l, int r) {
-            selectSort(arr, l, r);
+        public static int getMedian(int[] arr, int l, int r){
+            bubbleSort(arr, l, r);
             int mid = (l + r) >> 1;
             return arr[mid];
         }
 
-        public static void selectSort(int[] arr, int l, int r){
-            for (int i = l; i <= r; i++) {
-                int minIndex = i;
-                for (int j = i + 1; j <= r; j++) {
-                    minIndex = arr[minIndex] > arr[j] ? j : minIndex;
-                }
-                swap(arr, minIndex, i);
-            }
-        }
-
-        public static void insertSort(int[] arr, int l, int r){
-            for (int i = l + 1; i <= r; i++) {
-                for (int j = i - 1; j >= 0 && arr[j] > arr[j + 1]; j--) {
-                    swap(arr, j, j + 1);
-                }
-            }
-        }
-
-        public static void bubbleSort(int[] arr, int l, int r) {
-            for (int i = r; i >= 0; i--) {
+        public static void bubbleSort(int[] arr, int l, int r){
+            for (int i = arr.length - 1; i >= 0; i--) {
                 for (int j = 0; j < i; j++) {
-                    if (arr[j] > arr[j + 1]) {
+                    if (arr[j] > arr[j + 1]){
                         swap(arr, j, j + 1);
                     }
                 }
