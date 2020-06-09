@@ -22,12 +22,12 @@ public class code11 {
         return res;
     }
 
-    public static int getMaxArea(int[] arr){
+    public static int getMaxArea(int[] arr) {
         Stack<Integer> stack = new Stack<>();
         int res = 0;
 
         for (int i = 0; i < arr.length; i++) {
-            while (!stack.isEmpty() && arr[i] <= arr[stack.peek()]){
+            while (!stack.isEmpty() && arr[i] <= arr[stack.peek()]) {
                 int popIndex = stack.pop();
                 int right = i;
                 int left = stack.isEmpty() ? -1 : stack.peek();
@@ -38,7 +38,7 @@ public class code11 {
             stack.push(i);
         }
 
-        while (!stack.isEmpty()){
+        while (!stack.isEmpty()) {
             int popIndex = stack.pop();
             int right = arr.length;
             int left = stack.isEmpty() ? -1 : stack.peek();

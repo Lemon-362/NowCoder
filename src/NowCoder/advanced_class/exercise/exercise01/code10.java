@@ -30,7 +30,7 @@ public class code10 {
 
         for (int i = 0; i < nodes.length; i++) {
             Node cur = nodes[i];
-            while (!stack.isEmpty() && cur.value >= stack.peek().value){
+            while (!stack.isEmpty() && cur.value > stack.peek().value){
                 Node popNode = stack.pop();
                 rBigMap.put(popNode, cur);
                 if (stack.isEmpty()){
@@ -54,7 +54,6 @@ public class code10 {
         }
 
         Node head = null;
-
         for (int i = 0; i < nodes.length; i++) {
             Node cur = nodes[i];
             Node left = lBigMap.get(cur);
@@ -75,7 +74,7 @@ public class code10 {
                     left.right = cur;
                 }
             }else {
-                Node parent = left.value < right .value ? left : right;
+                Node parent = left.value < right.value ? left : right;
                 if (parent.left == null){
                     parent.left = cur;
                 }else {

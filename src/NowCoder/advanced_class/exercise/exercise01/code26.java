@@ -14,18 +14,18 @@ public class code26 {
         }
     }
 
-    public static ReturnData process(char[] str, int i) {
+    public static ReturnData process(char[] str, int i){
         LinkedList<String> list = new LinkedList<>();
         int preNum = 0;
 
-        while (i < str.length && str[i] != ')') {
-            if (str[i] >= '0' && str[i] <= '9') {
+        while (i < str.length && str[i] != ')'){
+            if (str[i] >= '0' && str[i] <= '9'){
                 preNum = preNum * 10 + str[i++] - '0';
-            } else if (str[i] != '(') {
+            }else if (str[i] != '('){
                 addNum(list, preNum);
                 list.addLast(String.valueOf(str[i++]));
                 preNum = 0;
-            } else {
+            }else {
                 ReturnData returnData = process(str, i + 1);
                 preNum = returnData.result;
                 i = returnData.index + 1;
@@ -38,18 +38,18 @@ public class code26 {
         return new ReturnData(result, i);
     }
 
-    public static int getNum(LinkedList<String> list) {
+    public static int getNum(LinkedList<String> list){
         int res = 0;
         boolean add = true;
 
-        while (!list.isEmpty()) {
-            String value = list.pollFirst();
-            if (value.equals("+")) {
+        while (!list.isEmpty()){
+            String cur = list.pollFirst();
+            if (cur.equals("+")){
                 add = true;
-            } else if (value.equals("-")) {
+            }else if (cur.equals("-")){
                 add = false;
-            } else {
-                int num = Integer.parseInt(value);
+            }else {
+                int num = Integer.parseInt(cur);
                 res += add ? num : -num;
             }
         }
@@ -57,12 +57,12 @@ public class code26 {
         return res;
     }
 
-    public static void addNum(LinkedList<String> list, int curNum) {
-        if (!list.isEmpty()) {
+    public static void addNum(LinkedList<String> list, int curNum){
+        if (!list.isEmpty()){
             String operator = list.pollLast();
-            if (operator.equals("+") || operator.equals("-")) {
+            if (operator.equals("+") || operator.equals("-")){
                 list.addLast(operator);
-            } else {
+            }else {
                 int lastNum = Integer.parseInt(list.pollLast());
                 curNum = operator.equals("*") ? lastNum * curNum : lastNum / curNum;
             }
@@ -71,8 +71,8 @@ public class code26 {
         list.addLast(String.valueOf(curNum));
     }
 
-    public static int getValue(String str){
-        return process(str.toCharArray(), 0).result;
+    public static int getValue(String s){
+        return process(s.toCharArray(), 0).result;
     }
 
     public static void main(String[] args) {

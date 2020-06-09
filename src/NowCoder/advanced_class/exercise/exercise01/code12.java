@@ -1,5 +1,6 @@
 package NowCoder.advanced_class.exercise.exercise01;
 
+import java.util.HashMap;
 import java.util.Stack;
 
 public class code12 {
@@ -18,48 +19,49 @@ public class code12 {
             return 0;
         }
 
-        Stack<Pair> stack = new Stack<>();
         int maxIndex = 0;
         for (int i = 0; i < arr.length; i++) {
             maxIndex = arr[i] > arr[maxIndex] ? i : maxIndex;
         }
         int maxValue = arr[maxIndex];
-        stack.push(new Pair(maxValue, 1));
-
         int len = arr.length;
         int nextIndex = getNextIndex(maxIndex, len);
+
+        Stack<Pair> stack = new Stack<>();
         int res = 0;
 
-        while (nextIndex != maxIndex){
-            while (!stack.isEmpty() && arr[nextIndex] > stack.peek().value){
+        stack.push(new Pair(maxValue, 1));
+
+        while (nextIndex != maxIndex) {
+            while (!stack.isEmpty() && arr[nextIndex] > stack.peek().value) {
                 int k = stack.pop().times;
                 res += getCk2(k) + 2 * k;
             }
 
-            if (arr[nextIndex] == stack.peek().value){
+            if (arr[nextIndex] == stack.peek().value) {
                 stack.peek().times++;
-            }else {
+            } else {
                 stack.push(new Pair(arr[nextIndex], 1));
             }
 
             nextIndex = getNextIndex(nextIndex, len);
         }
 
-        while (!stack.isEmpty()){
+        while (!stack.isEmpty()) {
             int k = stack.pop().times;
-            if (stack.size() >= 2){
+            if (stack.size() >= 2) {
                 res += getCk2(k) + 2 * k;
-            }else if (stack.size() == 1){
+            } else if (stack.size() == 1) {
                 int a = stack.peek().times;
-                if (a >= 2){
+                if (a >= 2) {
                     res += getCk2(k) + 2 * k;
-                }else {
+                } else {
                     res += getCk2(k) + k;
                 }
-            }else {
-                if (k >= 2){
+            } else {
+                if (k >= 2) {
                     res += getCk2(k);
-                }else {
+                } else {
                     res += 0;
                 }
             }
@@ -68,11 +70,11 @@ public class code12 {
         return res;
     }
 
-    public static int getCk2(int k){
+    public static int getCk2(int k) {
         return k >= 2 ? k * (k - 1) / 2 : 0;
     }
 
-    public static int getNextIndex(int index, int len){
+    public static int getNextIndex(int index, int len) {
         return index == len - 1 ? 0 : index + 1;
     }
 

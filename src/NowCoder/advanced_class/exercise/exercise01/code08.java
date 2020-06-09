@@ -68,6 +68,7 @@ public class code08 {
             if (minQ.peekFirst() == L) {
                 minQ.pollFirst();
             }
+
             if (maxQ.peekFirst() == L) {
                 maxQ.pollFirst();
             }

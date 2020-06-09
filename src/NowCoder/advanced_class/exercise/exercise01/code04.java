@@ -13,16 +13,16 @@ public class code04 {
         int len = 0;
 
         for (int i = 0; i < str.length; i++) {
-            pArr[i] = R > i ? Math.min(R - i, pArr[2*C-i]) : 1;
-            while (i + pArr[i] < str.length && i - pArr[i] > -1){
-                if (str[i + pArr[i]] == str[i - pArr[i]]){
+            pArr[i] = R > i ? Math.min(R - i, pArr[2 * C - i]) : 1;
+            while (i + pArr[i] < str.length && i - pArr[i] > -1) {
+                if (str[i + pArr[i]] == str[i - pArr[i]]) {
                     pArr[i]++;
-                }else {
+                } else {
                     break;
                 }
             }
 
-            if (i + pArr[i] > R){
+            if (i + pArr[i] > R) {
                 R = i + pArr[i];
                 C = i;
             }

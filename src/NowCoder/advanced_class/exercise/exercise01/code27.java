@@ -84,6 +84,7 @@ public class code27 {
             if (left != null){
                 queue.offer(left);
             }
+
             if (right != null){
                 queue.offer(right);
             }
