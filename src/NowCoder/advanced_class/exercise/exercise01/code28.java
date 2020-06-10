@@ -45,54 +45,54 @@ public class code28 {
         return res;
     }
 
-    public static class Node {
+   public static class Node {
         private Node[] next;
 
-        public Node() {
-            this.next = new Node[2];
-        }
-    }
+       public Node() {
+           this.next = new Node[2];
+       }
+   }
 
-    public static class TrieTree {
+   public static class TrieTree {
         private Node head;
 
-        public TrieTree() {
-            this.head = new Node();
-        }
+       public TrieTree() {
+           this.head = new Node();
+       }
 
-        public void addNum(int num){
-            Node cur = head;
+       public void addNum(int num){
+           Node cur = head;
 
-            for (int i = 31; i >= 0; i--) {
-                int path = (num >> i) & 1;
+           for (int i = 31; i >= 0; i--) {
+               int path = (num >> i) & 1;
 
-                if (cur.next[path] == null){
-                    cur.next[path] = new Node();
-                }
+               if (cur.next[path] == null){
+                   cur.next[path] = new Node();
+               }
 
-                cur = cur.next[path];
-            }
-        }
+               cur = cur.next[path];
+           }
+       }
 
-        public int getMaxEor(int num){
-            Node cur = head;
-            int res = 0;
+       public int getMaxXor(int num){
+           Node cur = head;
+           int res = 0;
 
-            for (int i = 31; i >= 0; i--) {
-                int path = (num >> i) & 1;
+           for (int i = 31; i >= 0; i--) {
+               int path = (num >> i) & 1;
 
-                int best = i == 31 ? path : (1 ^ path);
+               int best = i == 31 ? path : (1 ^ path);
 
-                best = cur.next[best] == null ? (1 ^ best) : best;
+               best = cur.next[best] == null ? (1 ^ best) : best;
 
-                res |= (best ^ path) << i;
+               res |= (best ^ path) << i;
 
-                cur = cur.next[best];
-            }
+               cur = cur.next[best];
+           }
 
-            return res;
-        }
-    }
+           return res;
+       }
+   }
 
     public static int getMaxEOR3(int[] arr){
         if (arr == null || arr.length < 1){
@@ -101,13 +101,14 @@ public class code28 {
 
         TrieTree trieTree = new TrieTree();
         trieTree.addNum(0);
+
         int res = Integer.MIN_VALUE;
         int xor = 0;
 
         for (int i = 0; i < arr.length; i++) {
             xor ^= arr[i];
 
-            res = Math.max(res, trieTree.getMaxEor(xor));
+            res = Math.max(res, trieTree.getMaxXor(xor));
 
             trieTree.addNum(xor);
         }

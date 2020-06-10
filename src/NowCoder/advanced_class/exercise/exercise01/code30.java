@@ -14,7 +14,7 @@ public class code30 {
     }
 
     public static int s(int[] arr, int i, int j) {
-        // base case
+        // base ase
         if (i == j) {
             return 0;
         }

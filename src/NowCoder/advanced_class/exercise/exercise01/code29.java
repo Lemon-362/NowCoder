@@ -38,7 +38,7 @@ public class code29 {
                 if (map.containsKey(f)){
                     res += map.get(f);
                 }else {
-                    res += process2(arr, index + 1, leftAim);
+                    res += process1(arr, index + 1, leftAim);
                 }
             }
         }
@@ -77,7 +77,7 @@ public class code29 {
 
         for (int index = arr.length - 1; index >= 0; index--) {
             for (int leftAim = 0; leftAim < dp[0].length; leftAim++) {
-                int num1 = leftAim - arr[index] >= 0 ? dp[index][leftAim - arr[index]] : 0;
+                int num1 = leftAim - arr[index] >= 0 ? dp[index][leftAim-arr[index]] : 0;
                 int num2 = dp[index + 1][leftAim];
 
                 dp[index][leftAim] = num1 + num2;
