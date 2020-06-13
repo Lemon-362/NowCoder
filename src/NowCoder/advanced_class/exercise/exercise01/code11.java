@@ -16,6 +16,7 @@ public class code11 {
             for (int j = 0; j < map[0].length; j++) {
                 height[j] = map[i][j] == 0 ? 0 : height[j] + 1;
             }
+
             res = Math.max(res, getMaxArea(height));
         }
 

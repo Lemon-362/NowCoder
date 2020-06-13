@@ -16,7 +16,7 @@ public class code10 {
             min = Math.min(min, arr[i]);
         }
 
-        if (max == min){
+        if (max == min) {
             return 0;
         }
 
@@ -27,16 +27,17 @@ public class code10 {
         int bid;
 
         for (int i = 0; i < arr.length; i++) {
-            bid = bucket(arr[i], max, min, len);
-            mins[bid] = hasNum[bid] ? Math.min(arr[i], mins[bid]) : arr[i];
+            bid = bucket(arr[i], len, min, max);
             maxs[bid] = hasNum[bid] ? Math.max(arr[i], maxs[bid]) : arr[i];
+            mins[bid] = hasNum[bid] ? Math.min(arr[i], mins[bid]) : arr[i];
             hasNum[bid] = true;
         }
 
-        int lastMax = maxs[0];
         int res = 0;
+        int lastMax = maxs[0];
+
         for (int i = 1; i <= len; i++) {
-            if (hasNum[i]){
+            if (hasNum[i]) {
                 res = Math.max(res, mins[i] - lastMax);
                 lastMax = maxs[i];
             }
@@ -45,7 +46,7 @@ public class code10 {
         return res;
     }
 
-    public static int bucket(int num, int max, int min, int len){
+    public static int bucket(int num, int len, int min, int max) {
         return (num - min) * len / (max - min);
     }
 

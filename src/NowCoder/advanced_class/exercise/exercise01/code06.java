@@ -10,11 +10,11 @@ public class code06 {
             int[] heap = new int[k];
 
             for (int i = 0; i < k; i++) {
-                heapInsert(heap, arr[i], i);
+                heapInsert(heap, i, arr[i]);
             }
 
             for (int i = k; i < arr.length; i++) {
-                if (arr[i] < heap[0]){
+                if (arr[i] < heap[0]) {
                     heap[0] = arr[i];
                     heapify(heap, 0, k);
                 }
@@ -23,12 +23,12 @@ public class code06 {
             return heap;
         }
 
-        public static void heapify(int[] heap, int index, int size){
+        public static void heapify(int[] heap, int index, int size) {
             int left = 2 * index + 1;
-            while (left < size){
+            while (left < size) {
                 int largest = left + 1 < size && heap[left + 1] > heap[left] ? left + 1 : left;
                 largest = heap[largest] > heap[index] ? largest : index;
-                if (largest == index){
+                if (largest == index) {
                     break;
                 }
                 swap(heap, index, largest);
@@ -37,9 +37,10 @@ public class code06 {
             }
         }
 
-        public static void heapInsert(int[] heap, int num, int index){
+        public static void heapInsert(int[] heap, int index, int num) {
             heap[index] = num;
-            while (heap[index] > heap[(index - 1) / 2]){
+
+            while (heap[index] > heap[(index - 1) / 2]) {
                 swap(heap, index, (index - 1) / 2);
                 index = (index - 1) / 2;
             }
@@ -59,7 +60,6 @@ public class code06 {
             }
 
             int kthMinNum = getKthMinNum(arr, k);
-
             int[] res = new int[k];
             int index = 0;
 
@@ -145,10 +145,10 @@ public class code06 {
         public static void selectSort(int[] arr, int l, int r) {
             for (int i = l; i <= r; i++) {
                 int minIndex = i;
-                for (int j = i + 1; j <= r; j++) {
+                for (int j = l + 1; j <= r; j++) {
                     minIndex = arr[minIndex] > arr[j] ? j : minIndex;
                 }
-                swap(arr, minIndex, i);
+                swap(arr, i, minIndex);
             }
         }
 

@@ -7,6 +7,7 @@ public class code04 {
         }
 
         char[] str = manacherString(s);
+
         int[] pArr = new int[str.length];
         int R = -1;
         int C = -1;

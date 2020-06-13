@@ -13,7 +13,7 @@ public class code33 {
 
         for (int i = arr.length - 2; i >= 0; i--) {
             if (min_sum[i + 1] <= 0){
-                min_sum[i] = min_sum[i + 1] + arr[i];
+                min_sum[i] = arr[i] + min_sum[i + 1];
                 min_sum_index[i] = min_sum_index[i + 1];
             }else {
                 min_sum[i] = arr[i];
@@ -21,9 +21,9 @@ public class code33 {
             }
         }
 
+        int sum = 0;
         int L = 0;
         int R = 0;
-        int sum = 0;
         int len = 0;
 
         while (L < arr.length){

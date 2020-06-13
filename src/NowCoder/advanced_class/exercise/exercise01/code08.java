@@ -38,23 +38,23 @@ public class code08 {
             return 0;
         }
 
-        LinkedList<Integer> minQ = new LinkedList<>();
         LinkedList<Integer> maxQ = new LinkedList<>();
+        LinkedList<Integer> minQ = new LinkedList<>();
         int res = 0;
         int L = 0;
         int R = 0;
 
         while (L < arr.length) {
             while (R < arr.length) {
-                while (!minQ.isEmpty() && arr[R] <= arr[minQ.peekLast()]) {
-                    minQ.pollLast();
-                }
-                minQ.addLast(R);
-
                 while (!maxQ.isEmpty() && arr[R] >= arr[maxQ.peekLast()]) {
                     maxQ.pollLast();
                 }
                 maxQ.addLast(R);
+
+                while (!minQ.isEmpty() && arr[R] <= arr[minQ.peekLast()]) {
+                    minQ.pollLast();
+                }
+                minQ.addLast(R);
 
                 if (arr[maxQ.peekFirst()] - arr[minQ.peekFirst()] > num) {
                     break;
@@ -65,12 +65,12 @@ public class code08 {
 
             res += (R - L);
 
-            if (minQ.peekFirst() == L) {
-                minQ.pollFirst();
-            }
-
             if (maxQ.peekFirst() == L) {
                 maxQ.pollFirst();
+            }
+
+            if (minQ.peekFirst() == L) {
+                minQ.pollFirst();
             }
 
             L++;

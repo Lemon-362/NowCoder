@@ -10,11 +10,12 @@ public class code04 {
     }
 
     public static void mergeSort(int[] arr, int l, int r) {
+        // base case
         if (l == r) {
             return;
         }
 
-        int mid = l + ((r - l) >> 1);
+        int mid = (l + r) >> 1;
         mergeSort(arr, l, mid);
         mergeSort(arr, mid + 1, r);
         merge(arr, l, r, mid);
@@ -26,13 +27,15 @@ public class code04 {
         int p1 = l;
         int p2 = mid + 1;
 
-        while (p1 <= mid && p2 <= r){
+        while (p1 <= mid && p2 <= r) {
             help[index++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
         }
-        while (p1 <= mid){
+
+        while (p1 <= mid) {
             help[index++] = arr[p1++];
         }
-        while (p2 <= r){
+
+        while (p2 <= r) {
             help[index++] = arr[p2++];
         }
 

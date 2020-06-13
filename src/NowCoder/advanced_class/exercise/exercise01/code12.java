@@ -1,5 +1,6 @@
 package NowCoder.advanced_class.exercise.exercise01;
 
+import javax.xml.transform.stax.StAXResult;
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -21,16 +22,16 @@ public class code12 {
 
         int maxIndex = 0;
         for (int i = 0; i < arr.length; i++) {
-            maxIndex = arr[i] > arr[maxIndex] ? i : maxIndex;
+            maxIndex = arr[maxIndex] < arr[i] ? i : maxIndex;
         }
         int maxValue = arr[maxIndex];
         int len = arr.length;
         int nextIndex = getNextIndex(maxIndex, len);
 
         Stack<Pair> stack = new Stack<>();
-        int res = 0;
-
         stack.push(new Pair(maxValue, 1));
+
+        int res = 0;
 
         while (nextIndex != maxIndex) {
             while (!stack.isEmpty() && arr[nextIndex] > stack.peek().value) {
@@ -38,7 +39,7 @@ public class code12 {
                 res += getCk2(k) + 2 * k;
             }
 
-            if (arr[nextIndex] == stack.peek().value) {
+            if (stack.peek().value == arr[nextIndex]) {
                 stack.peek().times++;
             } else {
                 stack.push(new Pair(arr[nextIndex], 1));

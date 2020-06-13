@@ -3,8 +3,8 @@ package NowCoder.advanced_class.exercise.exercise01;
 import java.util.HashMap;
 
 public class code32 {
-    public static int getMaxLength1(int[] arr, int aim){
-        if (arr == null || arr.length < 1){
+    public static int getMaxLength1(int[] arr, int aim) {
+        if (arr == null || arr.length < 1) {
             return 0;
         }
 
@@ -15,13 +15,13 @@ public class code32 {
         for (int i = 0; i < arr.length; i++) {
             sum += arr[i];
 
-            if (map.containsKey(sum - aim)){
+            if (map.containsKey(sum - aim)) {
                 int right = i;
                 int left = map.get(sum - aim) + 1;
                 res = Math.max(res, right - left + 1);
             }
 
-            if (!map.containsKey(sum)){
+            if (!map.containsKey(sum)) {
                 map.put(sum, i);
             }
         }
@@ -29,8 +29,8 @@ public class code32 {
         return res;
     }
 
-    public static int getMaxLength2(int[] arr, int aim){
-        if (arr == null || arr.length < 1){
+    public static int getMaxLength2(int[] arr, int aim) {
+        if (arr == null || arr.length < 1) {
             return 0;
         }
 
@@ -39,15 +39,15 @@ public class code32 {
         int R = 0;
         int len = 0;
 
-        while (L < arr.length && R < arr.length){
-            if (sum == aim){
+        while (L < arr.length && R < arr.length) {
+            if (sum == aim) {
                 len = Math.max(len, R - L + 1);
                 sum -= arr[L];
                 L++;
-            }else if (sum < aim){
+            } else if (sum < aim) {
                 sum += arr[R];
                 R++;
-            }else {
+            } else {
                 sum -= arr[L];
                 L++;
             }
@@ -56,7 +56,7 @@ public class code32 {
         return len;
     }
 
-        public static int[] generatePositiveArray(int size) {
+    public static int[] generatePositiveArray(int size) {
         int[] result = new int[size];
         for (int i = 0; i != size; i++) {
             result[i] = (int) (Math.random() * 10) + 1;
