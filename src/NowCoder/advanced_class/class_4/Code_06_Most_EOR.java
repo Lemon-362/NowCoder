@@ -22,7 +22,7 @@ public class Code_06_Most_EOR {
 		for (int i = 0; i < arr.length; i++) {
 			xor ^= arr[i];
 
-			// 情况一：包含当前位置的子数组异或和不为0
+			// 情况一：包含当前位置的子数组异或和为0
 			// 首先如果map中存在这个异或和，那么先计算再更新
 			if (map.containsKey(xor)) { // 在 0 - i中找最晚出现xor的位置
 				// 因为更新操作是放在最后的，所以此时map中这个异或和key对应的位置是之前出现的位置，也就是要找的位置
@@ -31,7 +31,7 @@ public class Code_06_Most_EOR {
 				dp[i] = pre == -1 ? 1 : (dp[pre] + 1); // 如果k-1位置是-1处，说明第一个元素就是0
 			}
 
-			// 情况二：包含当前位置的子数组异或和为0
+			// 情况二：包含当前位置的子数组异或和不为0
 			// 只有在i>=1时，才会有可能是dp[i-1]
 			if (i > 0) {
 				dp[i] = Math.max(dp[i - 1], dp[i]);

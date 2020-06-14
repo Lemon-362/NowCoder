@@ -21,24 +21,20 @@ public class code21 {
 
         Stack<Node> stack = new Stack<>();
         Node cur = head;
-
-        while (cur != null) {
+        while (cur != null){
             stack.push(cur);
             cur = cur.next;
         }
 
         cur = head;
-        boolean res = true;
-
-        while (cur != null) {
-            if (cur.value != stack.pop().value) {
-                res = false;
-                break;
+        while (cur != null){
+            if (stack.pop().value != cur.value){
+                return false;
             }
             cur = cur.next;
         }
 
-        return res;
+        return true;
     }
 
     public static boolean isHuiWen02(Node head) {
@@ -46,47 +42,47 @@ public class code21 {
             return true;
         }
 
-        Node n1 = head.next;
-        Node n2 = head.next.next;
+        Node p1 = head.next;
+        Node p2 = head.next.next;
 
-        while (n2.next != null && n2.next.next != null){
-            n1 = n1.next;
-            n2 = n2.next.next;
+        while (p2.next != null && p2.next.next != null){
+            p1 = p1.next;
+            p2 = p2.next.next;
         }
 
-        Node n3 = null;
-        n2 = n1.next;
-        n1.next = null;
+        p2 = p1.next;
+        p1.next = null;
+        Node p3 = null;
 
-        while (n2 != null){
-            n3 = n2.next;
+        while (p2 != null){
+            p3 = p2.next;
 
-            n2.next = n1;
+            p2.next = p1;
 
-            n1 = n2;
-            n2 = n3;
+            p1 = p2;
+            p2 = p3;
         }
 
-        n3 = n1;
-        n2 = head;
+        p3 = p1;
+        p2 = head;
+
         boolean res = true;
-
-        while (n2 != null && n3 != null){
-            if (n2.value != n3.value){
+        while (p1 != null && p2 != null){
+            if (p1.value != p2.value){
                 res = false;
                 break;
             }
-            n2 = n2.next;
-            n3 = n3.next;
+            p1 = p1.next;
+            p2 = p2.next;
         }
 
-        while (n1 != null){
-            n3 = n1.next;
+        while (p3 != null){
+            p1 = p3.next;
 
-            n1.next = n2;
+            p3.next = p2;
 
-            n2 = n1;
-            n1 = n3;
+            p2 = p3;
+            p3 = p1;
         }
 
         return res;

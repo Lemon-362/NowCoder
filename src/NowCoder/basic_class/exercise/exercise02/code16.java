@@ -11,21 +11,21 @@ public class code16 {
         int dR = arr.length - 1;
         int dC = arr[0].length - 1;
 
-        while (tR < dR){
+        while (tR <= dR) {
             printEdge(arr, tR++, tC++, dR--, dC--);
         }
     }
 
-    public static void printEdge(int[][] arr, int tR, int tC, int dR, int dC){
-        int k = dR - tR;
-        int tmp;
+    public static void printEdge(int[][] arr, int tR, int tC, int dR, int dC) {
+        int times = dR - tR;
+        int temp = 0;
 
-        for (int i = 0; i < k; i++) {
-            tmp = arr[tR][tC + i];
+        for (int i = 0; i < times; i++) {
+            temp = arr[tR][tC + i];
             arr[tR][tC + i] = arr[dR - i][tC];
             arr[dR - i][tC] = arr[dR][dC - i];
             arr[dR][dC - i] = arr[tR + i][dC];
-            arr[tR + i][dC] = tmp;
+            arr[tR + i][dC] = temp;
         }
     }
 

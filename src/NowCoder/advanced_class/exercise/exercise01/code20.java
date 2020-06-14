@@ -14,13 +14,13 @@ public class code20 {
     }
 
     public static class ReturnData {
-        private int size;
+        private int maxSize;
         private Node head;
         private int max;
         private int min;
 
-        public ReturnData(int size, Node head, int max, int min) {
-            this.size = size;
+        public ReturnData(int maxSize, Node head, int max, int min) {
+            this.maxSize = maxSize;
             this.head = head;
             this.max = max;
             this.min = min;
@@ -37,15 +37,13 @@ public class code20 {
         ReturnData rightData = process(head.right);
 
         // 1
-        int leftSize = leftData.size;
-
+        int leftSize = leftData.maxSize;
         // 2
-        int rightSize = rightData.size;
-
+        int rightSize = rightData.maxSize;
         // 3
         int curSize = 0;
-        if (head.left == leftData.head && head.right == rightData.head
-        && head.value > leftData.max && head.value < rightData.min){
+        if (head.value > leftData.max && head.value < rightData.min
+        && head.left == leftData.head && head.right == rightData.head){
             curSize = leftSize + rightSize + 1;
         }
 
@@ -113,6 +111,6 @@ public class code20 {
 
         Node bst = getMaxBST(head);
         printTree(bst);
-        System.out.println(process(head).size); // 7
+        System.out.println(process(head).maxSize); // 7
     }
 }

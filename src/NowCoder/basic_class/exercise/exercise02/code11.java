@@ -15,21 +15,27 @@ public class code11 {
         public void push(int num){
             if (index == stack.length){
                 System.out.println("栈满");
+                return;
             }
+
             stack[index++] = num;
         }
 
         public Integer pop(){
-            if (stack.length == 0){
+            if (index == 0){
                 System.out.println("栈空");
+                return null;
             }
+
             return stack[--index];
         }
 
         public Integer peek(){
-            if (stack.length == 0){
+            if (index == 0){
                 System.out.println("栈空");
+                return null;
             }
+
             return stack[index - 1];
         }
     }
@@ -42,34 +48,46 @@ public class code11 {
 
         public ArrayQueue(int initSize) {
             this.queue = new int[initSize];
-            this.start = 0;
             this.size = 0;
+            this.start = 0;
             this.end = 0;
         }
 
         public void push(int num){
             if (size == queue.length){
                 System.out.println("队列满");
+                return;
             }
+
             size++;
+
             queue[start] = num;
+
             start = start == queue.length - 1 ? 0 : start + 1;
+
         }
 
         public Integer poll(){
             if (size == 0){
                 System.out.println("队列空");
+                return null;
             }
+
             size--;
+
             int res = queue[end];
+
             end = end == queue.length - 1 ? 0 : end + 1;
+
             return res;
         }
 
         public Integer peek(){
             if (size == 0){
                 System.out.println("队列空");
+                return null;
             }
+
             return queue[end];
         }
     }

@@ -16,39 +16,48 @@ public class code13 {
             this.help = new LinkedList<>();
         }
 
-        public void push(int num){
-            this.stack.add(num);
+        public void push(int num) {
+            stack.add(num);
         }
 
-        public Integer pop(){
-            if (this.stack.isEmpty() && this.help.isEmpty()){
-                System.out.println("栈空");
+        public Integer pop() {
+            if (stack.isEmpty() && help.isEmpty()) {
+                return null;
+            } else {
+                while (stack.size() > 1) {
+                    help.add(stack.poll());
+                }
+
+                int res = stack.poll();
+
+                swap();
+
+                return res;
             }
-            while (this.stack.size() > 1){
-                this.help.add(this.stack.poll());
-            }
-            int res = this.stack.poll();
-            swap();
-            return res;
         }
 
-        public Integer peek(){
-            if (this.stack.isEmpty() && this.help.isEmpty()){
-                System.out.println("栈空");
+        public Integer peek() {
+            if (stack.isEmpty() && help.isEmpty()) {
+                return null;
+            } else {
+                while (stack.size() > 1) {
+                    help.add(stack.poll());
+                }
+
+                int res = stack.poll();
+
+                help.add(res);
+
+                swap();
+
+                return res;
             }
-            while (this.stack.size() > 1){
-                this.help.add(this.stack.poll());
-            }
-            int res = this.stack.poll();
-            this.help.add(res);
-            swap();
-            return res;
         }
 
-        public void swap(){
-            Queue<Integer> tmp = stack;
+        public void swap() {
+            Queue<Integer> temp = stack;
             stack = help;
-            help = tmp;
+            help = temp;
         }
     }
 
@@ -61,30 +70,32 @@ public class code13 {
             this.popStack = new Stack<>();
         }
 
-        public void push(int num){
-            this.pushStack.push(num);
+        public void push(int num) {
+            pushStack.push(num);
         }
 
-        public Integer poll(){
-            if (this.pushStack.isEmpty() && this.popStack.isEmpty()){
-                System.out.println("队列空");
-            }else if (this.popStack.isEmpty()){
-                while (!this.pushStack.isEmpty()){
-                    this.popStack.push(this.pushStack.pop());
+        public Integer poll() {
+            if (pushStack.isEmpty() && popStack.isEmpty()) {
+                return null;
+            } else if (popStack.isEmpty()) {
+                while (!pushStack.isEmpty()) {
+                    popStack.push(pushStack.pop());
                 }
             }
-            return this.popStack.pop();
+
+            return popStack.pop();
         }
 
-        public Integer peek(){
-            if (this.pushStack.isEmpty() && this.popStack.isEmpty()){
-                System.out.println("队列空");
-            }else if (this.popStack.isEmpty()){
-                while (!this.pushStack.isEmpty()){
-                    this.popStack.push(this.pushStack.pop());
+        public Integer peek() {
+            if (pushStack.isEmpty() && popStack.isEmpty()) {
+                return null;
+            } else if (popStack.isEmpty()) {
+                while (!pushStack.isEmpty()) {
+                    popStack.push(pushStack.pop());
                 }
             }
-            return this.popStack.peek();
+
+            return popStack.peek();
         }
     }
 

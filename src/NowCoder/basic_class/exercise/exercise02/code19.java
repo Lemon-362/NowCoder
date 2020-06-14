@@ -6,7 +6,6 @@ public class code19 {
             return false;
         }
 
-        boolean res = false;
         int curR = 0;
         int curC = arr[0].length - 1;
 
@@ -16,12 +15,11 @@ public class code19 {
             }else if (num > arr[curR][curC]){
                 curR++;
             }else {
-                res = true;
-                break;
+                return true;
             }
         }
 
-        return res;
+        return false;
     }
 
     public static void main(String[] args) {
@@ -34,7 +32,7 @@ public class code19 {
                 {166, 176, 186, 187, 190, 195, 200},// 6
                 {233, 243, 321, 341, 356, 370, 380} // 7
         };
-        int num = 43;
+        int num = 97;
         System.out.println(FindNumInSortedMatrix(matrix, num));
     }
 }

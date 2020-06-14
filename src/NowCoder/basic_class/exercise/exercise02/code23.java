@@ -20,8 +20,8 @@ public class code23 {
             return null;
         }
 
-        HashMap<Node, Node> map = new HashMap<>();
         Node cur = head;
+        HashMap<Node, Node> map = new HashMap<>();
 
         while (cur != null){
             map.put(cur, new Node(cur.value));
@@ -63,15 +63,15 @@ public class code23 {
             cur = next;
         }
 
-        cur= head;
+        cur = head;
         Node res = cur.next;
-        Node copy = null;
+        Node copyNode = null;
         while (cur != null){
             next = cur.next.next;
-            copy = cur.next;
+            copyNode = cur.next;
 
             cur.next = next;
-            copy.next = cur.next == null ? null : cur.next.next;
+            copyNode.next = cur.next == null ? null : cur.next.next;
 
             cur = next;
         }

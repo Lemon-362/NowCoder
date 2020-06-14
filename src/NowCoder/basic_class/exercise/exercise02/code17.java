@@ -27,6 +27,7 @@ public class code17 {
             cur.next = pre;
 
             pre = cur;
+
             cur = next;
         }
 
@@ -62,6 +63,7 @@ public class code17 {
 
         while (cur != null){
             next = cur.next;
+            pre = cur.last;
 
             cur.next = pre;
             cur.last = next;

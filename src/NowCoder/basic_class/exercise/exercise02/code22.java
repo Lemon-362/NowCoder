@@ -1,7 +1,5 @@
 package NowCoder.basic_class.exercise.exercise02;
 
-import NowCoder.basic_class.exercise.code22_SmallEqualBig;
-
 public class code22 {
     public static class Node {
         private int value;
@@ -19,21 +17,22 @@ public class code22 {
 
         int len = 0;
         Node cur = head;
-        while (cur != null){
+        while (cur != null) {
             len++;
             cur = cur.next;
         }
 
-        cur = head;
         Node[] nodes = new Node[len];
-        for (int i = 0; i < len; i++) {
-            nodes[i] = cur;
+        cur = head;
+        int index = 0;
+        while (cur != null) {
+            nodes[index++] = new Node(cur.value);
             cur = cur.next;
         }
 
         partition(nodes, num);
 
-        for (int i = 0; i < len - 1; i++) {
+        for (int i = 0; i <= len - 2; i++) {
             nodes[i].next = nodes[i + 1];
         }
         nodes[len - 1].next = null;
@@ -45,6 +44,7 @@ public class code22 {
         int less = -1;
         int more = nodes.length;
         int cur = 0;
+
         while (cur < more) {
             if (nodes[cur].value < num) {
                 swap(nodes, ++less, cur++);
@@ -76,31 +76,31 @@ public class code22 {
         Node cur = head;
         Node next = null;
 
-        while (cur != null){
+        while (cur != null) {
             next = cur.next;
             cur.next = null;
 
-            if (cur.value < num){
-                if (sh == null){
+            if (cur.value < num) {
+                if (sh == null) {
                     sh = cur;
                     st = cur;
-                }else {
+                } else {
                     st.next = cur;
                     st = cur;
                 }
-            }else if (cur.value > num){
-                if (bh == null){
+            } else if (cur.value > num) {
+                if (bh == null) {
                     bh = cur;
                     bt = cur;
-                }else {
+                } else {
                     bt.next = cur;
                     bt = cur;
                 }
-            }else {
-                if (eh == null){
+            } else {
+                if (eh == null) {
                     eh = cur;
                     et = cur;
-                }else {
+                } else {
                     et.next = cur;
                     et = cur;
                 }
@@ -109,19 +109,19 @@ public class code22 {
             cur = next;
         }
 
-        if (st != null){
+        if (st != null) {
             st.next = eh;
-            et = et == null ? st : et;
+            et = et == null ? eh : et;
         }
-        if (et != null){
+        if (et != null) {
             et.next = bh;
         }
 
-        if (sh != null){
+        if (sh != null) {
             return sh;
-        }else if (eh != null){
+        } else if (eh != null) {
             return eh;
-        }else {
+        } else {
             return bh;
         }
     }
@@ -148,7 +148,7 @@ public class code22 {
         Node head1 = SmallEqualBig01(head, 5);
         printLinkedList(head1); // 2 1 5 5 8 9 7
 
-//        Node head2 = SmallEqualBig02(head, 5);
-//        printLinkedList(head2); // 1 2 5 5 7 9 8
+        Node head2 = SmallEqualBig02(head, 5);
+        printLinkedList(head2); // 1 2 5 5 7 9 8
     }
 }

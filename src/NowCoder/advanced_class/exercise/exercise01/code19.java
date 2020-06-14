@@ -9,29 +9,29 @@ public class code19 {
         }
 
         HashMap<Integer, Integer> map = new HashMap<>();
-        int[] dp = new int[arr.length];
         map.put(0, -1);
+        int[] dp = new int[arr.length];
         int xor = 0;
-        int len = 0;
+        int res = 0;
 
         for (int i = 0; i < arr.length; i++) {
             xor ^= arr[i];
 
-            if (map.containsKey(xor)){
+            if (map.containsKey(xor)) {
                 int pre = map.get(xor);
                 dp[i] = pre == -1 ? 1 : dp[pre] + 1;
             }
 
-            if (i >= 1){
+            if (i > 0) {
                 dp[i] = Math.max(dp[i], dp[i - 1]);
             }
 
-            len = Math.max(len, dp[i]);
+            res = Math.max(res, dp[i]);
 
             map.put(xor, i);
         }
 
-        return len;
+        return res;
     }
 
     // for test

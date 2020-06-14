@@ -12,10 +12,10 @@ public class code18 {
         int dC = 0;
         int endR = arr.length - 1;
         int endC = arr[0].length - 1;
-        boolean flag = true;
+        boolean flag = false;
 
         while (tR <= endR) {
-            printEdge(arr, tR, tC, dR, dC, flag);
+            print(arr, tR, tC, dR, dC, flag);
             tR = tC == endC ? tR + 1 : tR;
             tC = tC == endC ? tC : tC + 1;
             dC = dR == endR ? dC + 1 : dC;
@@ -24,17 +24,18 @@ public class code18 {
         }
     }
 
-    public static void printEdge(int[][] arr, int tR, int tC, int dR, int dC, boolean flag) {
+    public static void print(int[][] arr, int tR, int tC, int dR, int dC, boolean flag) {
         if (flag) {
-            while (dR != tR - 1) {
-                System.out.print(arr[dR--][dC++] + " ");
-            }
-        } else {
             while (tR != dR + 1) {
                 System.out.print(arr[tR++][tC--] + " ");
             }
+        } else {
+            while (dR != tR - 1) {
+                System.out.print(arr[dR--][dC++] + " ");
+            }
         }
     }
+
 
     public static void main(String[] args) {
         int[][] matrix = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};

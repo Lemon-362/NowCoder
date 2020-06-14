@@ -6,11 +6,11 @@ import java.util.List;
 public class code23 {
     public static class Node {
         private int huo;
-        private List<Node> nexts;
+        private List<Node> next;
 
         public Node(int huo) {
             this.huo = huo;
-            this.nexts = new ArrayList<>();
+            this.next = new ArrayList<>();
         }
     }
 
@@ -25,50 +25,48 @@ public class code23 {
     }
 
     public static ReturnData process(Node head){
-        int lai = head.huo;
-        int bu_lai = 0;
+        int lai_huo = head.huo;
+        int bu_lai_huo = 0;
 
-        for (int i = 0; i < head.nexts.size(); i++) {
-            Node next = head.nexts.get(i);
+        for (int i = 0; i < head.next.size(); i++) {
+            Node cur = head.next.get(i);
 
-            ReturnData nextData = process(next);
+            ReturnData nextData = process(cur);
 
             // 1
-            lai += nextData.bu_lai_huo;
-
+            lai_huo += nextData.bu_lai_huo;
             // 2
-            bu_lai += Math.max(nextData.lai_huo, nextData.bu_lai_huo);
+            bu_lai_huo += Math.max(nextData.lai_huo, nextData.bu_lai_huo);
         }
 
-        return new ReturnData(lai, bu_lai);
+        return new ReturnData(lai_huo, bu_lai_huo);
     }
 
     public static int getMaxHappy(int[][] arr){
         Node[] nodes = new Node[arr.length];
-
         for (int i = 0; i < arr.length; i++) {
             nodes[i] = new Node(arr[i][1]);
         }
 
-        for (int i = 0; i < nodes.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
             int boss = arr[i][0];
             if (i != boss){
-                nodes[boss].nexts.add(nodes[i]);
+                nodes[boss].next.add(nodes[i]);
             }
         }
 
         Node head = null;
-        for (int i = 0; i < nodes.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
             if (i == arr[i][0]){
                 head = nodes[i];
                 break;
             }
         }
 
-        int lai = process(head).lai_huo;
-        int bu_lai = process(head).bu_lai_huo;
+        int lai_huo = process(head).lai_huo;
+        int bu_lai_huo = process(head).bu_lai_huo;
 
-        return Math.max(lai, bu_lai);
+        return Math.max(lai_huo, bu_lai_huo);
     }
 
     public static void main(String[] args) {

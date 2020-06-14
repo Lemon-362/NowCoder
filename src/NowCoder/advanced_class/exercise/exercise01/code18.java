@@ -2,6 +2,7 @@ package NowCoder.advanced_class.exercise.exercise01;
 
 import java.util.HashMap;
 
+// 0,1,2
 public class code18 {
     public static int maxLength(int[] arr){
         if (arr == null || arr.length < 1){

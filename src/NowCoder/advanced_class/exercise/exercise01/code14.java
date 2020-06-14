@@ -77,6 +77,7 @@ public class code14 {
                     list.add(height);
                     res.add(list);
                 }
+
                 height = curHeight;
                 start = curPosition;
             }

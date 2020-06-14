@@ -2,6 +2,7 @@ package NowCoder.advanced_class.exercise.exercise01;
 
 import java.util.HashMap;
 
+// 奇数，偶数
 public class code16 {
     public static int maxLength(int[] arr){
         if (arr == null || arr.length < 1){

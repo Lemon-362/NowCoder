@@ -14,33 +14,35 @@ public class code12 {
             this.minStack = new Stack<>();
         }
 
-        public void push(int num){
-            if (this.minStack.isEmpty()){
-                this.minStack.push(num);
-            }else {
-                if (this.getMin() > num){
-                    this.minStack.push(num);
-                }else {
-                    this.minStack.push(this.getMin());
+        public void push(int num) {
+            if (minStack.isEmpty()) {
+                minStack.push(num);
+            } else {
+                if (this.getMin() >= num) {
+                    minStack.push(num);
+                } else {
+                    minStack.push(this.getMin());
                 }
             }
 
-            this.numStack.push(num);
+            numStack.push(num);
         }
 
-        public Integer getMin(){
-            if (this.minStack.isEmpty()){
-                System.out.println("栈空");
+        public Integer getMin() {
+            if (minStack.isEmpty()) {
+                return null;
+            } else {
+                return minStack.peek();
             }
-            return this.minStack.peek();
         }
 
-        public Integer pop(){
-            if (this.numStack.isEmpty() && this.minStack.isEmpty()){
-                System.out.println("栈空");
+        public Integer pop() {
+            if (minStack.isEmpty() && numStack.isEmpty()) {
+                return null;
+            } else {
+                minStack.pop();
+                return numStack.pop();
             }
-            this.minStack.pop();
-            return this.numStack.pop();
         }
     }
 
