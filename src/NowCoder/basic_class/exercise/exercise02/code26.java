@@ -32,15 +32,13 @@ public class code26 {
     }
 
     public static Node getLeftMost(Node head){
-        if (head == null){
-            return null;
+        Node cur = head;
+
+        while (cur.left != null){
+            cur = cur.left;
         }
 
-        while (head.left != null){
-            head = head.left;
-        }
-
-        return head;
+        return cur;
     }
 
     public static void main(String[] args) {

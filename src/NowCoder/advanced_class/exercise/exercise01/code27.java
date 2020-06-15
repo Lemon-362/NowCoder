@@ -57,40 +57,37 @@ public class code27 {
     }
 
     public static boolean isCBT(Node head) {
-        if (head == null){
+        if (head == null) {
             return true;
         }
 
+        boolean flag = false;
         Queue<Node> queue = new LinkedList<>();
         queue.offer(head);
-        boolean res = true;
-        boolean flag = false;
 
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             Node cur = queue.poll();
             Node left = cur.left;
             Node right = cur.right;
 
             if ((flag && (left != null || right != null))
-            || (left == null && right != null)){
-                res = false;
-                break;
+                    || (left == null && right != null)) {
+                return false;
             }
 
-            if (left == null || right == null){
+            if (left == null || right == null) {
                 flag = true;
             }
 
-            if (left != null){
+            if (left != null) {
                 queue.offer(left);
             }
-
-            if (right != null){
+            if (right != null) {
                 queue.offer(right);
             }
         }
 
-        return res;
+        return true;
     }
 
     public static void main(String[] args) {

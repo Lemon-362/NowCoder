@@ -15,21 +15,20 @@ public class code25 {
         }
     }
 
-    public static class DoubleLinkedList<K, V> {
+    public static class DoubleLinedList<K, V> {
         private Node<K, V> head;
         private Node<K, V> tail;
 
-        public DoubleLinkedList() {
+        public DoubleLinedList() {
             this.head = null;
             this.tail = null;
         }
 
         public void moveNodeToTail(Node<K, V> node){
-            if (this.tail == node){
+            if (node == this.tail){
                 return;
             }
-
-            if (this.head == node){
+            if (node == this.head){
                 Node<K, V> lastNode = node.last;
                 lastNode.next = null;
                 this.head = lastNode;
@@ -53,15 +52,15 @@ public class code25 {
             }
         }
 
-        public Node<K, V> removeHeadNode(){
+        public Node<K, V> removeHead(){
             if (this.head == null){
                 return null;
             }
 
             Node<K, V> headNode = this.head;
-            if (this.tail == headNode){
-                this.head = null;
+            if (headNode == this.tail){
                 this.tail = null;
+                this.head = null;
             }else {
                 Node<K, V> lastNode = headNode.last;
                 lastNode.next = null;
@@ -75,34 +74,34 @@ public class code25 {
             if (this.tail == null){
                 this.tail = node;
                 this.head = node;
-            }else {
-                Node<K, V> tailNode = this.tail;
-                tailNode.last = node;
-                node.next = tailNode;
-                node.last = null;
-                this.tail = node;
             }
+
+            Node<K, V> tailNode = this.tail;
+            tailNode.last = node;
+            node.next = tailNode;
+            node.last = null;
+            this.tail = node;
         }
     }
 
     public static class LRU<K, V> {
         private int capacity;
         private HashMap<K, Node<K, V>> map;
-        private DoubleLinkedList<K, V> list;
+        private DoubleLinedList<K, V> list;
 
         public LRU(int capacity) {
             this.capacity = capacity;
             this.map = new HashMap<>();
-            this.list = new DoubleLinkedList<>();
+            this.list = new DoubleLinedList<>();
         }
 
         public V get(K key){
             if (map.containsKey(key)){
-                Node<K, V> getNode = map.get(key);
+                Node<K, V> popNode = map.get(key);
 
-                list.moveNodeToTail(getNode);
+                list.moveNodeToTail(popNode);
 
-                return getNode.value;
+                return popNode.value;
             }else {
                 return null;
             }
@@ -112,26 +111,30 @@ public class code25 {
             if (map.containsKey(key)){
                 Node<K, V> setNode = map.get(key);
                 setNode.value = value;
-                map.put(key, setNode);
 
                 list.moveNodeToTail(setNode);
+
+                map.put(key, setNode);
             }else {
                 if (this.capacity == map.size()){
-                    removeHeadNode();
+                    this.removeHeadNode();
                 }
-
                 Node<K, V> setNode = new Node<>(key, value);
+
                 map.put(key, setNode);
 
                 list.addNodeToTail(setNode);
+
             }
         }
 
         public void removeHeadNode(){
-            Node<K, V> headNode = list.removeHeadNode();
+            Node<K, V> headNode = list.removeHead();
             map.remove(headNode.key);
         }
     }
+
+
 
     public static void main(String[] args) {
         LRU<String, Integer> lru = new LRU<>(3);

@@ -14,31 +14,27 @@ public class code31 {
             this.size = 0;
         }
 
-        public void insert(K key) {
-            if (!keyIndexMap.containsKey(key)) {
+        public void insert(K key){
+            if (!keyIndexMap.containsKey(key)){
                 keyIndexMap.put(key, size);
                 indexKeyMap.put(size, key);
                 size++;
             }
         }
 
-        public K getRandom() {
-            if (size == 0) {
-                return null;
-            }
-
-            int index = (int) (Math.random() * size);
-            return indexKeyMap.get(index);
+        public K getRandom(){
+            int num = (int)(Math.random() * size);
+            return indexKeyMap.get(num);
         }
 
-        public void delete(K key) {
-            if (keyIndexMap.containsKey(key)) {
+        public void delete(K key){
+            if (keyIndexMap.containsKey(key)){
                 int deleteIndex = keyIndexMap.get(key);
                 int lastIndex = --size;
-                K lastKey = indexKeyMap.get(lastIndex);
+                K lastValue = indexKeyMap.get(lastIndex);
 
-                keyIndexMap.put(lastKey, deleteIndex);
-                indexKeyMap.put(deleteIndex, lastKey);
+                keyIndexMap.put(lastValue, deleteIndex);
+                indexKeyMap.put(deleteIndex, lastValue);
 
                 keyIndexMap.remove(key);
                 indexKeyMap.remove(lastIndex);

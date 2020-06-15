@@ -3,13 +3,12 @@ package NowCoder.advanced_class.exercise.exercise01;
 import java.util.HashMap;
 
 public class code29 {
-    public static int process1(int[] arr, int index, int aim){
+    public static int process1(int[] arr, int index, int aim) {
         int res = 0;
-
         // base case
-        if (index == arr.length){
+        if (index == arr.length) {
             res = aim == 0 ? 1 : 0;
-        }else {
+        } else {
             for (int zhang = 0; zhang * arr[index] <= aim; zhang++) {
                 int leftAim = aim - zhang * arr[index];
                 res += process1(arr, index + 1, leftAim);
@@ -19,7 +18,7 @@ public class code29 {
         return res;
     }
 
-    public static int getWay1(int[] arr, int aim) {
+    public static int getWay1(int[] arr, int aim){
         return process1(arr, 0, aim);
     }
 
@@ -27,11 +26,10 @@ public class code29 {
 
     public static int process2(int[] arr, int index, int aim){
         int res = 0;
-
         // base case
-        if (index == arr.length){
+        if (index == arr.length) {
             res = aim == 0 ? 1 : 0;
-        }else {
+        } else {
             for (int zhang = 0; zhang * arr[index] <= aim; zhang++) {
                 int leftAim = aim - zhang * arr[index];
                 String f = index + 1 + "_" + leftAim;
@@ -40,6 +38,7 @@ public class code29 {
                 }else {
                     res += process1(arr, index + 1, leftAim);
                 }
+
             }
         }
 
@@ -53,15 +52,18 @@ public class code29 {
     }
 
     public static int getWay3(int[] arr, int aim){
-        int[][] dp = new int[arr.length + 1][aim + 1];
+        if (arr == null || arr.length < 1){
+            return 0;
+        }
 
+        int[][] dp = new int[arr.length + 1][aim + 1];
         dp[arr.length][0] = 1;
 
         for (int index = arr.length - 1; index >= 0; index--) {
             for (int leftAim = 0; leftAim < dp[0].length; leftAim++) {
                 int num = 0;
-                for (int zhang = 0; leftAim - arr[index] * zhang >= 0; zhang++) {
-                    num += dp[index + 1][leftAim - arr[index] * zhang];
+                for (int zhang = 0; leftAim - zhang * arr[index] >= 0; zhang++) {
+                    num += dp[index + 1][leftAim - zhang * arr[index]];
                 }
                 dp[index][leftAim] = num;
             }
@@ -71,13 +73,16 @@ public class code29 {
     }
 
     public static int getWay4(int[] arr, int aim){
-        int[][] dp = new int[arr.length + 1][aim + 1];
+        if (arr == null || arr.length < 1){
+            return 0;
+        }
 
+        int[][] dp = new int[arr.length + 1][aim + 1];
         dp[arr.length][0] = 1;
 
         for (int index = arr.length - 1; index >= 0; index--) {
             for (int leftAim = 0; leftAim < dp[0].length; leftAim++) {
-                int num1 = leftAim - arr[index] >= 0 ? dp[index][leftAim-arr[index]] : 0;
+                int num1 = leftAim - arr[index] >= 0 ? dp[index][leftAim - arr[index]] : 0;
                 int num2 = dp[index + 1][leftAim];
 
                 dp[index][leftAim] = num1 + num2;

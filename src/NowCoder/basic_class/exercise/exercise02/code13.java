@@ -16,45 +16,44 @@ public class code13 {
             this.help = new LinkedList<>();
         }
 
-        public void push(int num) {
+        public void push(int num){
             stack.add(num);
         }
 
-        public Integer pop() {
-            if (stack.isEmpty() && help.isEmpty()) {
+        public Integer pop(){
+            if (stack.isEmpty() && help.isEmpty()){
                 return null;
-            } else {
-                while (stack.size() > 1) {
-                    help.add(stack.poll());
-                }
-
-                int res = stack.poll();
-
-                swap();
-
-                return res;
             }
+
+            while (stack.size() > 1){
+                help.add(stack.poll());
+            }
+
+            int res = stack.poll();
+
+            swap();
+
+            return res;
         }
 
-        public Integer peek() {
-            if (stack.isEmpty() && help.isEmpty()) {
+        public Integer peek(){
+            if (stack.isEmpty() && help.isEmpty()){
                 return null;
-            } else {
-                while (stack.size() > 1) {
-                    help.add(stack.poll());
-                }
-
-                int res = stack.poll();
-
-                help.add(res);
-
-                swap();
-
-                return res;
             }
+
+            while (stack.size() > 1){
+                help.add(stack.poll());
+            }
+
+            int res = stack.poll();
+            help.add(res);
+
+            swap();
+
+            return res;
         }
 
-        public void swap() {
+        public void swap(){
             Queue<Integer> temp = stack;
             stack = help;
             help = temp;
@@ -70,15 +69,15 @@ public class code13 {
             this.popStack = new Stack<>();
         }
 
-        public void push(int num) {
+        public void push(int num){
             pushStack.push(num);
         }
 
-        public Integer poll() {
-            if (pushStack.isEmpty() && popStack.isEmpty()) {
+        public Integer poll(){
+            if (pushStack.isEmpty() && popStack.isEmpty()){
                 return null;
-            } else if (popStack.isEmpty()) {
-                while (!pushStack.isEmpty()) {
+            }else if (popStack.isEmpty()){
+                while (!pushStack.isEmpty()){
                     popStack.push(pushStack.pop());
                 }
             }
@@ -86,11 +85,11 @@ public class code13 {
             return popStack.pop();
         }
 
-        public Integer peek() {
-            if (pushStack.isEmpty() && popStack.isEmpty()) {
+        public Integer peek(){
+            if (pushStack.isEmpty() && popStack.isEmpty()){
                 return null;
-            } else if (popStack.isEmpty()) {
-                while (!pushStack.isEmpty()) {
+            }else if (popStack.isEmpty()){
+                while (!pushStack.isEmpty()){
                     popStack.push(pushStack.pop());
                 }
             }

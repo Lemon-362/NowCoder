@@ -29,17 +29,22 @@ public class code25 {
                 }
                 if (mostRight.right == null){
                     mostRight.right = cur;
+
                     System.out.print(cur.value + " ");
+
                     cur = cur.left;
                 }else {
                     mostRight.right = null;
+
                     cur = cur.right;
                 }
             }else {
                 System.out.print(cur.value + " ");
+
                 cur = cur.right;
             }
         }
+
         System.out.println();
     }
 
@@ -59,22 +64,27 @@ public class code25 {
                 }
                 if (mostRight.right == null){
                     mostRight.right = cur;
+
                     cur = cur.left;
                 }else {
                     mostRight.right = null;
+
                     System.out.print(cur.value + " ");
+
                     cur = cur.right;
                 }
             }else {
                 System.out.print(cur.value + " ");
+
                 cur = cur.right;
             }
         }
+
         System.out.println();
     }
 
-    public static void morrisPos(Node head){
-        if (head == null){
+    public static void morrisPos(Node head) {
+        if (head == null) {
             return;
         }
 
@@ -89,34 +99,48 @@ public class code25 {
                 }
                 if (mostRight.right == null){
                     mostRight.right = cur;
+
                     cur = cur.left;
                 }else {
                     mostRight.right = null;
-                    printRightEdge(cur.left);
+
+                    printEdge(cur.left);
+
                     cur = cur.right;
                 }
             }else {
+
+
                 cur = cur.right;
             }
         }
-        printRightEdge(head);
+
+        printEdge(head);
+
         System.out.println();
     }
 
-    public static void printRightEdge(Node head){
-        Node res = reverse(head);
-        Node cur = res;
+    public static void printEdge(Node node){
+        if (node == null){
+            return;
+        }
+
+        Node head = reverse(node);
+        Node cur = head;
+
         while (cur != null){
             System.out.print(cur.value + " ");
+
             cur = cur.right;
         }
-        reverse(res);
+
+        reverse(head);
     }
 
     public static Node reverse(Node head){
         Node cur = head;
-        Node next = null;
         Node pre = null;
+        Node next = null;
 
         while (cur != null){
             next = cur.right;

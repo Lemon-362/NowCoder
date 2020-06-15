@@ -51,14 +51,16 @@ public class code27 {
         return head;
     }
 
+
+
     public static String SerialByLevel(Node head) {
         if (head == null){
             return "#_";
         }
 
         Queue<Node> queue = new LinkedList<>();
-        queue.offer(head);
         String res = head.value + "_";
+        queue.offer(head);
 
         while (!queue.isEmpty()){
             Node cur = queue.poll();
@@ -109,11 +111,11 @@ public class code27 {
         return head;
     }
 
-    public static Node generate(String str){
-        if (str.equals("#")) {
+    public static Node generate(String value){
+        if (value.equals("#")){
             return null;
         }else {
-            return new Node(Integer.parseInt(str));
+            return new Node(Integer.parseInt(value));
         }
     }
 

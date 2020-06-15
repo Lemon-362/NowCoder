@@ -39,9 +39,10 @@ public class code30 {
             return 0;
         }
 
-        while (head != null){
+        Node cur = head;
+        while (cur != null){
+            cur = cur.left;
             level++;
-            head = head.left;
         }
 
         return level - 1;

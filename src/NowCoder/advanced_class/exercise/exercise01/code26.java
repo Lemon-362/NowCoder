@@ -39,17 +39,18 @@ public class code26 {
     }
 
     public static int getNum(LinkedList<String> list){
-        int res = 0;
         boolean add = true;
+        int res = 0;
+        String s = null;
 
         while (!list.isEmpty()){
-            String cur = list.pollFirst();
-            if (cur.equals("+")){
+            s = list.pollFirst();
+            if (s.equals("+")){
                 add = true;
-            }else if (cur.equals("-")){
+            }else if (s.equals("-")){
                 add = false;
             }else {
-                int num = Integer.parseInt(cur);
+                int num = Integer.parseInt(s);
                 res += add ? num : -num;
             }
         }

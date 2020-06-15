@@ -21,87 +21,72 @@ public class code34 {
             this.head = new Node();
         }
 
-        public void insert(String str) {
-            if (str == null) {
-                return;
-            }
-
+        public void insert(String s) {
+            char[] str = s.toCharArray();
             Node cur = head;
-            char[] s = str.toCharArray();
 
-            for (int i = 0; i < s.length; i++) {
-                int index = s[i] - 'a';
+            for (int i = 0; i < str.length; i++) {
+                int path = str[i] - 'a';
 
-                if (cur.next[index] == null) {
-                    cur.next[index] = new Node();
+                if (cur.next[path] == null) {
+                    cur.next[path] = new Node();
                 }
 
-                cur = cur.next[index];
+                cur = cur.next[path];
+
                 cur.path++;
             }
 
             cur.end++;
         }
 
-        public int search(String str) {
-            if (str == null) {
-                return 0;
-            }
-
+        public int search(String s) {
+            char[] str = s.toCharArray();
             Node cur = head;
-            char[] s = str.toCharArray();
 
-            for (int i = 0; i < s.length; i++) {
-                int index = s[i] - 'a';
+            for (int i = 0; i < str.length; i++) {
+                int path = str[i] - 'a';
 
-                if (cur.next[index] == null) {
+                if (cur.next[path] == null) {
                     return 0;
                 }
 
-                cur = cur.next[index];
+                cur = cur.next[path];
             }
 
             return cur.end;
         }
 
-        public void delete(String str) {
-            if (str == null) {
-                return;
-            }
-
+        public void delete(String s) {
+            char[] str = s.toCharArray();
             Node cur = head;
-            char[] s = str.toCharArray();
 
-            for (int i = 0; i < s.length; i++) {
-                int index = s[i] - 'a';
+            for (int i = 0; i < str.length; i++) {
+                int path = str[i] - 'a';
 
-                if (--cur.next[index].path == 0) {
-                    cur.next[index] = null;
-                    return;
+                if (--cur.next[path].path == 0) {
+                    cur.next[path] = null;
+                    break;
                 }
 
-                cur = cur.next[index];
+                cur = cur.next[path];
             }
 
             cur.end--;
         }
 
-        public int prefixNumber(String str) {
-            if (str == null) {
-                return 0;
-            }
-
+        public int prefixNumber(String s) {
+            char[] str = s.toCharArray();
             Node cur = head;
-            char[] s = str.toCharArray();
 
-            for (int i = 0; i < s.length; i++) {
-                int index = s[i] - 'a';
+            for (int i = 0; i < str.length; i++) {
+                int path = str[i] - 'a';
 
-                if (cur.next[index] == null){
+                if (cur.next[path] == null) {
                     return 0;
                 }
 
-                cur = cur.next[index];
+                cur = cur.next[path];
             }
 
             return cur.path;

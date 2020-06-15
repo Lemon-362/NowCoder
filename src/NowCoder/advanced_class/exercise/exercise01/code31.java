@@ -1,29 +1,27 @@
 package NowCoder.advanced_class.exercise.exercise01;
 
 public class code31 {
-    public static int process(int N, int P, int curP, int leftK){
+    public static int process(int N, int curP, int leftK, int P) {
         // base case
-        if (leftK == 0){
+        if (leftK == 0) {
             return curP == P ? 1 : 0;
         }
 
-        if (curP == 1){
-            return process(N, P, curP + 1, leftK - 1);
-        }else if (curP == N){
-            return process(N, P, curP - 1, leftK - 1);
-        }else {
-            return process(N, P, curP + 1, leftK - 1)
-                    + process(N, P, curP - 1, leftK - 1);
+        if (curP == 1) {
+            return process(N, curP + 1, leftK - 1, P);
+        } else if (curP == N) {
+            return process(N, curP - 1, leftK - 1, P);
+        } else {
+            return process(N, curP + 1, leftK - 1, P) + process(N, curP - 1, leftK - 1, P);
         }
     }
 
-    public static int ways1(int N, int M, int K, int P){
-        return process(N, P, M, K);
+    public static int ways1(int N, int M, int K, int P) {
+        return process(N, M, K, P);
     }
 
     public static int ways2(int N, int M, int K, int P){
         int[][] dp = new int[K + 1][N + 1];
-
         dp[0][P] = 1;
 
         for (int leftK = 1; leftK < dp.length; leftK++) {

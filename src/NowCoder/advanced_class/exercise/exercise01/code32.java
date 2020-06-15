@@ -9,19 +9,20 @@ public class code32 {
         }
 
         HashMap<Integer, Integer> map = new HashMap<>();
-        int res = 0;
+        map.put(0, -1);
         int sum = 0;
+        int res = 0;
 
         for (int i = 0; i < arr.length; i++) {
             sum += arr[i];
 
-            if (map.containsKey(sum - aim)) {
+            if (map.containsKey(sum - aim)){
                 int right = i;
                 int left = map.get(sum - aim) + 1;
                 res = Math.max(res, right - left + 1);
             }
 
-            if (!map.containsKey(sum)) {
+            if (!map.containsKey(sum)){
                 map.put(sum, i);
             }
         }
@@ -34,26 +35,27 @@ public class code32 {
             return 0;
         }
 
-        int sum = 0;
+        int res = 0;
         int L = 0;
         int R = 0;
-        int len = 0;
+        int sum = 0;
 
-        while (L < arr.length && R < arr.length) {
-            if (sum == aim) {
-                len = Math.max(len, R - L + 1);
-                sum -= arr[L];
-                L++;
-            } else if (sum < aim) {
+        while (L < arr.length && R < arr.length){
+            if (sum < aim){
                 sum += arr[R];
                 R++;
-            } else {
+            }else if (sum > aim){
+                sum -= arr[L];
+                L++;
+            }else {
+                res = Math.max(res, R - L + 1);
+
                 sum -= arr[L];
                 L++;
             }
         }
 
-        return len;
+        return res;
     }
 
     public static int[] generatePositiveArray(int size) {

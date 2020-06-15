@@ -48,9 +48,9 @@ public class code11 {
 
         public ArrayQueue(int initSize) {
             this.queue = new int[initSize];
-            this.size = 0;
             this.start = 0;
             this.end = 0;
+            this.size = 0;
         }
 
         public void push(int num){
@@ -60,11 +60,8 @@ public class code11 {
             }
 
             size++;
-
             queue[start] = num;
-
             start = start == queue.length - 1 ? 0 : start + 1;
-
         }
 
         public Integer poll(){
@@ -74,9 +71,7 @@ public class code11 {
             }
 
             size--;
-
             int res = queue[end];
-
             end = end == queue.length - 1 ? 0 : end + 1;
 
             return res;
