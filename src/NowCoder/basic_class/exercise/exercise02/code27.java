@@ -34,7 +34,6 @@ public class code27 {
         for (int i = 0; i < s.length; i++) {
             queue.offer(s[i]);
         }
-
         return recon(queue);
     }
 
@@ -51,16 +50,14 @@ public class code27 {
         return head;
     }
 
-
-
     public static String SerialByLevel(Node head) {
         if (head == null){
             return "#_";
         }
 
         Queue<Node> queue = new LinkedList<>();
-        String res = head.value + "_";
         queue.offer(head);
+        String res = head.value + "_";
 
         while (!queue.isEmpty()){
             Node cur = queue.poll();
@@ -102,7 +99,6 @@ public class code27 {
             if (cur.left != null){
                 queue.offer(cur.left);
             }
-
             if (cur.right != null){
                 queue.offer(cur.right);
             }

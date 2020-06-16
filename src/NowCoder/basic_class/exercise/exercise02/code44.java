@@ -7,17 +7,14 @@ public class code44 {
             return arr[i][j];
         }
 
-        // 1
         if (i == arr.length - 1){
             return arr[i][j] + process(arr, i, j + 1);
         }
 
-        // 2
         if (j == arr[0].length - 1){
             return arr[i][j] + process(arr, i + 1, j);
         }
 
-        // 3
         int right = process(arr, i, j + 1);
         int down = process(arr, i + 1, j);
 

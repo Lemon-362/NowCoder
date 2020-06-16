@@ -21,28 +21,27 @@ public class code30 {
         return process(head, 1, H);
     }
 
-    public static int process(Node head, int level, int H){
+    public static int process(Node head, int level, int H) {
         // base case
-        if (level == H){
+        if (level == H) {
             return 1;
         }
 
-        if (getLeftMost(head.right, level + 1) == H){
+        if (getLeftMost(head.right, level + 1) == H) {
             return (1 << (H - level)) + process(head.right, level + 1, H);
-        }else {
+        } else {
             return (1 << (H - level - 1)) + process(head.left, level + 1, H);
         }
     }
 
-    public static int getLeftMost(Node head, int level){
-        if (head == null){
+    public static int getLeftMost(Node head, int level) {
+        if (head == null) {
             return 0;
         }
 
-        Node cur = head;
-        while (cur != null){
-            cur = cur.left;
+        while (head != null) {
             level++;
+            head = head.left;
         }
 
         return level - 1;

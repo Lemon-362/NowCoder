@@ -1,42 +1,37 @@
 package NowCoder.basic_class.exercise.exercise02;
 
 public class code45 {
-    public static boolean process(int[] arr, int a, int index, int res) {
-        // base case
-        if (index == arr.length) {
-            return res == a;
+    public static boolean process(int[] arr, int index, int a){
+        // base cae
+        if (index == arr.length){
+            return a == 0;
         }
 
-        return process(arr, a, index + 1, res) || process(arr, a, index + 1, res + arr[index]);
+        return process(arr, index + 1, a) || process(arr, index + 1, a - arr[index]);
     }
 
-    public static boolean MoneyProblem1(int[] arr, int a) {
-        return process(arr, a, 0, 0);
+    public static boolean MoneyProblem1(int[] arr, int a){
+        return process(arr, 0, a);
     }
 
     public static boolean MoneyProblem2(int[] arr, int a){
         int row = arr.length + 1;
-        int col = 0;
-        for (int i = 0; i < arr.length; i++) {
-            col += arr[i];
-        }
-        col += 1;
-
+        int col = a + 1;
         boolean[][] dp = new boolean[row][col];
 
-        // base case
-        dp[row - 1][a] = true;
+        dp[arr.length][0] = true;
 
-        for (int i = row - 2; i >= 0; i--) {
-            for (int j = 0; j < col; j++) {
-                dp[i][j] = dp[i + 1][j];
-                if (j + arr[i] <= a) {
-                    dp[i][j] = dp[i][j] || dp[i + 1][j + arr[i]];
+        for (int index = arr.length - 1; index >= 0; index--) {
+            for (int sum = 0; sum < dp[0].length; sum++) {
+                if (sum - arr[index] >= 0){
+                    dp[index][sum] = dp[index + 1][sum] || dp[index + 1][sum - arr[index]];
+                }else {
+                    dp[index][sum] = dp[index + 1][sum];
                 }
             }
         }
 
-        return dp[0][0];
+        return dp[0][a];
     }
 
     public static void main(String[] args) {

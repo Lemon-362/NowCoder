@@ -14,7 +14,7 @@ public class code37 {
         }
     }
 
-    public static int IPO(int k, int w, int[] costs, int[] profits){
+    public static int IPO(int k, int w, int[] costs, int[] profits) {
         Node[] nodes = new Node[costs.length];
         for (int i = 0; i < nodes.length; i++) {
             nodes[i] = new Node(costs[i], profits[i]);
@@ -44,7 +44,7 @@ public class code37 {
             }
 
             if (maxProfit.isEmpty()){
-                break;
+                return w;
             }
 
             w += maxProfit.poll().profit;
