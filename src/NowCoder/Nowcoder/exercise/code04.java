@@ -1,7 +1,5 @@
 package NowCoder.Nowcoder.exercise;
 
-import NowCoder.Nowcoder.code04_ReconTreeByPreAndInOrder;
-
 import java.util.Arrays;
 
 public class code04 {
@@ -17,13 +15,12 @@ public class code04 {
 
     public static Node process(int[] pre, int[] in){
         // base case
-        if (pre.length == 0 || in.length == 0){
+        if (pre.length == 0 && in.length == 0){
             return null;
         }
 
         Node head = new Node(pre[0]);
         int mid = 0;
-
         for (int i = 0; i < in.length; i++) {
             if (in[i] == pre[0]){
                 mid = i;
@@ -77,8 +74,8 @@ public class code04 {
     }
 
     public static void main(String[] args) {
-        int[] pre = {1, 2, 4, 7, 3, 5, 6, 8};
-        int[] in = {4, 7, 2, 1, 5, 3, 8, 6};
+        int[] pre = {1, 2, 4, 5, 3, 6, 7};
+        int[] in = {4, 2, 5, 1, 6, 3, 7};
 
         printTree(recon(pre, in));
     }

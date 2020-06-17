@@ -1,7 +1,7 @@
 package NowCoder.Nowcoder.exercise;
 
 public class code06 {
-    // 旋转数组：将一个数组最开始的几个数搬到数组末尾
+    // 旋转数组：将一个非递减的数组最开始的几个数搬到数组末尾
     public static int getMin(int[] arr) {
         if (arr == null || arr.length < 1) {
             return 0;
@@ -9,9 +9,10 @@ public class code06 {
 
         int i = 0;
         int j = arr.length - 1;
+        int mid;
 
         while (i < j){
-            int mid = (i + j) >> 1;
+            mid = (i + j) >> 1;
 
             if (arr[i] < arr[j]){
                 return arr[i];
@@ -26,7 +27,7 @@ public class code06 {
             }
         }
 
-        return arr[i];
+        return arr[j];
     }
 
     public static int compareMethod(int[] arr) {

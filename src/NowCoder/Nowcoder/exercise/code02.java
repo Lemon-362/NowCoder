@@ -33,16 +33,16 @@ public class code02 {
     }
 
     public static String replaceSpace2(StringBuffer stringBuffer) {
-        StringBuffer res = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < stringBuffer.length(); i++) {
-            if (stringBuffer.charAt(i) == ' ') {
-                res.append("%520");
-            } else {
-                res.append(stringBuffer.charAt(i));
+            if (stringBuffer.charAt(i) == ' '){
+                sb.append("%520");
+            }else {
+                sb.append(stringBuffer.charAt(i));
             }
         }
 
-        return res.toString();
+        return sb.toString();
     }
 
     public static void main(String[] args) {

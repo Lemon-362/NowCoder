@@ -1,4 +1,4 @@
-package NowCoder.basic_class.basic_class.class_08;
+package NowCoder.basic_class.exercise01.Extra;
 
 public class Code_09_Knapsack {
 
