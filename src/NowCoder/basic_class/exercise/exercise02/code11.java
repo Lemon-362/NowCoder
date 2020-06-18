@@ -13,7 +13,7 @@ public class code11 {
         }
 
         public void push(int num){
-            if (index == stack.length){
+            if (this.index == this.stack.length){
                 System.out.println("栈满");
                 return;
             }
@@ -22,7 +22,7 @@ public class code11 {
         }
 
         public Integer pop(){
-            if (index == 0){
+            if (this.index == 0){
                 System.out.println("栈空");
                 return null;
             }
@@ -31,7 +31,7 @@ public class code11 {
         }
 
         public Integer peek(){
-            if (index == 0){
+            if (this.index == 0){
                 System.out.println("栈空");
                 return null;
             }
@@ -46,39 +46,43 @@ public class code11 {
         private int start;
         private int end;
 
-        public ArrayQueue(int initSize) {
-            this.queue = new int[initSize];
+        public ArrayQueue(int initSie) {
+            this.queue = new int[initSie];
             this.start = 0;
             this.end = 0;
             this.size = 0;
         }
 
         public void push(int num){
-            if (size == queue.length){
+            if (this.size == this.queue.length){
                 System.out.println("队列满");
                 return;
             }
 
-            size++;
+            this.size++;
+
             queue[start] = num;
-            start = start == queue.length - 1 ? 0 : start + 1;
+
+            start = start == this.queue.length - 1 ? 0 : start + 1;
         }
 
         public Integer poll(){
-            if (size == 0){
+            if (this.size == 0){
                 System.out.println("队列空");
                 return null;
             }
 
-            size--;
+            this.size--;
+
             int res = queue[end];
-            end = end == queue.length - 1 ? 0 : end + 1;
+
+            end = end == this.queue.length - 1 ? 0 : end + 1;
 
             return res;
         }
 
         public Integer peek(){
-            if (size == 0){
+            if (this.size == 0){
                 System.out.println("队列空");
                 return null;
             }

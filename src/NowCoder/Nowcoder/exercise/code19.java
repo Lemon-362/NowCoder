@@ -16,13 +16,13 @@ public class code19 {
         int dC = arr[0].length - 1;
 
         while (tR <= dR && tC <= dC){
-            printEdge(arr, tR++, tC++, dR--, dC--);
+            print(arr, tR++, tC++, dR--, dC--);
         }
 
         return list;
     }
 
-    public static void printEdge(int[][] arr, int tR, int tC, int dR, int dC){
+    public static void print(int[][] arr, int tR, int tC, int dR, int dC){
         if (tR == dR){
             for (int i = tC; i <= dC; i++) {
                 list.add(arr[tR][i]);
@@ -34,17 +34,16 @@ public class code19 {
         }else {
             int curR = tR;
             int curC = tC;
-
             while (curC < dC){
                 list.add(arr[curR][curC++]);
             }
             while (curR < dR){
                 list.add(arr[curR++][curC]);
             }
-            while (curC > tR){
+            while (curC > tC){
                 list.add(arr[curR][curC--]);
             }
-            while (curR > tC){
+            while (curR > tR){
                 list.add(arr[curR--][curC]);
             }
         }

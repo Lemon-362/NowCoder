@@ -1,6 +1,7 @@
 package NowCoder.Nowcoder.exercise;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class code27 {
@@ -11,35 +12,35 @@ public class code27 {
 
         char[] s = str.toCharArray();
 
-        process(s, 0, s.length - 1);
+        process(s, 0);
     }
 
-    public static void process(char[] s, int l, int r) {
+    public static void process(char[] s, int index){
         // base case
-        if (l == r) {
+        if (index == s.length){
             System.out.println(String.valueOf(s));
             return;
         }
 
         HashSet<Character> set = new HashSet<>();
 
-        for (int i = l; i <= r; i++) {
-            if (!set.contains(s[i])) {
+        for (int i = index; i < s.length; i++) {
+            if (!set.contains(s[i])){
                 set.add(s[i]);
 
-                swap(s, i, l);
+                swap(s, index, i);
 
-                process(s, l + 1, r);
+                process(s, index + 1);
 
-                swap(s, i, l);
+                swap(s, index, i);
             }
         }
     }
 
-    public static void swap(char[] s, int i, int j) {
-        char tmp = s[i];
+    public static void swap(char[] s, int i, int j){
+        char temp = s[i];
         s[i] = s[j];
-        s[j] = tmp;
+        s[j] = temp;
     }
 
     // 字符串的子序列

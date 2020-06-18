@@ -15,31 +15,35 @@ public class code20 {
         }
 
         public void push(int num){
-            if (minStack.isEmpty()){
-                minStack.push(num);
+            if (this.minStack.isEmpty()){
+                this.minStack.push(num);
             }else {
-                if (getMin() <= num){
-                    minStack.push(getMin());
+                if (this.getMin() < num){
+                    this.minStack.push(this.getMin());
                 }else {
-                    minStack.push(num);
+                    this.minStack.push(num);
                 }
             }
 
-            numStack.push(num);
+            this.numStack.push(num);
         }
 
         public Integer getMin(){
-            if (minStack.isEmpty()){
+            if (this.minStack.isEmpty()){
                 return null;
             }else {
-                return minStack.peek();
+                return this.minStack.peek();
             }
         }
 
         public Integer pop(){
-           minStack.pop();
+            if (this.numStack.isEmpty() && this.minStack.isEmpty()){
+                return null;
+            }
 
-           return numStack.pop();
+            this.minStack.pop();
+
+            return this.numStack.pop();
         }
     }
 

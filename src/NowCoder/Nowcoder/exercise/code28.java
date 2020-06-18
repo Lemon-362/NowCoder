@@ -12,17 +12,17 @@ public class code28 {
         }
 
         HashMap<Integer, Integer> map = new HashMap<>();
-        int halfLen = arr.length / 2;
 
         for (int i = 0; i < arr.length; i++) {
-            if (!map.containsKey(arr[i])){
-                map.put(arr[i], 1);
-            }else {
+            if (map.containsKey(arr[i])){
                 int times = map.get(arr[i]) + 1;
-                if (times > halfLen){
+                if (times >= arr.length / 2){
                     return arr[i];
                 }
+
                 map.put(arr[i], times);
+            }else {
+                map.put(arr[i], 1);
             }
         }
 

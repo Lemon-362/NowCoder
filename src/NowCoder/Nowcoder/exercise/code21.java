@@ -3,8 +3,8 @@ package NowCoder.Nowcoder.exercise;
 import java.util.Stack;
 
 public class code21 {
-    public static boolean IsPopOrder(int[] push, int[] pop){
-        if (push.length == 0 || pop.length == 0){
+    public static boolean IsPopOrder(int[] push, int[] pop) {
+        if (push.length == 0 || pop.length == 0) {
             return false;
         }
 
@@ -14,9 +14,11 @@ public class code21 {
         for (int i = 0; i < push.length; i++) {
             stack.push(push[i]);
 
-            while (!stack.isEmpty() && stack.peek() == pop[index]){
-                stack.pop();
-                index++;
+            if (stack.peek() == pop[index]) {
+                while (!stack.isEmpty() && stack.peek() == pop[index]) {
+                    index++;
+                    stack.pop();
+                }
             }
         }
 

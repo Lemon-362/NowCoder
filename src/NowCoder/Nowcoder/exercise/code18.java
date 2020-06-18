@@ -79,7 +79,7 @@ public class code18 {
         head.left.left = new Node(5);
         head.left.right = new Node(7);
         head.right.left = new Node(9);
-        head.right.right = new Node(11);
+//        head.right.right = new Node(11);
 
         printTree(head);
         mirrorTree(head);

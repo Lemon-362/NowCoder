@@ -22,12 +22,12 @@ public class code26 {
 
         ArrayList<Node> list = morrisIn(head);
 
-        connectNode(list);
+        connect(list);
 
         return list.get(0);
     }
 
-    public static void connectNode(ArrayList<Node> list){
+    public static void connect(ArrayList<Node> list){
         for (int i = 0; i < list.size() - 1; i++) {
             list.get(i).right = list.get(i + 1);
             list.get(i + 1).left = list.get(i);
@@ -43,6 +43,7 @@ public class code26 {
         }
 
         ArrayList<Node> list = new ArrayList<>();
+
         Node cur = head;
         Node mostRight = null;
 
@@ -54,6 +55,7 @@ public class code26 {
                 }
                 if (mostRight.right == null){
                     mostRight.right = cur;
+
                     cur = cur.left;
                 }else {
                     mostRight.right = null;

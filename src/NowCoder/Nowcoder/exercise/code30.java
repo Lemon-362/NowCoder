@@ -8,18 +8,19 @@ public class code30 {
 
         int[] dp = new int[arr.length];
         dp[0] = arr[0];
-        int max = Integer.MIN_VALUE;
+        int res = arr[0];
 
-        for (int i = 1; i < arr.length; i++) {
+        for (int i = 1; i < dp.length; i++) {
             if (dp[i - 1] >= 0){
                 dp[i] = dp[i - 1] + arr[i];
             }else {
                 dp[i] = arr[i];
             }
-            max = Math.max(max, dp[i]);
+
+            res = Math.max(res, dp[i]);
         }
 
-        return max;
+        return res;
     }
 
     public static void main(String[] args) {

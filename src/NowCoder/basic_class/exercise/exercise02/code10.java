@@ -8,12 +8,11 @@ public class code10 {
             return 0;
         }
 
-        int max = Integer.MIN_VALUE;
         int min = Integer.MAX_VALUE;
-
+        int max = Integer.MIN_VALUE;
         for (int i = 0; i < arr.length; i++) {
-            max = Math.max(max, arr[i]);
             min = Math.min(min, arr[i]);
+            max = Math.max(max, arr[i]);
         }
 
         if (max == min) {
@@ -21,15 +20,15 @@ public class code10 {
         }
 
         int len = arr.length;
-        int[] maxs = new int[len + 1];
         int[] mins = new int[len + 1];
+        int[] maxs = new int[len + 1];
         boolean[] hasNum = new boolean[len + 1];
         int bid;
 
         for (int i = 0; i < arr.length; i++) {
-            bid = bucket(arr[i], len, min, max);
-            maxs[bid] = hasNum[bid] ? Math.max(arr[i], maxs[bid]) : arr[i];
+            bid = bucket(arr[i], len, max, min);
             mins[bid] = hasNum[bid] ? Math.min(arr[i], mins[bid]) : arr[i];
+            maxs[bid] = hasNum[bid] ? Math.max(arr[i], maxs[bid]) : arr[i];
             hasNum[bid] = true;
         }
 
@@ -37,7 +36,7 @@ public class code10 {
         int lastMax = maxs[0];
 
         for (int i = 1; i <= len; i++) {
-            if (hasNum[i]) {
+            if (hasNum[i]){
                 res = Math.max(res, mins[i] - lastMax);
                 lastMax = maxs[i];
             }
@@ -46,7 +45,7 @@ public class code10 {
         return res;
     }
 
-    public static int bucket(int num, int len, int min, int max) {
+    public static int bucket(int num, int len, int max, int min){
         return (num - min) * len / (max - min);
     }
 

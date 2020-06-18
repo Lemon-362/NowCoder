@@ -1,7 +1,5 @@
 package NowCoder.Nowcoder.exercise;
 
-import NowCoder.basic_class.exercise.code23_CopyLinkedListWithRand;
-
 import java.util.HashMap;
 
 public class code25 {
@@ -20,8 +18,8 @@ public class code25 {
             return null;
         }
 
+        HashMap<Node, Node> map = new HashMap();
         Node cur = head;
-        HashMap<Node, Node> map = new HashMap<>();
 
         while (cur != null){
             map.put(cur, new Node(cur.value));
@@ -30,9 +28,8 @@ public class code25 {
 
         cur = head;
         while (cur != null){
-            map.get(cur).rand = map.get(cur.rand);
             map.get(cur).next = map.get(cur.next);
-            cur = cur.next;
+            map.get(cur).rand = map.get(cur.rand);
         }
 
         return map.get(head);
@@ -50,6 +47,7 @@ public class code25 {
             next = cur.next;
 
             cur.next = new Node(cur.value);
+
             cur.next.next = next;
 
             cur = next;
@@ -65,8 +63,8 @@ public class code25 {
         }
 
         cur = head;
-        Node res = cur.next;
         Node copy = null;
+        Node res = cur.next;
 
         while (cur != null){
             next = cur.next.next;
@@ -119,7 +117,7 @@ public class code25 {
 
         print(head); // 1 2 3 4 5 6   rand 6 6 5 3 - 4
         System.out.println("==============");
-        res1 = copyWithHashMap(head);
+//        res1 = copyWithHashMap(head);
         print(res1); // 1 2 3 4 5 6      rand: 6 6 5 3 - 4
         System.out.println("===============");
         res2 = copyWithoutHashMap(head);

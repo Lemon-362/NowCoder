@@ -49,26 +49,26 @@ public class code11_Array_To_Stack_Queue {
         }
 
         public void push(int num) {
-            if (size == queue.length) {
+            if (this.size == this.queue.length) {
                 System.out.println("队列满");
             }
-            size++;
+            this.size++;
             queue[start] = num;
-            start = start == queue.length - 1 ? 0 : start + 1;
+            start = start == this.queue.length - 1 ? 0 : start + 1;
         }
 
         public Integer poll() {
-            if (size == 0) {
+            if (this.size == 0) {
                 System.out.println("队列空");
             }
-            size--;
+            this.size--;
             int res = queue[end];
             end = end == queue.length - 1 ? 0 : end + 1;
             return res;
         }
 
         public Integer peek(){
-            if (size == 0) {
+            if (this.size == 0) {
                 System.out.println("队列空");
             }
             return queue[end];

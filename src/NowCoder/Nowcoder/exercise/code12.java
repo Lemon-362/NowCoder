@@ -7,6 +7,7 @@ public class code12 {
         }else if (n == 1){
             return x;
         }else {
+            // n > 1
             return process(x, n);
         }
     }
@@ -15,9 +16,7 @@ public class code12 {
         // base case
         if (n == 1){
             return x;
-        }
-
-        if (n % 2 == 0){
+        }else if (n % 2 == 0){
             double res = process(x, n / 2);
             return res * res;
         }else {

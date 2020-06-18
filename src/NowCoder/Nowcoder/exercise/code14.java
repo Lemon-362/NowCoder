@@ -25,13 +25,11 @@ public class code14 {
             cur = cur.next;
         }
 
-        cur = head;
-
         for (int i = 0; i < len - k; i++) {
-            cur = cur.next;
+            head = head.next;
         }
 
-        return cur;
+        return head;
     }
 
     public static void main(String[] args) {

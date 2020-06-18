@@ -1,31 +1,29 @@
 package NowCoder.Nowcoder.exercise;
 
 public class code07 {
-    public static int fibonacci(int n) {
-        return process(n);
-    }
-
-    public static int process(int n){
+    public static int process(int N){
         // base case
-        if (n <= 1){
-            return n;
+        if (N < 2){
+            return N;
         }else {
-            return process(n - 1) + process(n - 2);
+            return process(N - 1) + process(N - 2);
         }
     }
 
-    public static int fibonacci1(int n){
-        int len = n + 1;
-        int[] dp = new int[len];
+    public static int fibonacci(int N){
+        return process(N);
+    }
 
+    public static int fibonacci1(int N){
+        int[] dp = new int[N + 1];
         dp[0] = 0;
         dp[1] = 1;
 
-        for (int i = 2; i < len; i++) {
+        for (int i = 2; i < dp.length; i++) {
             dp[i] = dp[i - 1] + dp[i - 2];
         }
 
-        return dp[len - 1];
+        return dp[N];
     }
 
     public static void main(String[] args) {

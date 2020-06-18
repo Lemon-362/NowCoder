@@ -8,12 +8,13 @@ public class code29 {
             }
 
             int[] heap = new int[k];
+
             for (int i = 0; i < k; i++) {
-                heapInsert(heap, arr[i], i);
+                heapInsert(heap, i, arr[i]);
             }
 
             for (int i = k; i < arr.length; i++) {
-                if (arr[i] < heap[0]) {
+                if (arr[i] < heap[0]){
                     heap[0] = arr[i];
                     heapify(heap, 0, k);
                 }
@@ -22,12 +23,12 @@ public class code29 {
             return heap;
         }
 
-        public static void heapify(int[] heap, int index, int size) {
+        public static void heapify(int[] heap, int index, int size){
             int left = 2 * index + 1;
-            while (left < size) {
+            while (left < size){
                 int largest = left + 1 < size && heap[left + 1] > heap[left] ? left + 1 : left;
                 largest = heap[largest] > heap[index] ? largest : index;
-                if (largest == index) {
+                if (largest == index){
                     break;
                 }
                 swap(heap, index, largest);
@@ -36,11 +37,11 @@ public class code29 {
             }
         }
 
-        public static void heapInsert(int[] heap, int num, int index) {
+        public static void heapInsert(int[] heap, int index, int num){
             heap[index] = num;
-            while (heap[index] > heap[(index - 1) / 2]) {
+
+            while (heap[index] > heap[(index - 1) / 2]){
                 swap(heap, index, (index - 1) / 2);
-                index = (index - 1) / 2;
             }
         }
 
@@ -58,57 +59,57 @@ public class code29 {
             }
 
             int kthMinNum = getKthMinNum(arr, k);
-
             int[] res = new int[k];
             int index = 0;
 
             for (int i = 0; i < arr.length; i++) {
-                if (arr[i] < kthMinNum) {
+                if (arr[i] < kthMinNum){
                     res[index++] = arr[i];
                 }
             }
 
-            while (index < k) {
+            while (index < k){
                 res[index++] = kthMinNum;
             }
 
             return res;
         }
 
-        public static int getKthMinNum(int[] arr, int k) {
+        public static int getKthMinNum(int[] arr, int k){
             int[] copyArr = copyArray(arr);
+
             return bfprt(copyArr, 0, copyArr.length - 1, k - 1);
         }
 
-        public static int bfprt(int[] arr, int l, int r, int k) {
+        public static int bfprt(int[] arr, int l, int r, int k){
             // base case
-            if (l == r) {
+            if (l == r){
                 return arr[l];
             }
 
             int num = medianInMedians(arr, l, r);
             int[] p = partition(arr, l, r, num);
 
-            if (k >= p[0] && k <= p[1]) {
+            if (k >= p[0] && k <= p[1]){
                 return num;
-            } else if (k < p[0]) {
+            }else if (k < p[0]){
                 return bfprt(arr, l, p[0] - 1, k);
-            } else {
+            }else {
                 return bfprt(arr, p[1] + 1, r, k);
             }
         }
 
-        public static int[] partition(int[] arr, int l, int r, int num) {
+        public static int[] partition(int[] arr, int l, int r, int num){
             int less = l - 1;
             int more = r + 1;
             int cur = l;
 
-            while (cur < more) {
-                if (arr[cur] < num) {
+            while (cur < more){
+                if (arr[cur] < num){
                     swap(arr, ++less, cur++);
-                } else if (arr[cur] > num) {
+                }else if (arr[cur] > num){
                     swap(arr, --more, cur);
-                } else {
+                }else {
                     cur++;
                 }
             }
@@ -116,7 +117,7 @@ public class code29 {
             return new int[]{less + 1, more - 1};
         }
 
-        public static int medianInMedians(int[] arr, int l, int r) {
+        public static int medianInMedians(int[] arr, int l, int r){
             int len = r - l + 1;
             int offset = len % 5 == 0 ? 0 : 1;
             int group = len / 5 + offset;
@@ -125,6 +126,7 @@ public class code29 {
             for (int i = 0; i < mArr.length; i++) {
                 int start = l + 5 * i;
                 int end = start + 4;
+
                 if (i == mArr.length - 1){
                     mArr[i] = getMedian(arr, start, r);
                 }else {
@@ -136,18 +138,19 @@ public class code29 {
         }
 
         public static int getMedian(int[] arr, int l, int r){
-            bubbleSort(arr, l, r);
+            selectSort(arr, l, r);
             int mid = (l + r) >> 1;
+
             return arr[mid];
         }
 
-        public static void bubbleSort(int[] arr, int l, int r){
-            for (int i = arr.length - 1; i >= 0; i--) {
-                for (int j = 0; j < i; j++) {
-                    if (arr[j] > arr[j + 1]){
-                        swap(arr, j, j + 1);
-                    }
+        public static void selectSort(int[] arr, int l, int r){
+            for (int i = l; i <= r; i++) {
+                int minIndex = i;
+                for (int j = i + 1; j <= r; j++) {
+                    minIndex = arr[minIndex] > arr[j] ? j : minIndex;
                 }
+                swap(arr, i, minIndex);
             }
         }
 

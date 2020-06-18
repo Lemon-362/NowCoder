@@ -20,30 +20,30 @@ public class code24 {
 
     public static LinkedList<List<Integer>> res = new LinkedList<>();
 
-    public static List<List<Integer>> findPath(Node head, int target) {
-        if (head == null) {
+    public static List<List<Integer>> findPath(Node head, int aim){
+        if (head == null || aim < 0){
             return null;
         }
 
-        process(head, target);
+        process(head, aim);
 
         return res;
     }
 
-    public static void process(Node head, int target){
+    public static void process(Node head, int aim){
         // base case
         if (head == null){
             return;
         }
 
-        list.addLast(head.value);
-        target -= head.value;
+        list.add(head.value);
+        aim -= head.value;
 
-        if (target == 0 && head.left == null && head.right == null){
-            res.addLast(new LinkedList<>(list));
-        } else {
-            process(head.left, target);
-            process(head.right, target);
+        if (aim == 0 && head.left == null && head.right == null){
+            res.add(new ArrayList<>(list));
+        }else {
+            process(head.left, aim);
+            process(head.right, aim);
         }
 
         list.removeLast();

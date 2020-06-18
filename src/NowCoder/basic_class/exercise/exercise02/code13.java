@@ -21,15 +21,15 @@ public class code13 {
         }
 
         public Integer pop(){
-            if (stack.isEmpty() && help.isEmpty()){
+            if (this.stack.isEmpty() && this.help.isEmpty()){
                 return null;
             }
 
-            while (stack.size() > 1){
-                help.add(stack.poll());
+            while (this.stack.size() > 1){
+                this.help.add(this.stack.poll());
             }
 
-            int res = stack.poll();
+            int res = this.stack.poll();
 
             swap();
 
@@ -37,16 +37,17 @@ public class code13 {
         }
 
         public Integer peek(){
-            if (stack.isEmpty() && help.isEmpty()){
+            if (this.stack.isEmpty() && this.help.isEmpty()){
                 return null;
             }
 
-            while (stack.size() > 1){
-                help.add(stack.poll());
+            while (this.stack.size() > 1){
+                this.help.add(this.stack.poll());
             }
 
-            int res = stack.poll();
-            help.add(res);
+            int res = this.stack.poll();
+
+            this.help.add(res);
 
             swap();
 
@@ -54,9 +55,9 @@ public class code13 {
         }
 
         public void swap(){
-            Queue<Integer> temp = stack;
-            stack = help;
-            help = temp;
+            Queue<Integer> temp = this.stack;
+            this.stack = this.help;
+            this.help = temp;
         }
     }
 
@@ -74,27 +75,27 @@ public class code13 {
         }
 
         public Integer poll(){
-            if (pushStack.isEmpty() && popStack.isEmpty()){
+            if (this.pushStack.isEmpty() && this.popStack.isEmpty()){
                 return null;
-            }else if (popStack.isEmpty()){
-                while (!pushStack.isEmpty()){
-                    popStack.push(pushStack.pop());
+            } if (this.popStack.isEmpty()){
+                while (!this.pushStack.isEmpty()){
+                    this.popStack.push(this.pushStack.pop());
                 }
             }
 
-            return popStack.pop();
+            return this.popStack.pop();
         }
 
         public Integer peek(){
-            if (pushStack.isEmpty() && popStack.isEmpty()){
+            if (this.pushStack.isEmpty() && this.popStack.isEmpty()){
                 return null;
-            }else if (popStack.isEmpty()){
-                while (!pushStack.isEmpty()){
-                    popStack.push(pushStack.pop());
+            } if (this.popStack.isEmpty()){
+                while (!this.pushStack.isEmpty()){
+                    this.popStack.push(this.pushStack.pop());
                 }
             }
 
-            return popStack.peek();
+            return this.popStack.peek();
         }
     }
 

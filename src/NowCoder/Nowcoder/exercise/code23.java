@@ -10,7 +10,7 @@ public class code23 {
         return process(arr, 0, arr.length - 1);
     }
 
-    public static boolean process(int[] arr, int l, int r) {
+    public static boolean process(int[] arr, int l, int r){
         // base case
         if (l == r){
             return true;
@@ -18,7 +18,6 @@ public class code23 {
 
         int head = arr[r];
         int right = l;
-
         for (int i = l; i < r; i++) {
             if (arr[i] > head){
                 right = i;

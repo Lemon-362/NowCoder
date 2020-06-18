@@ -22,23 +22,27 @@ public class code22 {
             return null;
         }
 
-        ArrayList<Integer> list = new ArrayList<>();
         Queue<Node> queue = new LinkedList<>();
-        list.add(head.value);
         queue.offer(head);
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(head.value);
 
         while (!queue.isEmpty()){
-            Node cur = queue.poll();
-            Node left = cur.left;
-            Node right = cur.right;
+            int size = queue.size();
 
-            if (left != null){
-                list.add(left.value);
-                queue.offer(left);
-            }
-            if (right != null){
-                list.add(right.value);
-                queue.offer(right);
+            for (int i = 0; i < size; i++) {
+                Node cur = queue.poll();
+                Node left = cur.left;
+                Node right = cur.right;
+
+                if (left != null){
+                    list.add(left.value);
+                    queue.offer(left);
+                }
+                if (right != null){
+                    list.add(right.value);
+                    queue.offer(right);
+                }
             }
         }
 

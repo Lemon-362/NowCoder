@@ -15,29 +15,29 @@ public class code17 {
 
     // TODO 子结构: 必须先找到相同节点, 然后再往下比较, 如果直接递归process, 头节点不同直接返回false了
     public static boolean isSubStructure(Node head1, Node head2) {
-        if (head1 == null && head2 == null) {
+        // base case
+        if (head1 == null) {
             return false;
         }
 
-        if (head1.value == head2.value){
+        if (head1.value == head2.value) {
             return process(head1, head2);
-        }else {
+        } else {
             return isSubStructure(head1.left, head2) || isSubStructure(head1.right, head2);
         }
     }
 
-    public static boolean process(Node head1, Node head2){
+    public static boolean process(Node head1, Node head2) {
         // base case
-        if (head2 == null){
+        if (head2 == null) {
             return true;
-        }
-        if (head1 == null){
+        } else if (head1 == null) {
             return false;
         }
 
-        if (head1.value == head2.value){
+        if (head1.value == head2.value) {
             return process(head1.left, head2.left) && process(head1.right, head2.right);
-        }else {
+        } else {
             return false;
         }
     }
