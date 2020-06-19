@@ -31,34 +31,34 @@ public class code36 {
 
     public static Node bothLoop(Node head1, Node head2, Node loop1, Node loop2){
         if (loop1 == loop2){
-            Node n1 = head1;
-            Node n2 = head2;
+            Node p1 = head1;
+            Node p2 = head2;
             int n = 0;
-
-            while (n1 != loop1){
+            while (p1 != loop1){
                 n++;
-                n1 = n1.next;
-            }
-            while (n2 != loop1){
-                n--;
-                n2 = n2.next;
+                p1 = p1.next;
             }
 
-            n1 = n > 0 ? head1 : head2;
-            n2 = n1 == head1 ? head2 : head1;
+            while (p2 != loop1){
+                n--;
+                p2 = p2.next;
+            }
+
+            p1 = n > 0 ? head1 : head2;
+            p2 = p1 == head1 ? head2 : head1;
             n = Math.abs(n);
 
             while (n > 0){
-                n1 = n1.next;
+                p1 = p1.next;
                 n--;
             }
 
-            while (n1 != n2){
-                n1 = n1.next;
-                n2 = n2.next;
+            while (p1 != p2){
+                p1 = p1.next;
+                p2 = p2.next;
             }
 
-            return n1;
+            return p1;
         }else {
             Node cur = loop1.next;
             while (cur != loop1){
@@ -72,34 +72,38 @@ public class code36 {
     }
 
     public static Node bothNoLoop(Node head1, Node head2){
-        Node n1 = head1;
-        Node n2 = head2;
+        if (head1 == null || head2 == null){
+            return null;
+        }
+
+        Node p1 = head1;
+        Node p2 = head2;
         int n = 0;
-
-        while (n1 != null){
+        while (p1 != null){
             n++;
-            n1 = n1.next;
-        }
-        while (n2 != null){
-            n--;
-            n2 = n2.next;
+            p1 = p1.next;
         }
 
-        n1 = n > 0 ? head1 : head2;
-        n2 = n1 == head1 ? head2 : head1;
+        while (p2 != null){
+            n--;
+            p2 = p2.next;
+        }
+
+        p1 = n > 0 ? head1 : head2;
+        p2 = p1 == head1 ? head2 : head1;
         n = Math.abs(n);
 
         while (n > 0){
-            n1 = n1.next;
+            p1 = p1.next;
             n--;
         }
 
-        while (n1 != n2){
-            n1 = n1.next;
-            n2 = n2.next;
+        while (p1 != p2){
+            p1 = p1.next;
+            p2 = p2.next;
         }
 
-        return n1;
+        return p1;
     }
 
     public static Node getLoopNode(Node head){
@@ -107,25 +111,24 @@ public class code36 {
             return null;
         }
 
-        Node n1 = head.next;
-        Node n2 = head.next.next;
+        Node p1 = head.next;
+        Node p2 = head.next.next;
 
-        while (n1 != n2){
-            if (n2.next == null || n2.next.next == null){
+        while (p1 != p2){
+            if (p2.next == null || p2.next.next == null){
                 return null;
             }
-            n1 = n1.next;
-            n2 = n2.next.next;
+            p1 = p1.next;
+            p2 = p2.next.next;
         }
 
-        n2 = head;
-
-        while (n1 != n2){
-            n1 = n1.next;
-            n2 = n2.next;
+        p2 = head;
+        while (p1 != p2){
+            p1 = p1.next;
+            p2 = p2.next;
         }
 
-        return n1;
+        return p1;
     }
 
     public static void main(String[] args) {

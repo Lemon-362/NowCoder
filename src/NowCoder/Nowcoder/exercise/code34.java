@@ -13,10 +13,10 @@ public class code34 {
         char[] s = str.toCharArray();
 
         for (int i = 0; i < s.length; i++) {
-            if (!map.containsKey(s[i])){
-                map.put(s[i], 1);
-            }else {
+            if (map.containsKey(s[i])){
                 map.put(s[i], map.get(s[i]) + 1);
+            }else {
+                map.put(s[i], 1);
             }
         }
 

@@ -10,22 +10,22 @@ public class code41 {
         int j = 1;
         int sum = 0;
 
-        while (j <= target / 2) {
-            if (sum < target) {
-                sum += i;
-                i++;
-            } else if (sum > target) {
-                sum -= j;
+        while (i <= target / 2){
+            if (sum < target){
+                sum += j;
                 j++;
-            } else {
+            }else if (sum > target){
+                sum -= i;
+                i++;
+            }else {
                 ArrayList<Integer> list = new ArrayList<>();
-                for (int k = j; k < i; k++) {
+                for (int k = i; k < j; k++) {
                     list.add(k);
                 }
                 res.add(list);
 
-                sum -= j;
-                j++;
+                sum -= i;
+                i++;
             }
         }
 

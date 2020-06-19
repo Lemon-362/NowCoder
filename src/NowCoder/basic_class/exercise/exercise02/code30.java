@@ -11,6 +11,7 @@ public class code30 {
         }
     }
 
+    // TODO 前提：完全二叉树
     public static int TreeNodeNumber(Node head) {
         if (head == null) {
             return 0;
@@ -21,25 +22,25 @@ public class code30 {
         return process(head, 1, H);
     }
 
-    public static int process(Node head, int level, int H) {
+    public static int process(Node head, int level, int H){
         // base case
-        if (level == H) {
+        if (level == H){
             return 1;
         }
 
-        if (getLeftMost(head.right, level + 1) == H) {
+        if (getLeftMost(head.right, level + 1) == H){
             return (1 << (H - level)) + process(head.right, level + 1, H);
-        } else {
+        }else {
             return (1 << (H - level - 1)) + process(head.left, level + 1, H);
         }
     }
 
-    public static int getLeftMost(Node head, int level) {
-        if (head == null) {
+    public static int getLeftMost(Node head, int level){
+        if (head == null){
             return 0;
         }
 
-        while (head != null) {
+        while (head != null){
             level++;
             head = head.left;
         }

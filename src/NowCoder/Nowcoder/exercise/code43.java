@@ -10,7 +10,7 @@ public class code43 {
 
         n = n % len;
 
-        return (str + str).substring(n, n + len);
+        return (str + str).substring(n, len + n);
     }
 
     public static void main(String[] args) {

@@ -1,23 +1,23 @@
 package NowCoder.Nowcoder.exercise;
 
 public class code44 {
-    public static String reverseSentence(String str){
-        if (str == null || str.length() < 1){
+    public static String reverseSentence(String str) {
+        if (str == null || str.length() < 1) {
             return null;
         }
 
         String[] s = str.split(" ");
 
-        StringBuffer sb = new StringBuffer();
-
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = s.length - 1; i >= 0; i--) {
-            sb.append(s[i]);
-            if (i > 0){
-                sb.append(" ");
+            if (i == 0) {
+                stringBuilder.append(s[i]);
+            } else {
+                stringBuilder.append(s[i]).append(" ");
             }
         }
 
-        return sb.toString();
+        return stringBuilder.toString();
     }
 
     public static void main(String[] args) {

@@ -18,7 +18,8 @@ public class code23 {
 
         int head = arr[r];
         int right = l;
-        for (int i = l; i < r; i++) {
+
+        for (int i = l; i <= r; i++) {
             if (arr[i] > head){
                 right = i;
                 break;
@@ -31,7 +32,7 @@ public class code23 {
         }
 
         // 2
-        for (int i = right; i < r; i++) {
+        for (int i = right + 1; i < r; i++) {
             if (arr[i] < head){
                 return false;
             }

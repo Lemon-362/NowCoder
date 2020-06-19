@@ -17,7 +17,7 @@ public class code27 {
     }
 
     public static String SerialByPre(Node head) {
-        if (head == null){
+        if (head == null) {
             return "#_";
         }
 
@@ -34,15 +34,28 @@ public class code27 {
         for (int i = 0; i < s.length; i++) {
             queue.offer(s[i]);
         }
+
         return recon(queue);
     }
 
-    public static Node recon(Queue<String> queue){
-        String value = queue.poll();
-        if (value.equals("#")){
-            return null;
+    public static String SerialByIn(Node head){
+        if (head == null){
+            return "#_";
         }
 
+
+        String res = SerialByIn(head.left);
+        res += head.value + "_";
+        res += SerialByIn(head.right);
+
+        return res;
+    }
+
+    public static Node recon(Queue<String> queue) {
+        String value = queue.poll();
+        if (value.equals("#")) {
+            return null;
+        }
         Node head = new Node(Integer.parseInt(value));
         head.left = recon(queue);
         head.right = recon(queue);
@@ -65,15 +78,15 @@ public class code27 {
             Node right = cur.right;
 
             if (left != null){
-                res += left.value + "_";
                 queue.offer(left);
+                res += left.value + "_";
             }else {
                 res += "#_";
             }
 
             if (right != null){
-                res += right.value + "_";
                 queue.offer(right);
+                res += right.value + "_";
             }else {
                 res += "#_";
             }
@@ -87,6 +100,7 @@ public class code27 {
         int index = 0;
         Node head = generate(s[index++]);
         Queue<Node> queue = new LinkedList<>();
+
         if (head != null){
             queue.offer(head);
         }
@@ -99,6 +113,7 @@ public class code27 {
             if (cur.left != null){
                 queue.offer(cur.left);
             }
+
             if (cur.right != null){
                 queue.offer(cur.right);
             }

@@ -65,13 +65,14 @@ public class code23 {
 
         cur = head;
         Node res = cur.next;
-        Node copyNode = null;
+        Node copy = null;
+
         while (cur != null){
             next = cur.next.next;
-            copyNode = cur.next;
+            copy = cur.next;
 
             cur.next = next;
-            copyNode.next = cur.next == null ? null : cur.next.next;
+            copy.next = cur.next == null ? null : cur.next.next;
 
             cur = next;
         }

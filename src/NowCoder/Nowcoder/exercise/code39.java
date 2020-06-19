@@ -12,42 +12,40 @@ public class code39 {
     }
 
     public static class ReturnData {
-        private boolean isB;
         private int height;
+        private boolean isB;
 
-        public ReturnData(boolean isB, int height) {
-            this.isB = isB;
+        public ReturnData(int height, boolean isB) {
             this.height = height;
+            this.isB = isB;
         }
     }
 
     public static ReturnData process(Node head) {
         // base case
-        if (head == null) {
-            return new ReturnData(true, 0);
+        if (head == null){
+            return new ReturnData(0, true);
         }
 
         ReturnData leftData = process(head.left);
         ReturnData rightData = process(head.right);
 
         // 1
-        if (!leftData.isB) {
-            return new ReturnData(false, 0);
+        if (!leftData.isB){
+            return new ReturnData(0, false);
         }
 
         // 2
-        if (!rightData.isB) {
-            return new ReturnData(false, 0);
+        if (!rightData.isB){
+            return new ReturnData(0, false);
         }
 
         // 3
-        if (Math.abs(leftData.height - rightData.height) > 1) {
-            return new ReturnData(false, 0);
+        if (Math.abs(leftData.height - rightData.height) > 1){
+            return new ReturnData(0, false);
         }
 
-        int curHeight = Math.max(leftData.height, rightData.height) + 1;
-
-        return new ReturnData(true, curHeight);
+        return new ReturnData(Math.max(leftData.height, rightData.height) + 1, true);
     }
 
     public static boolean isBalance(Node head) {

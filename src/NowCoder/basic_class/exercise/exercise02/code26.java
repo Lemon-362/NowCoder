@@ -43,6 +43,36 @@ public class code26 {
         return head;
     }
 
+    // TODO 前驱节点：左子树上最右的节点，如果没有则找父节点的右孩子是当前节点
+    public static Node getSuccessPreNode(Node node){
+        if (node == null){
+            return null;
+        }
+
+        if (node.left != null){
+            return getRightMost(node.left);
+        }else {
+            Node parent = node.parent;
+            while (parent != null && parent.right != node){
+                node = parent;
+                parent = node.parent;
+            }
+            return parent;
+        }
+    }
+
+    public static Node getRightMost(Node head){
+        if (head == null){
+            return null;
+        }
+
+        while (head.right != null){
+            head = head.right;
+        }
+
+        return head;
+    }
+
     public static void main(String[] args) {
         Node head = new Node(6);
         head.parent = null;

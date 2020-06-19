@@ -11,7 +11,7 @@ public class code42 {
         int sum = 0;
         int[] res = new int[2];
 
-        while (i <= j){
+        while (i < j){
             sum = arr[i] + arr[j];
             if (sum < target){
                 i++;

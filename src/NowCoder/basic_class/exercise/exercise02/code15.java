@@ -11,33 +11,33 @@ public class code15 {
         int dR = arr.length - 1;
         int dC = arr[0].length - 1;
 
-        while (tR <= dR && tC <= dC) {
-            printEdge(arr, tR++, tC++, dR--, dC--);
+        while (tR <= dR && tC <= dC){
+            print(arr, tR++, tC++, dR--, dC--);
         }
     }
 
-    public static void printEdge(int[][] arr, int tR, int tC, int dR, int dC) {
-        if (tR == dR) {
-            for (int i = tC; i <= dC; i++) {
-                System.out.print(arr[tR][i] + " ");
-            }
-        } else if (tC == dC) {
+    public static void print(int[][] arr, int tR, int tC, int dR, int dC){
+        if (tC == dC){
             for (int i = tR; i <= dR; i++) {
                 System.out.print(arr[i][tC] + " ");
             }
-        } else {
+        }else if (tR == dR){
+            for (int i = tC; i <= dC; i++) {
+                System.out.print(arr[tR][i] + " ");
+            }
+        }else {
             int curR = tR;
             int curC = tC;
-            while (curC < dC) {
+            while (curC < dC){
                 System.out.print(arr[curR][curC++] + " ");
             }
-            while (curR < dR) {
+            while (curR < dR){
                 System.out.print(arr[curR++][curC] + " ");
             }
-            while (curC > tC) {
+            while (curC > tC){
                 System.out.print(arr[curR][curC--] + " ");
             }
-            while (curR > tR) {
+            while (curR > tR){
                 System.out.print(arr[curR--][curC] + " ");
             }
         }

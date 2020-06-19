@@ -21,12 +21,12 @@ public class code32 {
             }
         });
 
-        StringBuilder res = new StringBuilder();
+        StringBuilder stringBuffer = new StringBuilder();
         for (int i = 0; i < s.length; i++) {
-            res.append(s[i]);
+            stringBuffer.append(s[i]);
         }
 
-        return res.toString();
+        return stringBuffer.toString();
     }
 
     public static void main(String[] args) {

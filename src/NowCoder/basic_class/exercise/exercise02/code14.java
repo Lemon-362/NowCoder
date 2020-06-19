@@ -17,7 +17,7 @@ public class code14 {
         }
     }
 
-    public static class Dog extends Pet{
+    public static class Dog extends Pet {
 
         public Dog() {
             super("dog");
@@ -25,6 +25,7 @@ public class code14 {
     }
 
     public static class Cat extends Pet {
+
 
         public Cat() {
             super("cat");
@@ -35,17 +36,17 @@ public class code14 {
         private Pet pet;
         private int count;
 
-        public PetEnterQueue(Pet pet, int count) {
-            this.pet = pet;
-            this.count = count;
-        }
-
         public Pet getPet() {
             return pet;
         }
 
         public int getCount() {
             return count;
+        }
+
+        public PetEnterQueue(Pet pet, int count) {
+            this.pet = pet;
+            this.count = count;
         }
     }
 
@@ -65,6 +66,8 @@ public class code14 {
                 dogQ.add(new PetEnterQueue(pet, count++));
             }else if (pet.getType().equals("cat")){
                 catQ.add(new PetEnterQueue(pet, count++));
+            }else {
+                return;
             }
         }
 
@@ -79,22 +82,6 @@ public class code14 {
                 return dogQ.poll().getPet();
             }else if (!catQ.isEmpty()){
                 return catQ.poll().getPet();
-            }else {
-                return null;
-            }
-        }
-
-        public Dog pollDog(){
-            if (!dogQ.isEmpty()){
-                return (Dog) dogQ.poll().getPet();
-            }else {
-                return null;
-            }
-        }
-
-        public Cat pollCat(){
-            if (!catQ.isEmpty()){
-                return (Cat) catQ.poll().getPet();
             }else {
                 return null;
             }

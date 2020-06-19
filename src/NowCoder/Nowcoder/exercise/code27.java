@@ -12,27 +12,27 @@ public class code27 {
 
         char[] s = str.toCharArray();
 
-        process(s, 0);
+        process(s, 0, s.length - 1);
     }
 
-    public static void process(char[] s, int index){
+    public static void process(char[] s, int l, int r){
         // base case
-        if (index == s.length){
+        if (l == r){
             System.out.println(String.valueOf(s));
             return;
         }
 
         HashSet<Character> set = new HashSet<>();
 
-        for (int i = index; i < s.length; i++) {
+        for (int i = l; i <= r; i++) {
             if (!set.contains(s[i])){
                 set.add(s[i]);
 
-                swap(s, index, i);
+                swap(s, i, l);
 
-                process(s, index + 1);
+                process(s, l + 1, r);
 
-                swap(s, index, i);
+                swap(s, i, l);
             }
         }
     }
@@ -51,12 +51,12 @@ public class code27 {
 
         char[] s = str.toCharArray();
 
-        process2(s, 0, "");
+        process2(s, 0, " ");
     }
 
-    public static void process2(char[] s, int index, String res) {
+    public static void process2(char[] s, int index, String res){
         // base case
-        if (index == s.length) {
+        if (index == s.length){
             System.out.println(res);
             return;
         }
