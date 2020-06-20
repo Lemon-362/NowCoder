@@ -49,17 +49,25 @@ public class code03_EndToHeadPrintLinkedList {
         return arrayList;
     }
 
-    // 法三：改成递归形式 注意：arrayList要在外面定义好
+    /**
+     * 法三：改成递归形式 注意：arrayList要在外面定义好
+     *  先递推，直到终止条件（到达链表末尾）
+     *  开始回溯，依次加入当前节点
+     * TODO 当链表很长时，递归会出现栈溢出，此时栈的方法较好
+     */
     static ArrayList<Integer> arrayList = new ArrayList<>();
 
     public static ArrayList<Integer> endToHeadPrint03(ListNode listNode){
-        if (listNode == null) {
+        // base case
+        if (listNode == null){
             return null;
         }
-        if (listNode != null){
-            endToHeadPrint03(listNode.next);
-            arrayList.add(listNode.val);
-        }
+
+        // 先递推
+        endToHeadPrint03(listNode.next);
+        // 回溯
+        arrayList.add(listNode.val);
+
         return arrayList;
     }
 

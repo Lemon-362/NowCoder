@@ -42,6 +42,31 @@ public class code04_ReconTreeByPreAndInOrder {
         return head;
     }
 
+    public static TreeNode process(int[] pre, int lPre, int rPre, int[] in, int lIn, int rIn){
+        // base case
+        if (lPre > rPre || lIn > rIn){
+            return null;
+        }
+
+        TreeNode head = new TreeNode(pre[lPre]);
+        int mid = lIn;
+        for (int i = lIn; i <= rIn; i++) {
+            if (in[i] == pre[lPre]){
+                mid = i;
+                break;
+            }
+        }
+
+        head.left = process(pre, lPre + 1, mid, in, lIn, mid - 1);
+        head.right = process(pre, mid + 1, rPre, in, mid + 1, rIn);
+
+        return head;
+    }
+
+    public static TreeNode reConstructBinaryTree2(int[] pre, int[] in){
+        return process(pre, 0, pre.length - 1, in, 0, in.length - 1);
+    }
+
     // print
     public static void printTree(TreeNode head) {
         System.out.println("Binary Tree:");
@@ -77,6 +102,9 @@ public class code04_ReconTreeByPreAndInOrder {
         int[] in = {4, 7, 2, 1, 5, 3, 8, 6};
         TreeNode treeNode = reConstructBinaryTree(pre, in);
         printTree(treeNode);
+
+        System.out.println("******************");
+        printTree(reConstructBinaryTree2(pre, in));
     }
 }
 

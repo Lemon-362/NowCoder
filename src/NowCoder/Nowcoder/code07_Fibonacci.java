@@ -52,6 +52,28 @@ public class code07_Fibonacci {
         return sum;
     }
 
+    /*
+    TODO 应对大数问题：答案对 1e9+7 取模
+     */
+    public static int method04(int n){
+        if (n <= 1){
+            return n;
+        }
+
+        int pre = 0;
+        int cur = 1;
+        int res = 0;
+
+        for (int i = 2; i <= n; i++) {
+            res = (pre + cur) % 1000000007;
+
+            pre = cur;
+            cur = res;
+        }
+
+        return res;
+    }
+
     // TODO 矩阵求幂法：O(logN) O(logN)
 
     // TODO 公式法：O(1) O(1)
@@ -61,5 +83,6 @@ public class code07_Fibonacci {
         System.out.println(method01(n)); // 8
         System.out.println(method02(n));
         System.out.println(method03(n));
+        System.out.println(method04(n));
     }
 }

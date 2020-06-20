@@ -1,5 +1,7 @@
 package NowCoder.Nowcoder.exercise;
 
+import NowCoder.Nowcoder.code04_ReconTreeByPreAndInOrder;
+
 import java.util.Arrays;
 
 public class code04 {
@@ -28,15 +30,30 @@ public class code04 {
             }
         }
 
-        int[] lPre = Arrays.copyOfRange(pre, 1, mid + 1);
-        int[] lIn = Arrays.copyOfRange(in, 0, mid);
-        int[] rPre = Arrays.copyOfRange(pre, mid + 1, pre.length);
-        int[] rIn = Arrays.copyOfRange(in, mid + 1, in.length);
+//        int[] lPre = Arrays.copyOfRange(pre, 1, mid + 1);
+//        int[] lIn = Arrays.copyOfRange(in, 0, mid);
+//        int[] rPre = Arrays.copyOfRange(pre, mid + 1, pre.length);
+//        int[] rIn = Arrays.copyOfRange(in, mid + 1, in.length);
+
+        int[] lPre = generateArr(pre, 1, mid);
+        int[] lIn = generateArr(in, 0, mid - 1);
+        int[] rPre = generateArr(pre, mid + 1, pre.length - 1);
+        int[] rIn = generateArr(in, mid + 1, in.length - 1);
 
         head.left = process(lPre, lIn);
         head.right = process(rPre, rIn);
 
         return head;
+    }
+
+    // TODO 如果Arrays.copyOfRange想不起来，可以自己定义复制数组某一部分的函数
+    public static int[] generateArr(int[] arr, int l, int r){
+        int[] res = new int[r - l + 1];
+        int index = 0;
+        for (int i = l; i <= r; i++) {
+            res[index++] = arr[i];
+        }
+        return res;
     }
 
     public static Node recon(int[] pre, int[] in){

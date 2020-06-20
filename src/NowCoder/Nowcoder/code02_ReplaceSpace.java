@@ -32,10 +32,14 @@ public class code02_ReplaceSpace {
         return newStr.toString();
     }
 
-    // 方法三：从后往前
-    // TODO 从后往前可以保证尽量减少空间，因为遇到空格就要把后续的字符往后移
-    // TODO 而从前往后的话，每遇到一个空格，就要将后续的字符往后移动一次，会有重复操作
-    public String replaceSpace3(StringBuffer str) {
+    /**
+     * 法三：从后往前
+     * TODO 从后往前可以保证尽量减少空间，因为遇到空格就要把后续的字符往后移TODO
+     *      而从前往后的话，每遇到一个空格，就要将后续的字符往后移动一次，会有重复操作
+     *
+     * 时间复杂度：O(N)
+     */
+     public String replaceSpace3(StringBuffer str) {
         int spacenum = 0; // 空格数量
         // 首先计算空格的数量
         for (int i = 0; i < str.length(); i++) {
