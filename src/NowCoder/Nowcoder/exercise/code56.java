@@ -10,19 +10,19 @@ public class code56 {
         }
     }
 
-    public static Node deleteDuplication(Node head){
-        if (head == null){
+    public static Node deleteDuplication(Node head) {
+        if (head == null) {
             return null;
         }
 
         Node newHead = new Node(Integer.MIN_VALUE);
         newHead.next = head;
-        Node pre = newHead;
         Node cur = head;
+        Node pre = newHead;
 
-        while (cur != null){
-            if (cur.next != null && cur.value == cur.next.value){
-                while (cur.next != null && cur.value == cur.next.value){
+        while (cur != null) {
+            if (cur.next != null && cur.next.value == cur.value) {
+                while (cur.next != null && cur.next.value == cur.value) {
                     cur = cur.next;
                 }
                 cur = cur.next;
@@ -39,11 +39,11 @@ public class code56 {
         return res;
     }
 
-     public static void print(Node head){
-        if (head == null){
+    public static void print(Node head) {
+        if (head == null) {
             return;
         }
-        while (head != null){
+        while (head != null) {
             System.out.print(head.value + " ");
             head = head.next;
         }

@@ -19,44 +19,49 @@ public class code63 {
         }
     });
 
-    public void insert(Integer num) {
-        if (maxHeap.isEmpty()) {
-            maxHeap.add(num);
+    public void insert(int num){
+        if (this.maxHeap.isEmpty()){
+            this.maxHeap.add(num);
             return;
         }
 
-        if (num <= maxHeap.peek()) {
-            maxHeap.add(num);
-        } else {
-            if (minHeap.isEmpty()) {
-                minHeap.add(num);
+        if (num <= this.maxHeap.peek()){
+            this.maxHeap.add(num);
+        }else {
+            if (this.minHeap.isEmpty()){
+                this.minHeap.add(num);
                 return;
             }
 
-            minHeap.add(num);
+            this.minHeap.add(num);
         }
 
         modify();
     }
 
-    public Double getMedian() {
-        int maxSize = maxHeap.size();
-        int minSize = minHeap.size();
-        Integer maxValue = maxHeap.peek();
-        Integer minValue = minHeap.peek();
-
-        if ((maxSize + minSize) % 2 == 0) {
-            return (maxValue + minValue) / 2.0;
-        } else {
-            return maxSize > minSize ? maxValue * 1.0 : minValue * 1.0;
+    public void modify(){
+        if (this.maxHeap.size() - this.minHeap.size() > 1){
+            this.minHeap.add(this.maxHeap.poll());
+        } else if (this.minHeap.size() - this.maxHeap.size() > 1) {
+            this.maxHeap.add(this.minHeap.poll());
         }
     }
 
-    public void modify() {
-        if (maxHeap.size() - minHeap.size() > 1) {
-            minHeap.add(maxHeap.poll());
-        } else if (minHeap.size() - maxHeap.size() > 1) {
-            maxHeap.add(minHeap.poll());
+    public Double getMedian(){
+        int maxHeapSize = this.maxHeap.size();
+        int minHeapSize = this.minHeap.size();
+
+        Integer maxValue = this.maxHeap.peek();
+        Integer minValue = this.minHeap.peek();
+
+        if (maxHeapSize + minHeapSize == 0){
+            return null;
+        }
+
+        if ((maxHeapSize + minHeapSize) % 2 == 0){
+            return (maxValue + minValue) / 2.0;
+        }else {
+            return maxHeapSize > minHeapSize ? maxValue * 1.0 : minValue * 1.0;
         }
     }
 

@@ -17,11 +17,11 @@ public class code57 {
             return null;
         }
 
-        if (node.right != null) {
+        if (node.right != null){
             return getLeftMost(node.right);
-        } else {
+        }else {
             Node parent = node.parent;
-            while (parent != null && parent.left != node) {
+            while (parent != null && parent.left != node){
                 node = parent;
                 parent = node.parent;
             }
@@ -29,16 +29,16 @@ public class code57 {
         }
     }
 
-    public static Node getLeftMost(Node node) {
-        if (node == null) {
+    public static Node getLeftMost(Node head){
+        if (head == null){
             return null;
         }
 
-        while (node.left != null) {
-            node = node.left;
+        while (head.left != null){
+            head = head.left;
         }
 
-        return node;
+        return head;
     }
 
     public static void main(String[] args) {

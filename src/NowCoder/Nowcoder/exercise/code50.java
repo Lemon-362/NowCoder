@@ -8,18 +8,23 @@ public class code50 {
             return false;
         }
 
-        HashSet<Integer> set = new HashSet<>();
-
         for (int i = 0; i < length; i++) {
-            if (set.contains(numbers[i])){
-                duplication[0] = numbers[i];
-                return true;
-            }else {
-                set.add(numbers[i]);
+            while (i != numbers[i]){
+                if (numbers[i] == numbers[numbers[i]]){
+                    duplication[0] = numbers[i];
+                    return true;
+                }
+                swap(numbers, i, numbers[i]);
             }
         }
 
         return false;
+    }
+
+    public static void swap(int[] arr, int i, int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 
     public static void main(String[] args) {

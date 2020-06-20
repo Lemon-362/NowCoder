@@ -1,5 +1,6 @@
 package NowCoder.basic_class.exercise.exercise02;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -27,6 +28,10 @@ public class code37 {
             }
         });
 
+        for (int i = 0; i < nodes.length; i++) {
+            minCost.add(nodes[i]);
+        }
+
         PriorityQueue<Node> maxProfit = new PriorityQueue<>(new Comparator<Node>() {
             @Override
             public int compare(Node o1, Node o2) {
@@ -34,17 +39,13 @@ public class code37 {
             }
         });
 
-        for (int i = 0; i < nodes.length; i++) {
-            minCost.add(nodes[i]);
-        }
-
         for (int i = 0; i < k; i++) {
             while (!minCost.isEmpty() && minCost.peek().cost <= w){
                 maxProfit.add(minCost.poll());
             }
 
             if (maxProfit.isEmpty()){
-                return w;
+                break;
             }
 
             w += maxProfit.poll().profit;

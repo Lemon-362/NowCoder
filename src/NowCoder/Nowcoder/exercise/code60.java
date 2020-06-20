@@ -20,26 +20,27 @@ public class code60 {
         ArrayList<List<Integer>> res = new ArrayList<>();
 
         Queue<Node> queue = new LinkedList<>();
-        if (head != null) {
+        if (head != null){
             queue.offer(head);
         }
 
-        while (!queue.isEmpty()) {
+        while (!queue.isEmpty()){
             int size = queue.size();
-            ArrayList<Integer> list = new ArrayList<>();
-
+            List<Integer> list = new ArrayList<>();
             for (int i = 0; i < size; i++) {
                 Node cur = queue.poll();
+                Node left = cur.left;
+                Node right = cur.right;
+
                 list.add(cur.value);
 
-                if (cur.left != null) {
-                    queue.offer(cur.left);
+                if (left != null){
+                    queue.offer(left);
                 }
-                if (cur.right != null) {
-                    queue.offer(cur.right);
+                if (right != null){
+                    queue.offer(right);
                 }
             }
-
             res.add(list);
         }
 

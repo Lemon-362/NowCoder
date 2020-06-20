@@ -8,15 +8,12 @@ public class code66 {
 
         int[][] arr = new int[m][n];
 
-        return process(arr, k, 0, 0);
+        return process(arr, 0, 0, k);
     }
 
-    public static int process(int[][] arr, int k, int i, int j) {
+    public static int process(int[][] arr, int i, int j, int k) {
         // base case
-        if (i < 0 || i >= arr.length || j < 0 || j >= arr[0].length) {
-            return 0;
-        }
-        if (arr[i][j] == 1) {
+        if (i < 0 || i >= arr.length || j < 0 || j >= arr[0].length || arr[i][j] == 1) {
             return 0;
         }
         if (!isValid(i, j, k)) {
@@ -25,21 +22,22 @@ public class code66 {
 
         arr[i][j] = 1;
 
-        return 1 + process(arr, k, i + 1, j)
-                + process(arr, k, i - 1, j)
-                + process(arr, k, i, j + 1)
-                + process(arr, k, i, j - 1);
+        return 1 + process(arr, i + 1, j, k)
+                + process(arr, i - 1, j, k)
+                + process(arr, i, j + 1, k)
+                + process(arr, i, j - 1, k);
     }
 
     public static boolean isValid(int i, int j, int k) {
         int res = 0;
-
-        while (i > 0) {
+        while (i > 0){
             res += i % 10;
+
             i /= 10;
         }
-        while (j > 0) {
+        while (j > 0){
             res += j % 10;
+
             j /= 10;
         }
 

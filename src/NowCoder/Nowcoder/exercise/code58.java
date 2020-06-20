@@ -19,17 +19,17 @@ public class code58 {
         return process(head.left, head.right);
     }
 
-    public static boolean process(Node left, Node right) {
+    public static boolean process(Node left, Node right){
         // base case
-        if (left == null && right == null) {
+        if (left == null && right == null){
             return true;
-        } else if (left == null || right == null) {
+        }else if (left == null || right == null){
             return false;
         }
 
-        if (left.value == right.value) {
+        if (left.value == right.value){
             return process(left.left, right.right) && process(left.right, right.left);
-        } else {
+        }else {
             return false;
         }
     }

@@ -11,8 +11,8 @@ public class code62 {
         }
     }
 
-    public static Node KthNode(Node head, int k){
-        if (head == null || k < 1){
+    public static Node KthNode(Node head, int k) {
+        if (head == null || k < 1) {
             return null;
         }
 
@@ -20,6 +20,10 @@ public class code62 {
     }
 
     public static Node morrisIn(Node head, int k){
+        if (head == null){
+            return null;
+        }
+
         Node cur = head;
         Node mostRight = null;
 
@@ -31,6 +35,7 @@ public class code62 {
                 }
                 if (mostRight.right == null){
                     mostRight.right = cur;
+
                     cur = cur.left;
                 }else {
                     mostRight.right = null;

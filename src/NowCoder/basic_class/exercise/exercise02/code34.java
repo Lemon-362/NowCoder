@@ -1,6 +1,8 @@
 package NowCoder.basic_class.exercise.exercise02;
 
 
+import java.util.List;
+
 public class code34 {
     public static class Node {
         private int path;
@@ -21,18 +23,19 @@ public class code34 {
             this.head = new Node();
         }
 
-        public void insert(String s) {
-            char[] str = s.toCharArray();
+        public void insert(String str){
             Node cur = head;
 
-            for (int i = 0; i < str.length; i++) {
-                int path = str[i] - 'a';
+            char[] s = str.toCharArray();
 
-                if (cur.next[path] == null) {
-                    cur.next[path] = new Node();
+            for (int i = 0; i < s.length; i++) {
+                int index = s[i] - 'a';
+
+                if (cur.next[index] == null){
+                    cur.next[index] = new Node();
                 }
 
-                cur = cur.next[path];
+                cur = cur.next[index];
 
                 cur.path++;
             }
@@ -40,57 +43,62 @@ public class code34 {
             cur.end++;
         }
 
-        public int search(String s) {
-            char[] str = s.toCharArray();
+        public int search(String str){
             Node cur = head;
 
-            for (int i = 0; i < str.length; i++) {
-                int path = str[i] - 'a';
+            char[] s = str.toCharArray();
 
-                if (cur.next[path] == null) {
+            for (int i = 0; i < s.length; i++) {
+                int index = s[i] - 'a';
+
+                if (cur.next[index] == null){
                     return 0;
                 }
 
-                cur = cur.next[path];
+                cur = cur.next[index];
             }
 
             return cur.end;
         }
 
-        public void delete(String s) {
-            char[] str = s.toCharArray();
+        public void delete(String str){
             Node cur = head;
 
-            for (int i = 0; i < str.length; i++) {
-                int path = str[i] - 'a';
+            char[] s = str.toCharArray();
 
-                if (--cur.next[path].path == 0) {
-                    cur.next[path] = null;
-                    break;
+            for (int i = 0; i < s.length; i++) {
+                int index = s[i] - 'a';
+
+                if (--cur.next[index].path == 0){
+                    cur.next[index] = null;
+                    return;
                 }
 
-                cur = cur.next[path];
+                cur = cur.next[index];
             }
 
             cur.end--;
         }
 
-        public int prefixNumber(String s) {
-            char[] str = s.toCharArray();
+        public int prefixNumber(String str){
             Node cur = head;
 
-            for (int i = 0; i < str.length; i++) {
-                int path = str[i] - 'a';
+            char[] s = str.toCharArray();
 
-                if (cur.next[path] == null) {
+            for (int i = 0; i < s.length; i++) {
+                int index = s[i] - 'a';
+
+                if (cur.next[index] == null){
                     return 0;
                 }
 
-                cur = cur.next[path];
+                cur = cur.next[index];
+
             }
 
             return cur.path;
         }
+
     }
 
     public static void main(String[] args) {

@@ -6,11 +6,11 @@ public class code65 {
             return false;
         }
 
-        char[] s = word.toCharArray();
+        char[] str = word.toCharArray();
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                if (process(board, s, i, j, 0)) {
+                if (process(board, i, j, str, 0)) {
                     return true;
                 }
             }
@@ -19,25 +19,22 @@ public class code65 {
         return false;
     }
 
-    public static boolean process(char[][] board, char[] s, int i, int j, int index) {
+    public static boolean process(char[][] board, int i, int j, char[] str, int index) {
         // base case
-        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length) {
+        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || board[i][j] != str[index]) {
             return false;
         }
-        if (board[i][j] != s[index]) {
-            return false;
-        }
-        if (index == s.length - 1) {
+        if (index == str.length - 1) {
             return true;
         }
 
         char temp = board[i][j];
         board[i][j] = '#';
 
-        boolean res = process(board, s, i + 1, j, index + 1)
-                || process(board, s, i - 1, j, index + 1)
-                || process(board, s, i, j + 1, index + 1)
-                || process(board, s, i, j - 1, index + 1);
+        boolean res = process(board, i + 1, j, str, index + 1)
+                || process(board, i - 1, j, str, index + 1)
+                || process(board, i, j + 1, str, index + 1)
+                || process(board, i, j - 1, str, index + 1);
 
         board[i][j] = temp;
 

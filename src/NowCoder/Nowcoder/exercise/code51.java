@@ -7,17 +7,16 @@ public class code51 {
         }
 
         int[] B = new int[A.length];
-
         B[0] = 1;
         for (int i = 1; i < B.length; i++) {
             B[i] = B[i - 1] * A[i - 1];
         }
 
-        int[] C = new int[B.length];
-        C[C.length - 1] = 1;
-        for (int i = C.length - 2; i >= 0; i--) {
+        int[] C = new int[A.length];
+        C[A.length - 1] = 1;
+        for (int i = A.length - 2; i >= 0; i--) {
             C[i] = C[i + 1] * A[i + 1];
-            B[i] *= C[i];
+            B[i] = B[i] * C[i];
         }
 
         return B;
