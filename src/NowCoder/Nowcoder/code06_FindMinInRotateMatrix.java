@@ -54,6 +54,75 @@ public class code06_FindMinInRotateMatrix {
         return arr[0];
     }
 
+    /** TODO 二分查找条件的变换
+     * 划分成了两个排序的子数组（前和后）
+     * (1) 前 >= 后  ==> arr[p1] >= arr[p2]  ==> 循环条件
+     * (2) 最小值是两者的分界线
+     *
+     * 数组在某一范围内是有序的 ==> 二分法
+     *  p1始终指向前面, p2始终指向后面
+     *  mid是p1和p2的中间值  TODO 循环条件: arr[p1] >= arr[p2]
+     *  (1) mid位于前面 ==> arr[mid] >= arr[p1]
+     *                ==> 最小值在mid之后 ==> p1 = mid
+     *  (2) mid位于后面 ==> arr[mid] <= arr[p2]
+     *                ==> 最小值在mid及其之前 ==> p2 = mid
+     *  (3) TODO 结束条件:
+     *       p1指向前面的最后一个, p2指向后面的第一个 ==> p1 - p2 == 1
+     *       此时, p2即最小值的位置
+     *  TODO 特殊情况:
+     *  (1) 没有移动元素 ==> arr[p1] < arr[p2] ==> 最小值就是第一个元素
+     *      这种情况可以包含在普通情况的(2)中, 只需要将mid初始化为p1
+     *      一旦发现第一次arr[p1] < arr[p2], 那么直接返回mid, 此时mid就是第一个元素的位置
+     *  (2) arr[p1] == arr[p2] == arr[mid]:
+     *  例如: 0 1 1 1 1
+     *   ==> 1 0 1 1 1 此时mid在后面
+     *   ==> 1 1 1 0 1 此时mid在前面
+     *   那么只能循环遍历
+     *
+     *  时间复杂度: O(logN)
+     */
+    public static int findMinInRotateArr(int[] arr){
+        if (arr == null || arr.length < 1){
+            return -1;
+        }
+
+        int p1 = 0;
+        int p2 = arr.length - 1;
+        int mid = p1;
+
+        while (arr[p1] >= arr[p2]){
+            mid = (p1 + p2) >> 1;
+
+            // 结束条件
+            if (p2 - p1 == 1){
+                mid = p2;
+                break;
+            }
+
+            // 特殊情况(2)
+            if (arr[p1] == arr[p2] && arr[p1] == arr[mid]){
+                return findInOrder(arr, p1, p2);
+            }
+
+            if (arr[mid] >= arr[p1]){
+                p1 = mid;
+            }else if (arr[mid] <= arr[p2]){
+                p2 = mid;
+            }
+        }
+
+        return arr[mid];
+    }
+
+    // 在p1-p2的范围内遍历寻找最小值
+    public static int findInOrder(int[] arr, int p1, int p2){
+        int res = arr[p1];
+        for (int i = p1 + 1; i <= p2; i++) {
+            res = Math.min(res, arr[i]);
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         int[] arr1 = {7, 0, 1, 1, 1, 1, 1, 2, 3, 4};
         int[] arr2 = {3, 4, 5, 1, 2, 3};
@@ -63,8 +132,16 @@ public class code06_FindMinInRotateMatrix {
         System.out.println(method02(arr2)); // 1
         System.out.println(method02(arr3)); // 0
 
+        System.out.println("********************");
+
         System.out.println(method(arr1));
         System.out.println(method(arr2));
         System.out.println(method(arr3));
+
+        System.out.println("********************");
+
+        System.out.println(findMinInRotateArr(arr1));
+        System.out.println(findMinInRotateArr(arr2));
+        System.out.println(findMinInRotateArr(arr3));
     }
 }

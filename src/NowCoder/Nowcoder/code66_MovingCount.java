@@ -1,6 +1,8 @@
 package NowCoder.Nowcoder;
 
 
+import javafx.util.BuilderFactory;
+
 /*
     机器人的运动范围：
         地上有一个m行n列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。
@@ -22,18 +24,8 @@ public class code66_MovingCount {
         return sum <= k;
     }
 
-    public static int movingCount(int m, int n, int k) {
-        if (m < 1 || n < 1 || k < 0) {
-            return 0;
-        }
-
-        boolean[][] flag = new boolean[m][n];
-
-        return process(m, n, 0, 0, k, flag);
-    }
-
     public static int process(int m, int n, int i, int j, int k, boolean[][] flag) {
-        // base case
+        // base case: flag为true表示已经来到过该位置
         if (i < 0 || i >= m || j < 0 || j >= n || !isValid(i, j, k) || flag[i][j]) {
             return 0;
         }
@@ -45,6 +37,16 @@ public class code66_MovingCount {
                 + process(m, n, i + 1, j, k, flag)
                 + process(m, n, i, j - 1, k, flag)
                 + process(m, n, i, j + 1, k, flag);
+    }
+
+    public static int movingCount(int m, int n, int k) {
+        if (m < 1 || n < 1 || k < 0) {
+            return 0;
+        }
+
+        boolean[][] flag = new boolean[m][n];
+
+        return process(m, n, 0, 0, k, flag);
     }
 
     public static void main(String[] args) {

@@ -1,81 +1,81 @@
 package NowCoder.basic_class.exercise.exercise02;
 
 public class code40 {
-    public static void moveLeftToRight(int N) {
+    public static void moveLeftToRight(int N){
         // base case
-        if (N == 1) {
+        if (N == 1){
             System.out.println("move 1 from left to right");
-        } else {
+        }else {
             moveLeftToMid(N - 1);
             System.out.println("move " + N + " from left to right");
             moveMidToRight(N - 1);
         }
     }
 
-    public static void moveLeftToMid(int N) {
+    public static void moveLeftToMid(int N){
         // base case
-        if (N == 1) {
+        if (N == 1){
             System.out.println("move 1 from left to mid");
-        } else {
+        }else {
             moveLeftToRight(N - 1);
             System.out.println("move " + N + " from left to mid");
             moveRightToMid(N - 1);
         }
     }
 
-    public static void moveMidToLeft(int N) {
+    public static void moveMidToLeft(int N){
         // base case
-        if (N == 1) {
+        if (N == 1){
             System.out.println("move 1 from mid to left");
-        } else {
+        }else {
             moveMidToRight(N - 1);
             System.out.println("move " + N + " from mid to left");
             moveRightToLeft(N - 1);
         }
     }
 
-    public static void moveMidToRight(int N) {
+    public static void moveMidToRight(int N){
         // base case
-        if (N == 1) {
+        if (N == 1){
             System.out.println("move 1 from mid to right");
-        } else {
+        }else {
             moveMidToLeft(N - 1);
             System.out.println("move " + N + " from mid to right");
             moveLeftToRight(N - 1);
         }
     }
 
-    public static void moveRightToLeft(int N) {
+    public static void moveRightToLeft(int N){
         // base case
-        if (N == 1) {
+        if (N == 1){
             System.out.println("move 1 from right to left");
-        } else {
+        }else {
             moveRightToMid(N - 1);
             System.out.println("move " + N + " from right to left");
             moveMidToLeft(N - 1);
         }
     }
 
-    public static void moveRightToMid(int N) {
+    public static void moveRightToMid(int N){
         // base case
-        if (N == 1) {
+        if (N == 1){
             System.out.println("move 1 from right to mid");
-        } else {
+        }else {
             moveRightToLeft(N - 1);
             System.out.println("move " + N + " from right to mid");
             moveLeftToMid(N - 1);
         }
     }
 
-    public static void Hanoi(int N) {
+    public static void Hanoi(int N){
         moveLeftToRight(N);
     }
 
-    public static void Hanoi2(int N, String left, String right, String mid) {
+    public static void Hanoi2(int N, String left, String right, String mid){
         // base case
-        if (N == 1) {
+        if (N == 1){
             System.out.println("move 1 from " + left + " to " + right);
-        } else {
+        }else {
             Hanoi2(N - 1, left, mid, right);
             System.out.println("move " + N + " from " + left + " to " + right);
             Hanoi2(N - 1, mid, right, left);

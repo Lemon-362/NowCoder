@@ -28,9 +28,8 @@ public class code38 {
             }
         });
 
-        int res = 0;
         int end = start;
-
+        int res = 0;
         for (int i = 0; i < programs.length; i++) {
             if (end <= programs[i].start){
                 end = programs[i].end;
