@@ -34,8 +34,9 @@ public class code02_AddTwoNumByLinkedList {
         int carry = 0;
         ListNode newHead = new ListNode(Integer.MIN_VALUE);
         ListNode pre = newHead;
-
+        // 两个链表可能不一样长,必须将两个都遍历完
         while (p1 != null || p2 != null) {
+            // 每次循环都初始化sum
             int sum = 0;
             if (p1 != null) {
                 sum += p1.val;
@@ -45,16 +46,16 @@ public class code02_AddTwoNumByLinkedList {
                 sum += p2.val;
                 p2 = p2.next;
             }
-
+            // 加上进位结果
             sum += carry;
-
+            // 如果sum>10,则需要进位,且sum只能取余
             carry = sum / 10;
             sum = sum % 10;
-
+            // 新链表依次连接sum
             pre.next = new ListNode(sum);
             pre = pre.next;
         }
-
+        // 有可能最后依次相加结果也需要进位,需要把进位补上
         if (carry == 1) {
             pre.next = new ListNode(carry);
         }

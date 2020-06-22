@@ -11,34 +11,33 @@ public class code04 {
         int[] pArr = new int[str.length];
         int R = -1;
         int C = -1;
-        int len = 0;
+        int res = 0;
 
         for (int i = 0; i < str.length; i++) {
             pArr[i] = R > i ? Math.min(R - i, pArr[2 * C - i]) : 1;
-            while (i + pArr[i] < str.length && i - pArr[i] > -1) {
-                if (str[i + pArr[i]] == str[i - pArr[i]]) {
+            while (i + pArr[i] < str.length && i - pArr[i] > -1){
+                if (str[i+pArr[i]] == str[i-pArr[i]]) {
                     pArr[i]++;
-                } else {
+                }else {
                     break;
                 }
             }
 
-            if (i + pArr[i] > R) {
+            if (R > i + pArr[i]){
                 R = i + pArr[i];
                 C = i;
             }
 
-            len = Math.max(len, pArr[i]);
+            res = Math.max(res, pArr[i]);
         }
 
-        return len - 1;
+        return res - 1;
     }
 
     public static char[] manacherString(String s) {
         char[] str = s.toCharArray();
-        char[] res = new char[2 * str.length + 1];
         int index = 0;
-
+        char[] res = new char[2 * str.length + 1];
         for (int i = 0; i < res.length; i++) {
             res[i] = i % 2 == 0 ? '#' : str[index++];
         }

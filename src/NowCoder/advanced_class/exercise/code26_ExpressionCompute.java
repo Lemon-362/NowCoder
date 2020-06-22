@@ -1,5 +1,6 @@
 package NowCoder.advanced_class.exercise;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,8 +22,8 @@ public class code26_ExpressionCompute {
     }
 
     public static ReturnData process(char[] str, int i){
-        LinkedList<String> list = new LinkedList<>();
         int preNum = 0;
+        LinkedList<String> list = new LinkedList<>();
 
         while (i < str.length && str[i] != ')'){
             if (str[i] >= '0' && str[i] <= '9'){
@@ -30,10 +31,9 @@ public class code26_ExpressionCompute {
             }else if (str[i] != '('){
                 addNum(list, preNum);
                 list.addLast(String.valueOf(str[i++]));
-                // TODO
                 preNum = 0;
             }else {
-                ReturnData returnData = process(str, i + 1);
+                ReturnData  returnData = process(str, i + 1);
                 preNum = returnData.result;
                 i = returnData.index + 1;
             }
@@ -46,18 +46,18 @@ public class code26_ExpressionCompute {
     }
 
     public static int getNum(LinkedList<String> list){
-        int res = 0;
         boolean add = true;
-        String cur = null;
+        int res = 0;
+        String value;
 
         while (!list.isEmpty()){
-            cur = list.pollFirst();
-            if (cur.equals("+")){
+            value = list.pollFirst();
+            if (value.equals("+")){
                 add = true;
-            }else if (cur.equals("-")){
+            }else if (value.equals("-")){
                 add = false;
             }else {
-                int num = Integer.parseInt(cur);
+                int num = Integer.parseInt(value);
                 res += add ? num : -num;
             }
         }
@@ -79,8 +79,8 @@ public class code26_ExpressionCompute {
         list.addLast(String.valueOf(curNum));
     }
 
-    public static int getValue(String str){
-        return process(str.toCharArray(), 0).result;
+    public static int getValue(String s){
+        return process(s.toCharArray(), 0).result;
     }
 
     public static void main(String[] args) {

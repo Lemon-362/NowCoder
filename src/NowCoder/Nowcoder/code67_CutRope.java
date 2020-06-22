@@ -22,7 +22,7 @@ public class code67_CutRope {
         dp[2] = 1;
 
         for (int i = 3; i < dp.length; i++) {
-            for (int j = 1; j <= i - 1; j++) {
+            for (int j = 1; j <= i / 2; j++) {
                 dp[i] = Math.max(dp[i], Math.max(j * (i - j), j * dp[i - j]));
             }
         }
@@ -42,6 +42,7 @@ public class code67_CutRope {
                 6不可以，因为也可以拆成2和其他/3和其他
             因此，对于n>=5，最小的长度一定是3
         TODO 实际上就是每次剪成长度为3的，直到不能剪成3为止
+            找每次可以剪出的最大值
      */
     public static int cutRope1(int n){
         if (n == 2){
@@ -69,10 +70,45 @@ public class code67_CutRope {
         return (int) (res % 1000000007);
     }
 
+    /** TODO 动态规划
+     *   dp[n]: 表示剩余长度为n的绳子划分后得到的最大乘积
+     *        此时长度为n的绳子可以继续划分, 也可以不划分
+     * 对于总长度为1,2,3的绳子, 另外考虑这三个情况
+     * 那么, dp[1]就表示剩余长度为1时的最大乘积, dp[2]表示剩余长度为2时的最大乘积,
+     * 剩余长度为2时, 如果继续划分, 乘积为1; 如果不划分, 乘积为2 --> 因此选择不划分, dp[2]=2
+     * 剩余长度为3时, 如果继续划分, 乘积为2; 如果不划分, 乘积为3 --> 因此选择不划分, dp[3]=3
+     */
+    public static int method(int n){
+        if (n == 2){
+            return 1;
+        }else if (n == 3){
+            return 2;
+        }
+
+        int[] dp = new int[n + 1];
+        dp[0] = 0;
+        dp[1] = 1;
+        dp[2] = 2;
+        dp[3] = 3;
+
+        for (int i = 4; i <= n; i++) {
+            int max = 0;
+            for (int j = 1; j <= i / 2; j++) {
+                max = Math.max(max, dp[j] * dp[i - j]);
+            }
+            dp[i] = max;
+        }
+
+        return dp[n];
+    }
+
     public static void main(String[] args) {
         System.out.println(cutRope(8)); // 18
         System.out.println(cutRope(10)); // 36
+        System.out.println(method(10));
 
         System.out.println(cutRope1(120)); // 953271190
+
+
     }
 }

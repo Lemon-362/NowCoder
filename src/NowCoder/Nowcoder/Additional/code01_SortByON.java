@@ -11,7 +11,7 @@ package NowCoder.Nowcoder.Additional;
  * 然后对数组重新赋值，出现几次就赋值几次
  *  遍历次数数组，出现几次就赋值几次，赋的值就是次数数组的索引
  */
-public class code01_sortByOn {
+public class code01_SortByON {
     public static void sortAges(int[] arr) {
         if (arr == null || arr.length < 1) {
             return;
