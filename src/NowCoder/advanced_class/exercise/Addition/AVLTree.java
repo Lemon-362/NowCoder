@@ -1,4 +1,4 @@
-package NowCoder.advanced_class.exercise;
+package NowCoder.advanced_class.exercise.Addition;
 
 /*
     AVL树：在插入时不断调整平衡性，左右高度差严格不超过1，等于2的时候就要调整
@@ -10,7 +10,6 @@ TODO 发现不平衡，从下往上调整平衡性：从插入节点的父节点
     4. RL型：右子树高度超了 --> 先对node的右孩子右旋一次，然后对新头节点左旋一次
  */
 
-import NowCoder.advanced_class.class_4.AbstractBinarySearchTree;
 import NowCoder.advanced_class.class_4.AbstractSelfBalancingBinarySearchTree;
 
 /**
@@ -43,7 +42,7 @@ public class AVLTree extends AbstractSelfBalancingBinarySearchTree {
      */
     @Override
     public Node insert(int element) {
-        // 插入节点
+        // 插入节点，BST的插入
         Node newNode = super.insert(element);
         // 调整平衡性
         rebalance((AVLNode)newNode);
@@ -92,6 +91,10 @@ public class AVLTree extends AbstractSelfBalancingBinarySearchTree {
     // 2. RR型：右子树高度超了，且node.right.right != null --> 左旋一次
     // 3. LR型：左子树高度超了 --> 先对node的左孩子左旋一次，然后对新头节点右旋一次
     // 4. RL型：右子树高度超了 --> 先对node的右孩子右旋一次，然后对新头节点左旋一次
+
+    /**
+     * 从node开始不断往上调整平衡性，并更新高度
+     */
     private void rebalance(AVLNode node) {
         while (node != null) {
             // 插入节点的父节点

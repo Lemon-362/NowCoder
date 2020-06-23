@@ -24,19 +24,6 @@ public class code25 {
             this.tail = null;
         }
 
-        public void addNodeToTail(Node<K, V> node){
-            if (this.tail == null){
-                this.tail = node;
-                this.head = node;
-            }else {
-                Node<K, V> tailNode = this.tail;
-                tailNode.last = node;
-                node.next = tailNode;
-                node.last = null;
-                this.tail = node;
-            }
-        }
-
         public Node<K, V> removeHeadNode(){
             if (this.head == null){
                 return null;
@@ -44,8 +31,8 @@ public class code25 {
 
             Node<K, V> headNode = this.head;
             if (headNode == this.tail){
-                this.head = null;
                 this.tail = null;
+                this.head = null;
             }else {
                 Node<K, V> lastNode = headNode.last;
                 lastNode.next = null;
@@ -53,6 +40,19 @@ public class code25 {
             }
 
             return headNode;
+        }
+
+        public void addNodeToTail(Node<K, V> node){
+            if (this.tail == null){
+                this.tail = node;
+                this.head = node;
+            }
+
+            Node<K, V> tailNode = this.tail;
+            node.next = tailNode;
+            tailNode.last = node;
+            node.last = null;
+            this.tail = node;
         }
 
         public void moveNodeToTail(Node<K, V> node){
@@ -66,8 +66,8 @@ public class code25 {
                 this.head = lastNode;
 
                 Node<K, V> tailNode = this.tail;
-                tailNode.last = node;
                 node.next = tailNode;
+                tailNode.last = node;
                 node.last = null;
                 this.tail = node;
             }else {
@@ -77,8 +77,8 @@ public class code25 {
                 nextNode.last = lastNode;
 
                 Node<K, V> tailNode = this.tail;
-                tailNode.last = node;
                 node.next = tailNode;
+                tailNode.last = node;
                 node.last = null;
                 this.tail = node;
             }
@@ -98,21 +98,23 @@ public class code25 {
 
         public void set(K key, V value){
             if (!map.containsKey(key)){
-                if (map.size() == this.capacity){
+                if (this.capacity == map.size()){
                     removeHeadNode();
                 }
+
                 Node<K, V> setNode = new Node<>(key, value);
 
-                list.addNodeToTail(setNode);
-
                 map.put(key, setNode);
+
+                list.addNodeToTail(setNode);
             }else {
                 Node<K, V> setNode = map.get(key);
+
                 setNode.value = value;
 
-                list.moveNodeToTail(setNode);
-
                 map.put(key, setNode);
+
+                list.moveNodeToTail(setNode);
             }
         }
 

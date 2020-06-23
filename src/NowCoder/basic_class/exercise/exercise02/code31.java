@@ -15,31 +15,29 @@ public class code31 {
         }
 
         public void insert(K key){
-            if (!this.keyIndexMap.containsKey(key)){
-                this.keyIndexMap.put(key, this.size);
-                this.indexKeyMap.put(this.size, key);
+            if (!keyIndexMap.containsKey(key)){
+                keyIndexMap.put(key, size);
+                indexKeyMap.put(size, key);
+                size++;
             }
-
-            this.size++;
         }
 
         public K getRandom(){
-            int num = (int)(Math.random() * this.size);
-
-            return this.indexKeyMap.get(num);
+            int num = (int) (Math.random() * size);
+            return indexKeyMap.get(num);
         }
 
         public void delete(K key){
-            if (this.keyIndexMap.containsKey(key)){
-                int deleteIndex = this.keyIndexMap.get(key);
-                int lastIndex = --this.size;
-                K lastValue = this.indexKeyMap.get(lastIndex);
+            if (keyIndexMap.containsKey(key)){
+                int deleteIndex = keyIndexMap.get(key);
+                int lastIndex = --size;
+                K lastValue = indexKeyMap.get(lastIndex);
 
-                this.keyIndexMap.put(lastValue, deleteIndex);
-                this.indexKeyMap.put(deleteIndex, lastValue);
+                keyIndexMap.put(lastValue, deleteIndex);
+                indexKeyMap.put(deleteIndex, lastValue);
 
-                this.keyIndexMap.remove(key);
-                this.indexKeyMap.remove(lastIndex);
+                keyIndexMap.remove(key);
+                indexKeyMap.remove(lastIndex);
             }
         }
     }

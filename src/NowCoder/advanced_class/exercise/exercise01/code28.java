@@ -1,8 +1,8 @@
 package NowCoder.advanced_class.exercise.exercise01;
 
 public class code28 {
-    public static int getMaxEOR1(int[] arr){
-        if (arr == null || arr.length < 1){
+    public static int getMaxEOR1(int[] arr) {
+        if (arr == null || arr.length < 1) {
             return 0;
         }
 
@@ -14,21 +14,21 @@ public class code28 {
                 for (int j = start; j <= i; j++) {
                     num ^= arr[j];
                 }
-                res = Math.max(res ,num);
+                res = Math.max(res, num);
             }
         }
 
         return res;
     }
 
-    public static int getMaxEOR2(int[] arr){
-        if (arr == null || arr.length < 1){
+    public static int getMaxEOR2(int[] arr) {
+        if (arr == null || arr.length < 1) {
             return 0;
         }
 
-        int res = Integer.MIN_VALUE;
         int[] dp = new int[arr.length];
         int xor = 0;
+        int res = Integer.MIN_VALUE;
 
         for (int i = 0; i < arr.length; i++) {
             xor ^= arr[i];
@@ -73,9 +73,9 @@ public class code28 {
             }
         }
 
-        public int getMaxXor(int num){
-            Node cur = head;
+        public int getMaxEor(int num){
             int res = 0;
+            Node cur = head;
 
             for (int i = 31; i >= 0; i--) {
                 int path = (num >> i) & 1;
@@ -93,20 +93,20 @@ public class code28 {
         }
     }
 
-    public static int getMaxEOR3(int[] arr){
-        if (arr == null || arr.length < 1){
+    public static int getMaxEOR3(int[] arr) {
+        if (arr == null || arr.length < 1) {
             return 0;
         }
 
-        TrieTree trieTree = new TrieTree();
-        trieTree.addNum(0);
         int xor = 0;
         int res = Integer.MIN_VALUE;
+        TrieTree trieTree = new TrieTree();
+        trieTree.addNum(0);
 
         for (int i = 0; i < arr.length; i++) {
             xor ^= arr[i];
 
-            res = Math.max(res, trieTree.getMaxXor(xor));
+            res = Math.max(res, trieTree.getMaxEor(xor));
 
             trieTree.addNum(xor);
         }

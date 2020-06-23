@@ -19,40 +19,40 @@ public class code33 {
             this.fatherMap = new HashMap<>();
         }
 
-        public void makeSet(List<Node> list){
-            if (list == null){
+        public void makeSet(List<Node> list) {
+            if (list == null) {
                 return;
             }
 
             for (Node node : list) {
-                this.sizeMap.put(node, 1);
-                this.fatherMap.put(node, node);
+                sizeMap.put(node, 1);
+                fatherMap.put(node, node);
             }
         }
 
-        public Node findHead(Node node){
-            if (node == null){
+        public Node findHead(Node node) {
+            if (node == null) {
                 return null;
             }
 
-            Node father = this.fatherMap.get(node);
             Stack<Node> stack = new Stack<>();
+            Node father = fatherMap.get(node);
 
-            while (father != node){
+            while (father != node) {
                 stack.push(node);
                 node = father;
-                father = this.fatherMap.get(node);
+                father = fatherMap.get(node);
             }
 
-            while (!stack.isEmpty()){
-                this.fatherMap.put(stack.pop(), father);
+            while (!stack.isEmpty()) {
+                fatherMap.put(stack.pop(), father);
             }
 
             return father;
         }
 
-        public boolean isSameSet(Node head1, Node head2){
-            if (head1 == null || head2 == null){
+        public boolean isSameSet(Node head1, Node head2) {
+            if (head1 == null || head2 == null) {
                 return false;
             }
 
@@ -67,16 +67,16 @@ public class code33 {
             Node father1 = findHead(head1);
             Node father2 = findHead(head2);
 
-            if (father1 != father2){
-                int size1 = this.sizeMap.get(father1);
-                int size2 = this.sizeMap.get(father2);
+            if (father1 != father2) {
+                int size1 = sizeMap.get(father1);
+                int size2 = sizeMap.get(father2);
 
-                if (size1 < size2){
-                    this.sizeMap.put(father2, size1 + size2);
-                    this.fatherMap.put(father1, father2);
-                }else {
-                    this.sizeMap.put(father1, size1 + size2);
-                    this.fatherMap.put(father2, father1);
+                if (size1 < size2) {
+                    sizeMap.put(father2, size1 + size2);
+                    fatherMap.put(father1, father2);
+                } else {
+                    sizeMap.put(father1, size1 + size2);
+                    fatherMap.put(father2, father1);
                 }
             }
         }

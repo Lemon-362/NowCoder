@@ -9,9 +9,8 @@ public class code32 {
         }
 
         HashMap<Integer, Integer> map = new HashMap<>();
-        map.put(0, -1);
         int sum = 0;
-        int res = 0;
+        int len = 0;
 
         for (int i = 0; i < arr.length; i++) {
             sum += arr[i];
@@ -19,7 +18,7 @@ public class code32 {
             if (map.containsKey(sum - aim)){
                 int right = i;
                 int left = map.get(sum - aim) + 1;
-                res = Math.max(res, right - left + 1);
+                len = Math.max(left ,right - left + 1);
             }
 
             if (!map.containsKey(sum)){
@@ -27,7 +26,7 @@ public class code32 {
             }
         }
 
-        return res;
+        return len;
     }
 
     public static int getMaxLength2(int[] arr, int aim) {
@@ -82,6 +81,7 @@ public class code32 {
         int k = 15;
         int[] arr1 = generatePositiveArray(len);
         printArray(arr1);
+        System.out.println(getMaxLength1(arr1, k));
         System.out.println(getMaxLength2(arr1, k));
     }
 }

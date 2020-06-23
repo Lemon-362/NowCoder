@@ -6,9 +6,9 @@ public class code29 {
     public static int process1(int[] arr, int index, int aim) {
         int res = 0;
         // base case
-        if (index == arr.length) {
+        if (index == arr.length){
             res = aim == 0 ? 1 : 0;
-        } else {
+        }else {
             for (int zhang = 0; zhang * arr[index] <= aim; zhang++) {
                 int leftAim = aim - zhang * arr[index];
                 res += process1(arr, index + 1, leftAim);
@@ -61,11 +61,11 @@ public class code29 {
 
         for (int index = arr.length - 1; index >= 0; index--) {
             for (int leftAim = 0; leftAim < dp[0].length; leftAim++) {
-                int num = 0;
+                int sum = 0;
                 for (int zhang = 0; leftAim - zhang * arr[index] >= 0; zhang++) {
-                    num += dp[index + 1][leftAim - zhang * arr[index]];
+                    sum += dp[index + 1][leftAim - zhang * arr[index]];
                 }
-                dp[index][leftAim] = num;
+                dp[index][leftAim] = sum;
             }
         }
 

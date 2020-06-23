@@ -1,4 +1,4 @@
-package NowCoder.advanced_class.class_4;
+package NowCoder.advanced_class.exercise.Addition;
 
 /*
 	搜索二叉树：

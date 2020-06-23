@@ -21,9 +21,9 @@ public class code33 {
             }
         }
 
+        int sum = 0;
         int L = 0;
         int R = 0;
-        int sum = 0;
         int len = 0;
 
         while (L < arr.length){

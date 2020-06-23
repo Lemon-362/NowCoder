@@ -15,42 +15,45 @@ public class code26 {
     }
 
     public static ReturnData process(char[] str, int i){
-        LinkedList<String> list = new LinkedList<>();
         int preNum = 0;
+        LinkedList<String> list = new LinkedList<>();
 
         while (i < str.length && str[i] != ')'){
             if (str[i] >= '0' && str[i] <= '9'){
                 preNum = preNum * 10 + str[i++] - '0';
             }else if (str[i] != '('){
                 addNum(list, preNum);
+
                 list.addLast(String.valueOf(str[i++]));
+
                 preNum = 0;
             }else {
                 ReturnData returnData = process(str, i + 1);
-                preNum = returnData.result;
                 i = returnData.index + 1;
+                preNum = returnData.result;
             }
         }
 
         addNum(list, preNum);
-        int result = getNum(list);
 
-        return new ReturnData(result, i);
+        int res = getNum(list);
+
+        return new ReturnData(res, i);
     }
 
     public static int getNum(LinkedList<String> list){
         boolean add = true;
         int res = 0;
-        String s = null;
+        String value;
 
         while (!list.isEmpty()){
-            s = list.pollFirst();
-            if (s.equals("+")){
+            value = list.pollFirst();
+            if (value.equals("+")){
                 add = true;
-            }else if (s.equals("-")){
+            }else if (value.equals("-")){
                 add = false;
             }else {
-                int num = Integer.parseInt(s);
+                int num = Integer.parseInt(value);
                 res += add ? num : -num;
             }
         }
@@ -61,7 +64,7 @@ public class code26 {
     public static void addNum(LinkedList<String> list, int curNum){
         if (!list.isEmpty()){
             String operator = list.pollLast();
-            if (operator.equals("+") || operator.equals("-")){
+            if (operator.equals("+") || operator.equals("-")) {
                 list.addLast(operator);
             }else {
                 int lastNum = Integer.parseInt(list.pollLast());

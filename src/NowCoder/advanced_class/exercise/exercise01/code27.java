@@ -39,16 +39,16 @@ public class code27 {
                     if (pre != null && pre.value > cur.value) {
                         return false;
                     }
-                    pre = cur;
 
+                    pre = cur;
                     cur = cur.right;
                 }
             } else {
                 if (pre != null && pre.value > cur.value) {
                     return false;
                 }
-                pre = cur;
 
+                pre = cur;
                 cur = cur.right;
             }
         }
@@ -61,28 +61,28 @@ public class code27 {
             return true;
         }
 
-        boolean flag = false;
         Queue<Node> queue = new LinkedList<>();
         queue.offer(head);
+        boolean flag = false;
 
-        while (!queue.isEmpty()) {
+        while (!queue.isEmpty()){
             Node cur = queue.poll();
             Node left = cur.left;
             Node right = cur.right;
 
-            if ((flag && (left != null || right != null))
-                    || (left == null && right != null)) {
+            if ((flag && (left !=null || right != null))
+            || (left == null && right != null)){
                 return false;
             }
 
-            if (left == null || right == null) {
+            if (left == null || right == null){
                 flag = true;
             }
 
-            if (left != null) {
+            if (left != null){
                 queue.offer(left);
             }
-            if (right != null) {
+            if (right != null){
                 queue.offer(right);
             }
         }

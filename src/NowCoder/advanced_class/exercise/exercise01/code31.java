@@ -1,22 +1,23 @@
 package NowCoder.advanced_class.exercise.exercise01;
 
 public class code31 {
-    public static int process(int N, int curP, int leftK, int P) {
+    public static int process(int N, int curP, int leftK, int P){
         // base case
-        if (leftK == 0) {
+        if (leftK == 0){
             return curP == P ? 1 : 0;
         }
 
-        if (curP == 1) {
+        if (curP == 1){
             return process(N, curP + 1, leftK - 1, P);
-        } else if (curP == N) {
+        }else if (curP == N){
             return process(N, curP - 1, leftK - 1, P);
-        } else {
-            return process(N, curP + 1, leftK - 1, P) + process(N, curP - 1, leftK - 1, P);
+        }else {
+            return process(N, curP + 1, leftK - 1, P)
+                    + process(N, curP - 1, leftK - 1, P);
         }
     }
 
-    public static int ways1(int N, int M, int K, int P) {
+    public static int ways1(int N, int M, int K, int P){
         return process(N, M, K, P);
     }
 
@@ -31,7 +32,8 @@ public class code31 {
                 }else if (curP == N){
                     dp[leftK][curP] = dp[leftK - 1][curP - 1];
                 }else {
-                    dp[leftK][curP] = dp[leftK - 1][curP + 1] + dp[leftK - 1][curP - 1];
+                    dp[leftK][curP] = dp[leftK - 1][curP + 1]
+                            + dp[leftK - 1][curP - 1];
                 }
             }
         }

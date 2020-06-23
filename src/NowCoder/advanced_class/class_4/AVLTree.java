@@ -9,6 +9,9 @@ TODO 发现不平衡，从下往上调整平衡性：从插入节点的父节点
     3. LR型：左子树高度超了 --> 先对node的左孩子左旋一次，然后对新头节点右旋一次
     4. RL型：右子树高度超了 --> 先对node的右孩子右旋一次，然后对新头节点左旋一次
  */
+
+import NowCoder.advanced_class.exercise.Addition.AbstractBinarySearchTree;
+
 /**
  * Not implemented by zuochengyun
  * 

@@ -1,4 +1,4 @@
-package NowCoder.advanced_class.exercise;
+package NowCoder.advanced_class.exercise.Addition;
 
 import java.util.ArrayList;
 import java.util.Iterator;
