@@ -3,20 +3,18 @@ package NowCoder.LeetCode.Hot.exercise;
 import java.util.HashMap;
 
 public class code01 {
-    public static int[] twoSum(int[] arr, int target){
-        if (arr == null || arr.length < 1){
+    public static int[] twoSum(int[] arr, int target) {
+        if (arr == null || arr.length < 1) {
             return null;
         }
 
         int[] res = new int[2];
-
         HashMap<Integer, Integer> map = new HashMap<>();
 
         for (int i = 0; i < arr.length; i++) {
-            if (map.containsKey(target - arr[i])){
+            if (map.containsKey(target - arr[i])) {
                 res[0] = i;
                 res[1] = map.get(target - arr[i]);
-                break;
             }
 
             map.put(arr[i], i);

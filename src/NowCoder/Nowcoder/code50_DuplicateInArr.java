@@ -50,6 +50,7 @@ public class code50_DuplicateInArr {
             int count = count(arr, start, mid);
             // 退出条件：start==end
             if (start == end && count > 1) {
+                // TODO 用 start-end（1-N）来模拟数组中的元素
                 return start;
             }
             // 二分：mid - start + 1是左半边应该有的元素个数，如果超过了说明左半边有重复的
@@ -63,12 +64,14 @@ public class code50_DuplicateInArr {
         return -1;
     }
 
+    // 遍历整个数组，计算数组arr中元素在 start-mid 范围内的个数
     public static int count(int[] arr, int start, int mid) {
         if (arr == null) {
             return 0;
         }
 
         int count = 0;
+        // TODO 遍历整个数组
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] >= start && arr[i] <= mid) {
                 count++;

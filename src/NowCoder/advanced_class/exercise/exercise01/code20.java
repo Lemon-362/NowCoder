@@ -14,23 +14,23 @@ public class code20 {
     }
 
     public static class ReturnData {
-        private int maxSize;
-        private Node head;
         private int max;
         private int min;
+        private int maxSize;
+        private Node head;
 
-        public ReturnData(int maxSize, Node head, int max, int min) {
-            this.maxSize = maxSize;
-            this.head = head;
+        public ReturnData(int max, int min, int maxSize, Node head) {
             this.max = max;
             this.min = min;
+            this.maxSize = maxSize;
+            this.head = head;
         }
     }
 
     public static ReturnData process(Node head){
         // base case
         if (head == null){
-            return new ReturnData(0, null, Integer.MIN_VALUE, Integer.MAX_VALUE);
+            return new ReturnData(Integer.MIN_VALUE, Integer.MAX_VALUE, 0, null);
         }
 
         ReturnData leftData = process(head.left);
@@ -42,20 +42,20 @@ public class code20 {
         int rightSize = rightData.maxSize;
         // 3
         int curSize = 0;
-        if (head.value > leftData.max && head.value < rightData.min
-        && head.left == leftData.head && head.right == rightData.head){
+        if (head.left == leftData.head && head.right == rightData.head
+        && head.value > leftData.max && head.value < rightData.min){
             curSize = leftSize + rightSize + 1;
         }
 
+        int maxMax = Math.max(head.value, Math.max(leftData.max, rightData.max));
+        int minMin = Math.min(head.value, Math.min(leftData.min, rightData.min));
         int maxSize = Math.max(curSize, Math.max(leftSize, rightSize));
         Node maxHead = leftSize > rightSize ? leftData.head : rightData.head;
         if (maxSize == curSize){
             maxHead = head;
         }
-        int maxMax = Math.max(head.value, Math.max(leftData.max, rightData.max));
-        int minMin = Math.min(head.value, Math.min(leftData.min, rightData.min));
 
-        return new ReturnData(maxSize, maxHead, maxMax, minMin);
+        return new ReturnData(maxMax, minMin, maxSize, maxHead);
     }
 
     public static Node getMaxBST(Node head){

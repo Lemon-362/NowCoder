@@ -64,6 +64,21 @@ public class code03 {
         return res;
     }
 
+    public static ArrayList<Integer> list = new ArrayList<>();
+
+    public static ArrayList<Integer> reversePrint3(Node head) {
+        // base case
+        if (head == null){
+            return null;
+        }
+
+        reversePrint3(head.next);
+
+        list.add(head.value);
+
+        return list;
+    }
+
     public static void main(String[] args) {
         Node head = new Node(3);
         head.next = new Node(5);
@@ -80,6 +95,13 @@ public class code03 {
 
         ArrayList<Integer> list2 = reversePrint2(head);
         for (Integer num : list2) {
+            System.out.print(num + " ");
+        }
+
+        System.out.println();
+
+        ArrayList<Integer> list3 = reversePrint3(head);
+        for (Integer num : list3) {
             System.out.print(num + " ");
         }
     }

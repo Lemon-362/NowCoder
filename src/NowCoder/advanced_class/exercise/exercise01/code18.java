@@ -9,25 +9,18 @@ public class code18 {
             return 0;
         }
 
-        int[] res = new int[arr.length];
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == 2){
-                res[i] = -1;
-            }else if (arr[i] == 1){
-                res[i] = 1;
-            }else {
-                arr[i] = 0;
-            }
+        int[] copyArr = new int[arr.length];
+        for (int i = 0; i < copyArr.length; i++) {
+            copyArr[i] = arr[i] == 2 ? -1 : arr[i];
         }
 
-        HashMap<Integer, Integer> map = new HashMap<>();
         int len = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0, -1);
         int sum = 0;
 
-        map.put(0, -1);
-
-        for (int i = 0; i < res.length; i++) {
-            sum += res[i];
+        for (int i = 0; i < copyArr.length; i++) {
+            sum += copyArr[i];
 
             if (map.containsKey(sum - 0)){
                 int right = i;

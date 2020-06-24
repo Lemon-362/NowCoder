@@ -9,13 +9,13 @@ public class code03 {
             return -1;
         }
 
-        HashSet<Character> set = new HashSet<>();
+        int len = 0;
         int L = 0;
         int R = 0;
-        int len = 0;
+        HashSet<Character> set = new HashSet<>();
 
         while (L < s.length()){
-            while (R < s.length() && !set.contains(s.charAt(R))) {
+            while (R < s.length() && !set.contains(s.charAt(R))){
                 set.add(s.charAt(R));
                 R++;
             }

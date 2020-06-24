@@ -25,21 +25,19 @@ public class code23 {
     }
 
     public static ReturnData process(Node head){
-        int lai_huo = head.huo;
-        int bu_lai_huo = 0;
+        int lai = head.huo;
+        int bu_lai = 0;
 
         for (int i = 0; i < head.next.size(); i++) {
-            Node cur = head.next.get(i);
+            Node next = head.next.get(i);
 
-            ReturnData nextData = process(cur);
+            ReturnData returnData = process(next);
 
-            // 1
-            lai_huo += nextData.bu_lai_huo;
-            // 2
-            bu_lai_huo += Math.max(nextData.lai_huo, nextData.bu_lai_huo);
+            lai += returnData.bu_lai_huo;
+            bu_lai += Math.max(returnData.lai_huo, returnData.bu_lai_huo);
         }
 
-        return new ReturnData(lai_huo, bu_lai_huo);
+        return new ReturnData(lai, bu_lai);
     }
 
     public static int getMaxHappy(int[][] arr){
@@ -48,25 +46,24 @@ public class code23 {
             nodes[i] = new Node(arr[i][1]);
         }
 
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 0; i < nodes.length; i++) {
             int boss = arr[i][0];
-            if (i != boss){
+            if (boss != i){
                 nodes[boss].next.add(nodes[i]);
             }
         }
 
         Node head = null;
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 0; i < nodes.length; i++) {
             if (i == arr[i][0]){
                 head = nodes[i];
                 break;
             }
         }
 
-        int lai_huo = process(head).lai_huo;
-        int bu_lai_huo = process(head).bu_lai_huo;
+        ReturnData returnData = process(head);
 
-        return Math.max(lai_huo, bu_lai_huo);
+        return Math.max(returnData.lai_huo, returnData.bu_lai_huo);
     }
 
     public static void main(String[] args) {

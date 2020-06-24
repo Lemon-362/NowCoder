@@ -26,8 +26,24 @@ public class code07 {
         return dp[N];
     }
 
+    public static int fibonacci2(int N){
+        int cur = 1;
+        int pre = 0;
+        int res = 0;
+
+        for (int i = 2; i <= N; i++) {
+            res = (pre + cur) % 1000000007;
+
+            pre = cur;
+            cur = res;
+        }
+
+        return res;
+    }
+
     public static void main(String[] args) {
         System.out.println(fibonacci(6)); // 8
         System.out.println(fibonacci1(6));
+        System.out.println(fibonacci2(6));
     }
 }

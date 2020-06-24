@@ -9,25 +9,38 @@ public class code06 {
 
         int i = 0;
         int j = arr.length - 1;
-        int mid;
+        int mid = i;
 
-        while (i < j){
-            mid = (i + j) >> 1;
+        while (arr[i] >= arr[j]){
+             mid = (i + j) >> 1;
 
-            if (arr[i] < arr[j]){
-                return arr[i];
+            if (j - i == 1){
+                mid = j;
+                break;
             }
 
-            if (arr[mid] > arr[j]){
-                i = mid + 1;
-            }else if (arr[mid] < arr[j]){
-                j = mid;
-            }else {
+            if (arr[i] == arr[mid] && arr[mid] == arr[j]){
+                return findByOrder(arr, i, j);
+            }
+
+            if (arr[mid] >= arr[i]){
+                i = mid;
+            }else if (arr[mid] <= arr[j]){
                 j = mid;
             }
         }
 
-        return arr[j];
+        return arr[mid];
+    }
+
+    public static int findByOrder(int[] arr, int i, int j){
+        int res = arr[i];
+
+        for (int k = i + 1; k <= j; k++) {
+            res = Math.min(res, arr[k]);
+        }
+
+        return res;
     }
 
     public static int compareMethod(int[] arr) {
