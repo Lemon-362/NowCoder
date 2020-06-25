@@ -4,9 +4,12 @@ package NowCoder.Nowcoder;
     输入一个整数数组，实现一个函数来调整该数组中数字的顺序，
     使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分，
     并保证奇数和奇数，偶数和偶数之间的相对位置不变。（稳定）
+    TODO 在一个数组(链表中), 根据某一规则, 将元素重新排序成前后两部分
+        ==> (1) 荷兰国旗问题 partition ==> 不稳定, O(N)
+            (2) 冒泡排序  ==> 稳定, O(N^2)
  */
 public class code13_ReOrderArray {
-    // 不稳定，荷兰国旗问题
+    // 不稳定，荷兰国旗问题：时间复杂度O(N)
     public static void method01(int[] arr) {
         if (arr == null || arr.length == 1) {
             return;
@@ -34,6 +37,7 @@ public class code13_ReOrderArray {
     }
 
     // 稳定：利用冒泡排序的思想，每次交换相邻位置，这样就可以保证前后顺序不变
+    // 时间复杂度：O(N^2)
     public static void method02(int[] arr){
         if (arr == null){
             return;

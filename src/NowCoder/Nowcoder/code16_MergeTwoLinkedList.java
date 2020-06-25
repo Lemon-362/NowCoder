@@ -3,6 +3,7 @@ package NowCoder.Nowcoder;
 /*
     输入两个单调递增的链表，输出两个链表合成后的链表
     当然我们需要合成后的链表满足单调不减规则。
+    TODO 合并两个有序数组(链表): 外排思想(谁小移谁) --> merge --> MergeSort
  */
 public class code16_MergeTwoLinkedList {
     // merge的思想，谁小移谁
@@ -60,23 +61,23 @@ public class code16_MergeTwoLinkedList {
         return head;
     }
 
-    // 递归法
-    public static ListNode Merge02(ListNode list1, ListNode list2) {
-        if (list1 == null && list2 == null) {
+    // 递归法 TODO 只看头节点的next, 剩下的交给递归处理
+    public static ListNode Merge02(ListNode head1, ListNode head2) {
+        if (head1 == null && head2 == null) {
             return null;
         }
-        if (list1 == null) {
-            return list2;
+        if (head1 == null) {
+            return head2;
         }
-        if (list2 == null) {
-            return list1;
+        if (head2 == null) {
+            return head1;
         }
-        if (list1.value <= list2.value) {
-            list1.next = Merge02(list1.next, list2);
-            return list1;
+        if (head1.value <= head2.value) {
+            head1.next = Merge02(head1.next, head2);
+            return head1;
         } else {
-            list2.next = Merge02(list1, list2.next);
-            return list2;
+            head2.next = Merge02(head1, head2.next);
+            return head2;
         }
     }
 

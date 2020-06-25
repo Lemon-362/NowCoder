@@ -3,8 +3,9 @@ package NowCoder.Nowcoder;
 /*
     输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构）
     TODO 这里判断的是 子结构!!! 而不是子树
-    TODO 子树: 从某一节点往下的所有节点 进阶code03 ==> 子树可以是子结构，但子结构不是子树
-    TODO 子结构: 树里的一个分支
+    TODO 子树: 从某一节点往下的所有节点 进阶code03(序列化后使用KMP算法, 判断字符串是否包含子串)
+            ==> 子树可以是子结构，但子结构不是子树
+    TODO 子结构: 树里的一个分支, 不需要到叶节点
  */
 public class code17_HasSubTree {
     public static class TreeNode {
@@ -40,7 +41,8 @@ public class code17_HasSubTree {
         if (root2 == null) { // 树2遍历完都相同，则返回true，也可能是树2有一侧没有节点，也返回true
             return true;
         }
-        if (root1 == null) { // 先遍历完树1，说明树2还有节点，肯定不是子结构，则返回false
+        // 潜在前提: root2 != null
+        if (root1 == null) { // 先遍历完树1，潜在前提:树2还有节点，肯定不是子结构，则返回false
             return false;
         }
         // 递归
