@@ -113,6 +113,9 @@ public class RegularExpressionMatch {
         return isValid(str, exp) && process(str, exp, 0, 0);
     }
 
+    /**
+     * 动态规划
+     */
     public static boolean isMatchDP(String s, String e){
         if (s == null || e == null){
             return false;
