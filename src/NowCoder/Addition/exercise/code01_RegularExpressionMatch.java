@@ -9,7 +9,8 @@ public class code01_RegularExpressionMatch {
 
         // 1
         if (j == exp.length - 1){
-            return i == str.length - 1 && (exp[j] == str[i] || exp[j] == '.');
+            return i == str.length - 1
+                    && (exp[j] == str[i] || exp[j] == '.');
         }
 
         // j < exp.length - 1
@@ -20,22 +21,19 @@ public class code01_RegularExpressionMatch {
         }
 
         // exp[j + 1] == '*'
-        // 3.1
-        while (i < str.length && (exp[j] == str[i] || exp[j] == '.')) {
+        while (i < str.length && (exp[j] == str[i] || exp[j] == '.')){
             if (process(str, exp, i, j + 2)){
                 return true;
             }
             i++;
         }
 
-        // exp[j + 1] == '*' && exp[j] != str[i] && exp[j] != '.'
-        // 3.2
         return process(str, exp, i, j + 2);
     }
 
     public static boolean isValid(char[] str, char[] exp){
         for (char c : str) {
-            if (c == '*' || c == '.'){
+            if (c == '.' || c == '*'){
                 return false;
             }
         }
@@ -68,32 +66,23 @@ public class code01_RegularExpressionMatch {
         char[] str = s.toCharArray();
         char[] exp = e.toCharArray();
 
-        if (!isValid(str, exp)){
-            return false;
-        }
-
         int sLen = str.length;
         int eLen = exp.length;
         boolean[][] dp = new boolean[sLen + 1][eLen + 1];
 
         // base case
+//        if (j == exp.length){
+//            return i == str.length;
+//        }
         dp[sLen][eLen] = true;
 
-        // 1: j = eLen - 1, i = sLen - 1
+        // 1
 //        if (j == exp.length - 1){
-//            return i == str.length - 1 && (exp[j] == str[i] || exp[j] == '.');
+//            return i == str.length - 1
+//                    && (exp[j] == str[i] || exp[j] == '.');
 //        }
-        dp[sLen - 1][eLen - 1] = exp[eLen - 1] == str[sLen - 1] || exp[eLen - 1] == '.';
+        dp[sLen - 1][eLen - 1] = (exp[eLen - 1] == str[sLen - 1] || exp[eLen - 1] == '.');
 
-        for (int j = eLen - 2; j >= 0; j = j -2) {
-            if (exp[j] != '*' && exp[j + 1] == '*'){
-                dp[sLen][j] = true;
-            }else{
-                break;
-            }
-        }
-
-//        // j < exp.length - 1
 //        // 2
 //        if (exp[j + 1] != '*'){
 //            return i < str.length && (exp[j] == str[i] || exp[j] == '.')
@@ -101,25 +90,41 @@ public class code01_RegularExpressionMatch {
 //        }
 //
 //        // exp[j + 1] == '*'
-//        // 3.1
-//        while (i < str.length && (exp[j] == str[i] || exp[j] == '.')) {
+//        while (i < str.length && (exp[j] == str[i] || exp[j] == '.')){
 //            if (process(str, exp, i, j + 2)){
 //                return true;
 //            }
 //            i++;
 //        }
 //
-//        // exp[j + 1] == '*' && exp[j] != str[i] && exp[j] != '.'
-//        // 3.2
 //        return process(str, exp, i, j + 2);
+
+        // 普遍位置的依赖还需要最后一行已知
+        for (int j = eLen - 2; j >= 0; j = j - 2) {
+            if (exp[j] != '*' && exp[j + 1] == '*'){
+                dp[sLen][j] = true;
+            }else {
+                break;
+            }
+        }
+
         for (int i = sLen - 1; i >= 0; i--) {
             for (int j = eLen - 2; j >= 0; j--) {
                 // 2
                 if (exp[j + 1] != '*'){
+        //        if (exp[j + 1] != '*'){
+        //            return i < str.length && (exp[j] == str[i] || exp[j] == '.')
+        //                    && process(str, exp, i + 1, j + 1);
+        //        }
                     dp[i][j] = (exp[j] == str[i] || exp[j] == '.')
                             && dp[i + 1][j + 1];
-                }else {
-                    // 3.1
+                }else{ // 3
+        //        while (i < str.length && (exp[j] == str[i] || exp[j] == '.')){
+        //            if (process(str, exp, i, j + 2)){
+        //                return true;
+        //            }
+        //            i++;
+        //        }
                     int curI = i;
                     while (curI < sLen && (exp[j] == str[curI] || exp[j] == '.')){
                         if (dp[curI][j + 2]){
@@ -129,7 +134,7 @@ public class code01_RegularExpressionMatch {
                         curI++;
                     }
 
-                    // 3.2
+        //        return process(str, exp, i, j + 2);
                     if (dp[i][j] != true){
                         dp[i][j] = dp[curI][j + 2];
                     }

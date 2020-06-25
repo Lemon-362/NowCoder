@@ -137,6 +137,9 @@ public class RegularExpressionMatch {
             先看普遍位置所依赖的位置，发现缺少base case条件
             所以要先把base case填完整
             ==> 还需要倒数第二列和最后一行的base case
+
+            TODO 对于倒数第二列的最后一个位置，即 i==sLen，j==eLen-1
+                这个位置必为false，因为就算exp[j]=='.'也不行，'.'可以代表任意字符，但不能表示空
          */
         // 1 此时的情况1不依赖process其他位置，所以也看成是base case
         // 倒数第二列：表示exp只剩一个字符了，而str可能还有字符
@@ -155,7 +158,8 @@ public class RegularExpressionMatch {
             // 并且只有在 _字符 的位置才可能是true，*的位置一定是false
             if (exp[j] != '*' && exp[j + 1] == '*'){
                 dp[str.length][j] = true;
-            }else {
+            }else { // TODO 有一次不满足直接break，之前的都为false，这是因为之前的process依赖他的子问题（之后的状态）
+                // 如果之后的状态为false，那么回溯到它之前的状态，也一定为false
                 break;
             }
         }
