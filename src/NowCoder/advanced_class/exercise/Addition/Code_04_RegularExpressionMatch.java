@@ -63,24 +63,27 @@ public class Code_04_RegularExpressionMatch {
     }
 
     // 动态规划DP
-    public static boolean isMatchDP(String str, String exp) {
-        if (str == null || exp == null) {
+    public static boolean isMatchDP(String s, String e) {
+        if (s == null || e == null) {
             return false;
         }
-        char[] s = str.toCharArray();
-        char[] e = exp.toCharArray();
-        if (!isValid(s, e)) {
+        char[] str = s.toCharArray();
+        char[] exp = e.toCharArray();
+
+        if (!isValid(str, exp)) {
             return false;
         }
-        boolean[][] dp = initDPMap(s, e); // dp表的初始化，因为dp有些base case不能直接填好
-        for (int i = s.length - 1; i > -1; i--) {
-            for (int j = e.length - 2; j > -1; j--) {
-                if (e[j + 1] != '*') {
-                    dp[i][j] = (s[i] == e[j] || e[j] == '.')
+
+        boolean[][] dp = initDPMap(str, exp); // dp表的初始化，因为dp有些base case不能直接填好
+
+        for (int i = str.length - 1; i >= 0; i--) {
+            for (int j = exp.length - 2; j >= 0; j--) {
+                if (exp[j + 1] != '*') {
+                    dp[i][j] = (exp[j] == str[i] || exp[j] == '.')
                             && dp[i + 1][j + 1];
                 } else {
                     int si = i;
-                    while (si != s.length && (s[si] == e[j] || e[j] == '.')) {
+                    while (si < str.length && (exp[j] == str[si] || exp[j] == '.')) {
                         if (dp[si][j + 2]) {
                             dp[i][j] = true;
                             break;
@@ -97,35 +100,24 @@ public class Code_04_RegularExpressionMatch {
     }
 
     // 填好倒数两列和最后一行
-    public static boolean[][] initDPMap(char[] s, char[] e) {
-        int slen = s.length;
-        int elen = e.length;
+    public static boolean[][] initDPMap(char[] str, char[] exp) {
+        int slen = str.length;
+        int elen = exp.length;
         boolean[][] dp = new boolean[slen + 1][elen + 1];
         dp[slen][elen] = true;
-        for (int j = elen - 2; j > -1; j = j - 2) {
-            if (e[j] != '*' && e[j + 1] == '*') {
+        if (slen > 0 && elen > 0) {
+            if ((str[slen - 1] == exp[elen - 1]) || exp[elen - 1] == '.') {
+                dp[slen - 1][elen - 1] = true;
+            }
+        }
+        for (int j = elen - 2; j >= 0; j = j - 2) {
+            if (exp[j] != '*' && exp[j + 1] == '*') {
                 dp[slen][j] = true;
             } else {
                 break;
             }
         }
-        if (slen > 0 && elen > 0) {
-            if ((e[elen - 1] == '.' || s[slen - 1] == e[elen - 1])) {
-                dp[slen - 1][elen - 1] = true;
-            }
-        }
         return dp;
-    }
-
-    // 思路的写法
-    public static boolean f(char[] str, char[] exp, int i, int j) {
-        if (j < exp.length - 1 && exp[j + 1] != '*') { // j不是最后一个位置，且exp的j+1位置不是*
-            if (str[i] != exp[j] && exp[j] != '.'){ // 如果str的i位置和exp的j位置元素不同，且exp的j位置不是.，直接返回false
-                return false;
-            }
-            return f(str, exp, i+1, j+1);
-        }
-        return true;
     }
 
     public static void main(String[] args) {
@@ -137,8 +129,8 @@ public class Code_04_RegularExpressionMatch {
         System.out.println("*******************");
 
         str = "mississippi";
-        exp = "mis*is*p*.";
-        System.out.println(isMatch(str, exp)); // false
+        exp = "mis*is*ip*.";
+        System.out.println(isMatch(str, exp)); // true
         System.out.println(isMatchDP(str, exp));
 
     }
