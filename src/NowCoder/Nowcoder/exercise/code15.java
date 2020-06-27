@@ -10,8 +10,8 @@ public class code15 {
         }
     }
 
-    public static Node reverseLinkedList(Node head){
-        if (head == null){
+    public static Node reverseLinkedList(Node head) {
+        if (head == null) {
             return null;
         }
 
@@ -19,10 +19,11 @@ public class code15 {
         Node pre = null;
         Node next = null;
 
-        while (cur != null){
+        while (cur != null) {
             next = cur.next;
 
             cur.next = pre;
+
             pre = cur;
             cur = next;
         }

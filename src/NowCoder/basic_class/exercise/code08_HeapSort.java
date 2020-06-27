@@ -5,6 +5,15 @@ package NowCoder.basic_class.exercise;
         数组变成大根堆，数组头一定是数组中最大的
         堆顶与最后一个交换，然后Heapify
         堆大小-1，重复交换和后续
+
+        TODO
+            heapInsert: 往数组/大根堆中加入元素的过程, 向上调整(和父节点比较)
+                        调整完后, 数组的第一个位置一定是堆顶
+            heapify: 数组中一个元素变小, 重新调整为大根堆的过程, 向下调整(和左右孩子比较)
+                     每次将堆顶变小(和最后一个位置交换), 然后对 0 - size-1 范围内heapify
+                     那么因为是大根堆, 所以可以保证将堆顶和最后一个位置交换后, 最后一个位置是最大的,
+                     此时保证最后一个位置不变, 对 0 - size-1 范围内heapify, 重新形成大根堆
+                     不断重复, 每次交换最大值到最后, 然后对之前的范围重新调整
  */
 public class code08_HeapSort {
     public static void heapSort(int[] arr) {
@@ -22,13 +31,16 @@ public class code08_HeapSort {
         }
     }
 
+    // 和父节点比较
     public static void heapInsert(int[] arr, int index) {
+        // 大根堆
         while (arr[index] > arr[(index - 1) / 2]) {
             swap(arr, index, (index - 1) / 2);
             index = (index - 1) / 2;
         }
     }
 
+    // 和左右孩子比较, size只是保证 0 - size-1范围内的数组可以形成大根堆, 之后的不考虑
     public static void heapify(int[] arr, int index, int size) {
         int left = 2*index + 1;
         while (left < size) {
@@ -50,11 +62,11 @@ public class code08_HeapSort {
         arr[j] = temp;
     }
 
-//    public static void main(String[] args) {
-//        int[] arr = {3, 4, 15, 6, 2, 5, 7};
-//        heapSort(arr);
-//        for (int i = 0; i < arr.length; i++) {
-//            System.out.print(arr[i] + " ");
-//        }
-//    }
+    public static void main(String[] args) {
+        int[] arr = {3, 4, 15, 6, 2, 5, 7};
+        heapSort(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
 }

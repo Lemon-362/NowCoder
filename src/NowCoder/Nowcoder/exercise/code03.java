@@ -35,44 +35,15 @@ public class code03 {
         return res;
     }
 
-    // 翻转单向链表
-    public static ArrayList<Integer> reversePrint2(Node head) {
-        if (head == null) {
-            return null;
-        }
-
-        Node cur = head;
-        Node pre = null;
-        Node next = null;
-
-        while (cur != null) {
-            next = cur.next;
-
-            cur.next = pre;
-
-            pre = cur;
-            cur = next;
-        }
-
-        ArrayList<Integer> res = new ArrayList<>();
-        while (pre != null) {
-            res.add(pre.value);
-
-            pre = pre.next;
-        }
-
-        return res;
-    }
-
     public static ArrayList<Integer> list = new ArrayList<>();
 
-    public static ArrayList<Integer> reversePrint3(Node head) {
+    public static ArrayList<Integer> reversePrint2(Node head) {
         // base case
         if (head == null){
             return null;
         }
 
-        reversePrint3(head.next);
+        reversePrint2(head.next);
 
         list.add(head.value);
 
@@ -93,14 +64,7 @@ public class code03 {
 
         System.out.println();
 
-        ArrayList<Integer> list2 = reversePrint2(head);
-        for (Integer num : list2) {
-            System.out.print(num + " ");
-        }
-
-        System.out.println();
-
-        ArrayList<Integer> list3 = reversePrint3(head);
+        ArrayList<Integer> list3 = reversePrint2(head);
         for (Integer num : list3) {
             System.out.print(num + " ");
         }

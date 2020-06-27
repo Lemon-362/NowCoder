@@ -11,6 +11,8 @@ package NowCoder.advanced_class.exercise;
 	    一定是从某一位置开始到字符串末尾都是回文，此时添加的个数是最少的。
 	    记录此时的回文半径，并break。
 	    然后，在后面添加回文之前的逆序
+	    TODO 就算到达右边界时没有回文，单独的一个字符也可以形成回文，
+	        所以在到达右边界时计算最长回文子串长度，一定是有值的
  */
 public class code05_Manacher_ShortestEnd {
     public static String shortestEnd(String s){

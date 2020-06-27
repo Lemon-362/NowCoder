@@ -1,5 +1,8 @@
 package NowCoder.advanced_class.exercise;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 /*
 	BFPRT算法：求无序数组中第k小/大的数
 		找出无序数组中最小的k个数
@@ -11,10 +14,18 @@ public class code06_BFPRT {
                 return null;
             }
 
+            // TODO 维护一个大根堆, 存储较小的k个数
+            // TODO 如果直接用小根堆, 那不如直接排序划算
             int[] heap = new int[k];
             for (int i = 0; i < k; i++) {
                 heapInsert(heap, arr[i], i);
             }
+
+            /* TODO 因为大根堆存的是较小的k个数, 如果arr中有比 较小的k个数中最大的(堆顶) 大的数,
+                    那么就将堆顶变成该数, 始终对这k个数进行调整, 形成大根堆
+
+                    如果直接使用小根堆来取堆顶往下的k个较小的数的话, 那么代价不如排序
+             */
 
             for (int i = k; i < arr.length; i++) {
                 if (arr[i] < heap[0]) {

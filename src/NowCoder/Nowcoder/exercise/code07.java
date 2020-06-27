@@ -3,7 +3,7 @@ package NowCoder.Nowcoder.exercise;
 public class code07 {
     public static int process(int N){
         // base case
-        if (N < 2){
+        if (N <= 1){
             return N;
         }else {
             return process(N - 1) + process(N - 2);
@@ -16,10 +16,12 @@ public class code07 {
 
     public static int fibonacci1(int N){
         int[] dp = new int[N + 1];
+
+        // base case
         dp[0] = 0;
         dp[1] = 1;
 
-        for (int i = 2; i < dp.length; i++) {
+        for (int i = 2; i <= N; i++) {
             dp[i] = dp[i - 1] + dp[i - 2];
         }
 
@@ -27,6 +29,11 @@ public class code07 {
     }
 
     public static int fibonacci2(int N){
+        // base case
+        if (N <= 1){
+            return N;
+        }
+
         int cur = 1;
         int pre = 0;
         int res = 0;

@@ -9,11 +9,10 @@ public class code01_RegularExpressionMatch {
 
         // 1
         if (j == exp.length - 1){
-            return i == str.length - 1
-                    && (exp[j] == str[i] || exp[j] == '.');
+            return i == str.length - 1 && (exp[j] == str[i] || exp[j] == '.');
         }
 
-        // j < exp.length - 1
+        //j < exp.length - 1
         // 2
         if (exp[j + 1] != '*'){
             return i < str.length && (exp[j] == str[i] || exp[j] == '.')
@@ -21,19 +20,21 @@ public class code01_RegularExpressionMatch {
         }
 
         // exp[j + 1] == '*'
-        while (i < str.length && (exp[j] == str[i] || exp[j] == '.')){
+        // 3.1
+        while(i < str.length && (exp[j] == str[i] || exp[j] == '.')){
             if (process(str, exp, i, j + 2)){
                 return true;
             }
             i++;
         }
 
+        // 3.2
         return process(str, exp, i, j + 2);
     }
 
     public static boolean isValid(char[] str, char[] exp){
         for (char c : str) {
-            if (c == '.' || c == '*'){
+            if (c == '*' || c == '.'){
                 return false;
             }
         }
@@ -58,84 +59,82 @@ public class code01_RegularExpressionMatch {
         return isValid(str, exp) && process(str, exp, 0, 0);
     }
 
-    public static boolean isMatchDP(String s, String e){
-        if (s == null || e == null){
+    public static boolean isMatchDP(String s, String e) {
+        if (s == null || e == null) {
             return false;
         }
 
         char[] str = s.toCharArray();
         char[] exp = e.toCharArray();
 
-        int sLen = str.length;
-        int eLen = exp.length;
-        boolean[][] dp = new boolean[sLen + 1][eLen + 1];
+        int strLen = str.length;
+        int expLen = exp.length;
+        boolean[][] dp = new boolean[strLen + 1][expLen + 1];
 
         // base case
 //        if (j == exp.length){
 //            return i == str.length;
 //        }
-        dp[sLen][eLen] = true;
+        dp[strLen][expLen] = true;
 
         // 1
 //        if (j == exp.length - 1){
-//            return i == str.length - 1
-//                    && (exp[j] == str[i] || exp[j] == '.');
+//            return i == str.length - 1 && (exp[j] == str[i] || exp[j] == '.');
 //        }
-        dp[sLen - 1][eLen - 1] = (exp[eLen - 1] == str[sLen - 1] || exp[eLen - 1] == '.');
+        dp[strLen - 1][expLen - 1] = (exp[expLen - 1] == str[strLen - 1] || exp[expLen - 1] == '.');
 
 //        // 2
 //        if (exp[j + 1] != '*'){
 //            return i < str.length && (exp[j] == str[i] || exp[j] == '.')
 //                    && process(str, exp, i + 1, j + 1);
 //        }
-//
 //        // exp[j + 1] == '*'
-//        while (i < str.length && (exp[j] == str[i] || exp[j] == '.')){
+//        // 3.1
+//        while(i < str.length && (exp[j] == str[i] || exp[j] == '.')){
 //            if (process(str, exp, i, j + 2)){
 //                return true;
 //            }
 //            i++;
 //        }
-//
+//        // 3.2
 //        return process(str, exp, i, j + 2);
-
-        // 普遍位置的依赖还需要最后一行已知
-        for (int j = eLen - 2; j >= 0; j = j - 2) {
+        for (int j = expLen - 2; j >= 0; j = j - 2) {
             if (exp[j] != '*' && exp[j + 1] == '*'){
-                dp[sLen][j] = true;
-            }else {
+                dp[strLen][j] = true;
+            }else{
                 break;
             }
         }
 
-        for (int i = sLen - 1; i >= 0; i--) {
-            for (int j = eLen - 2; j >= 0; j--) {
-                // 2
-                if (exp[j + 1] != '*'){
-        //        if (exp[j + 1] != '*'){
-        //            return i < str.length && (exp[j] == str[i] || exp[j] == '.')
-        //                    && process(str, exp, i + 1, j + 1);
-        //        }
+        for (int i = strLen - 1; i >= 0; i--) {
+            for (int j = expLen - 2; j >= 0; j--) {
+//        // 2
+//        if (exp[j + 1] != '*'){
+//            return i < str.length && (exp[j] == str[i] || exp[j] == '.')
+//                    && process(str, exp, i + 1, j + 1);
+//        }
+                if (exp[j + 1] != '*') {
                     dp[i][j] = (exp[j] == str[i] || exp[j] == '.')
                             && dp[i + 1][j + 1];
-                }else{ // 3
-        //        while (i < str.length && (exp[j] == str[i] || exp[j] == '.')){
-        //            if (process(str, exp, i, j + 2)){
-        //                return true;
-        //            }
-        //            i++;
-        //        }
+                } else {
+//        // 3.1
+//        while(i < str.length && (exp[j] == str[i] || exp[j] == '.')){
+//            if (process(str, exp, i, j + 2)){
+//                return true;
+//            }
+//            i++;
+//        }
                     int curI = i;
-                    while (curI < sLen && (exp[j] == str[curI] || exp[j] == '.')){
-                        if (dp[curI][j + 2]){
+                    while (curI < strLen && (exp[j] == str[curI] || exp[j] == '.')) {
+                        if (dp[curI][j + 2]) {
                             dp[i][j] = true;
                             break;
                         }
                         curI++;
                     }
-
-        //        return process(str, exp, i, j + 2);
-                    if (dp[i][j] != true){
+//        // 3.2
+//        return process(str, exp, i, j + 2);
+                    if (dp[i][j] != true) {
                         dp[i][j] = dp[curI][j + 2];
                     }
                 }

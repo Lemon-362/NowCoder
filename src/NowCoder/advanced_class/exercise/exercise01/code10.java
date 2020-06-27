@@ -30,12 +30,12 @@ public class code10 {
 
         for (int i = 0; i < nodes.length; i++) {
             Node cur = nodes[i];
-            while (!stack.isEmpty() && cur.value > stack.peek().value) {
+            while (!stack.isEmpty() && cur.value > stack.peek().value){
                 Node popNode = stack.pop();
                 rBigMap.put(popNode, cur);
-                if (stack.isEmpty()) {
+                if (stack.isEmpty()){
                     lBigMap.put(popNode, null);
-                } else {
+                }else {
                     lBigMap.put(popNode, stack.peek());
                 }
             }
@@ -43,12 +43,12 @@ public class code10 {
             stack.push(cur);
         }
 
-        while (!stack.isEmpty()) {
+        while (!stack.isEmpty()){
             Node popNode = stack.pop();
             rBigMap.put(popNode, null);
-            if (stack.isEmpty()) {
+            if (stack.isEmpty()){
                 lBigMap.put(popNode, null);
-            } else {
+            }else {
                 lBigMap.put(popNode, stack.peek());
             }
         }
@@ -57,35 +57,34 @@ public class code10 {
 
         for (int i = 0; i < nodes.length; i++) {
             Node cur = nodes[i];
-            Node left = lBigMap.get(cur);
-            Node right = rBigMap.get(cur);
+            Node leftHead = lBigMap.get(cur);
+            Node rightHead = rBigMap.get(cur);
 
-            if (left == null && right == null) {
+            if (leftHead == null && rightHead == null){
                 head = cur;
-            } else if (left == null) {
-                if (right.left == null) {
-                    right.left = cur;
-                } else {
-                    right.right = cur;
+            }else if (leftHead == null){
+                if (rightHead.left == null){
+                    rightHead.left = cur;
+                }else {
+                    rightHead.right = cur;
                 }
-            } else if (right == null) {
-                if (left.left == null) {
-                    left.left = cur;
-                } else {
-                    left.right = cur;
+            }else if (rightHead == null){
+                if (leftHead.left == null){
+                    leftHead.left = cur;
+                }else {
+                    leftHead.right = cur;
                 }
-            } else {
-                Node parent = left.value < right.value ? left : right;
-                if (parent.left == null) {
-                    parent.left = cur;
-                } else {
-                    parent.right = cur;
+            }else {
+                Node headNode = leftHead.value < rightHead.value ? leftHead : rightHead;
+                if (headNode.left == null){
+                    headNode.left = cur;
+                }else {
+                    headNode.right = cur;
                 }
             }
         }
 
         return head;
-
     }
 
     public static void printPreOrder(Node head) {

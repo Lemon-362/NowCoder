@@ -26,8 +26,10 @@ public class code24_FindPath {
         }
     }
 
-    public static LinkedList<List<Integer>> res = new LinkedList<>();
-    public static LinkedList<Integer> list = new LinkedList<>();
+//    public static LinkedList<List<Integer>> res = new LinkedList<>();
+//    public static LinkedList<Integer> list = new LinkedList<>();
+    public static List<List<Integer>> res = new ArrayList<>();
+    public static List<Integer> list = new ArrayList<>();
 
     // TODO 因为只有到底才能判断是否是一条路径, 所以在之前只能每次先加到list中, 然后再判断
     public static List<List<Integer>> findPath(Node head, int num){
@@ -42,13 +44,15 @@ public class code24_FindPath {
         }
 
         // 首先将节点加入到list中
-        list.addLast(head.value);
+//        list.addLast(head.value);
+        list.add(head.value);
 
         num -= head.value;
 
         // 判断: num==0, 且该节点是叶节点(到底了)
         if (num == 0 && head.left == null && head.right == null){
-            res.add(new LinkedList<>(list));
+//            res.add(new LinkedList<>(list));
+            res.add(new ArrayList<>(list));
         }
 
         // 如果不满足, 则往左/右递归
@@ -56,7 +60,8 @@ public class code24_FindPath {
         process(head.right, num);
 
         // TODO 此时, 一条到底的路走完了, 要向上回溯到父节点时, 必须先将当前节点删除
-        list.removeLast();
+//        list.removeLast();
+        list.remove(list.size() - 1);
     }
 
     public static void main(String[] args) {

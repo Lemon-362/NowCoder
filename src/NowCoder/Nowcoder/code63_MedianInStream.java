@@ -76,7 +76,7 @@ public class code63_MedianInStream {
 
         if ((maxHeapSize + minHeapSize) % 2 == 0) {
             return (maxHeapPeek + minHeapPeak) / 2.0;
-        } else {
+        } else { // TODO 因为maxHeap是存较小的数, 所以中位数应该在maxHeap中
             return maxHeapSize > minHeapSize ? maxHeapPeek * 1.0 : minHeapPeak * 1.0;
         }
     }

@@ -36,32 +36,31 @@ public class code63 {
             this.minHeap.add(num);
         }
 
-        modify();
+        this.modify();
     }
 
     public void modify(){
         if (this.maxHeap.size() - this.minHeap.size() > 1){
             this.minHeap.add(this.maxHeap.poll());
-        } else if (this.minHeap.size() - this.maxHeap.size() > 1) {
+        }else if (this.minHeap.size() - this.maxHeap.size() > 1){
             this.maxHeap.add(this.minHeap.poll());
         }
     }
 
     public Double getMedian(){
-        int maxHeapSize = this.maxHeap.size();
-        int minHeapSize = this.minHeap.size();
+        int maxSize = this.maxHeap.size();
+        int minSize = this.minHeap.size();
+        Integer maxNum = this.maxHeap.peek();
+        Integer minNum = this.minHeap.peek();
 
-        Integer maxValue = this.maxHeap.peek();
-        Integer minValue = this.minHeap.peek();
-
-        if (maxHeapSize + minHeapSize == 0){
+        if (maxSize + minSize == 0){
             return null;
         }
 
-        if ((maxHeapSize + minHeapSize) % 2 == 0){
-            return (maxValue + minValue) / 2.0;
+        if ((maxSize + minSize) % 2 == 0){
+            return (maxNum + minNum) / 2.0;
         }else {
-            return maxHeapSize > minHeapSize ? maxValue * 1.0 : minValue * 1.0;
+            return maxSize > minSize ? maxNum * 1.0 : minNum * 1.0;
         }
     }
 

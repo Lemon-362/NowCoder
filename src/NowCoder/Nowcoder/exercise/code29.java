@@ -26,7 +26,7 @@ public class code29 {
         public static void heapify(int[] heap, int index, int size){
             int left = 2 * index + 1;
             while (left < size){
-                int largest = left + 1 < size && heap[left + 1] > heap[left] ? left + 1 : left;
+                int largest = left + 1 < size && heap[left + 1] > heap[left] ? left +1 : left;
                 largest = heap[largest] > heap[index] ? largest : index;
                 if (largest == index){
                     break;
@@ -39,9 +39,9 @@ public class code29 {
 
         public static void heapInsert(int[] heap, int index, int num){
             heap[index] = num;
-
             while (heap[index] > heap[(index - 1) / 2]){
                 swap(heap, index, (index - 1) / 2);
+                index = (index - 1) / 2;
             }
         }
 

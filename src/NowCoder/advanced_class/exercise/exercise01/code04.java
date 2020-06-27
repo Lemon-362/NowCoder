@@ -8,22 +8,22 @@ public class code04 {
 
         char[] str = manacherString(s);
 
+        int res = 0;
         int[] pArr = new int[str.length];
         int R = -1;
         int C = -1;
-        int res = 0;
 
         for (int i = 0; i < str.length; i++) {
-            pArr[i] = R > i ? Math.min(R - i, pArr[2 * C - i]) : 1;
+            pArr[i] = R > i ? Math.min(R - i, pArr[2*C-i]) : 1;
             while (i + pArr[i] < str.length && i - pArr[i] > -1){
-                if (str[i+pArr[i]] == str[i-pArr[i]]) {
+                if (str[i+pArr[i]] == str[i-pArr[i]]){
                     pArr[i]++;
                 }else {
                     break;
                 }
             }
 
-            if (R > i + pArr[i]){
+            if (i + pArr[i] > R){
                 R = i + pArr[i];
                 C = i;
             }
@@ -36,8 +36,9 @@ public class code04 {
 
     public static char[] manacherString(String s) {
         char[] str = s.toCharArray();
+        char[] res = new char[2 * str.length];
         int index = 0;
-        char[] res = new char[2 * str.length + 1];
+
         for (int i = 0; i < res.length; i++) {
             res[i] = i % 2 == 0 ? '#' : str[index++];
         }

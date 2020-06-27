@@ -40,36 +40,36 @@ public class code08 {
 
         LinkedList<Integer> maxQ = new LinkedList<>();
         LinkedList<Integer> minQ = new LinkedList<>();
-        int res = 0;
         int L = 0;
         int R = 0;
+        int res = 0;
 
-        while (L < arr.length) {
-            while (R < arr.length) {
-                while (!maxQ.isEmpty() && arr[R] >= arr[maxQ.peekLast()]) {
+        while (L < arr.length){
+            while (R < arr.length){
+                while (!maxQ.isEmpty() && arr[R] >= arr[maxQ.peekLast()]){
                     maxQ.pollLast();
                 }
                 maxQ.addLast(R);
 
-                while (!minQ.isEmpty() && arr[R] <= arr[minQ.peekLast()]) {
+                while (!minQ.isEmpty() && arr[R] <= arr[minQ.peekLast()]){
                     minQ.pollLast();
                 }
                 minQ.addLast(R);
 
-                if (arr[maxQ.peekFirst()] - arr[minQ.peekFirst()] > num) {
+                if (arr[maxQ.peekFirst()] - arr[minQ.peekFirst()] > num){
                     break;
                 }
 
                 R++;
             }
 
-            res += (R - L);
+            res += (R - 1 - L + 1);
 
-            if (maxQ.peekFirst() == L) {
+            if (maxQ.peekFirst() == L){
                 maxQ.pollFirst();
             }
 
-            if (minQ.peekFirst() == L) {
+            if (minQ.peekFirst() == L){
                 minQ.pollFirst();
             }
 

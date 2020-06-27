@@ -16,7 +16,6 @@ public class code07 {
             while (!list.isEmpty() && arr[i] >= arr[list.peekLast()]){
                 list.pollLast();
             }
-
             list.addLast(i);
 
             if (list.peekFirst() == i - w){
