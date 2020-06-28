@@ -41,7 +41,7 @@ public class code24 {
 
         if (aim == 0 && head.left == null && head.right == null){
             res.addLast(new LinkedList<>(list));
-        } else {
+        }else {
             process(head.left, aim);
             process(head.right, aim);
         }

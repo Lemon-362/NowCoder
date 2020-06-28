@@ -22,9 +22,9 @@ public class code16 {
             return head1;
         }
 
-        Node head = null;
         Node p1 = head1;
         Node p2 = head2;
+        Node head = null;
         Node cur = null;
 
         while (p1 != null && p2 != null){
@@ -52,7 +52,6 @@ public class code16 {
         if (p1 != null){
             cur.next = p1;
         }
-
         if (p2 != null){
             cur.next = p2;
         }
@@ -105,7 +104,7 @@ public class code16 {
         head2.next.next = new Node(6);
         head2.next.next.next = new Node(7);
 
-        printList(merge01(head1, head2)); // 1 3 4 5 6 7 10 20
-//        printList(merge02(head1, head2));
+//        printList(merge01(head1, head2)); // 1 3 4 5 6 7 10 20
+        printList(merge02(head1, head2));
     }
 }

@@ -26,7 +26,7 @@ public class code29 {
         public static void heapify(int[] heap, int index, int size){
             int left = 2 * index + 1;
             while (left < size){
-                int largest = left + 1 < size && heap[left + 1] > heap[left] ? left +1 : left;
+                int largest = left + 1 < size && heap[left + 1] > heap[left] ? left + 1 : left;
                 largest = heap[largest] > heap[index] ? largest : index;
                 if (largest == index){
                     break;

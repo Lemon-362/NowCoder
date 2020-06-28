@@ -7,6 +7,8 @@ package NowCoder.Nowcoder;
         小和问题：求的是 左边比当前数小的数累加之和，左小右大 --> 归并排序
         衍生 --> 该题求的是 左大右小，只需要在归并排序的时候从大到小排序
                 在merge的过程中计算以每个数作为右边值时，左边比他大的数的个数
+
+        时间复杂度：O(NlogN)
  */
 public class code35_ReversePairs {
     public static int reversePairs(int[] arr) {

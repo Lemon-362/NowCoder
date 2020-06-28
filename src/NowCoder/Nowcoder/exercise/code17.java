@@ -16,29 +16,28 @@ public class code17 {
     // TODO 子结构: 必须先找到相同节点, 然后再往下比较, 如果直接递归process, 头节点不同直接返回false了
     public static boolean isSubStructure(Node head1, Node head2) {
         // base case
-        if (head1 == null){
+        if (head1 == null) {
             return false;
         }
 
-        if (head1.value == head2.value){
+        if (head1.value == head2.value) {
             return process(head1, head2);
-        }else {
+        } else {
             return isSubStructure(head1.left, head2) || isSubStructure(head1.right, head2);
         }
     }
 
-    public static boolean process(Node head1, Node head2){
+    public static boolean process(Node head1, Node head2) {
         // base case
-        if (head2 == null){
+        if (head2 == null) {
             return true;
-        }
-        if (head1 == null){
+        } else if (head1 == null) {
             return false;
         }
 
-        if (head1.value == head2.value){
+        if (head1.value == head2.value) {
             return process(head1.left, head2.left) && process(head1.right, head2.right);
-        }else {
+        } else {
             return false;
         }
     }
@@ -56,14 +55,14 @@ public class code17 {
 
         int p1 = 0;
         int p2 = 0;
-        while (p1 < str1.length && p2 < str2.length){
-            if (str1[p1] == str2[p2]){
+        while (p1 < str1.length && p2 < str2.length) {
+            if (str1[p1] == str2[p2]) {
                 p1++;
                 p2++;
-            }else {
-                if (next[p2] == -1){
+            } else {
+                if (next[p2] == -1) {
                     p1++;
-                }else {
+                } else {
                     p2 = next[p2];
                 }
             }
@@ -73,19 +72,19 @@ public class code17 {
         return len != -1;
     }
 
-    public static int[] getNextArr(char[] str){
+    public static int[] getNextArr(char[] str) {
         int[] next = new int[str.length];
         next[0] = -1;
         next[1] = 0;
         int p = 2;
         int cn = 0;
 
-        while (p < next.length){
-            if (str[p - 1] == str[cn]){
+        while (p < next.length) {
+            if (str[p - 1] == str[cn]) {
                 next[p++] = ++cn;
-            }else if (cn > 0){
+            } else if (cn > 0) {
                 cn = next[cn];
-            }else {
+            } else {
                 next[p++] = 0;
             }
         }

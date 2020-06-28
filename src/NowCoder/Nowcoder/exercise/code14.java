@@ -17,19 +17,19 @@ public class code14 {
             return null;
         }
 
-        Node cur = head;
         int len = 0;
-
+        Node cur = head;
         while (cur != null){
             len++;
             cur = cur.next;
         }
 
+        cur = head;
         for (int i = 0; i < len - k; i++) {
-            head = head.next;
+            cur = cur.next;
         }
 
-        return head;
+        return cur;
     }
 
     public static Node findKthToTail01(Node head, int k){

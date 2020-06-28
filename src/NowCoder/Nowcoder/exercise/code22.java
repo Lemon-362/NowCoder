@@ -32,16 +32,14 @@ public class code22 {
 
             for (int i = 0; i < size; i++) {
                 Node cur = queue.poll();
-                Node left = cur.left;
-                Node right = cur.right;
 
-                if (left != null){
-                    list.add(left.value);
-                    queue.offer(left);
+                if (cur.left != null){
+                    list.add(cur.left.value);
+                    queue.offer(cur.left);
                 }
-                if (right != null){
-                    list.add(right.value);
-                    queue.offer(right);
+                if (cur.right != null){
+                    list.add(cur.right.value);
+                    queue.offer(cur.right);
                 }
             }
         }

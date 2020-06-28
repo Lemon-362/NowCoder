@@ -3,8 +3,8 @@ package NowCoder.Nowcoder.exercise;
 import java.util.LinkedHashMap;
 
 public class code34 {
-    public static char firstNotRepeatingChar(String str){
-        if (str == null){
+    public static char firstNotRepeatingChar(String str) {
+        if (str == null) {
             return ' ';
         }
 
@@ -13,16 +13,42 @@ public class code34 {
         char[] s = str.toCharArray();
 
         for (int i = 0; i < s.length; i++) {
-            if (map.containsKey(s[i])){
+            if (map.containsKey(s[i])) {
                 map.put(s[i], map.get(s[i]) + 1);
-            }else {
+            } else {
                 map.put(s[i], 1);
             }
         }
 
         for (int i = 0; i < s.length; i++) {
-            if (map.get(s[i]) == 1){
+            if (map.get(s[i]) == 1) {
                 return s[i];
+            }
+        }
+
+        return ' ';
+    }
+
+
+    public static char firstNotRepeatingCharWithoutMap(String str) {
+        if (str == null) {
+            return ' ';
+        }
+
+        // A-Z: 65 - 90  a-z: 97 - 122
+        int[] arr = new int[122 - 65 + 1];
+
+        for (int i = 0; i < str.length(); i++) {
+            int index = str.charAt(i) - 65;
+
+            arr[index]++;
+        }
+
+        for (int i = 0; i < str.length(); i++) {
+            int index = str.charAt(i) - 65;
+
+            if (arr[index] == 1){
+                return str.charAt(i);
             }
         }
 
@@ -32,5 +58,6 @@ public class code34 {
     public static void main(String[] args) {
         String str = "abaccdeff";
         System.out.println(firstNotRepeatingChar(str)); // b
+        System.out.println(firstNotRepeatingCharWithoutMap(str));
     }
 }

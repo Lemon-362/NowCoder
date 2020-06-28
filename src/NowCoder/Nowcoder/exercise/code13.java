@@ -9,15 +9,15 @@ public class code13 {
         partition(arr, 0, arr.length - 1);
     }
 
-    public static void partition(int[] arr, int l, int r) {
+    public static void partition(int[] arr, int l, int r){
         int less = l - 1;
         int more = r + 1;
         int cur = l;
 
-        while (cur < more) {
-            if (arr[cur] % 2 == 1) {
+        while (cur < more){
+            if (arr[cur] % 2 == 1){
                 swap(arr, ++less, cur++);
-            } else {
+            }else {
                 swap(arr, --more, cur);
             }
         }
@@ -30,7 +30,7 @@ public class code13 {
 
         for (int i = arr.length - 1; i >= 0; i--) {
             for (int j = 0; j < i; j++) {
-                if (arr[j] % 2 == 0 && arr[j + 1] % 2 == 1) {
+                if (arr[j] % 2 == 0 && arr[j + 1] % 2 == 1){
                     swap(arr, j, j + 1);
                 }
             }
@@ -55,8 +55,8 @@ public class code13 {
 
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-        exchangeByON(arr);
-//        exchangeByON2(arr);
+//        exchangeByON(arr);
+        exchangeByON2(arr);
         printArr(arr); // 1 3 5 7 9 2 4 6 8
     }
 }

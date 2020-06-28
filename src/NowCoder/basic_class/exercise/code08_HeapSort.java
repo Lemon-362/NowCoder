@@ -13,7 +13,8 @@ package NowCoder.basic_class.exercise;
          堆排序思想:
              每次将堆顶变小(和最后一个位置交换), 然后对 0 - size-1 范围内heapify
              那么因为是大根堆, 所以可以保证将堆顶和最后一个位置交换后, 最后一个位置是最大的,
-             此时保证最后一个位置不变, 对 0 - size-1 范围内heapify, 重新形成大根堆
+             此时堆顶变小，对堆顶heapify，将堆顶向下调整到合适的位置，
+             而交换到最后一个位置的元素是不动的，调整之后 0 - size-1范围内重新形成大根堆
              不断重复, 每次交换最大值到最后, 然后对之前的范围重新调整
  */
 public class code08_HeapSort {
@@ -43,7 +44,7 @@ public class code08_HeapSort {
 
     // 和左右孩子比较, size只是保证 0 - size-1范围内的数组可以形成大根堆, 之后的不考虑
     public static void heapify(int[] arr, int index, int size) {
-        int left = 2*index + 1;
+        int left = 2 * index + 1;
         while (left < size) {
             int largest = left + 1 < size && arr[left + 1] > arr[left] ? left + 1 : left;
             largest = arr[largest] > arr[index] ? largest : index;
@@ -52,7 +53,7 @@ public class code08_HeapSort {
             }
             swap(arr, index, largest);
             index = largest;
-            left = 2*index + 1;
+            left = 2 * index + 1;
         }
     }
 

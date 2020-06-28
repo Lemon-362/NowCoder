@@ -12,10 +12,10 @@ public class code27 {
 
         char[] s = str.toCharArray();
 
-        process(s, 0, s.length - 1);
+        process1(s, 0, s.length - 1);
     }
 
-    public static void process(char[] s, int l, int r){
+    public static void process1(char[] s, int l, int r){
         // base case
         if (l == r){
             System.out.println(String.valueOf(s));
@@ -30,7 +30,7 @@ public class code27 {
 
                 swap(s, i, l);
 
-                process(s, l + 1, r);
+                process1(s, l + 1, r);
 
                 swap(s, i, l);
             }
@@ -51,7 +51,7 @@ public class code27 {
 
         char[] s = str.toCharArray();
 
-        process2(s, 0, " ");
+        process2(s, 0, "");
     }
 
     public static void process2(char[] s, int index, String res){
@@ -62,7 +62,6 @@ public class code27 {
         }
 
         process2(s, index + 1, res);
-
         process2(s, index + 1, res + s[index]);
     }
 

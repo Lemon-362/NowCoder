@@ -139,7 +139,7 @@ public class code28 {
         int res = arr[0];
 
         for (int i = 1; i < arr.length; i++) {
-            if (arr[i] == res) {
+            if (arr[i] == res){
                 count++;
             }else {
                 count--;
@@ -153,7 +153,7 @@ public class code28 {
 
         int times = 0;
         for (int i = 0; i < arr.length; i++) {
-            if (res == arr[i]){
+            if (arr[i] == res){
                 times++;
             }
         }

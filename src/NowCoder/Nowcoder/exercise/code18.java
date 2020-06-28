@@ -27,19 +27,17 @@ public class code18 {
 
         while (!queue.isEmpty()){
             Node cur = queue.poll();
-            Node left = cur.left;
-            Node right = cur.right;
 
-            if (left != null){
-                queue.offer(left);
+            if (cur.left != null){
+                queue.offer(cur.left);
+            }
+            if (cur.right != null){
+                queue.offer(cur.right);
             }
 
-            if (right != null){
-                queue.offer(right);
-            }
-
-            cur.left = right;
-            cur.right = left;
+            Node temp = cur.left;
+            cur.left = cur.right;
+            cur.right = temp;
         }
     }
 
