@@ -30,12 +30,40 @@ public class code40 {
         return res;
     }
 
-    public static void main(String[] args) {
-        int[] arr = {1, 4, 1, 4, 3, 3, 10, 2};
+    public static int[] FindNumAppearOnce1(int[] arr){
+        if (arr == null || arr.length < 2){
+            return null;
+        }
 
-        int[] res = FindNumAppearOnce(arr);
+        int xor = 0;
+        for (int i = 0; i < arr.length; i++) {
+            xor ^= arr[i];
+        }
+
+        int index = 1;
+        while ((index & xor) == 0){
+            index = index << 1;
+        }
+
+        int result1 = 0;
+        int result2 = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if ((arr[i] & index) == 0){
+                result1 ^= arr[i];
+            }else {
+                result2 ^= arr[i];
+            }
+        }
+
+        return new int[]{result1, result2};
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {2, 4, 3, 6, 3, 2, 5, 5};
+
+        int[] res = FindNumAppearOnce1(arr);
         for (int num : res) {
-            System.out.println(num);
+            System.out.println(num); // 4 6
         }
     }
 }

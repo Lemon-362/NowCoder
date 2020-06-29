@@ -1,8 +1,8 @@
 package NowCoder.Nowcoder.exercise;
 
 public class code31 {
-    public static int NumberOf1Between1AndN(int n){
-        if (n <= 0){
+    public static int NumberOf1Between1AndN(int n) {
+        if (n <= 0) {
             return 0;
         }
 
@@ -15,9 +15,9 @@ public class code31 {
             return 0;
         }
 
-        char[] s = String.valueOf(n).toCharArray();
-        int high = Integer.parseInt(String.valueOf(s[0]));
-        int power = (int)(Math.pow(10, s.length - 1));
+        char[] str = String.valueOf(n).toCharArray();
+        int high = Integer.parseInt(String.valueOf(str[0]));
+        int power = (int) (Math.pow(10, str.length - 1));
         int last = n - high * power;
 
         if (high == 1){

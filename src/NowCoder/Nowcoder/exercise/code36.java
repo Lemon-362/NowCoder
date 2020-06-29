@@ -38,7 +38,6 @@ public class code36 {
                 n++;
                 p1 = p1.next;
             }
-
             while (p2 != loop1){
                 n--;
                 p2 = p2.next;
@@ -83,7 +82,6 @@ public class code36 {
             n++;
             p1 = p1.next;
         }
-
         while (p2 != null){
             n--;
             p2 = p2.next;

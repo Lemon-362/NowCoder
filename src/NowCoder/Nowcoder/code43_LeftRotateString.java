@@ -11,7 +11,23 @@ public class code43_LeftRotateString {
         if(str == null || n > str.length()){
             return str;
         }
-        return str.substring(n) + str.substring(0, n);
+
+        StringBuilder sb = new StringBuilder();
+
+//        for (int i = n; i < str.length(); i++) {
+//            sb.append(str.charAt(i));
+//        }
+//        for (int i = 0; i < n; i++) {
+//            sb.append(str.charAt(i));
+//        }
+
+        // 利用取余运算，将两次for循环合并
+        // 因为对于 n - len 范围内，区域是本身，对于 len+1 - n+len 范围内，取余后是 1 - n
+        for (int i = n; i < n + str.length(); i++) {
+            sb.append(str.charAt(i % str.length()));
+        }
+
+        return sb.toString();
     }
 
     public static void main(String[] args) {

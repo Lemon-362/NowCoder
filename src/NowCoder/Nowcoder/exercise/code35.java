@@ -16,6 +16,7 @@ public class code35 {
         }
 
         int mid = (l + r) >> 1;
+
         return mergeSort(arr, l, mid) + mergeSort(arr, mid + 1, r) + merge(arr, l, r, mid);
     }
 
@@ -34,7 +35,6 @@ public class code35 {
         while (p1 <= mid){
             help[index++] = arr[p1++];
         }
-
         while (p2 <= r){
             help[index++] = arr[p2++];
         }

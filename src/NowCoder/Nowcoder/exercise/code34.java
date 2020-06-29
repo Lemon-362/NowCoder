@@ -35,7 +35,6 @@ public class code34 {
             return ' ';
         }
 
-        // A-Z: 65 - 90  a-z: 97 - 122
         int[] arr = new int[122 - 65 + 1];
 
         for (int i = 0; i < str.length(); i++) {
@@ -44,7 +43,7 @@ public class code34 {
             arr[index]++;
         }
 
-        for (int i = 0; i < str.length(); i++) {
+        for (int i = 0; i < arr.length; i++) {
             int index = str.charAt(i) - 65;
 
             if (arr[index] == 1){

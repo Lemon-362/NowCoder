@@ -25,8 +25,6 @@ public class code47_SumProblem {
                 1. 当n>1不满足时，此时n==1，因为短路效应，process递归不执行，那么就可以回溯了。
                 2. 因为是boolean类型，所以递归得改写
      */
-    public static int res = 0;
-
     public static int sumProblem(int n){
 
 //        boolean flag = n > 1 && sumProblem(n - 1) > 0;

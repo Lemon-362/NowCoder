@@ -9,22 +9,6 @@ import java.util.Stack;
  */
 public class code44_ReverseSentence {
     public static String ReverseSentence(String str) {
-//        if (str.equals(" ")){
-//            return str;
-//        }
-//        String[] s = str.split(" ");
-//        StringBuilder res = new StringBuilder();
-//        Stack<String> stack = new Stack<>();
-//        for(int i = 0; i < s.length; i++){
-//            stack.push(s[i]);
-//        }
-//        while(!stack.isEmpty()){
-//            res.append(stack.pop()).append(" ");
-//        }
-//        // 删除结尾的空格
-//        res.deleteCharAt(res.length() - 1);
-//        return res.toString();
-
         String str1 = str.trim();
         if (str1.equals("")){
             return str; // 如果删除前后空格后仍为空，则输出原字符串（注意，是原字符串，而不是删除空格后的字符串）

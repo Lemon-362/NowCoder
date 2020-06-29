@@ -137,14 +137,14 @@ public class code50_DuplicateInArr {
         int[] res = new int[1];
         System.out.println(duplicate(arr, arr.length, res));
         for (int i = 0; i < res.length; i++) {
-            System.out.println(res[i]);
+            System.out.println(res[i]); // 2
         }
 
-        System.out.println(duplicate2(arr));
+        System.out.println(duplicate2(arr)); // 2
 
         System.out.println("*********************");
 
         int[] arr1 = {2, 3, 5, 4, 3, 2, 6, 7};
-        System.out.println(duplicateWithoutChange(arr1));
+        System.out.println(duplicateWithoutChange(arr1)); // 3
     }
 }

@@ -13,9 +13,7 @@ public class code58_IsMirrorTree {
 
         public Node(int value) {
             this.value = value;
-
         }
-
     }
 
     public static boolean isMirrorTree(Node head) {
