@@ -6,26 +6,26 @@ public class code41 {
     public static ArrayList<ArrayList<Integer>> findContinuousArr(int target) {
         ArrayList<ArrayList<Integer>> res = new ArrayList<>();
 
-        int i = 1;
-        int j = 1;
         int sum = 0;
+        int a = 1;
+        int b = 1;
 
-        while (i <= target / 2){
+        while (a <= target / 2){
             if (sum < target){
-                sum += j;
-                j++;
+                sum += b;
+                b++;
             }else if (sum > target){
-                sum -= i;
-                i++;
+                sum -= a;
+                a++;
             }else {
                 ArrayList<Integer> list = new ArrayList<>();
-                for (int k = i; k < j; k++) {
-                    list.add(k);
+                for (int i = a; i < b; i++) {
+                    list.add(i);
                 }
                 res.add(list);
 
-                sum -= i;
-                i++;
+                sum -= a;
+                a++;
             }
         }
 

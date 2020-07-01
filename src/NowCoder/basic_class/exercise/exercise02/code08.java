@@ -20,16 +20,16 @@ public class code08 {
     }
 
     public static void heapify(int[] arr, int index, int size){
-        int left = 2*index + 1;
-        while (left < size) {
+        int left = 2 * index + 1;
+        while (left < size){
             int largest = left + 1 < size && arr[left + 1] > arr[left] ? left + 1 : left;
             largest = arr[largest] > arr[index] ? largest : index;
-            if (largest == index) {
+            if (largest == index){
                 break;
             }
             swap(arr, index, largest);
             index = largest;
-            left = 2*index + 1;
+            left = 2 * index + 1;
         }
     }
 

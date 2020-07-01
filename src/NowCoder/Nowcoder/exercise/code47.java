@@ -2,7 +2,7 @@ package NowCoder.Nowcoder.exercise;
 
 public class code47 {
     public static int sumProblem(int n){
-        boolean flag = n > 1 && (n += process(n - 1)) > 1;
+        boolean flag = n > 1 && (n += sumProblem(n - 1)) > 1;
 
         return n;
     }

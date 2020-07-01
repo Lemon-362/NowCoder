@@ -6,17 +6,17 @@ public class code04 {
             return -1;
         }
 
-        char[] str = manacherString(s);
+        char[] str =manacherString(s);
 
-        int res = 0;
         int[] pArr = new int[str.length];
         int R = -1;
         int C = -1;
+        int res = 0;
 
         for (int i = 0; i < str.length; i++) {
-            pArr[i] = R > i ? Math.min(R - i, pArr[2*C-i]) : 1;
+            pArr[i] = R > i ? Math.min(R - i, pArr[2 * C - i]) : 1;
             while (i + pArr[i] < str.length && i - pArr[i] > -1){
-                if (str[i+pArr[i]] == str[i-pArr[i]]){
+                if (str[i + pArr[i]] == str[i - pArr[i]]){
                     pArr[i]++;
                 }else {
                     break;
@@ -34,7 +34,7 @@ public class code04 {
         return res - 1;
     }
 
-    public static char[] manacherString(String s) {
+    public static char[] manacherString(String s){
         char[] str = s.toCharArray();
         char[] res = new char[2 * str.length];
         int index = 0;

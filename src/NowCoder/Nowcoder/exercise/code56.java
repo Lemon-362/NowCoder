@@ -17,12 +17,12 @@ public class code56 {
 
         Node newHead = new Node(Integer.MIN_VALUE);
         newHead.next = head;
-        Node cur = head;
+        Node cur = newHead;
         Node pre = newHead;
 
-        while (cur != null) {
-            if (cur.next != null && cur.next.value == cur.value) {
-                while (cur.next != null && cur.next.value == cur.value) {
+        while (cur != null){
+            if (cur.next != null && cur.value == cur.next.value){
+                while (cur.next != null && cur.value == cur.next.value){
                     cur = cur.next;
                 }
                 cur = cur.next;

@@ -29,7 +29,6 @@ public class code07 {
     }
 
     public static int fibonacci2(int N){
-        // base case
         if (N <= 1){
             return N;
         }
@@ -39,13 +38,13 @@ public class code07 {
         int res = 0;
 
         for (int i = 2; i <= N; i++) {
-            res = (pre + cur) % 1000000007;
+            res = cur + pre;
 
             pre = cur;
             cur = res;
         }
 
-        return res;
+        return res % 1000000007;
     }
 
     public static void main(String[] args) {

@@ -14,15 +14,15 @@ public class code05 {
             this.popStack = new Stack<>();
         }
 
-        public void push(int num){
+        public void push(int num) {
             pushStack.push(num);
         }
 
-        public Integer poll(){
-            if (pushStack.isEmpty() && popStack.isEmpty()){
+        public Integer poll() {
+            if (pushStack.isEmpty() && popStack.isEmpty()) {
                 return null;
-            }else if (popStack.isEmpty()){
-                while (!pushStack.isEmpty()){
+            } else if (popStack.isEmpty()) {
+                while (!pushStack.isEmpty()) {
                     popStack.push(pushStack.pop());
                 }
             }
@@ -30,11 +30,11 @@ public class code05 {
             return popStack.pop();
         }
 
-        public Integer peek(){
-            if (pushStack.isEmpty() && popStack.isEmpty()){
+        public Integer peek() {
+            if (pushStack.isEmpty() && popStack.isEmpty()) {
                 return null;
-            }else if (popStack.isEmpty()){
-                while (!pushStack.isEmpty()){
+            } else if (popStack.isEmpty()) {
+                while (!pushStack.isEmpty()) {
                     popStack.push(pushStack.pop());
                 }
             }
@@ -52,16 +52,16 @@ public class code05 {
             this.help = new LinkedList<>();
         }
 
-        public void push(int num){
+        public void push(int num) {
             stack.add(num);
         }
 
-        public Integer pop(){
-            if (stack.isEmpty() && help.isEmpty()){
+        public Integer pop() {
+            if (stack.isEmpty() && help.isEmpty()) {
                 return null;
             }
 
-            while (stack.size() > 1){
+            while (stack.size() > 1) {
                 help.add(stack.poll());
             }
 
@@ -72,12 +72,12 @@ public class code05 {
             return res;
         }
 
-        public Integer peek(){
-            if (stack.isEmpty() && help.isEmpty()){
+        public Integer peek() {
+            if (stack.isEmpty() && help.isEmpty()) {
                 return null;
             }
 
-            while (stack.size() > 1){
+            while (stack.size() > 1) {
                 help.add(stack.poll());
             }
 
@@ -90,14 +90,14 @@ public class code05 {
             return res;
         }
 
-        public void swap(){
+        public void swap() {
             Queue<Integer> temp = stack;
             stack = help;
             help = temp;
         }
     }
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
         QueueToStack queueToStack = new QueueToStack();
         queueToStack.push(3);
         queueToStack.push(2);

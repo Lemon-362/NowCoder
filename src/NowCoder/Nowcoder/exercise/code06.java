@@ -7,39 +7,35 @@ public class code06 {
             return 0;
         }
 
-        int p1 = 0;
-        int p2 = arr.length - 1;
-
-        if (arr[p1] < arr[p2]){
-            return arr[p1];
-        }
-
+        int i = 0;
+        int j = arr.length - 1;
         int mid = 0;
 
-        while (arr[p1] >= arr[p2]){
-            mid = (p1 + p2) >> 1;
+        while (i < j){
+            mid = (i + j) >> 1;
 
-            if (p2 - p1 == 1){
-                mid = p2;
+            if (j - i == 1){
+                mid = j;
                 break;
             }
 
-            if (arr[p1] == arr[p2] && arr[p2] == arr[mid]){
-                return getMinInOrder(arr, p1, p2);
+            if (arr[i] == arr[mid] && arr[mid] == arr[j]){
+                return findInOrder(arr, i, j);
             }
 
-            if (arr[mid] >= arr[p1]){
-                p1 = mid;
-            }else if (arr[mid] <= arr[p2]){
-                p2 = mid;
+            if (arr[mid] >= arr[i]){
+                i = mid;
+            }else if (arr[mid] <= arr[j]){
+                j = mid;
             }
         }
 
         return arr[mid];
     }
 
-    public static int getMinInOrder(int[] arr, int l, int r){
+    public static int findInOrder(int[] arr, int l, int r){
         int res = arr[l];
+
         for (int i = l + 1; i <= r; i++) {
             res = Math.min(res, arr[i]);
         }

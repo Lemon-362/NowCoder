@@ -17,6 +17,7 @@ public class code55 {
 
         Node p1 = head.next;
         Node p2 = head.next.next;
+
         while (p1 != p2){
             if (p2.next == null || p2.next.next == null){
                 return null;

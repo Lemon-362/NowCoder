@@ -33,6 +33,6 @@ public class code01 {
                 {233, 243, 321, 341, 356, 370, 380} // 7
         };
 
-        System.out.println(findNum(matrix, 95));
+        System.out.println(findNum(matrix, 176));
     }
 }

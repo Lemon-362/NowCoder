@@ -34,11 +34,12 @@ public class code57 {
             return null;
         }
 
-        while (head.left != null){
-            head = head.left;
+        Node cur = head;
+        while (cur.left != null){
+            cur = cur.left;
         }
 
-        return head;
+        return cur;
     }
 
     public static void main(String[] args) {

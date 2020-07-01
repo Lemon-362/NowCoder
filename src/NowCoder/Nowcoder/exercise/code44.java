@@ -8,16 +8,16 @@ public class code44 {
 
         String[] s = str.split(" ");
 
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         for (int i = s.length - 1; i >= 0; i--) {
-            if (i == 0) {
-                stringBuilder.append(s[i]);
-            } else {
-                stringBuilder.append(s[i]).append(" ");
+            if (i == 0){
+                sb.append(s[i]);
+            }else {
+                sb.append(s[i]).append(" ");
             }
         }
 
-        return stringBuilder.toString();
+        return sb.toString();
     }
 
     public static void main(String[] args) {

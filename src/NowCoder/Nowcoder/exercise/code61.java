@@ -30,7 +30,7 @@ public class code61 {
         String[] s = str.split("_");
         Queue<String> queue = new LinkedList<>();
         for (int i = 0; i < s.length; i++) {
-            queue.offer(s[i]);
+            queue.add(s[i]);
         }
 
         return recon(queue);
@@ -60,19 +60,17 @@ public class code61 {
 
         while (!queue.isEmpty()){
             Node cur = queue.poll();
-            Node left = cur.left;
-            Node right = cur.right;
 
-            if (left != null){
-                res += left.value + "_";
-                queue.offer(left);
+            if (cur.left != null){
+                res += cur.left.value + "_";
+                queue.offer(cur.left);
             }else {
                 res += "#_";
             }
 
-            if (right != null){
-                res += right.value + "_";
-                queue.offer(right);
+            if (cur.right != null){
+                res += cur.right.value + "_";
+                queue.offer(cur.right);
             }else {
                 res += "#_";
             }
@@ -84,10 +82,9 @@ public class code61 {
     public static Node ReconByLevel(String str) {
         String[] s = str.split("_");
         int index = 0;
-
         Node head = generate(s[index++]);
         Queue<Node> queue = new LinkedList<>();
-        if (head != null) {
+        if (head != null){
             queue.offer(head);
         }
 
@@ -96,7 +93,7 @@ public class code61 {
             cur.left = generate(s[index++]);
             cur.right = generate(s[index++]);
 
-            if (cur.left != null){
+            if (cur.left != null) {
                 queue.offer(cur.left);
             }
             if (cur.right != null){

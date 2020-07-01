@@ -22,7 +22,9 @@ public class code04 {
         }
 
         Node head = new Node(pre[0]);
+
         int mid = 0;
+
         for (int i = 0; i < in.length; i++) {
             if (in[i] == pre[0]){
                 mid = i;
@@ -45,6 +47,7 @@ public class code04 {
     public static int[] generateArr(int[] arr, int l, int r){
         int[] res = new int[r - l + 1];
         int index = 0;
+
         for (int i = l; i <= r; i++) {
             res[index++] = arr[i];
         }

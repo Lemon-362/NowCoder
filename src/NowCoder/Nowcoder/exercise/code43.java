@@ -6,11 +6,21 @@ public class code43 {
             return null;
         }
 
-        int len = str.length();
+        StringBuilder sb = new StringBuilder();
 
-        n = n % len;
+//        for (int i = n; i < str.length(); i++) {
+//            sb.append(str.charAt(i));
+//        }
+//
+//        for (int i = 0; i < n; i++) {
+//            sb.append(str.charAt(i));
+//        }
 
-        return (str + str).substring(n, len + n);
+        for (int i = n; i < n + str.length(); i++) {
+            sb.append(str.charAt(i % str.length()));
+        }
+
+        return sb.toString();
     }
 
     public static void main(String[] args) {

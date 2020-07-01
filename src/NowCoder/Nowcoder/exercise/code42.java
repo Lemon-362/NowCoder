@@ -13,6 +13,7 @@ public class code42 {
 
         while (i < j){
             sum = arr[i] + arr[j];
+
             if (sum < target){
                 i++;
             }else if (sum > target){

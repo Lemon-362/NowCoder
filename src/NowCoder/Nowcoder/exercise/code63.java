@@ -20,47 +20,44 @@ public class code63 {
     });
 
     public void insert(int num){
-        if (this.maxHeap.isEmpty()){
-            this.maxHeap.add(num);
+        if (maxHeap.isEmpty()){
+            maxHeap.add(num);
             return;
         }
 
-        if (num <= this.maxHeap.peek()){
-            this.maxHeap.add(num);
+        if (num <= maxHeap.peek()){
+            maxHeap.add(num);
         }else {
-            if (this.minHeap.isEmpty()){
-                this.minHeap.add(num);
+            if (minHeap.isEmpty()){
+                minHeap.add(num);
                 return;
             }
 
-            this.minHeap.add(num);
+            minHeap.add(num);
         }
 
-        this.modify();
+        modify();
     }
 
     public void modify(){
-        if (this.maxHeap.size() - this.minHeap.size() > 1){
-            this.minHeap.add(this.maxHeap.poll());
-        }else if (this.minHeap.size() - this.maxHeap.size() > 1){
-            this.maxHeap.add(this.minHeap.poll());
-        }
+       if (maxHeap.size() - minHeap.size() > 1){
+           minHeap.add(maxHeap.poll());
+       }else if (minHeap.size() - maxHeap.size() > 1){
+           maxHeap.add(minHeap.poll());
+       }
     }
 
     public Double getMedian(){
-        int maxSize = this.maxHeap.size();
-        int minSize = this.minHeap.size();
-        Integer maxNum = this.maxHeap.peek();
-        Integer minNum = this.minHeap.peek();
+        int maxSize = maxHeap.size();
+        int minSize = minHeap.size();
 
-        if (maxSize + minSize == 0){
-            return null;
-        }
+        Integer maxValue = maxHeap.peek();
+        Integer minValue = minHeap.peek();
 
         if ((maxSize + minSize) % 2 == 0){
-            return (maxNum + minNum) / 2.0;
+            return (maxValue + minValue) / 2.0;
         }else {
-            return maxSize > minSize ? maxNum * 1.0 : minNum * 1.0;
+            return maxSize > minSize ? maxValue * 1.0 : minValue * 1.0;
         }
     }
 
