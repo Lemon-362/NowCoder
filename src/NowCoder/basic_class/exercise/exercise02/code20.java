@@ -1,7 +1,5 @@
 package NowCoder.basic_class.exercise.exercise02;
 
-import NowCoder.basic_class.exercise.code20_PrintLinkedListCommonPart;
-
 public class code20 {
     public static class Node {
         private int value;

@@ -27,15 +27,14 @@ public class code12 {
         int maxValue = arr[maxIndex];
         int len = arr.length;
         int nextIndex = getNextIndex(maxIndex, len);
+        int res = 0;
         Stack<Pair> stack = new Stack<>();
         stack.push(new Pair(maxValue, 1));
 
-        int res = 0;
-
         while (nextIndex != maxIndex){
-            while (!stack.isEmpty() && arr[nextIndex] > stack.peek().value){
-                int times = stack.pop().times;
-                res += getCk2(times) + 2 * times;
+            while (!stack.isEmpty() && arr[nextIndex] >= stack.peek().value){
+                int k = stack.pop().times;
+                res += getCk2(k) + 2 * k;
             }
 
             if (arr[nextIndex] == stack.peek().value){
@@ -70,8 +69,8 @@ public class code12 {
         return res;
     }
 
-    public static int getCk2(int times){
-        return times > 1 ? times * (times - 1) / 2 : 0;
+    public static int getCk2(int k){
+        return k > 2 ? k * (k - 1) / 2 : 0;
     }
 
     public static int getNextIndex(int index, int len){

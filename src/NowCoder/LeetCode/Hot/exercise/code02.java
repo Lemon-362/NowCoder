@@ -17,19 +17,22 @@ public class code02 {
             return head1;
         }
 
-        Node newHead = new Node(Integer.MIN_VALUE);
-        Node cur = newHead;
-
         int carry = 0;
+
         Node p1 = head1;
         Node p2 = head2;
 
+        Node newHead = new Node(Integer.MIN_VALUE);
+        Node cur = newHead;
+
         while (p1 != null || p2 != null){
             int sum = 0;
+
             if (p1 != null){
                 sum += p1.value;
                 p1 = p1.next;
             }
+
             if (p2 != null){
                 sum += p2.value;
                 p2 = p2.next;
@@ -45,7 +48,7 @@ public class code02 {
         }
 
         if (carry == 1){
-            cur.next = new Node(1);
+            cur.next = new Node(carry);
         }
 
         Node res = newHead.next;

@@ -1,7 +1,5 @@
 package NowCoder.basic_class.exercise.exercise02;
 
-import NowCoder.basic_class.exercise.code11_Array_To_Stack_Queue;
-
 public class code11 {
     public static class ArrayStack {
         private int[] stack;
@@ -13,7 +11,7 @@ public class code11 {
         }
 
         public void push(int num){
-            if (this.index == this.stack.length){
+            if (index == stack.length){
                 System.out.println("栈满");
                 return;
             }
@@ -22,18 +20,16 @@ public class code11 {
         }
 
         public Integer pop(){
-            if (this.index == 0){
+            if (index == 0){
                 System.out.println("栈空");
-                return null;
             }
 
             return stack[--index];
         }
 
         public Integer peek(){
-            if (this.index == 0){
+            if (index == 0){
                 System.out.println("栈空");
-                return null;
             }
 
             return stack[index - 1];
@@ -46,43 +42,43 @@ public class code11 {
         private int start;
         private int end;
 
-        public ArrayQueue(int initSie) {
-            this.queue = new int[initSie];
+        public ArrayQueue(int initSize) {
+            this.queue = new int[initSize];
+            this.size = 0;
             this.start = 0;
             this.end = 0;
-            this.size = 0;
         }
 
         public void push(int num){
-            if (this.size == this.queue.length){
+            if (size == queue.length){
                 System.out.println("队列满");
                 return;
             }
 
-            this.size++;
+            size++;
 
             queue[start] = num;
 
-            start = start == this.queue.length - 1 ? 0 : start + 1;
+            start = start == queue.length - 1 ? 0 : start + 1;
         }
 
         public Integer poll(){
-            if (this.size == 0){
+            if (size == 0){
                 System.out.println("队列空");
                 return null;
             }
 
-            this.size--;
+            size--;
 
             int res = queue[end];
 
-            end = end == this.queue.length - 1 ? 0 : end + 1;
+            end = end == queue.length - 1 ? 0 : end + 1;
 
             return res;
         }
 
         public Integer peek(){
-            if (this.size == 0){
+            if (size == 0){
                 System.out.println("队列空");
                 return null;
             }

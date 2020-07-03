@@ -37,7 +37,7 @@ public class code20 {
         }
 
         public Integer pop(){
-            if (numStack.isEmpty() && minStack.isEmpty()){
+            if (minStack.isEmpty() && numStack.isEmpty()){
                 return null;
             }
 

@@ -144,7 +144,7 @@ public class RegularExpressionMatch {
         // 1 此时的情况1不依赖process其他位置，所以也看成是base case
         // 倒数第二列：表示exp只剩一个字符了，而str可能还有字符
         // 此时要求str也只能剩一个字符，并且str[i] == exp[j] || exp[j] == '.'
-        if (exp.length > 0 && str.length > 0) { // 防止越界
+        if (exp.length > 0 && str.length > 0) { // TODO 防止越界
             if (exp[exp.length - 1] == str[str.length - 1] || exp[exp.length - 1] == '.'){
                 dp[str.length - 1][exp.length - 1] = true;
             }

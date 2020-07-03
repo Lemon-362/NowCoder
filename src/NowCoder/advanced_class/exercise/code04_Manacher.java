@@ -61,6 +61,7 @@ public class code04_Manacher {
 
     public static void main(String[] args) {
         String str1 = "abc1234321ab";
-        System.out.println(maxLength(str1)); // 7
+        String str2 = "babad";
+        System.out.println(maxLength(str2)); // 7
     }
 }

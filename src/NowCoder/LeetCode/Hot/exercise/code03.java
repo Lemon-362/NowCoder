@@ -1,6 +1,5 @@
 package NowCoder.LeetCode.Hot.exercise;
 
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class code03 {
@@ -9,10 +8,11 @@ public class code03 {
             return -1;
         }
 
-        int len = 0;
+        HashSet<Character> set = new HashSet<>();
+
         int L = 0;
         int R = 0;
-        HashSet<Character> set = new HashSet<>();
+        int len = 0;
 
         while (L < s.length()){
             while (R < s.length() && !set.contains(s.charAt(R))){
@@ -23,7 +23,6 @@ public class code03 {
             len = Math.max(len, R - 1 - L + 1);
 
             set.remove(s.charAt(L));
-
             L++;
         }
 

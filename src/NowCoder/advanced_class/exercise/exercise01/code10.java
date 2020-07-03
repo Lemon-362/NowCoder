@@ -29,10 +29,9 @@ public class code10 {
         }
 
         for (int i = 0; i < nodes.length; i++) {
-            Node cur = nodes[i];
-            while (!stack.isEmpty() && cur.value > stack.peek().value){
+            while (!stack.isEmpty() && nodes[i].value >= stack.peek().value){
                 Node popNode = stack.pop();
-                rBigMap.put(popNode, cur);
+                rBigMap.put(popNode, nodes[i]);
                 if (stack.isEmpty()){
                     lBigMap.put(popNode, null);
                 }else {
@@ -40,7 +39,7 @@ public class code10 {
                 }
             }
 
-            stack.push(cur);
+            stack.push(nodes[i]);
         }
 
         while (!stack.isEmpty()){
@@ -57,29 +56,29 @@ public class code10 {
 
         for (int i = 0; i < nodes.length; i++) {
             Node cur = nodes[i];
-            Node leftHead = lBigMap.get(cur);
-            Node rightHead = rBigMap.get(cur);
+            Node left = lBigMap.get(cur);
+            Node right = rBigMap.get(cur);
 
-            if (leftHead == null && rightHead == null){
+            if (left == null && right == null){
                 head = cur;
-            }else if (leftHead == null){
-                if (rightHead.left == null){
-                    rightHead.left = cur;
+            }else if (left == null){
+                if (right.left == null){
+                    right.left = cur;
                 }else {
-                    rightHead.right = cur;
+                    right.right = cur;
                 }
-            }else if (rightHead == null){
-                if (leftHead.left == null){
-                    leftHead.left = cur;
+            }else if (right == null){
+                if (left.left == null){
+                    left.left = cur;
                 }else {
-                    leftHead.right = cur;
+                    left.right = cur;
                 }
             }else {
-                Node headNode = leftHead.value < rightHead.value ? leftHead : rightHead;
-                if (headNode.left == null){
-                    headNode.left = cur;
+                Node parent = left.value < right.value ? left : right;
+                if (parent.left == null){
+                    parent.left = cur;
                 }else {
-                    headNode.right = cur;
+                    parent.right = cur;
                 }
             }
         }
@@ -105,6 +104,36 @@ public class code10 {
         printPreOrder(head.right);
     }
 
+    // for test -- print tree
+	public static void printTree(Node head) {
+		System.out.println("Binary Tree:");
+		printInOrder(head, 0, "H", 17);
+		System.out.println();
+	}
+
+	public static void printInOrder(Node head, int height, String to, int len) {
+		if (head == null) {
+			return;
+		}
+		printInOrder(head.right, height + 1, "v", len);
+		String val = to + head.value + to;
+		int lenM = val.length();
+		int lenL = (len - lenM) / 2;
+		int lenR = len - lenM - lenL;
+		val = getSpace(lenL) + val + getSpace(lenR);
+		System.out.println(getSpace(height * len) + val);
+		printInOrder(head.left, height + 1, "^", len);
+	}
+
+	public static String getSpace(int num) {
+		String space = " ";
+		StringBuffer buf = new StringBuffer("");
+		for (int i = 0; i < num; i++) {
+			buf.append(space);
+		}
+		return buf.toString();
+	}
+
     public static void main(String[] args) {
         int[] arr = {3, 4, 5, 1, 2};
         Node head = getMaxTree(arr);
@@ -112,6 +141,7 @@ public class code10 {
         System.out.println();
         printInOrder(head); // 4 3 5 2 1
         System.out.println();
+        printTree(head);
 //        getMaxTree02(arr);  // 5 4 3 2 1
     }
 }

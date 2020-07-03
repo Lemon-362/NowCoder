@@ -1,6 +1,5 @@
 package NowCoder.advanced_class.exercise.exercise01;
 
-import java.util.HashMap;
 import java.util.Stack;
 
 public class code11 {
@@ -23,8 +22,8 @@ public class code11 {
     }
 
     public static int getMaxArea(int[] arr){
-        Stack<Integer> stack = new Stack<>();
         int res = 0;
+        Stack<Integer> stack = new Stack<>();
 
         for (int i = 0; i < arr.length; i++) {
             while (!stack.isEmpty() && arr[i] <= arr[stack.peek()]){

@@ -12,26 +12,26 @@ public class code18 {
         int dC = 0;
         int endR = arr.length - 1;
         int endC = arr[0].length - 1;
-        boolean flag = false;
+        boolean flag = true;
 
-        while (tR <= endR) {
+        while (tR  <= endR) {
             print(arr, tR, tC, dR, dC, flag);
             tR = tC == endC ? tR + 1 : tR;
             tC = tC == endC ? tC : tC + 1;
-            dC = dR == endR ? dC + 1 : dC;
+            dC = dR == endR ? dC + 1: dC;
             dR = dR == endR ? dR : dR + 1;
             flag = !flag;
         }
     }
 
     public static void print(int[][] arr, int tR, int tC, int dR, int dC, boolean flag) {
-        if (flag) {
-            while (tR != dR + 1) {
-                System.out.print(arr[tR++][tC--] + " ");
-            }
-        } else {
-            while (dR != tR - 1) {
+        if (flag){
+            while (dR != tR - 1){
                 System.out.print(arr[dR--][dC++] + " ");
+            }
+        }else {
+            while (tR != dR + 1){
+                System.out.print(arr[tR++][tC--] + " ");
             }
         }
     }

@@ -17,13 +17,13 @@ public class code15 {
     }
 
     public static void print(int[][] arr, int tR, int tC, int dR, int dC){
-        if (tC == dC){
-            for (int i = tR; i <= dR; i++) {
-                System.out.print(arr[i][tC] + " ");
-            }
-        }else if (tR == dR){
+        if (tR == dR){
             for (int i = tC; i <= dC; i++) {
                 System.out.print(arr[tR][i] + " ");
+            }
+        }else if (tC == dC){
+            for (int i = tR; i <= dR; i++) {
+                System.out.print(arr[i][tC] + " ");
             }
         }else {
             int curR = tR;

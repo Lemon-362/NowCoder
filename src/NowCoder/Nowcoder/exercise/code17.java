@@ -1,7 +1,5 @@
 package NowCoder.Nowcoder.exercise;
 
-import NowCoder.Nowcoder.code17_HasSubTree;
-
 public class code17 {
     public static class Node {
         private int value;
@@ -20,24 +18,24 @@ public class code17 {
             return false;
         }
 
-        if (head1.value == head2.value) {
+        if (head1.value == head2.value){
             return process(head1, head2);
-        } else {
+        }else {
             return isSubStructure(head1.left, head2) || isSubStructure(head1.right, head2);
         }
     }
 
-    public static boolean process(Node head1, Node head2) {
+    public static boolean process(Node head1, Node head2){
         // base case
-        if (head2 == null) {
+        if (head2 == null){
             return true;
-        } else if (head1 == null) {
+        }else if (head1 == null){
             return false;
         }
 
-        if (head1.value == head2.value) {
+        if (head1.value == head2.value){
             return process(head1.left, head2.left) && process(head1.right, head2.right);
-        } else {
+        }else {
             return false;
         }
     }

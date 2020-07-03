@@ -71,6 +71,7 @@ public class code16 {
         }
 
         Node head = null;
+
         if (head1.value < head2.value){
             head = head1;
             head.next = merge02(head1.next, head2);
@@ -104,7 +105,7 @@ public class code16 {
         head2.next.next = new Node(6);
         head2.next.next.next = new Node(7);
 
-//        printList(merge01(head1, head2)); // 1 3 4 5 6 7 10 20
-        printList(merge02(head1, head2));
+        printList(merge01(head1, head2)); // 1 3 4 5 6 7 10 20
+//        printList(merge02(head1, head2));
     }
 }

@@ -26,8 +26,8 @@ public class code08 {
         int min = Integer.MAX_VALUE;
 
         for (int k = i; k <= j; k++) {
-            min = Math.min(min, arr[k]);
             max = Math.max(max, arr[k]);
+            min = Math.min(min, arr[k]);
         }
 
         return max - min <= num;
@@ -51,7 +51,7 @@ public class code08 {
                 }
                 maxQ.addLast(R);
 
-                while (!minQ.isEmpty() && arr[R] <= arr[minQ.peekLast()]){
+                while (!minQ.isEmpty() && arr[R] <= arr[minQ.peekLast()]) {
                     minQ.pollLast();
                 }
                 minQ.addLast(R);

@@ -1,6 +1,9 @@
-package NowCoder.Addition.exercise;
+package NowCoder.LeetCode.Hot;
 
-public class code01_RegularExpressionMatch {
+/**
+ * 正则表达式匹配
+ */
+public class code06_RegularExpressionMatch {
     public static boolean process(char[] str, char[] exp, int i, int j){
         // base case
         if (j == exp.length){
@@ -20,7 +23,7 @@ public class code01_RegularExpressionMatch {
 
         // 3.1
         while (i < str.length && (exp[j] == str[i] || exp[j] == '.')){
-            if (process(str, exp, i, j + 2)) {
+            if (process(str, exp, i, j + 2)){
                 return true;
             }
             i++;
@@ -57,16 +60,21 @@ public class code01_RegularExpressionMatch {
         return isValid(str, exp) && process(str, exp, 0, 0);
     }
 
-    public static boolean isMatchDP(String s, String e) {
-        if (s == null || e == null) {
+    public static boolean isMatchDP(String s, String e){
+        if (s == null || e == null){
             return false;
         }
 
         char[] str = s.toCharArray();
         char[] exp = e.toCharArray();
 
+        if (!isValid(str, exp)){
+            return false;
+        }
+
         int sLen = str.length;
         int eLen = exp.length;
+
         boolean[][] dp = new boolean[sLen + 1][eLen + 1];
 
         // base case
@@ -79,12 +87,10 @@ public class code01_RegularExpressionMatch {
 //        if (j == exp.length - 1){
 //            return i == str.length - 1 && (exp[j] == str[i] || exp[j] == '.');
 //        }
-        // TODO 一定要有边界判断，防止越界
-        if (sLen > 0 && eLen > 0){
+        if (sLen > 0 && eLen > 0) { // TODO 一定要加上，防止越界
             dp[sLen - 1][eLen - 1] = (exp[eLen - 1] == str[sLen - 1] || exp[eLen - 1] == '.');
         }
 
-        // 最后一行
         for (int j = eLen - 2; j >= 0; j = j - 2) {
             if (exp[j] != '*' && exp[j + 1] == '*'){
                 dp[sLen][j] = true;
@@ -100,7 +106,7 @@ public class code01_RegularExpressionMatch {
 //        }
 //        // 3.1
 //        while (i < str.length && (exp[j] == str[i] || exp[j] == '.')){
-//            if (process(str, exp, i, j + 2)) {
+//            if (process(str, exp, i, j + 2)){
 //                return true;
 //            }
 //            i++;
@@ -145,4 +151,5 @@ public class code01_RegularExpressionMatch {
         System.out.println(isMatch(str, exp)); // true
         System.out.println(isMatchDP(str, exp));
     }
+
 }

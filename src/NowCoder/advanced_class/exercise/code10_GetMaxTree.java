@@ -99,9 +99,9 @@ public class code10_GetMaxTree {
     }
 
     // 构建大根堆
-    public static void getMaxTree02(int[] arr) {
+    public static Node getMaxTree2(int[] arr) {
         if (arr == null || arr.length < 1) {
-            return;
+            return null;
         }
 
         // 根据值创建节点数组
@@ -110,24 +110,34 @@ public class code10_GetMaxTree {
             nodes[i] = new Node(arr[i]);
         }
 
-        Queue<Node> queue = new PriorityQueue<>(new myComparator());
+        PriorityQueue<Node> maxArr = new PriorityQueue<>(new myComparator());
         for (int i = 0; i < nodes.length; i++) {
-            queue.add(nodes[i]);
+            maxArr.add(nodes[i]);
         }
 
-        while (!queue.isEmpty()) {
-            System.out.print(queue.poll().value + " ");
-        }
+//        while (!queue.isEmpty()) {
+//            System.out.print(queue.poll().value + " ");
+//        }
 
         // TODO 根据数组建立二叉树
+        Node head = maxArr.poll();
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(head);
 
-//        Node head = queue.poll();
-//        while (!queue.isEmpty()){
-//            Node cur = queue.poll();
-//
-//        }
-//
-//        return head;
+        while (!queue.isEmpty()){
+            Node cur = queue.poll();
+            cur.left = maxArr.poll();
+            cur.right = maxArr.poll();
+
+            if (cur.left != null){
+                queue.offer(cur.left);
+            }
+            if (cur.right != null){
+                queue.offer(cur.right);
+            }
+        }
+
+        return head;
     }
 
     public static class myComparator implements Comparator<Node> {
@@ -154,13 +164,45 @@ public class code10_GetMaxTree {
         printPreOrder(head.right);
     }
 
+    // for test -- print tree
+	public static void printTree(Node head) {
+		System.out.println("Binary Tree:");
+		printInOrder(head, 0, "H", 17);
+		System.out.println();
+	}
+
+	public static void printInOrder(Node head, int height, String to, int len) {
+		if (head == null) {
+			return;
+		}
+		printInOrder(head.right, height + 1, "v", len);
+		String val = to + head.value + to;
+		int lenM = val.length();
+		int lenL = (len - lenM) / 2;
+		int lenR = len - lenM - lenL;
+		val = getSpace(lenL) + val + getSpace(lenR);
+		System.out.println(getSpace(height * len) + val);
+		printInOrder(head.left, height + 1, "^", len);
+	}
+
+	public static String getSpace(int num) {
+		String space = " ";
+		StringBuffer buf = new StringBuffer("");
+		for (int i = 0; i < num; i++) {
+			buf.append(space);
+		}
+		return buf.toString();
+	}
+
     public static void main(String[] args) {
         int[] arr = {3, 4, 5, 1, 2};
-        Node head = getMaxTree(arr);
+        Node head = getMaxTree2(arr);
+        printTree(head);
+
         printPreOrder(head); // 5 4 3 2 1
         System.out.println();
         printInOrder(head); // 4 3 5 2 1
         System.out.println();
-        getMaxTree02(arr);  // 5 4 3 2 1
+//        getMaxTree02(arr);  // 5 4 3 2 1
     }
 }
