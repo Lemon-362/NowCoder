@@ -26,7 +26,7 @@ public class code02_AddTwoNumByLinkedList {
         }
     }
 
-    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    public static ListNode addTwoNumbersByLinkedList(ListNode l1, ListNode l2) {
 
         ListNode p1 = l1;
         ListNode p2 = l2;
@@ -67,14 +67,14 @@ public class code02_AddTwoNumByLinkedList {
     }
 
     public static void main(String[] args) {
-        ListNode head1 = new ListNode(2);
-        head1.next = new ListNode(4);
-        head1.next.next = new ListNode(3);
+        ListNode head1 = new ListNode(3);
+        head1.next = new ListNode(6);
+        head1.next.next = new ListNode(2);
 
-        ListNode head2 = new ListNode(5);
-        head2.next = new ListNode(6);
+        ListNode head2 = new ListNode(2);
+        head2.next = new ListNode(7);
 
-        ListNode head = addTwoNumbers(head1, head2);
+        ListNode head = addTwoNumbersByLinkedList(head1, head2);
         while (head != null){
             System.out.print(head.val + " "); // 7 0 4
             head = head.next;

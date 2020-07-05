@@ -21,9 +21,8 @@ public class code02 {
 
         Node p1 = head1;
         Node p2 = head2;
-
-        Node newHead = new Node(Integer.MIN_VALUE);
-        Node cur = newHead;
+        Node head = new Node(Integer.MIN_VALUE);
+        Node cur = head;
 
         while (p1 != null || p2 != null){
             int sum = 0;
@@ -32,7 +31,6 @@ public class code02 {
                 sum += p1.value;
                 p1 = p1.next;
             }
-
             if (p2 != null){
                 sum += p2.value;
                 p2 = p2.next;
@@ -48,11 +46,11 @@ public class code02 {
         }
 
         if (carry == 1){
-            cur.next = new Node(carry);
+            cur.next = new Node(1);
         }
 
-        Node res = newHead.next;
-        newHead.next = null;
+        Node res = head.next;
+        head.next = null;
 
         return res;
     }
@@ -68,6 +66,22 @@ public class code02 {
         Node head = addTwoNumbers(head1, head2);
         while (head != null) {
             System.out.print(head.value + " "); // 1 2 1
+            head = head.next;
+        }
+        System.out.println();
+
+        System.out.println("**********************");
+
+        Node head3 = new Node(3);
+        head3.next = new Node(6);
+        head3.next.next = new Node(2);
+
+        Node head4 = new Node(2);
+        head4.next = new Node(7);
+
+        head = addTwoNumbers(head3, head4);
+        while (head != null){
+            System.out.print(head.value + " "); // 5 3 3
             head = head.next;
         }
     }

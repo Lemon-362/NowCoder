@@ -17,8 +17,8 @@ public class code23 {
         }
 
         int head = arr[r];
-
         int right = l;
+
         for (int i = l; i < r; i++) {
             if (arr[i] > head){
                 right = i;

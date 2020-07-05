@@ -15,11 +15,10 @@ public class code15 {
 
         for (int i = 0; i < arr.length; i++) {
             sum += arr[i];
-
+            
             if (map.containsKey(sum - aim)){
-                int right = i;
                 int left = map.get(sum - aim) + 1;
-                res = Math.max(res, right - left + 1);
+                res = Math.max(res, i - left + 1);
             }
 
             if (!map.containsKey(sum)){

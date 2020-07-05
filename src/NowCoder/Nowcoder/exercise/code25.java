@@ -43,7 +43,6 @@ public class code25 {
 
         Node cur = head;
         Node next = null;
-
         while (cur != null){
             next = cur.next;
 
@@ -63,9 +62,8 @@ public class code25 {
         }
 
         cur = head;
-        Node copy = null;
         Node res = cur.next;
-
+        Node copy = null;
         while (cur != null){
             next = cur.next.next;
             copy = cur.next;

@@ -32,15 +32,17 @@ public class code26 {
     }
 
     public static Node getLeftMost(Node head){
-        if (head == null){
+        if (head == null) {
             return null;
         }
 
-        while (head.left != null){
-            head = head.left;
+        Node cur = head;
+
+        while (cur.left != null){
+            cur = cur.left;
         }
 
-        return head;
+        return cur;
     }
 
     // TODO 前驱节点：左子树上最右的节点，如果没有则找父节点的右孩子是当前节点

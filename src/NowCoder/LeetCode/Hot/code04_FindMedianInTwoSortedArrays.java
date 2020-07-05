@@ -8,7 +8,7 @@ package NowCoder.LeetCode.Hot;
  *
  * 思路：
  */
-public class code04_findMedianInTwoSortedArrays {
+public class code04_FindMedianInTwoSortedArrays {
     /*
      TODO 1. 两个有序数组的合并：归并排序
         但是：时间复杂度 O(m+n)，空间复杂度 O(m+n)
@@ -40,7 +40,7 @@ public class code04_findMedianInTwoSortedArrays {
 
     public static void main(String[] args) {
         int[] arr1 = {1, 2};
-        int[] arr2 = {3, 4};
+        int[] arr2 = {3, 4, 5};
         System.out.println(method1(arr1, arr2));
     }
 }

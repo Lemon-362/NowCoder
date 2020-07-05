@@ -10,18 +10,17 @@ public class code31 {
     }
 
     public static int f(int n){
-        // base case
         if (n <= 0){
             return 0;
         }
 
-        char[] str = String.valueOf(n).toCharArray();
-        int high = Integer.parseInt(String.valueOf(str[0]));
-        int power = (int) (Math.pow(10, str.length - 1));
+        char[] s = String.valueOf(n).toCharArray();
+        int high = Integer.parseInt(String.valueOf(s[0]));
+        int power = (int)(Math.pow(10, s.length - 1));
         int last = n - high * power;
 
         if (high == 1){
-            return f(power - 1) + last + 1 + f(last);
+            return f(power - 1) + f(last) + last + 1;
         }else {
             return high * f(power - 1) + power + f(last);
         }

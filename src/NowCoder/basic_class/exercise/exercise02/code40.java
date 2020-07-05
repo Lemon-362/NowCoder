@@ -5,6 +5,7 @@ public class code40 {
         // base case
         if (N == 1){
             System.out.println("move 1 from left to right");
+            return;
         }else {
             moveLeftToMid(N - 1);
             System.out.println("move " + N + " from left to right");
@@ -16,6 +17,7 @@ public class code40 {
         // base case
         if (N == 1){
             System.out.println("move 1 from left to mid");
+            return;
         }else {
             moveLeftToRight(N - 1);
             System.out.println("move " + N + " from left to mid");
@@ -27,6 +29,7 @@ public class code40 {
         // base case
         if (N == 1){
             System.out.println("move 1 from mid to left");
+            return;
         }else {
             moveMidToRight(N - 1);
             System.out.println("move " + N + " from mid to left");
@@ -38,6 +41,7 @@ public class code40 {
         // base case
         if (N == 1){
             System.out.println("move 1 from mid to right");
+            return;
         }else {
             moveMidToLeft(N - 1);
             System.out.println("move " + N + " from mid to right");
@@ -49,6 +53,7 @@ public class code40 {
         // base case
         if (N == 1){
             System.out.println("move 1 from right to left");
+            return;
         }else {
             moveRightToMid(N - 1);
             System.out.println("move " + N + " from right to left");
@@ -60,6 +65,7 @@ public class code40 {
         // base case
         if (N == 1){
             System.out.println("move 1 from right to mid");
+            return;
         }else {
             moveRightToLeft(N - 1);
             System.out.println("move " + N + " from right to mid");
@@ -72,9 +78,9 @@ public class code40 {
     }
 
     public static void Hanoi2(int N, String left, String right, String mid){
-        // base case
         if (N == 1){
             System.out.println("move 1 from " + left + " to " + right);
+            return;
         }else {
             Hanoi2(N - 1, left, mid, right);
             System.out.println("move " + N + " from " + left + " to " + right);

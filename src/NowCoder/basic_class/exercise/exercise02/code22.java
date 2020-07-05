@@ -22,11 +22,10 @@ public class code22 {
             cur = cur.next;
         }
 
-        Node[] nodes = new Node[len];
-        int index = 0;
         cur = head;
-        while (cur != null){
-            nodes[index++] = cur;
+        Node[] nodes = new Node[len];
+        for (int i = 0; i < nodes.length; i++) {
+            nodes[i] = new Node(cur.value);
             cur = cur.next;
         }
 
@@ -35,7 +34,8 @@ public class code22 {
         for (int i = 0; i < nodes.length - 1; i++) {
             nodes[i].next = nodes[i + 1];
         }
-        nodes[nodes.length - 1].next = null;
+
+        nodes[len - 1].next = null;
 
         return nodes[0];
     }
@@ -54,7 +54,6 @@ public class code22 {
                 cur++;
             }
         }
-
     }
 
     public static void swap(Node[] nodes, int i, int j) {
@@ -87,7 +86,7 @@ public class code22 {
                     st = cur;
                 }else {
                     st.next = cur;
-                    st = cur;
+                    st = st.next;
                 }
             }else if (cur.value > num){
                 if (bh == null){
@@ -95,15 +94,15 @@ public class code22 {
                     bt = cur;
                 }else {
                     bt.next = cur;
-                    bt = cur;
+                    bt = bt.next;
                 }
             }else {
                 if (eh == null){
                     eh = cur;
                     et = cur;
-                }else {
+                }else{
                     et.next = cur;
-                    et = cur;
+                    et = et.next;
                 }
             }
 
@@ -112,7 +111,7 @@ public class code22 {
 
         if (st != null){
             st.next = eh;
-            et = et == null ? st : et;
+            et = et == null ? eh : et;
         }
 
         if (et != null){

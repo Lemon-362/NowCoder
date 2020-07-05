@@ -1,6 +1,6 @@
 package NowCoder.basic_class.exercise.exercise02;
 
-import NowCoder.basic_class.exercise.code25_PreInPosBinaryTree;
+
 
 public class code25 {
     public static class Node {
@@ -104,23 +104,21 @@ public class code25 {
                 }else {
                     mostRight.right = null;
 
-                    printEdge(cur.left);
+                    printRightEdge(cur.left);
 
                     cur = cur.right;
                 }
             }else {
-
-
                 cur = cur.right;
             }
         }
 
-        printEdge(head);
+        printRightEdge(head);
 
         System.out.println();
     }
 
-    public static void printEdge(Node node){
+    public static void printRightEdge(Node node){
         if (node == null){
             return;
         }
@@ -130,7 +128,6 @@ public class code25 {
 
         while (cur != null){
             System.out.print(cur.value + " ");
-
             cur = cur.right;
         }
 
@@ -138,9 +135,13 @@ public class code25 {
     }
 
     public static Node reverse(Node head){
+        if (head == null){
+            return null;
+        }
+
         Node cur = head;
-        Node pre = null;
         Node next = null;
+        Node pre = null;
 
         while (cur != null){
             next = cur.right;

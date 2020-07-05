@@ -45,7 +45,7 @@ public class code37 {
             }
 
             if (maxProfit.isEmpty()){
-                break;
+                return w;
             }
 
             w += maxProfit.poll().profit;

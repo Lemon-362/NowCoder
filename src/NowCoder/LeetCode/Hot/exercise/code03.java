@@ -9,10 +9,9 @@ public class code03 {
         }
 
         HashSet<Character> set = new HashSet<>();
-
+        int len = 0;
         int L = 0;
         int R = 0;
-        int len = 0;
 
         while (L < s.length()){
             while (R < s.length() && !set.contains(s.charAt(R))){

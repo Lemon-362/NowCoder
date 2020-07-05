@@ -135,30 +135,30 @@ public class code28 {
             return arr[0];
         }
 
-        int count = 1;
+        int times = 1;
         int res = arr[0];
 
         for (int i = 1; i < arr.length; i++) {
             if (arr[i] == res){
-                count++;
+                times++;
             }else {
-                count--;
+                times--;
 
-                if (count == 0){
+                if (times == 0){
+                    times = 1;
                     res = arr[i];
-                    count = 1;
                 }
             }
         }
 
-        int times = 0;
+        int k = 0;
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == res){
-                times++;
+            if (res == arr[i]){
+                k++;
             }
         }
 
-        return times > arr.length / 2 ? res : 0;
+        return k > arr.length / 2 ? res : 0;
     }
 
     public static void main(String[] args) {

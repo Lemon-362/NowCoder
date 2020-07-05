@@ -10,8 +10,8 @@ public class code34 {
         private Node[] next;
 
         public Node() {
-            this.path = 0;
             this.end = 0;
+            this.path = 0;
             this.next = new Node[26];
         }
     }
@@ -24,11 +24,10 @@ public class code34 {
         }
 
         public void insert(String s){
-            char[] str = s.toCharArray();
             Node cur = head;
 
-            for (int i = 0; i < str.length; i++) {
-                int path = str[i] - 'a';
+            for (int i = 0; i < s.length(); i++) {
+                int path = s.charAt(i) - 'a';
 
                 if (cur.next[path] == null){
                     cur.next[path] = new Node();
@@ -43,11 +42,10 @@ public class code34 {
         }
 
         public int search(String s){
-            char[] str = s.toCharArray();
             Node cur = head;
 
-            for (int i = 0; i < str.length; i++) {
-                int path = str[i] - 'a';
+            for (int i = 0; i < s.length(); i++) {
+                int path = s.charAt(i) - 'a';
 
                 if (cur.next[path] == null){
                     return 0;
@@ -61,11 +59,10 @@ public class code34 {
         }
 
         public void delete(String s){
-            char[] str = s.toCharArray();
             Node cur = head;
 
-            for (int i = 0; i < str.length; i++) {
-                int path = str[i] - 'a';
+            for (int i = 0; i < s.length(); i++) {
+                int path = s.charAt(i) - 'a';
 
                 if (--cur.next[path].path == 0){
                     cur.next[path] = null;
@@ -80,11 +77,10 @@ public class code34 {
         }
 
         public int prefixNumber(String s){
-            char[] str = s.toCharArray();
             Node cur = head;
 
-            for (int i = 0; i < str.length; i++) {
-                int path = str[i] - 'a';
+            for (int i = 0; i < s.length(); i++) {
+                int path = s.charAt(i) - 'a';
 
                 if (cur.next[path] == null){
                     return 0;

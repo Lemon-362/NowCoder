@@ -20,30 +20,31 @@ public class code29 {
         }
 
         Node cur = head;
-        Node pre = null;
         Node mostRight = null;
+        Node pre = null;
 
-        while (cur != null) {
+        while (cur != null){
             mostRight = cur.left;
-            if (mostRight != null) {
-                while (mostRight.right != null && mostRight.right != cur) {
+            if (mostRight != null){
+                while (mostRight.right != null && mostRight.right != cur){
                     mostRight = mostRight.right;
                 }
                 if (mostRight.right == null) {
                     mostRight.right = cur;
+
                     cur = cur.left;
-                } else {
+                }else {
                     mostRight.right = null;
 
-                    if (pre != null && pre.value > cur.value) {
+                    if (pre != null && pre.value > cur.value){
                         return false;
                     }
                     pre = cur;
 
                     cur = cur.right;
                 }
-            } else {
-                if (pre != null && pre.value > cur.value) {
+            }else {
+                if (pre != null && pre.value > cur.value){
                     return false;
                 }
                 pre = cur;
@@ -65,25 +66,25 @@ public class code29 {
         Queue<Node> queue = new LinkedList<>();
         queue.offer(head);
 
-        while (!queue.isEmpty()) {
+        while (!queue.isEmpty()){
             Node cur = queue.poll();
             Node left = cur.left;
             Node right = cur.right;
 
             if ((flag && (left != null || right != null))
-                    || (left == null && right != null)) {
+            || (left == null && right != null)){
                 res = false;
                 break;
             }
 
-            if (left == null || right == null) {
+            if (left == null || right == null){
                 flag = true;
             }
 
-            if (left != null) {
+            if (left != null){
                 queue.offer(left);
             }
-            if (right != null) {
+            if (right != null){
                 queue.offer(right);
             }
         }

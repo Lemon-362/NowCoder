@@ -30,33 +30,33 @@ public class code34 {
     }
 
 
-    public static char firstNotRepeatingCharWithoutMap(String str) {
+    public static int firstNotRepeatingCharWithoutMap(String str) {
         if (str == null) {
-            return ' ';
+            return -1;
         }
 
-        int[] arr = new int[122 - 65 + 1];
+        int[] arr = new int[58];
 
         for (int i = 0; i < str.length(); i++) {
-            int index = str.charAt(i) - 65;
+            int index = str.charAt(i) - 'a';
 
             arr[index]++;
         }
 
-        for (int i = 0; i < arr.length; i++) {
-            int index = str.charAt(i) - 65;
+        for (int i = 0; i < str.length(); i++) {
+            int index = str.charAt(i) - 'a';
 
             if (arr[index] == 1){
-                return str.charAt(i);
+                return i;
             }
         }
 
-        return ' ';
+        return -1;
     }
 
     public static void main(String[] args) {
         String str = "abaccdeff";
         System.out.println(firstNotRepeatingChar(str)); // b
-        System.out.println(firstNotRepeatingCharWithoutMap(str));
+        System.out.println(firstNotRepeatingCharWithoutMap(str)); // 1
     }
 }

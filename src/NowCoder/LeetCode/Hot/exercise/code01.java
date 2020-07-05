@@ -12,10 +12,9 @@ public class code01 {
         int[] res = new int[2];
 
         for (int i = 0; i < arr.length; i++) {
-            if (map.containsKey(target - arr[i])){
-                res[0] = i;
-                res[1] = map.get(target - arr[i]);
-                break;
+            if (map.containsKey(target- arr[i])){
+                res[0] = map.get(target - arr[i]);
+                res[1] = i;
             }
 
             map.put(arr[i], i);

@@ -28,8 +28,8 @@ public class code35 {
         int p2 = mid + 1;
 
         while (p1 <= mid && p2 <= r){
-            res += arr[p1] > arr[p2] ? (r - p2 + 1) : 0;
-            help[index++] = arr[p1] > arr[p2] ? arr[p1++] : arr[p2++];
+            res += arr[p2] < arr[p1] ? (r - p2 + 1) : 0;
+            help[index++] = arr[p2] < arr[p1] ? arr[p1++] : arr[p2++];
         }
 
         while (p1 <= mid){

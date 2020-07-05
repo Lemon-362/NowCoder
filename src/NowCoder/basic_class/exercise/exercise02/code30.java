@@ -40,9 +40,10 @@ public class code30 {
             return 0;
         }
 
-        while (head != null){
+       Node cur = head;
+        while (cur != null){
+            cur = cur.left;
             level++;
-            head = head.left;
         }
 
         return level - 1;
@@ -55,7 +56,7 @@ public class code30 {
         head.left.left = new Node(4);
         head.left.right = new Node(5);
         head.right.left = new Node(6);
-        head.right.right = new Node(7);
+//        head.right.right = new Node(7);
         System.out.println(TreeNodeNumber(head)); // 7
     }
 }

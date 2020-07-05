@@ -21,7 +21,6 @@ public class code32 {
     }
 
     public static void infect(int[][] arr, int i, int j){
-        // base case
         if (i < 0 || i >= arr.length || j < 0 || j >= arr[0].length || arr[i][j] != 1){
             return;
         }

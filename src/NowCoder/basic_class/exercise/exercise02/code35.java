@@ -16,12 +16,12 @@ public class code35 {
             }
         });
 
-        StringBuilder res = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < str.length; i++) {
-            res.append(str[i]);
+            sb.append(str[i]);
         }
 
-        return res.toString();
+        return sb.toString();
     }
 
     public static void main(String[] args) {

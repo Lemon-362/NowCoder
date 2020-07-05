@@ -23,7 +23,7 @@ public class code28 {
 
     public static ReturnData process(Node head) {
         // base case
-        if (head == null) {
+        if (head == null){
             return new ReturnData(0, true);
         }
 
@@ -31,22 +31,21 @@ public class code28 {
         ReturnData rightData = process(head.right);
 
         // 1
-        if (!leftData.isB) {
+        if (!leftData.isB){
             return new ReturnData(0, false);
         }
 
         // 2
-        if (!rightData.isB) {
+        if (!rightData.isB){
             return new ReturnData(0, false);
         }
 
         // 3
-        if (Math.abs(leftData.height - rightData.height) > 1) {
+        if (Math.abs(leftData.height - rightData.height) > 1){
             return new ReturnData(0, false);
         }
 
-        int curHeight = Math.max(leftData.height, rightData.height) + 1;
-        return new ReturnData(curHeight, true);
+        return new ReturnData(Math.max(leftData.height, rightData.height), true);
     }
 
     public static boolean isBalance(Node head) {

@@ -45,6 +45,7 @@ public class code23 {
 
         Node cur = head;
         Node next = null;
+
         while (cur != null){
             next = cur.next;
 
@@ -117,10 +118,10 @@ public class code23 {
         head.next.next.next.next.next.rand = head.next.next.next; // 6 -> 4
 
         print(head); // 1 2 3 4 5 6   rand 6 6 5 3 - 4
-        System.out.println("==============");
+//        System.out.println("==============");
 //        res1 = copyWithHashMap(head);
 //        print(res1); // 1 2 3 4 5 6      rand: 6 6 5 3 - 4
-//        System.out.println("===============");
+        System.out.println("===============");
         res2 = copyWithoutHashMap(head);
         print(res2);
     }

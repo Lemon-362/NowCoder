@@ -4,15 +4,9 @@ import java.util.HashMap;
 
 public class code31 {
     public static class Pool<K> {
-        private HashMap<K, Integer> keyIndexMap;
-        private HashMap<Integer, K> indexKeyMap;
-        private int size;
-
-        public Pool() {
-            this.keyIndexMap = new HashMap<>();
-            this.indexKeyMap = new HashMap<>();
-            this.size = 0;
-        }
+        private HashMap<K, Integer> keyIndexMap = new HashMap<>();
+        private HashMap<Integer, K> indexKeyMap = new HashMap<>();
+        private int size = 0;
 
         public void insert(K key){
             if (!keyIndexMap.containsKey(key)){
@@ -23,22 +17,21 @@ public class code31 {
         }
 
         public K getRandom(){
-            int num = (int) (Math.random() * size);
+            int num = (int)(Math.random() * size);
+
             return indexKeyMap.get(num);
         }
 
         public void delete(K key){
-            if (keyIndexMap.containsKey(key)){
-                int deleteIndex = keyIndexMap.get(key);
-                int lastIndex = --size;
-                K lastValue = indexKeyMap.get(lastIndex);
+            int deleteIndex = keyIndexMap.get(key);
+            int lastIndex = --size;
+            K lastValue = indexKeyMap.get(lastIndex);
 
-                keyIndexMap.put(lastValue, deleteIndex);
-                indexKeyMap.put(deleteIndex, lastValue);
+            keyIndexMap.put(lastValue, deleteIndex);
+            indexKeyMap.put(deleteIndex, lastValue);
 
-                keyIndexMap.remove(key);
-                indexKeyMap.remove(lastIndex);
-            }
+            keyIndexMap.remove(key);
+            indexKeyMap.remove(lastIndex);
         }
     }
 

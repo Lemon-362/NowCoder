@@ -21,14 +21,16 @@ public class code21 {
 
         Stack<Node> stack = new Stack<>();
         Node cur = head;
+
         while (cur != null){
             stack.push(cur);
             cur = cur.next;
         }
 
         cur = head;
+
         while (cur != null){
-            if (stack.pop().value != cur.value){
+            if (cur.value != stack.pop().value){
                 return false;
             }
             cur = cur.next;
@@ -42,31 +44,30 @@ public class code21 {
             return true;
         }
 
-        Node p1 = head.next;
-        Node p2 = head.next.next;
+        Node p1 = head;
+        Node p2 = head;
 
         while (p2.next != null && p2.next.next != null){
             p1 = p1.next;
             p2 = p2.next.next;
         }
 
-        p2 = p1.next;
+        Node p3 = p1.next;
         p1.next = null;
-        Node p3 = null;
 
-        while (p2 != null){
-            p3 = p2.next;
+        while (p3 != null){
+            p2 = p3.next;
 
-            p2.next = p1;
+            p3.next = p1;
 
-            p1 = p2;
-            p2 = p3;
+            p1 = p3;
+            p3 = p2;
         }
 
         p3 = p1;
         p2 = head;
-
         boolean res = true;
+
         while (p1 != null && p2 != null){
             if (p1.value != p2.value){
                 res = false;
@@ -77,12 +78,12 @@ public class code21 {
         }
 
         while (p3 != null){
-            p1 = p3.next;
+            p2 = p3.next;
 
-            p3.next = p2;
+            p3.next = p1;
 
-            p2 = p3;
-            p3 = p1;
+            p1 = p3;
+            p3 = p2;
         }
 
         return res;

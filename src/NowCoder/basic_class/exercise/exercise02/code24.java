@@ -20,51 +20,51 @@ public class code24 {
         Node loop1 = getLoopNode(head1);
         Node loop2 = getLoopNode(head2);
 
-        if (loop1 == null && loop2 == null) {
+        if (loop1 == null && loop2 == null){
             return bothNoLoop(head1, head2);
         }
 
-        if (loop1 != null && loop2 != null) {
+        if (loop1 != null && loop2 != null){
             return bothLoop(head1, head2, loop1, loop2);
         }
 
         return null;
     }
 
-    public static Node bothLoop(Node head1, Node head2, Node loop1, Node loop2) {
-        if (loop1 == loop2) {
+    public static Node bothLoop(Node head1, Node head2, Node loop1, Node loop2){
+        if (loop1 == loop2){
             Node p1 = head1;
             Node p2 = head2;
             int n = 0;
 
-            while (p1 != loop1) {
-                p1 = p1.next;
+            while (p1 != loop1){
                 n++;
+                p1 = p1.next;
             }
-            while (p2 != loop1) {
-                p2 = p2.next;
+            while (p2 != loop1){
                 n--;
+                p2 = p2.next;
             }
 
             p1 = n > 0 ? head1 : head2;
             p2 = p1 == head1 ? head2 : head1;
             n = Math.abs(n);
 
-            while (n > 0) {
-                p1 = p1.next;
+            while (n > 0){
                 n--;
+                p1 = p1.next;
             }
 
-            while (p1 != p2) {
+            while (p1 != p2){
                 p1 = p1.next;
                 p2 = p2.next;
             }
 
             return p1;
-        } else {
+        }else {
             Node cur = loop1.next;
-            while (cur != loop1) {
-                if (cur == loop2) {
+            while (cur != loop1){
+                if (cur == loop2){
                     return loop1;
                 }
                 cur = cur.next;
@@ -73,8 +73,8 @@ public class code24 {
         }
     }
 
-    public static Node bothNoLoop(Node head1, Node head2) {
-        if (head1 == null || head2 == null) {
+    public static Node bothNoLoop(Node head1, Node head2){
+        if (head1 == null || head2 == null){
             return null;
         }
 
@@ -82,25 +82,25 @@ public class code24 {
         Node p2 = head2;
         int n = 0;
 
-        while (p1 != null) {
-            p1 = p1.next;
+        while (p1 != null){
             n++;
+            p1 = p1.next;
         }
-        while (p2 != null) {
-            p2 = p2.next;
+        while (p2 != null){
             n--;
+            p2 = p2.next;
         }
 
         p1 = n > 0 ? head1 : head2;
         p2 = p1 == head1 ? head2 : head1;
         n = Math.abs(n);
 
-        while (n > 0) {
-            p1 = p1.next;
+        while (n > 0){
             n--;
+            p1 = p1.next;
         }
 
-        while (p1 != p2) {
+        while (p1 != p2){
             p1 = p1.next;
             p2 = p2.next;
         }
@@ -108,16 +108,16 @@ public class code24 {
         return p1;
     }
 
-    public static Node getLoopNode(Node head) {
-        if (head == null) {
+    public static Node getLoopNode(Node head){
+        if (head == null){
             return null;
         }
 
         Node p1 = head.next;
         Node p2 = head.next.next;
 
-        while (p1 != p2) {
-            if (p2.next == null || p2.next.next == null) {
+        while (p1 != p2){
+            if (p2.next == null || p2.next.next == null){
                 return null;
             }
             p1 = p1.next;
@@ -125,7 +125,7 @@ public class code24 {
         }
 
         p2 = head;
-        while (p1 != p2) {
+        while (p1 != p2){
             p1 = p1.next;
             p2 = p2.next;
         }

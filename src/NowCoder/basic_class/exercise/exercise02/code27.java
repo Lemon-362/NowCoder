@@ -17,7 +17,7 @@ public class code27 {
     }
 
     public static String SerialByPre(Node head) {
-        if (head == null) {
+        if (head == null){
             return "#_";
         }
 
@@ -38,24 +38,12 @@ public class code27 {
         return recon(queue);
     }
 
-    public static String SerialByIn(Node head){
-        if (head == null){
-            return "#_";
-        }
-
-
-        String res = SerialByIn(head.left);
-        res += head.value + "_";
-        res += SerialByIn(head.right);
-
-        return res;
-    }
-
-    public static Node recon(Queue<String> queue) {
+    public static Node recon(Queue<String> queue){
         String value = queue.poll();
-        if (value.equals("#")) {
+        if (value.equals("#")){
             return null;
         }
+
         Node head = new Node(Integer.parseInt(value));
         head.left = recon(queue);
         head.right = recon(queue);
@@ -74,19 +62,17 @@ public class code27 {
 
         while (!queue.isEmpty()){
             Node cur = queue.poll();
-            Node left = cur.left;
-            Node right = cur.right;
 
-            if (left != null){
-                queue.offer(left);
-                res += left.value + "_";
+            if (cur.left != null){
+                res += cur.left.value + "_";
+                queue.offer(cur.left);
             }else {
                 res += "#_";
             }
 
-            if (right != null){
-                queue.offer(right);
-                res += right.value + "_";
+            if (cur.right != null){
+                res += cur.right.value + "_";
+                queue.offer(cur.right);
             }else {
                 res += "#_";
             }
@@ -113,7 +99,6 @@ public class code27 {
             if (cur.left != null){
                 queue.offer(cur.left);
             }
-
             if (cur.right != null){
                 queue.offer(cur.right);
             }
