@@ -2,7 +2,7 @@ package NowCoder.basic_class.exercise.exercise02;
 
 public class code45 {
     public static boolean process(int[] arr, int index, int a){
-        // base cae
+        // base case
         if (index == arr.length){
             return a == 0;
         }
@@ -15,10 +15,10 @@ public class code45 {
     }
 
     public static boolean MoneyProblem2(int[] arr, int a){
-        int row = arr.length + 1;
-        int col = a + 1;
-        boolean[][] dp = new boolean[row][col];
 
+        boolean[][] dp = new boolean[arr.length + 1][a + 1];
+
+        // base case
         dp[arr.length][0] = true;
 
         for (int index = arr.length - 1; index >= 0; index--) {

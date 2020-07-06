@@ -6,8 +6,8 @@ public class code37 {
             return 0;
         }
 
-        int leftIndex = getLeftIndex(arr, aim);
-        int rightIndex = getRightIndex(arr, 0, arr.length - 1, aim);
+        int leftIndex = getLeftIndex(arr, aim, 0, arr.length - 1);
+        int rightIndex = getRightIndex(arr, aim);
 
         if (leftIndex != -1 && rightIndex != -1){
             return rightIndex - leftIndex + 1;
@@ -16,21 +16,21 @@ public class code37 {
         }
     }
 
-    public static int getLeftIndex(int[] arr, int aim){
-        int i = 0;
-        int j = arr.length - 1;
+    public static int getRightIndex(int[] arr, int aim){
+        int l = 0;
+        int r = arr.length - 1;
         int mid = 0;
 
-        while (i <= j){
-            mid = (i + j) >> 1;
+        while (l <= r){
+            mid = (l + r) >> 1;
 
             if (arr[mid] < aim){
-                i = mid + 1;
+                l = mid + 1;
             }else if (arr[mid] > aim){
-                j = mid - 1;
+                r = mid - 1;
             }else {
-                if (mid - 1 >= 0 && arr[mid - 1] == aim){
-                    j = mid - 1;
+                if (mid + 1 < arr.length && arr[mid] == arr[mid + 1]){
+                    l = mid + 1;
                 }else {
                     return mid;
                 }
@@ -40,7 +40,7 @@ public class code37 {
         return -1;
     }
 
-    public static int getRightIndex(int[] arr, int l, int r, int aim){
+    public static int getLeftIndex(int[] arr, int aim, int l, int r){
         // base case
         if (l > r){
             return -1;
@@ -50,14 +50,14 @@ public class code37 {
 
         if (arr[mid] < aim){
             l = mid + 1;
-            return getRightIndex(arr, l, r, aim);
+            return getLeftIndex(arr, aim, l, r);
         }else if (arr[mid] > aim){
             r = mid - 1;
-            return getRightIndex(arr, l, r, aim);
+            return getLeftIndex(arr, aim, l, r);
         }else {
-            if (mid + 1 < arr.length && arr[mid + 1] == aim){
-                l = mid + 1;
-                return getRightIndex(arr, l, r, aim);
+            if (mid - 1 >= 0 && arr[mid] == arr[mid - 1]){
+                r = mid - 1;
+                return getLeftIndex(arr, aim, l, r);
             }else {
                 return mid;
             }

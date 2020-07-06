@@ -24,7 +24,7 @@ public class code22 {
     public static ReturnData process(Node head){
         // base case
         if (head == null){
-            return new ReturnData(0,0);
+            return new ReturnData(0, 0);
         }
 
         ReturnData leftData = process(head.left);
@@ -32,8 +32,10 @@ public class code22 {
 
         // 1
         int leftDistance = leftData.maxDistance;
+
         // 2
         int rightDistance = rightData.maxDistance;
+
         // 3
         int curDistance = leftData.depth + rightData.depth + 1;
 

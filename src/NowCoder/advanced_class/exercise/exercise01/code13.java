@@ -19,24 +19,24 @@ public class code13 {
         Node cur = head;
         Node mostRight = null;
 
-        while (cur != null) {
+        while (cur != null){
             mostRight = cur.left;
-            if (mostRight != null) {
-                while (mostRight.right != null && mostRight.right != cur) {
+            if (mostRight != null){
+                while (mostRight.right != null && mostRight.right != cur){
                     mostRight = mostRight.right;
                 }
-                if (mostRight.right == null) {
+                if (mostRight.right == null){
                     mostRight.right = cur;
 
                     System.out.print(cur.value + " ");
 
                     cur = cur.left;
-                } else {
+                }else {
                     mostRight.right = null;
 
                     cur = cur.right;
                 }
-            } else {
+            }else {
                 System.out.print(cur.value + " ");
 
                 cur = cur.right;

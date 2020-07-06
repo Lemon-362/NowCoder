@@ -1,7 +1,5 @@
 package NowCoder.advanced_class.exercise.exercise01;
 
-import NowCoder.advanced_class.exercise.code20_BiggestSubBSTInTree;
-
 public class code20 {
     public static class Node {
         private int value;
@@ -16,21 +14,21 @@ public class code20 {
     public static class ReturnData {
         private int max;
         private int min;
-        private int maxSize;
         private Node head;
+        private int maxSize;
 
-        public ReturnData(int max, int min, int maxSize, Node head) {
+        public ReturnData(int max, int min, Node head, int size) {
             this.max = max;
             this.min = min;
-            this.maxSize = maxSize;
             this.head = head;
+            this.maxSize = size;
         }
     }
 
     public static ReturnData process(Node head){
         // base case
         if (head == null){
-            return new ReturnData(Integer.MIN_VALUE, Integer.MAX_VALUE, 0, null);
+            return new ReturnData(Integer.MIN_VALUE, Integer.MAX_VALUE, null, 0);
         }
 
         ReturnData leftData = process(head.left);
@@ -38,12 +36,13 @@ public class code20 {
 
         // 1
         int leftSize = leftData.maxSize;
+
         // 2
         int rightSize = rightData.maxSize;
+
         // 3
         int curSize = 0;
-        if (head.left == leftData.head && head.right == rightData.head
-        && head.value > leftData.max && head.value < rightData.min){
+        if (leftData.max < head.value && rightData.min > head.value && leftData.head == head.left && rightData.head == head.right){
             curSize = leftSize + rightSize + 1;
         }
 
@@ -55,7 +54,7 @@ public class code20 {
             maxHead = head;
         }
 
-        return new ReturnData(maxMax, minMin, maxSize, maxHead);
+        return new ReturnData(maxMax, minMin, maxHead, maxSize);
     }
 
     public static Node getMaxBST(Node head){

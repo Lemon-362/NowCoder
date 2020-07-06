@@ -10,15 +10,15 @@ public class code15 {
 
         HashMap<Integer, Integer> map = new HashMap<>();
         map.put(0, -1);
-        int res = 0;
+
         int sum = 0;
+        int len = 0;
 
         for (int i = 0; i < arr.length; i++) {
             sum += arr[i];
-            
+
             if (map.containsKey(sum - aim)){
-                int left = map.get(sum - aim) + 1;
-                res = Math.max(res, i - left + 1);
+                len = Math.max(len, i - (map.get(sum - aim) + 1) + 1);
             }
 
             if (!map.containsKey(sum)){
@@ -26,7 +26,7 @@ public class code15 {
             }
         }
 
-        return res;
+        return len;
     }
 
     public static void main(String[] args) {

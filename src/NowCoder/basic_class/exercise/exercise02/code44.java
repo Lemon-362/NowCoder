@@ -1,56 +1,53 @@
 package NowCoder.basic_class.exercise.exercise02;
 
 public class code44 {
-    public static int process(int[][] arr, int i, int j){
+    public static int process(int[][] arr, int i, int j) {
         // base case
-        if (i == arr.length - 1 && j == arr[0].length - 1){
+        if (i == arr.length - 1 && j == arr[0].length - 1) {
             return arr[i][j];
         }
 
-        if (i == arr.length - 1){
+        if (i == arr.length - 1) {
             return arr[i][j] + process(arr, i, j + 1);
         }
 
-        if (j == arr[0].length - 1){
+        if (j == arr[0].length - 1) {
             return arr[i][j] + process(arr, i + 1, j);
         }
 
         int right = process(arr, i, j + 1);
         int down = process(arr, i + 1, j);
 
-        return arr[i][j] + Math.min(right, down);
+        return Math.min(right, down) + arr[i][j];
     }
 
-    public static int walk1(int[][] arr){
+    public static int walk1(int[][] arr) {
         return process(arr, 0, 0);
     }
 
-    public static int walk2(int[][] arr){
-        if (arr == null || arr.length < 1){
-            return 0;
-        }
+    public static int walk2(int[][] arr) {
 
-        int row = arr.length;
-        int col = arr[0].length;
-        int[][] dp = new int[row][col];
+        int[][] dp = new int[arr.length][arr[0].length];
 
         // base case
-        dp[row - 1][col - 1] = arr[row - 1][col - 1];
+        dp[arr.length - 1][arr[0].length - 1] = arr[arr.length - 1][arr[0].length - 1];
 
         // 1
-        for (int i = col - 2; i >= 0; i--) {
-            dp[row - 1][i] = arr[row - 1][i] + dp[row - 1][i + 1];
+        for (int j = arr[0].length - 2; j >= 0; j--) {
+            dp[arr.length - 1][j] = arr[arr.length - 1][j] + dp[arr.length - 1][j + 1];
         }
 
         // 2
-        for (int i = row - 2; i >= 0; i--) {
-            dp[i][col - 1] = arr[i][col - 1] + dp[i + 1][col - 1];
+        for (int i = arr.length - 2; i >= 0; i--) {
+            dp[i][arr[0].length - 1] = arr[i][arr[0].length - 1] + dp[i + 1][arr[0].length - 1];
         }
 
         // 3
-        for (int i = row - 2; i >= 0; i--) {
-            for (int j = col - 2; j >= 0; j--) {
-                dp[i][j] = arr[i][j] + Math.min(dp[i][j + 1], dp[i + 1][j]);
+        for (int i = arr.length - 2; i >= 0; i--) {
+            for (int j = arr[0].length - 2; j >= 0; j--) {
+                int right = dp[i][j + 1];
+                int down = dp[i + 1][j];
+                dp[i][j] = Math.min(right, down) + arr[i][j];
             }
         }
 

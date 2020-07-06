@@ -36,12 +36,13 @@ public class code40 {
         }
 
         int xor = 0;
+
         for (int i = 0; i < arr.length; i++) {
             xor ^= arr[i];
         }
 
         int index = 1;
-        while ((xor & index) == 0){
+        while ((index & xor) == 0){
             index = index << 1;
         }
 

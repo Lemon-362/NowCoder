@@ -29,11 +29,13 @@ public class code23 {
         int bu_lai = 0;
 
         for (int i = 0; i < head.next.size(); i++) {
-            Node next = head.next.get(i);
+            Node cur = head.next.get(i);
 
-            ReturnData returnData = process(next);
+            ReturnData returnData = process(cur);
 
+            // 1
             lai += returnData.bu_lai_huo;
+            // 2
             bu_lai += Math.max(returnData.lai_huo, returnData.bu_lai_huo);
         }
 
@@ -55,15 +57,16 @@ public class code23 {
 
         Node head = null;
         for (int i = 0; i < nodes.length; i++) {
-            if (i == arr[i][0]){
+            if (arr[i][0] == i){
                 head = nodes[i];
                 break;
             }
         }
 
-        ReturnData returnData = process(head);
+        int lai_huo = process(head).lai_huo;
+        int bu_lai_huo = process(head).bu_lai_huo;
 
-        return Math.max(returnData.lai_huo, returnData.bu_lai_huo);
+        return Math.max(lai_huo, bu_lai_huo);
     }
 
     public static void main(String[] args) {

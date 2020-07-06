@@ -7,25 +7,25 @@ public class code41 {
         ArrayList<ArrayList<Integer>> res = new ArrayList<>();
 
         int sum = 0;
-        int a = 1;
-        int b = 1;
+        int l = 1;
+        int r = 1;
 
-        while (a <= target / 2){
+        while (l <= target / 2){
             if (sum < target){
-                sum += b;
-                b++;
+                sum += r;
+                r++;
             }else if (sum > target){
-                sum -= a;
-                a++;
+                sum -= l;
+                l++;
             }else {
                 ArrayList<Integer> list = new ArrayList<>();
-                for (int i = a; i < b; i++) {
+                for (int i = l; i < r; i++) {
                     list.add(i);
                 }
                 res.add(list);
 
-                sum -= a;
-                a++;
+                sum -= l;
+                l++;
             }
         }
 

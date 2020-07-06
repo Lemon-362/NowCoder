@@ -6,21 +6,20 @@ public class code42 {
             return null;
         }
 
-        int i = 0;
-        int j = arr.length - 1;
-        int sum = 0;
+        int l = 0;
+        int r = arr.length - 1;
         int[] res = new int[2];
 
-        while (i < j){
-            sum = arr[i] + arr[j];
+        while (l < r){
+            int sum = arr[l] + arr[r];
 
             if (sum < target){
-                i++;
+                l++;
             }else if (sum > target){
-                j--;
+                r--;
             }else {
-                res[0] = arr[i];
-                res[1] = arr[j];
+                res[0] = arr[l];
+                res[1] = arr[r];
                 break;
             }
         }

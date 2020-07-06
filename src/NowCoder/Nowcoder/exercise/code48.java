@@ -8,7 +8,7 @@ public class code48 {
 
             a ^= b;
 
-            b = (temp & b) << 1;
+            b = (b & temp) << 1;
         }
 
         return a;

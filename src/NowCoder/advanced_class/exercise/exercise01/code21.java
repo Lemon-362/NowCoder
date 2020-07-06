@@ -21,7 +21,7 @@ public class code21 {
         }
     }
 
-    public static ReturnData process(Node head){
+    public static ReturnData process(Node head) {
         // base case
         if (head == null){
             return new ReturnData(Integer.MIN_VALUE, Integer.MAX_VALUE);

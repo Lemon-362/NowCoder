@@ -16,7 +16,7 @@ public class code43 {
 //            sb.append(str.charAt(i));
 //        }
 
-        for (int i = n; i < n + str.length(); i++) {
+        for (int i = n; i < str.length() + n; i++) {
             sb.append(str.charAt(i % str.length()));
         }
 

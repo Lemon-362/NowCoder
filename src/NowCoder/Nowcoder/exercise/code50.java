@@ -12,8 +12,9 @@ public class code50 {
             while (i != arr[i]){
                 if (arr[i] == arr[arr[i]]){
                     return arr[i];
+                }else {
+                    swap(arr, i, arr[i]);
                 }
-                swap(arr, i, arr[i]);
             }
         }
 

@@ -23,32 +23,32 @@ public class code27 {
         Node mostRight = null;
         Node pre = null;
 
-        while (cur != null) {
+        while (cur != null){
             mostRight = cur.left;
-            if (mostRight != null) {
-                while (mostRight.right != null && mostRight.right != cur) {
+            if (mostRight != null){
+                while (mostRight.right != null && mostRight.right != cur){
                     mostRight = mostRight.right;
                 }
-                if (mostRight.right == null) {
+                if (mostRight.right == null){
                     mostRight.right = cur;
 
                     cur = cur.left;
-                } else {
+                }else {
                     mostRight.right = null;
 
-                    if (pre != null && pre.value > cur.value) {
+                    if (pre != null && pre.value > cur.value){
                         return false;
                     }
-
                     pre = cur;
+
                     cur = cur.right;
                 }
-            } else {
-                if (pre != null && pre.value > cur.value) {
+            }else {
+                if (pre != null && pre.value > cur.value){
                     return false;
                 }
-
                 pre = cur;
+
                 cur = cur.right;
             }
         }
@@ -61,18 +61,20 @@ public class code27 {
             return true;
         }
 
+        boolean res = true;
+        boolean flag = false;
         Queue<Node> queue = new LinkedList<>();
         queue.offer(head);
-        boolean flag = false;
 
         while (!queue.isEmpty()){
             Node cur = queue.poll();
             Node left = cur.left;
             Node right = cur.right;
 
-            if ((flag && (left !=null || right != null))
+            if ((flag && (left != null || right != null))
             || (left == null && right != null)){
-                return false;
+                res = false;
+                break;
             }
 
             if (left == null || right == null){
@@ -87,7 +89,7 @@ public class code27 {
             }
         }
 
-        return true;
+        return res;
     }
 
     public static void main(String[] args) {

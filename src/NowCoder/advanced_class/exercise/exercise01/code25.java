@@ -24,37 +24,6 @@ public class code25 {
             this.tail = null;
         }
 
-        public Node<K, V> removeHeadNode(){
-            if (this.head == null){
-                return null;
-            }
-
-            Node<K, V> headNode = this.head;
-            if (headNode == this.tail){
-                this.tail = null;
-                this.head = null;
-            }else {
-                Node<K, V> lastNode = headNode.last;
-                lastNode.next = null;
-                this.head = lastNode;
-            }
-
-            return headNode;
-        }
-
-        public void addNodeToTail(Node<K, V> node){
-            if (this.tail == null){
-                this.tail = node;
-                this.head = node;
-            }
-
-            Node<K, V> tailNode = this.tail;
-            node.next = tailNode;
-            tailNode.last = node;
-            node.last = null;
-            this.tail = node;
-        }
-
         public void moveNodeToTail(Node<K, V> node){
             if (this.tail == node){
                 return;
@@ -66,8 +35,8 @@ public class code25 {
                 this.head = lastNode;
 
                 Node<K, V> tailNode = this.tail;
-                node.next = tailNode;
                 tailNode.last = node;
+                node.next = tailNode;
                 node.last = null;
                 this.tail = node;
             }else {
@@ -77,18 +46,51 @@ public class code25 {
                 nextNode.last = lastNode;
 
                 Node<K, V> tailNode = this.tail;
-                node.next = tailNode;
                 tailNode.last = node;
+                node.next = tailNode;
                 node.last = null;
                 this.tail = node;
             }
         }
+
+        public Node<K, V> removeHeadNode(){
+            if (this.head == null){
+                return null;
+            }
+
+            Node<K, V> head = this.head;
+
+            if (head == this.tail){
+                this.head = null;
+                this.tail = null;
+            }else {
+                Node<K, V> lastNode = head.last;
+                lastNode.next = null;
+                this.head = lastNode;
+            }
+
+            return head;
+        }
+
+        public void addNodeToTail(Node<K, V> node){
+            if (this.tail == null){
+                this.tail = node;
+                this.head = node;
+                return;
+            }
+
+            Node<K, V> tailNode = this.tail;
+            tailNode.last = node;
+            node.next = tailNode;
+            node.last = null;
+            this.tail = node;
+        }
     }
 
     public static class LRU<K, V> {
+        private int capacity;
         private HashMap<K, Node<K, V>> map;
         private DoubleLinkedList<K, V> list;
-        private int capacity;
 
         public LRU(int capacity) {
             this.capacity = capacity;
@@ -97,29 +99,30 @@ public class code25 {
         }
 
         public void set(K key, V value){
-            if (!map.containsKey(key)){
-                if (this.capacity == map.size()){
-                    removeHeadNode();
-                }
-
-                Node<K, V> setNode = new Node<>(key, value);
-
-                map.put(key, setNode);
-
-                list.addNodeToTail(setNode);
-            }else {
+            if (map.containsKey(key)){
                 Node<K, V> setNode = map.get(key);
 
                 setNode.value = value;
 
-                map.put(key, setNode);
-
                 list.moveNodeToTail(setNode);
+
+                map.put(key, setNode);
+            }else {
+                if (map.size() == this.capacity){
+                    this.removeHeadNode();
+                }
+
+                Node<K, V> setNode = new Node<>(key, value);
+
+                list.addNodeToTail(setNode);
+
+                map.put(key, setNode);
             }
         }
 
         public void removeHeadNode(){
             Node<K, V> headNode = list.removeHeadNode();
+
             map.remove(headNode.key);
         }
 

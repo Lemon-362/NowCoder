@@ -7,8 +7,8 @@ public class code44 {
         }
 
         String[] s = str.split(" ");
-
         StringBuilder sb = new StringBuilder();
+
         for (int i = s.length - 1; i >= 0; i--) {
             if (i == 0){
                 sb.append(s[i]);
