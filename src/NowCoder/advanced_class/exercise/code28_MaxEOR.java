@@ -15,9 +15,12 @@ public class code28_MaxEOR {
 
         int xor = 0;
 
+        // 以每个位置结尾
         for (int i = 0; i < arr.length; i++) {
+            // 开始位置从0-i，以start开始，以i位置结尾的所有子数组
             for (int start = 0; start <= i; start++) {
                 int num = 0;
+                // 求以start开始，以i位置结尾的当前子数组的xor
                 for (int k = start; k <= i; k++) {
                     num ^= arr[k];
                 }
@@ -39,10 +42,15 @@ public class code28_MaxEOR {
         int res = 0;
         int[] dp = new int[arr.length];
 
+        // 以每个位置结尾
         for (int i = 0; i < arr.length; i++) {
+            // 以每个位置结尾的xor
             xor ^= arr[i];
+            // 当start=0时的子数组
             res = Math.max(xor, res);
 
+            // 以i位置结尾的数组可以分为 0 - start - i 两部分
+            // 那么start-i的子数组的xor=dp[i] ^ dp[start-1]
             for (int start = 1; start <= i; start++) {
                 int startToI = xor ^ dp[start - 1];
                 res = Math.max(startToI, res);
@@ -63,6 +71,27 @@ public class code28_MaxEOR {
         }
     }
 
+    /**
+     * 根据2的改进：
+     *  已知以i位置结尾的数组的xor
+     *  并且以start开头以i结尾是要求的当前数组上的最大xor子数组
+     *  那么以i位置结尾的数组可以划分为两部分 0 -- start -- i
+     *  那么根据异或的性质：start--i的xor = dp[i] ^ dp[start-1]
+     *
+     *  现在已知以i位置结尾的数组的xor，希望求出start--i的xor最大
+     *  也就要求dp[i] ^ dp[start-1]能够最大 ==> 一个数能够和dp[i]异或出最大
+     *
+     *  1. dp[i]=0010
+     *      对于符号位：希望异或出0，才能为正，否则1的话会更小，如果没有0的路，那么只能走1的路
+     *      对于其他位：希望从高到低尽量异或出的结果为1，那么最好情况是能走与dp[i]相反的路，如果没有就走dp[i]的路
+     *              优先满足高位能够取反，使得结果高位为1
+     *
+     *  2. dp[i]=1111
+     *      对于符号位：希望能异或出0，那么优先走1的路
+     *      对于其他位：优先满足高位能够取反，使得结果高位为1
+     *
+     *  当找到最合适的路径后，结果就是 dp[i] ^ dp[start-1]
+     */
     public static class TrieTree {
         private Node head;
 

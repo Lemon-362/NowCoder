@@ -30,7 +30,7 @@ public class code61 {
         String[] s = str.split("_");
         Queue<String> queue = new LinkedList<>();
         for (int i = 0; i < s.length; i++) {
-            queue.add(s[i]);
+            queue.offer(s[i]);
         }
 
         return recon(queue);
@@ -55,22 +55,24 @@ public class code61 {
         }
 
         Queue<Node> queue = new LinkedList<>();
-        queue.offer(head);
         String res = head.value + "_";
+        queue.offer(head);
 
         while (!queue.isEmpty()){
             Node cur = queue.poll();
+            Node left = cur.left;
+            Node right = cur.right;
 
-            if (cur.left != null){
-                res += cur.left.value + "_";
-                queue.offer(cur.left);
+            if (left != null){
+                res += left.value + "_";
+                queue.offer(left);
             }else {
                 res += "#_";
             }
 
-            if (cur.right != null){
-                res += cur.right.value + "_";
-                queue.offer(cur.right);
+            if (right != null){
+                res += right.value + "_";
+                queue.offer(right);
             }else {
                 res += "#_";
             }
@@ -93,10 +95,10 @@ public class code61 {
             cur.left = generate(s[index++]);
             cur.right = generate(s[index++]);
 
-            if (cur.left != null) {
+            if (cur.left != null){
                 queue.offer(cur.left);
             }
-            if (cur.right != null){
+            if (cur.right != null) {
                 queue.offer(cur.right);
             }
         }

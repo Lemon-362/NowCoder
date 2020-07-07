@@ -12,19 +12,19 @@ public class code33 {
         min_sum_index[arr.length - 1] = arr.length - 1;
 
         for (int i = arr.length - 2; i >= 0; i--) {
-            if (min_sum[i + 1] <= 0){
-                min_sum[i] = min_sum[i + 1] + arr[i];
-                min_sum_index[i] = min_sum_index[i + 1];
-            }else {
+            if (min_sum[i + 1] > 0){
                 min_sum[i] = arr[i];
                 min_sum_index[i] = i;
+            }else {
+                min_sum[i] = arr[i] + min_sum[i + 1];
+                min_sum_index[i] = min_sum_index[i + 1];
             }
         }
 
+        int len = 0;
         int sum = 0;
         int L = 0;
         int R = 0;
-        int len = 0;
 
         while (L < arr.length){
             while (R < arr.length && sum + min_sum[R] <= aim){
@@ -36,7 +36,7 @@ public class code33 {
 
             sum -= R > L ? arr[L] : 0;
 
-            R = Math.max(R, L + 1);
+            R = Math.max(L + 1, R);
 
             L++;
         }

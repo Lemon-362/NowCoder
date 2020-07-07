@@ -5,34 +5,32 @@ package NowCoder.Nowcoder.exercise;
 public class code54 {
     public int[] arr = new int[256];
 
-    public int index;
+    public int index = 0;
 
     public code54() {
         for (int i = 0; i < arr.length; i++) {
-            this.arr[i] = -1;
+            arr[i] = -1;
         }
-
-        this.index = 0;
     }
 
     public void insert(char ch){
         if (arr[ch] == -1){
-            arr[ch] = this.index;
+            arr[ch] = index;
         }else if (arr[ch] >= 0){
             arr[ch] = -2;
         }
 
-        this.index++;
+        index++;
     }
 
     public char getChar(){
         int res = -1;
-        int min = Integer.MAX_VALUE;
+        int minIndex = Integer.MAX_VALUE;
 
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] >= 0 && arr[i] < min){
+            if (arr[i] >= 0 && arr[i] < minIndex){
                 res = i;
-                min = arr[i];
+                minIndex = arr[i];
             }
         }
 

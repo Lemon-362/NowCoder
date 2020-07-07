@@ -10,11 +10,11 @@ public class code28 {
 
         for (int i = 0; i < arr.length; i++) {
             for (int start = 0; start <= i; start++) {
-                int num = 0;
+                int xor = 0;
                 for (int j = start; j <= i; j++) {
-                    num ^= arr[j];
+                    xor ^= arr[j];
                 }
-                res = Math.max(res, num);
+                res = Math.max(res, xor);
             }
         }
 
@@ -32,10 +32,11 @@ public class code28 {
 
         for (int i = 0; i < arr.length; i++) {
             xor ^= arr[i];
+            // start=0时的子数组
             res = Math.max(res, xor);
 
             for (int start = 1; start <= i; start++) {
-                res = Math.max(res, xor ^ dp[start - 1]);
+                res = Math.max(res, dp[start - 1] ^ xor);
             }
 
             dp[i] = xor;
@@ -73,9 +74,9 @@ public class code28 {
             }
         }
 
-        public int getMaxEor(int num){
-            int res = 0;
+        public int getMaxXor(int num){
             Node cur = head;
+            int res = 0;
 
             for (int i = 31; i >= 0; i--) {
                 int path = (num >> i) & 1;
@@ -84,9 +85,9 @@ public class code28 {
 
                 best = cur.next[best] == null ? (1 ^ best) : best;
 
-                res |= (best ^ path) << i;
-
                 cur = cur.next[best];
+
+                res |= (best ^ path) << i;
             }
 
             return res;
@@ -106,7 +107,7 @@ public class code28 {
         for (int i = 0; i < arr.length; i++) {
             xor ^= arr[i];
 
-            res = Math.max(res, trieTree.getMaxEor(xor));
+            res = Math.max(res, trieTree.getMaxXor(xor));
 
             trieTree.addNum(xor);
         }

@@ -47,10 +47,10 @@ public class code59 {
                 if (cur.right != null){
                     queue.offer(cur.right);
                 }
-
             }
-            flag = !flag;
+
             res.add(list);
+            flag = !flag;
         }
 
         return res;

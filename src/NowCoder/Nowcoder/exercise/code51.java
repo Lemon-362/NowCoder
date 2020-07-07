@@ -1,14 +1,14 @@
 package NowCoder.Nowcoder.exercise;
 
 public class code51 {
-    public static int[] constructMultiplyArr(int[] A){
-        if (A == null || A.length < 1){
+    public static int[] constructMultiplyArr(int[] A) {
+        if (A == null || A.length < 1) {
             return null;
         }
 
         int[] B = new int[A.length];
         B[0] = 1;
-        for (int i = 1; i < A.length; i++) {
+        for (int i = 1; i < B.length; i++) {
             B[i] = B[i - 1] * A[i - 1];
         }
 

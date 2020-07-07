@@ -6,9 +6,9 @@ public class code29 {
     public static int process1(int[] arr, int index, int aim) {
         int res = 0;
         // base case
-        if (index == arr.length){
+        if (index == arr.length) {
             res = aim == 0 ? 1 : 0;
-        }else {
+        } else {
             for (int zhang = 0; zhang * arr[index] <= aim; zhang++) {
                 int leftAim = aim - zhang * arr[index];
                 res += process1(arr, index + 1, leftAim);
@@ -18,13 +18,13 @@ public class code29 {
         return res;
     }
 
-    public static int getWay1(int[] arr, int aim){
+    public static int getWay1(int[] arr, int aim) {
         return process1(arr, 0, aim);
     }
 
     public static HashMap<String, Integer> map = new HashMap<>();
 
-    public static int process2(int[] arr, int index, int aim){
+    public static int process2(int[] arr, int index, int aim) {
         int res = 0;
         // base case
         if (index == arr.length) {
@@ -33,9 +33,9 @@ public class code29 {
             for (int zhang = 0; zhang * arr[index] <= aim; zhang++) {
                 int leftAim = aim - zhang * arr[index];
                 String f = index + 1 + "_" + leftAim;
-                if (map.containsKey(f)){
+                if (map.containsKey(f)) {
                     res += map.get(f);
-                }else {
+                } else {
                     res += process1(arr, index + 1, leftAim);
                 }
 
@@ -47,44 +47,55 @@ public class code29 {
         return res;
     }
 
-    public static int getWay2(int[] arr, int aim){
+    public static int getWay2(int[] arr, int aim) {
         return process2(arr, 0, aim);
     }
 
-    public static int getWay3(int[] arr, int aim){
-        if (arr == null || arr.length < 1){
+    public static int getWay3(int[] arr, int aim) {
+        if (arr == null || arr.length < 1) {
             return 0;
         }
 
         int[][] dp = new int[arr.length + 1][aim + 1];
+
+        // base case
         dp[arr.length][0] = 1;
 
+//        for (int zhang = 0; zhang * arr[index] <= aim; zhang++) {
+//            int leftAim = aim - zhang * arr[index];
+//            res += process1(arr, index + 1, leftAim);
+//        }
         for (int index = arr.length - 1; index >= 0; index--) {
-            for (int leftAim = 0; leftAim < dp[0].length; leftAim++) {
-                int sum = 0;
+            for (int leftAim = 0; leftAim <= aim; leftAim++) {
+                int num = 0;
                 for (int zhang = 0; leftAim - zhang * arr[index] >= 0; zhang++) {
-                    sum += dp[index + 1][leftAim - zhang * arr[index]];
+                    num += dp[index + 1][leftAim - zhang * arr[index]];
                 }
-                dp[index][leftAim] = sum;
+                dp[index][leftAim] = num;
             }
         }
 
         return dp[0][aim];
     }
 
-    public static int getWay4(int[] arr, int aim){
-        if (arr == null || arr.length < 1){
+    public static int getWay4(int[] arr, int aim) {
+        if (arr == null || arr.length < 1) {
             return 0;
         }
 
         int[][] dp = new int[arr.length + 1][aim + 1];
+
+        // base case
         dp[arr.length][0] = 1;
 
+//        for (int zhang = 0; zhang * arr[index] <= aim; zhang++) {
+//            int leftAim = aim - zhang * arr[index];
+//            res += process1(arr, index + 1, leftAim);
+//        }
         for (int index = arr.length - 1; index >= 0; index--) {
-            for (int leftAim = 0; leftAim < dp[0].length; leftAim++) {
+            for (int leftAim = 0; leftAim <= aim; leftAim++) {
                 int num1 = leftAim - arr[index] >= 0 ? dp[index][leftAim - arr[index]] : 0;
                 int num2 = dp[index + 1][leftAim];
-
                 dp[index][leftAim] = num1 + num2;
             }
         }

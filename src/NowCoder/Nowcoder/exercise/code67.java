@@ -2,9 +2,9 @@ package NowCoder.Nowcoder.exercise;
 
 public class code67 {
     public static int cutRope(int n) {
-        if (n <= 1){
+        if (n <= 1) {
             return 0;
-        }else if (n <= 3){
+        } else if (n <= 3) {
             return n;
         }
 
@@ -14,7 +14,7 @@ public class code67 {
         dp[2] = 2;
         dp[3] = 3;
 
-        for (int i = 4; i <= n; i++) {
+        for (int i = 4; i < dp.length; i++) {
             int max = Integer.MIN_VALUE;
             for (int j = 1; j <= i / 2; j++) {
                 max = Math.max(max, dp[j] * dp[i - j]);
@@ -26,20 +26,20 @@ public class code67 {
     }
 
     public static int cutRope1(int n) {
-        if (n <= 1){
+        if (n <= 0) {
             return 0;
-        }else if (n <= 4){
+        } else if (n <= 4) {
             return n;
         }
 
         long res = 1;
 
-        while (n >= 5){
+        while (n >= 5) {
             res *= 3;
 
             res = res % 1000000007;
 
-            n -= 3;
+            n = n - 3;
         }
 
         res *= n;

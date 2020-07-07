@@ -28,6 +28,7 @@ public class code30 {
     public static int getMaxScore1(int[] arr){
         int f_score = f(arr, 0, arr.length - 1);
         int s_score = s(arr, 0, arr.length - 1);
+
         return Math.max(f_score, s_score);
     }
 
@@ -40,15 +41,16 @@ public class code30 {
         int[][] s = new int[arr.length][arr.length];
 
         for (int j = 0; j < arr.length; j++) {
-            f[j][j] = 1;
+            f[j][j] = arr[j];
             s[j][j] = 0;
             for (int i = j - 1; i >= 0; i--) {
                 int f_a = arr[i] + s[i + 1][j];
                 int f_b = arr[j] + s[i][j - 1];
-                f[i][j] = Math.max(f_a, f_b);
 
                 int s_a = f[i + 1][j];
                 int s_b = f[i][j - 1];
+
+                f[i][j] = Math.max(f_a, f_b);
                 s[i][j] = Math.min(s_a, s_b);
             }
         }

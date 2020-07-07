@@ -26,6 +26,7 @@ public class code52 {
             i++;
         }
 
+        // 3.2
         return process(str, exp, i, j + 2);
     }
 

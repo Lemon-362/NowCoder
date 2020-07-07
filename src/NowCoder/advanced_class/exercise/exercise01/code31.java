@@ -12,8 +12,8 @@ public class code31 {
         }else if (curP == N){
             return process(N, curP - 1, leftK - 1, P);
         }else {
-            return process(N, curP + 1, leftK - 1, P)
-                    + process(N, curP - 1, leftK - 1, P);
+            return process(N, curP - 1, leftK - 1, P)
+                    + process(N, curP + 1, leftK - 1, P);
         }
     }
 
@@ -23,17 +23,18 @@ public class code31 {
 
     public static int ways2(int N, int M, int K, int P){
         int[][] dp = new int[K + 1][N + 1];
+
+        // base case
         dp[0][P] = 1;
 
         for (int leftK = 1; leftK < dp.length; leftK++) {
             for (int curP = 1; curP < dp[0].length; curP++) {
                 if (curP == 1){
-                    dp[leftK][curP] = dp[leftK - 1][curP + 1];
+                    dp[leftK][curP] = dp[leftK-1][curP+1];
                 }else if (curP == N){
-                    dp[leftK][curP] = dp[leftK - 1][curP - 1];
+                    dp[leftK][curP] = dp[leftK-1][curP-1];
                 }else {
-                    dp[leftK][curP] = dp[leftK - 1][curP + 1]
-                            + dp[leftK - 1][curP - 1];
+                    dp[leftK][curP] = dp[leftK-1][curP+1] + dp[leftK-1][curP-1];
                 }
             }
         }

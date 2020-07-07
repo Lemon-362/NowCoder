@@ -12,8 +12,11 @@ public class code66 {
     }
 
     public static int process(int m, int n, int k, int i, int j, boolean[][] flag) {
-        // base case
-        if (i < 0 || i >= m || j < 0 || j >= n || !isValid(i, j, k) || flag[i][j]) {
+        if (i < 0 || i >= m || j < 0 || j >= n || flag[i][j]) {
+            return 0;
+        }
+
+        if (!isValid(i, j, k)) {
             return 0;
         }
 

@@ -87,6 +87,8 @@ public class code32_LongestSumSubArrayLengthInAllPositiveArray {
         int k = 15;
         int[] arr1 = generatePositiveArray(len);
         printArray(arr1);
+        System.out.println(getMaxLength2(arr1, k));
         System.out.println(getMaxLength(arr1, k));
+
     }
 }
