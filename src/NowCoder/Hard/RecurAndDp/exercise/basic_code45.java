@@ -1,0 +1,44 @@
+package NowCoder.Hard.RecurAndDp.exercise;
+
+public class basic_code45 {
+    public static boolean process(int[] arr, int index, int a){
+        // base case
+        if (index == arr.length){
+            return a == 0;
+        }
+
+        return process(arr, index + 1, a) || process(arr, index + 1, a - arr[index]);
+    }
+
+    public static boolean MoneyProblem1(int[] arr, int a){
+        return process(arr, 0, a);
+    }
+
+    public static boolean MoneyProblem2(int[] arr, int a){
+
+        boolean[][] dp = new boolean[arr.length + 1][a + 1];
+
+        // base case
+        dp[arr.length][0] = true;
+
+        for (int index = arr.length - 1; index >= 0; index--) {
+            for (int sum = 0; sum < dp[0].length; sum++) {
+                if (sum - arr[index] >= 0){
+                    dp[index][sum] = dp[index + 1][sum] || dp[index + 1][sum - arr[index]];
+                }else {
+                    dp[index][sum] = dp[index + 1][sum];
+                }
+            }
+        }
+
+        return dp[0][a];
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 4, 8};
+        int a = 5;
+
+        System.out.println(MoneyProblem1(arr, a));
+        System.out.println(MoneyProblem2(arr, a));
+    }
+}
