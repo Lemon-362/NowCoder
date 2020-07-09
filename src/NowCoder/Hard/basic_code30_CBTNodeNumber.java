@@ -31,6 +31,26 @@ public class basic_code30_CBTNodeNumber {
         return process(head, 1, H);
     }
 
+    /**
+     * TODO 结论：满二叉树，高度为L，则其节点个数为 2^L-1
+     * 	1. 由于是完全二叉树，首先遍历整棵树的左子树边界，可知树的总高度 h总
+     * 	2. 当前节点head处于第level层，判断当前节点head的右子树的左边界的高度，即右子树的总高度
+     * 		1) 高度到达h总，则当前节点的左子树必满
+     * 	      ==>左子树高度 = h总 - level
+     * 	      ==>左子树节点 = 2^(h总 - level) - 1
+     * 	      ==>左子树节点 + 当前节点 = 2^(h总 - level) - 1 + 1 = 2^(h总 - level)
+     * 	         = 1 << (h总 - level)
+     * 		2) 高度没有到达h总，则当前节点的右子树必满
+     * 	      ==>右子树高度 = 左子树满时的高度 - 1 = h总 - level	- 1
+     * 	      ==>右子树节点 = 2^(h总 - level - 1) - 1
+     *        ==>右子树节点 + 当前节点 = 2^(h总 - level - 1) - 1 + 1 = 2^(h总 - level - 1)
+     *           = 1 << (h总 - level - 1)
+     * 	3. 递归求解
+     * 	    1) 左子树满，向右递归
+     * 	    2) 右子树满，向左递归
+     *  4. base case
+     *      level == h总时，当前节点到达叶节点，高度h = 1
+     */
     public static int process(Node head, int level, int H){
         // base case
         if (level == H){

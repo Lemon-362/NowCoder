@@ -6,9 +6,9 @@ public class No_code48 {
         while (b != 0){
             int temp = a;
 
-            a ^= b;
+            a = a ^ b;
 
-            b = (b & temp) << 1;
+            b = (temp & b) << 1;
         }
 
         return a;

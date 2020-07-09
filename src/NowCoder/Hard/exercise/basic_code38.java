@@ -26,13 +26,13 @@ public class basic_code38 {
             }
         });
 
-        int end = start;
         int res = 0;
+        int end = start;
 
         for (int i = 0; i < programs.length; i++) {
             if (end <= programs[i].start){
-                end = programs[i].end;
                 res++;
+                end = programs[i].end;
             }
         }
 

@@ -27,7 +27,6 @@ public class code01 {
         }
 
         return p2 == str2.length ? p1 - p2 : -1;
-
     }
 
     public static int[] getNextArr(char[] str){

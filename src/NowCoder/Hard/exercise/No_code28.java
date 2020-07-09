@@ -3,7 +3,7 @@ package NowCoder.Hard.exercise;
 import java.util.HashMap;
 
 public class No_code28 {
-    public static int getKthMinNum(int[] arr){
+    public static int getMoreThanHalfNum(int[] arr){
         if (arr == null || arr.length < 1){
             return 0;
         }else if (arr.length == 1){
@@ -29,23 +29,23 @@ public class No_code28 {
         return 0;
     }
 
-    public static int getKthMinNum1(int[] arr) {
+    public static int getMoreThanHalfNum1(int[] arr) {
         if (arr == null || arr.length < 1) {
             return 0;
         }else if (arr.length == 1){
             return arr[0];
         }
 
-        int res = bfprt(arr, 0, arr.length - 1, arr.length / 2);
+        int num = bfprt(arr, 0, arr.length - 1, arr.length / 2);
 
         int times = 0;
         for (int i = 0; i < arr.length; i++) {
-            if (res == arr[i]){
+            if (arr[i] == num){
                 times++;
             }
         }
 
-        return times > arr.length / 2 ? res : 0;
+        return times > arr.length / 2 ? num : 0;
     }
 
     public static int bfprt(int[] arr, int l, int r, int k){
@@ -67,42 +67,6 @@ public class No_code28 {
         }
     }
 
-    public static int medianInMedians(int[] arr, int l, int r){
-        int len = r - l + 1;
-        int offset = len % 5 == 0 ? 0 : 1;
-        int group = len / 5 + offset;
-        int[] mArr = new int[group];
-
-        for (int i = 0; i < mArr.length; i++) {
-            int start = l + 5 * i;
-            int end = start + 4;
-            if (i == mArr.length - 1){
-                mArr[i] = getMedian(arr, start, r);
-            }else {
-                mArr[i] = getMedian(arr, start, end);
-            }
-        }
-
-        return bfprt(mArr, 0, mArr.length - 1, mArr.length / 2);
-    }
-
-    public static int getMedian(int[] arr, int l, int r){
-        selectSort(arr, l, r);
-        int mid = (l + r) >> 1;
-
-        return arr[mid];
-    }
-
-    public static void selectSort(int[] arr, int l, int r){
-        for (int i = l; i <= r; i++) {
-            int minIndex = i;
-            for (int j = i + 1; j <= r; j++) {
-                minIndex = arr[minIndex] < arr[j] ? minIndex : j;
-            }
-            swap(arr, minIndex, i);
-        }
-    }
-
     public static int[] partition(int[] arr, int l, int r, int num){
         int less = l - 1;
         int more = r + 1;
@@ -118,7 +82,45 @@ public class No_code28 {
             }
         }
 
-        return new int[] {less + 1, more - 1};
+        return new int[]{less + 1, more - 1};
+    }
+
+    public static int medianInMedians(int[] arr, int l, int r){
+        int len = r - l + 1;
+        int offset = len % 5 == 0 ? 0 : 1;
+        int group = len / 5 + offset;
+        int[] mArr = new int[group];
+
+        for (int i = 0; i < mArr.length; i++) {
+            int start = l + 5 * i;
+            int end = start + 4;
+
+            if (i == mArr.length - 1){
+                mArr[i] = getMedian(arr, start, r);
+            }else {
+                mArr[i] = getMedian(arr, start, end);
+            }
+        }
+
+        return bfprt(mArr, 0, mArr.length - 1, mArr.length / 2);
+    }
+
+    public static int getMedian(int[] arr, int l, int r){
+        selectSort(arr, l, r);
+
+        int mid = (l + r) >> 1;
+
+        return arr[mid];
+    }
+
+    public static void selectSort(int[] arr, int l, int r){
+        for (int i = l; i <= r; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j <= r; j++) {
+                minIndex = arr[minIndex] > arr[j] ? j : minIndex;
+            }
+            swap(arr, i, minIndex);
+        }
     }
 
     public static void swap(int[] arr, int i, int j) {
@@ -127,7 +129,7 @@ public class No_code28 {
         arr[j] = temp;
     }
 
-    public static int getKthMinNum2(int[] arr) {
+    public static int getMoreThanHalfNum2(int[] arr) {
         if (arr == null || arr.length < 1) {
             return 0;
         }else if (arr.length == 1){
@@ -152,7 +154,7 @@ public class No_code28 {
 
         int k = 0;
         for (int i = 0; i < arr.length; i++) {
-            if (res == arr[i]){
+            if (arr[i] == res){
                 k++;
             }
         }
@@ -162,15 +164,15 @@ public class No_code28 {
 
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 2, 4, 2, 5, 2, 3};
-        System.out.println(getKthMinNum(arr)); // 0
-        System.out.println(getKthMinNum1(arr));
-        System.out.println(getKthMinNum2(arr));
+        System.out.println(getMoreThanHalfNum(arr)); // 0
+        System.out.println(getMoreThanHalfNum1(arr));
+        System.out.println(getMoreThanHalfNum2(arr));
 
         System.out.println("*******************");
 
         int[] arr1 = {1, 2, 3, 2, 2, 2, 5, 4, 2};
-        System.out.println(getKthMinNum(arr1)); // 2
-        System.out.println(getKthMinNum1(arr1));
-        System.out.println(getKthMinNum2(arr1));
+        System.out.println(getMoreThanHalfNum(arr1)); // 2
+        System.out.println(getMoreThanHalfNum1(arr1));
+        System.out.println(getMoreThanHalfNum2(arr1));
     }
 }

@@ -2,10 +2,14 @@ package NowCoder.Hard.exercise;
 
 public class No_code67 {
     public static int cutRope(int n) {
-        if (n <= 1) {
+        if (n <= 1){
             return 0;
-        } else if (n <= 3) {
-            return n;
+        }else if (n == 2){
+            return 1;
+        }else if (n == 3){
+            return 2;
+        }else if (n == 4){
+            return 4;
         }
 
         int[] dp = new int[n + 1];
@@ -13,28 +17,33 @@ public class No_code67 {
         dp[1] = 1;
         dp[2] = 2;
         dp[3] = 3;
+        dp[4] = 4;
 
-        for (int i = 4; i < dp.length; i++) {
-            int max = Integer.MIN_VALUE;
+        for (int i = 5; i < dp.length; i++) {
+            int num = 0;
             for (int j = 1; j <= i / 2; j++) {
-                max = Math.max(max, dp[j] * dp[i - j]);
+                num = Math.max(num, dp[j] * dp[i - j]);
             }
-            dp[i] = max;
+            dp[i] = num;
         }
 
         return dp[n];
     }
 
     public static int cutRope1(int n) {
-        if (n <= 0) {
+        if (n <= 1){
             return 0;
-        } else if (n <= 4) {
-            return n;
+        }else if (n == 2){
+            return 1;
+        }else if (n == 3){
+            return 2;
+        }else if (n == 4){
+            return 4;
         }
 
         long res = 1;
 
-        while (n >= 5) {
+        while (n >= 5){
             res *= 3;
 
             res = res % 1000000007;

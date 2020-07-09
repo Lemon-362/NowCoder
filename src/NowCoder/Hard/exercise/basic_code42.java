@@ -3,7 +3,7 @@ package NowCoder.Hard.exercise;
 import java.util.HashSet;
 
 public class basic_code42 {
-    public static void process(char[] s, int l, int r) {
+    public static void process(char[] s, int l, int r){
         // base case
         if (l == r){
             System.out.println(String.valueOf(s));
@@ -38,8 +38,7 @@ public class basic_code42 {
 
         char[] s = str.toCharArray();
 
-
-        process(s, 0, str.length() - 1);
+        process(s, 0, s.length - 1);
     }
 
     public static void main(String[] args) {

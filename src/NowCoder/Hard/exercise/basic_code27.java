@@ -60,17 +60,19 @@ public class basic_code27 {
 
         while (!queue.isEmpty()){
             Node cur = queue.poll();
+            Node left = cur.left;
+            Node right = cur.right;
 
-            if (cur.left != null){
-                res += cur.left.value + "_";
-                queue.offer(cur.left);
+            if (left != null){
+                res += left.value + "_";
+                queue.offer(left);
             }else {
                 res += "#_";
             }
 
-            if (cur.right != null){
-                res += cur.right.value + "_";
-                queue.offer(cur.right);
+            if (right != null){
+                res += right.value + "_";
+                queue.offer(right);
             }else {
                 res += "#_";
             }
@@ -82,9 +84,8 @@ public class basic_code27 {
     public static Node ReconByLevel(String str) {
         String[] s = str.split("_");
         int index = 0;
-        Node head = generate(s[index++]);
         Queue<Node> queue = new LinkedList<>();
-
+        Node head = generate(s[index++]);
         if (head != null){
             queue.offer(head);
         }

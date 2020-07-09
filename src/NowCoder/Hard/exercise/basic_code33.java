@@ -11,12 +11,12 @@ public class basic_code33 {
 
     // makeSet findHead isSameSet union
     public static class UnionFindSet {
-        private HashMap<Node, Node> parentMap;
         private HashMap<Node, Integer> sizeMap;
+        private HashMap<Node, Node> parentMap;
 
         public UnionFindSet() {
-            this.parentMap = new HashMap<>();
             this.sizeMap = new HashMap<>();
+            this.parentMap = new HashMap<>();
         }
 
         public void makeSet(List<Node> list){
@@ -25,8 +25,8 @@ public class basic_code33 {
             }
 
             for (Node node : list) {
-                parentMap.put(node, node);
                 sizeMap.put(node, 1);
+                parentMap.put(node, node);
             }
         }
 
@@ -35,14 +35,13 @@ public class basic_code33 {
                 return null;
             }
 
-            Node cur = node;
-            Node parent = parentMap.get(cur);
+            Node parent = parentMap.get(node);
             Stack<Node> stack = new Stack<>();
 
-            while (cur != parent){
-                stack.push(cur);
-                cur = parent;
-                parent = parentMap.get(cur);
+            while (parent != node){
+                stack.push(node);
+                node = parent;
+                parent = parentMap.get(node);
             }
 
             while (!stack.isEmpty()){
@@ -60,27 +59,26 @@ public class basic_code33 {
             return findHead(head1) == findHead(head2);
         }
 
-        public void union(Node head1, Node head2){
-            if (head1 == null || head2 == null){
+        public void union(Node head1, Node head2) {
+            if (head1 == null || head2 == null) {
                 return;
             }
 
             Node parent1 = findHead(head1);
             Node parent2 = findHead(head2);
 
-            if (parent1 != parent2){
+            if (parent1 != parent2) {
                 int size1 = sizeMap.get(parent1);
                 int size2 = sizeMap.get(parent2);
 
-                if (size1 < size2){
-                    parentMap.put(parent1, parent2);
+                if (size1 < size2) {
                     sizeMap.put(parent2, size1 + size2);
-                }else {
-                    parentMap.put(parent2, parent1);
+                    parentMap.put(parent1, parent2);
+                } else {
                     sizeMap.put(parent1, size1 + size2);
+                    parentMap.put(parent2, parent1);
                 }
             }
-
         }
     }
 }

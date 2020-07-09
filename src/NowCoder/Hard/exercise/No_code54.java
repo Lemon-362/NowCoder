@@ -5,12 +5,13 @@ package NowCoder.Hard.exercise;
 public class No_code54 {
     public int[] arr = new int[256];
 
-    public int index = 0;
+    public int index;
 
     public No_code54() {
         for (int i = 0; i < arr.length; i++) {
             arr[i] = -1;
         }
+        this.index = 0;
     }
 
     public void insert(char ch){
@@ -19,18 +20,17 @@ public class No_code54 {
         }else if (arr[ch] >= 0){
             arr[ch] = -2;
         }
-
         index++;
     }
 
     public char getChar(){
-        int res = -1;
         int minIndex = Integer.MAX_VALUE;
+        int res = -1;
 
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] >= 0 && arr[i] < minIndex){
-                res = i;
+            if (arr[i] >= 0 && minIndex > arr[i]){
                 minIndex = arr[i];
+                res = i;
             }
         }
 

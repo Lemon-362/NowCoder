@@ -10,27 +10,27 @@ public class No_code27 {
 
         char[] s = str.toCharArray();
 
-        process1(s, 0);
+        process1(s, 0, s.length - 1);
     }
 
-    public static void process1(char[] s, int index){
+    public static void process1(char[] str, int i, int j){
         // base case
-        if (index == s.length){
-            System.out.println(String.valueOf(s));
+        if (i == j){
+            System.out.println(String.valueOf(str));
             return;
         }
 
         HashSet<Character> set = new HashSet<>();
 
-        for (int i = index; i < s.length; i++) {
-            if (!set.contains(s[i])){
-                set.add(s[i]);
+        for (int k = i; k <= j; k++) {
+            if (!set.contains(str[k])){
+                set.add(str[k]);
 
-                swap(s, i, index);
+                swap(str, k, i);
 
-                process1(s, index + 1);
+                process1(str, i + 1, j);
 
-                swap(s, i, index);
+                swap(str, k, i);
             }
         }
     }
@@ -49,7 +49,7 @@ public class No_code27 {
 
         char[] s = str.toCharArray();
 
-        process2(s, 0, " ");
+        process2(s, 0, "");
     }
 
     public static void process2(char[] s, int index, String res){
@@ -60,6 +60,7 @@ public class No_code27 {
         }
 
         process2(s, index + 1, res);
+
         process2(s, index + 1, res + s[index]);
     }
 

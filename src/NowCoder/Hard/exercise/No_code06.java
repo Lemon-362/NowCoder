@@ -14,18 +14,22 @@ public class No_code06 {
         while (i < j){
             mid = (i + j) >> 1;
 
+            // base case
             if (j - i == 1){
                 mid = j;
                 break;
             }
 
+            // 1
             if (arr[i] == arr[mid] && arr[mid] == arr[j]){
-                return findInOrder(arr, i, j);
+                return findInSort(arr, i, j);
             }
 
+            // 2
             if (arr[mid] >= arr[i]){
                 i = mid;
             }else if (arr[mid] <= arr[j]){
+                // 3
                 j = mid;
             }
         }
@@ -33,11 +37,11 @@ public class No_code06 {
         return arr[mid];
     }
 
-    public static int findInOrder(int[] arr, int l, int r){
-        int res = arr[l];
+    public static int findInSort(int[] arr, int i, int j){
+        int res = arr[i];
 
-        for (int i = l + 1; i <= r; i++) {
-            res = Math.min(res, arr[i]);
+        for (int k = i + 1; k <= j; k++) {
+            res = Math.min(res, arr[k]);
         }
 
         return res;
@@ -59,11 +63,12 @@ public class No_code06 {
 
     public static void main(String[] args) {
         int[] arr1 = {7, 0, 1, 1, 1, 1, 1, 2, 3, 4};
-        int[] arr2 = {3, 4, 5, 1, 2, 3};
+        int[] arr2 = {3, 4, 5, 6, 1, 2};
         int[] arr3 = {1, 0, 1, 1, 1};
 
         System.out.println(getMin(arr1)); // 0
         System.out.println(getMin(arr2)); // 1
         System.out.println(getMin(arr3)); // 0
+
     }
 }

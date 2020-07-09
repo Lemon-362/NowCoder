@@ -36,14 +36,9 @@ public class basic_code30 {
     }
 
     public static int getLeftMost(Node head, int level){
-        if (head == null){
-            return 0;
-        }
-
-       Node cur = head;
-        while (cur != null){
-            cur = cur.left;
+        while (head != null){
             level++;
+            head = head.left;
         }
 
         return level - 1;

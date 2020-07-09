@@ -77,7 +77,6 @@ public class code06 {
 
         public static int getKthMinNum(int[] arr, int k){
             int[] copyArr = copyArray(arr);
-
             return bfprt(copyArr, 0, copyArr.length - 1, k - 1);
         }
 

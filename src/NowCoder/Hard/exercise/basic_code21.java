@@ -26,7 +26,6 @@ public class basic_code21 {
         }
 
         cur = head;
-
         while (cur != null){
             if (cur.value != stack.pop().value){
                 return false;
@@ -45,7 +44,7 @@ public class basic_code21 {
         Node p1 = head;
         Node p2 = head;
 
-        while (p2.next != null && p2.next.next != null){
+        while (p2.next !=null && p2.next.next != null){
             p1 = p1.next;
             p2 = p2.next.next;
         }
@@ -103,8 +102,8 @@ public class basic_code21 {
         head.next.next.next.next = new Node(1);
 
         print(head);
-//        System.out.println(isHuiWen01(head));
-        System.out.println(isHuiWen02(head));
+        System.out.println(isHuiWen01(head));
+//        System.out.println(isHuiWen02(head));
         print(head);
     }
 }

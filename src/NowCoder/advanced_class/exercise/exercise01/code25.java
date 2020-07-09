@@ -58,25 +58,24 @@ public class code25 {
                 return null;
             }
 
-            Node<K, V> head = this.head;
+            Node<K, V> headNode = this.head;
 
-            if (head == this.tail){
-                this.head = null;
+            if (this.tail == headNode){
                 this.tail = null;
+                this.head = null;
             }else {
-                Node<K, V> lastNode = head.last;
+                Node<K, V> lastNode = headNode.last;
                 lastNode.next = null;
                 this.head = lastNode;
             }
 
-            return head;
+            return headNode;
         }
 
         public void addNodeToTail(Node<K, V> node){
             if (this.tail == null){
                 this.tail = node;
                 this.head = node;
-                return;
             }
 
             Node<K, V> tailNode = this.tail;
@@ -92,24 +91,16 @@ public class code25 {
         private HashMap<K, Node<K, V>> map;
         private DoubleLinkedList<K, V> list;
 
-        public LRU(int capacity) {
-            this.capacity = capacity;
+        public LRU(int size) {
+            this.capacity = size;
             this.map = new HashMap<>();
             this.list = new DoubleLinkedList<>();
         }
 
         public void set(K key, V value){
-            if (map.containsKey(key)){
-                Node<K, V> setNode = map.get(key);
-
-                setNode.value = value;
-
-                list.moveNodeToTail(setNode);
-
-                map.put(key, setNode);
-            }else {
-                if (map.size() == this.capacity){
-                    this.removeHeadNode();
+            if (!map.containsKey(key)){
+                if (this.capacity == map.size()){
+                    removeHeadNode();
                 }
 
                 Node<K, V> setNode = new Node<>(key, value);
@@ -117,13 +108,15 @@ public class code25 {
                 list.addNodeToTail(setNode);
 
                 map.put(key, setNode);
+            }else {
+                Node<K, V> setNode = new Node<>(key, value);
+
+                setNode.value = value;
+
+                list.moveNodeToTail(setNode);
+
+                map.put(key, setNode);
             }
-        }
-
-        public void removeHeadNode(){
-            Node<K, V> headNode = list.removeHeadNode();
-
-            map.remove(headNode.key);
         }
 
         public V get(K key){
@@ -136,6 +129,12 @@ public class code25 {
             }else {
                 return null;
             }
+        }
+
+        public void removeHeadNode(){
+            Node<K, V> headNode = list.removeHeadNode();
+
+            map.remove(headNode.key);
         }
     }
 

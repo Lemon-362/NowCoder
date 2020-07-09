@@ -19,10 +19,10 @@ public class code02 {
 
         int carry = 0;
 
+        Node newHead = new Node(Integer.MIN_VALUE);
+        Node cur = newHead;
         Node p1 = head1;
         Node p2 = head2;
-        Node head = new Node(Integer.MIN_VALUE);
-        Node cur = head;
 
         while (p1 != null || p2 != null){
             int sum = 0;
@@ -49,8 +49,8 @@ public class code02 {
             cur.next = new Node(1);
         }
 
-        Node res = head.next;
-        head.next = null;
+        Node res = newHead.next;
+        newHead.next = null;
 
         return res;
     }

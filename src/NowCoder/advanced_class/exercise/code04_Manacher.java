@@ -29,6 +29,16 @@ public class code04_Manacher {
         int len = 0;
 
         for (int i = 0; i < str.length; i++) {
+            /**
+             * R > i：说明i在回文右边界R的里面，此时一定有一个不用验证的区域
+             * i-R和i'(2 * C - i)的回文半径，哪个小就是当前i位置起码是回文的区域
+             * 也就是可能性1和可能性2的划分
+             *  对于可能性1，最小的回文半径就是我自己1，剩下的需要暴力扩
+             *  对于可能性2，可以先找到一个不用验证的区域（2.1和2.2的合并）
+             *      然后再往外扩
+             *          对于2.1和2.2的话，往外扩一定不成功，直接break
+             *          对于2.3的话，可能成功，回文半径需要增加
+             **/
             pArr[i] = R > i ? Math.min(R - i, pArr[2 * C - i]) : 1;
             while (i + pArr[i] < str.length && i - pArr[i] > -1) {
                 if (str[i + pArr[i]] == str[i - pArr[i]]) {
@@ -37,7 +47,10 @@ public class code04_Manacher {
                     break;
                 }
             }
-
+            /**
+             * 当前i的回文半径是pArr[i]，回文右边界R=i+pArr[i]
+             * 如果当前i位置的回文右边界R超过了之前的R，那么需要更新最远的回文右边界，以及此时的回文中心（就是当前的i位置）
+             */
             if (i + pArr[i] > R){
                 R = i + pArr[i];
                 C = i;

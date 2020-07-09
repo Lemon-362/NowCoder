@@ -48,16 +48,15 @@ public class No_code40 {
 
         int res1 = 0;
         int res2 = 0;
-
         for (int i = 0; i < arr.length; i++) {
             if ((arr[i] & index) == 0){
-                res1 ^= arr[i];
+                res1 = res1 ^ arr[i];
             }else {
-                res2 ^= arr[i];
+                res2 = res2 ^ arr[i];
             }
         }
 
-        return new int[]{res1, res2};
+        return new int[] {res1, res2};
     }
 
     public static void main(String[] args) {

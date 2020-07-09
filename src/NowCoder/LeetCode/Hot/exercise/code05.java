@@ -12,16 +12,17 @@ public class code05 {
 
         for (int i = 0; i < str.length; i++) {
             int R = 0;
-            int l = i;
-            int r = i;
-            while (l >= 0 && r < str.length){
-                if (str[l] == str[r]){
+            int p1 = i;
+            int p2 = i;
+
+            while (p1 > -1 && p2 < str.length){
+                if (str[p1] == str[p2]){
                     R++;
                 }else {
                     break;
                 }
-                l--;
-                r++;
+                p1--;
+                p2++;
             }
 
             if (len < R - 1){
@@ -57,9 +58,9 @@ public class code05 {
         int start = 0;
 
         for (int i = 0; i < str.length; i++) {
-            pArr[i] = R > i ? Math.min(R - i, pArr[2 * C - i]) : 1;
+            pArr[i] = R > i ? Math.min(R- i, pArr[2*C-i]) : 1;
             while (i + pArr[i] < str.length && i - pArr[i] > -1){
-                if (str[i+pArr[i]] == str[i-pArr[i]]){
+                if (str[i + pArr[i]] == str[i - pArr[i]]){
                     pArr[i]++;
                 }else {
                     break;

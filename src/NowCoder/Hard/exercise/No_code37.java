@@ -6,7 +6,8 @@ public class No_code37 {
             return 0;
         }
 
-        int leftIndex = getLeftIndex(arr, aim, 0, arr.length - 1);
+        int leftIndex = getLeftIndex(arr, 0, arr.length - 1, aim);
+
         int rightIndex = getRightIndex(arr, aim);
 
         if (leftIndex != -1 && rightIndex != -1){
@@ -29,7 +30,7 @@ public class No_code37 {
             }else if (arr[mid] > aim){
                 r = mid - 1;
             }else {
-                if (mid + 1 < arr.length && arr[mid] == arr[mid + 1]){
+                if (mid + 1 < arr.length && arr[mid + 1] == arr[mid]){
                     l = mid + 1;
                 }else {
                     return mid;
@@ -40,7 +41,7 @@ public class No_code37 {
         return -1;
     }
 
-    public static int getLeftIndex(int[] arr, int aim, int l, int r){
+    public static int getLeftIndex(int[] arr, int l, int r, int aim){
         // base case
         if (l > r){
             return -1;
@@ -50,14 +51,14 @@ public class No_code37 {
 
         if (arr[mid] < aim){
             l = mid + 1;
-            return getLeftIndex(arr, aim, l, r);
+            return getLeftIndex(arr, l, r, aim);
         }else if (arr[mid] > aim){
             r = mid - 1;
-            return getLeftIndex(arr, aim, l, r);
+            return getLeftIndex(arr, l, r, aim);
         }else {
-            if (mid - 1 >= 0 && arr[mid] == arr[mid - 1]){
+            if (mid - 1 > -1 && arr[mid - 1] == arr[mid]){
                 r = mid - 1;
-                return getLeftIndex(arr, aim, l, r);
+                return getLeftIndex(arr, l, r, aim);
             }else {
                 return mid;
             }

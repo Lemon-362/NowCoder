@@ -22,7 +22,6 @@ public class No_code11 {
             if ((n & 1) == 1){
                 count++;
             }
-
             n = n >> 1;
         }
 
@@ -35,7 +34,7 @@ public class No_code11 {
         while (n > 0){
             count++;
 
-            n = (n - 1) & n;
+            n = n & (n - 1);
         }
 
         return count;

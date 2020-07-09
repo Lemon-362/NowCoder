@@ -7,12 +7,11 @@ public class No_code50 {
         }
 
         for (int i = 0; i < arr.length; i++) {
-            while (i != arr[i]){
+            while (arr[i] != i){
                 if (arr[i] == arr[arr[i]]){
                     return arr[i];
-                }else {
-                    swap(arr, i, arr[i]);
                 }
+                swap(arr, i, arr[i]);
             }
         }
 

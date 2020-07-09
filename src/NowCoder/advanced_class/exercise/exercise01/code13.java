@@ -81,6 +81,42 @@ public class code13 {
         System.out.println();
     }
 
+    /**
+     * TODO 反向Morris遍历, 实现降序
+     */
+    public static void morrisInReverse(Node head){
+        if (head == null) {
+            return;
+        }
+
+        Node cur = head;
+        Node mostLeft = null;
+
+        while (cur != null){
+            mostLeft = cur.right;
+            if (mostLeft != null){
+                while (mostLeft.left != null && mostLeft.left != cur){
+                    mostLeft = mostLeft.left;
+                }
+                if (mostLeft.left == null){
+                    mostLeft.left = cur;
+
+                    cur = cur.right;
+                }else {
+                    mostLeft.left = null;
+
+                    System.out.print(cur.value + " ");
+
+                    cur = cur.left;
+                }
+            }else {
+                System.out.print(cur.value + " ");
+
+                cur = cur.left;
+            }
+        }
+    }
+
     public static void morrisPos(Node head) {
         if (head == null) {
             return;
@@ -163,5 +199,7 @@ public class code13 {
         morrisPre(head); // 4 2 1 3 6 5 7
         morrisIn(head); // 1 2 3 4 5 6 7
         morrisPos(head); // 1 3 2 5 7 6 4
+
+        morrisInReverse(head); // 7 6 5 4 3 2 1
     }
 }

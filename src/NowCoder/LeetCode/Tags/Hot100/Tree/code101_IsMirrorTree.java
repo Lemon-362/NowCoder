@@ -1,9 +1,13 @@
-package NowCoder.Nowcoder.exercise;
+package NowCoder.LeetCode.Tags.Hot100.Tree;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class code58 {
+/**
+ * 101. 判断是否是堆成二叉树(镜像二叉树)
+ * 剑指code58
+ */
+public class code101_IsMirrorTree {
     public static class Node {
         private int value;
         private Node left;
@@ -14,7 +18,13 @@ public class code58 {
         }
     }
 
-    public static boolean isMirrorTree(Node head) {
+    /**
+     * TODO 宽度优先搜索
+     *
+     * 方法一: 递归版本
+     *
+     */
+    public static boolean isMirrorTree1(Node head) {
         if (head == null) {
             return true;
         }
@@ -37,7 +47,11 @@ public class code58 {
         }
     }
 
-    public static boolean isMirrorTree1(Node head) {
+    /**
+     * 方法二: 迭代版本
+     * TODO 注意: 使用Queue来求解时, 需要同时放入左右孩子进行比较, 而不是放入一个节点
+     */
+    public static boolean isMirrorTree2(Node head) {
         if (head == null) {
             return true;
         }
@@ -87,9 +101,9 @@ public class code58 {
         head1.right.left = new Node(5);
         head1.right.right = new Node(4);
 
-        System.out.println(isMirrorTree(head)); // true
-        System.out.println(isMirrorTree(head1)); // false
-        System.out.println(isMirrorTree1(head));
-        System.out.println(isMirrorTree1(head1));
+        System.out.println(isMirrorTree1(head)); // true
+        System.out.println(isMirrorTree1(head1)); // false
+        System.out.println(isMirrorTree2(head)); // true
+        System.out.println(isMirrorTree2(head1)); // false
     }
 }

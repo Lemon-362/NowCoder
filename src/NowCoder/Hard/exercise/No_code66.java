@@ -12,6 +12,7 @@ public class No_code66 {
     }
 
     public static int process(int m, int n, int k, int i, int j, boolean[][] flag) {
+        // base case
         if (i < 0 || i >= m || j < 0 || j >= n || flag[i][j]) {
             return 0;
         }
@@ -31,13 +32,13 @@ public class No_code66 {
     public static boolean isValid(int i, int j, int k) {
         int res = 0;
 
-        while (i != 0) {
+        while (i > 0) {
             res += i % 10;
 
             i = i / 10;
         }
 
-        while (j != 0) {
+        while (j > 0) {
             res += j % 10;
 
             j = j / 10;

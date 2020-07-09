@@ -24,26 +24,26 @@ public class basic_code22 {
 
         cur = head;
         Node[] nodes = new Node[len];
-        for (int i = 0; i < nodes.length; i++) {
-            nodes[i] = new Node(cur.value);
+        int index = 0;
+        while (cur != null){
+            nodes[index++] = cur;
             cur = cur.next;
         }
 
-        partition(nodes, num);
+        partition(nodes, 0, nodes.length - 1, num);
 
         for (int i = 0; i < nodes.length - 1; i++) {
             nodes[i].next = nodes[i + 1];
         }
-
-        nodes[len - 1].next = null;
+        nodes[nodes.length - 1].next = null;
 
         return nodes[0];
     }
 
-    public static void partition(Node[] nodes, int num){
-        int less = -1;
-        int more = nodes.length;
-        int cur = 0;
+    public static void partition(Node[] nodes, int l, int r, int num){
+        int less = l - 1;
+        int more = r + 1;
+        int cur = l;
 
         while (cur < more){
             if (nodes[cur].value < num){
@@ -100,12 +100,11 @@ public class basic_code22 {
                 if (eh == null){
                     eh = cur;
                     et = cur;
-                }else{
+                }else {
                     et.next = cur;
                     et = et.next;
                 }
             }
-
             cur = next;
         }
 
@@ -113,7 +112,6 @@ public class basic_code22 {
             st.next = eh;
             et = et == null ? eh : et;
         }
-
         if (et != null){
             et.next = bh;
         }

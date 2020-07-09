@@ -49,8 +49,8 @@ public class basic_code24 {
             n = Math.abs(n);
 
             while (n > 0){
-                n--;
                 p1 = p1.next;
+                n--;
             }
 
             while (p1 != p2){
@@ -94,8 +94,8 @@ public class basic_code24 {
         n = Math.abs(n);
 
         while (n > 0){
-            n--;
             p1 = p1.next;
+            n--;
         }
 
         while (p1 != p2){

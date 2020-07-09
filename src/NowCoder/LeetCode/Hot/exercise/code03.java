@@ -14,7 +14,7 @@ public class code03 {
         int R = 0;
 
         while (L < s.length()){
-            while (R < s.length() && !set.contains(s.charAt(R))){
+            while (R < s.length() && !set.contains(s.charAt(R))) {
                 set.add(s.charAt(R));
                 R++;
             }
