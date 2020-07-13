@@ -1,19 +1,10 @@
-package NowCoder.LeetCode.Tags.Hot100.Tree;
+package NowCoder.LeetCode.Tags.Hot100.Tree.exercise;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-/**
- * 617. 合并二叉树
- *  给定两个二叉树，想象当你将它们中的一个覆盖到另一个上时，两个二叉树的一些节点便会重叠。
- *  你需要将他们合并为一个新的二叉树。
- *  合并的规则：
- *  (1) 如果两个节点重叠，那么将他们的值相加作为节点合并后的新值
- *  (2) 否则不为 NULL的节点将直接作为新二叉树的节点
- *
- */
-public class code617_MergeTrees {
-    public static class Node{
+public class code7 {
+        public static class Node{
         private int value;
         private Node left;
         private Node right;
@@ -51,7 +42,6 @@ public class code617_MergeTrees {
         return process(head1, head2);
     }
 
-    // 只考虑当前层数的节点的合并情况, 剩下的左右孩子交给递归处理
     public static Node process(Node head1, Node head2){
         // base case
         if (head1 == null && head2 == null){
@@ -70,17 +60,6 @@ public class code617_MergeTrees {
         return head;
     }
 
-    /**
-     *  TODO 方法二: 迭代版本
-     *  使用Queue队列实现按层遍历
-     *  可以只使用一个队列, 先存head1, 再存head2
-     *  这里不创建新的节点, 而是直接把树2加到树1上,
-     *
-     *  TODO 实际上是按层遍历树2的节点, 树1随着树2变化
-     *      所以如果树1的左右孩子为空, 直接将树2的左右孩子加到树1上, 而不需要将树2的节点放入Queue中
-     *      如果树1和树2的左右孩子都不为空, 那么就需要都放入Queue中, 在下一轮去计算左右孩子合并后的值
-     *
-     */
     public static Node mergeTrees2(Node head1, Node head2){
         if (head1 == null && head2 == null){
             return null;
@@ -95,29 +74,34 @@ public class code617_MergeTrees {
         queue.offer(head2);
 
         while (!queue.isEmpty()){
-            // 每次取出成对的两个节点
-            Node p1 = queue.poll();
-            Node p2 = queue.poll();
+            Node node1 = queue.poll();
+            Node node2 = queue.poll();
 
-            // 计算合并后树1的节点的值
-            p1.value += p2.value;
+            if (node1 == null && node2 == null){
+                continue;
+            }else if (node1 == null){
+                node1 = node2;
+            }else if (node2 == null){
+                continue;
+            }else {
+                node1.value += node2.value;
+            }
 
-            // 按层遍历树2的节点
-            if (p2.left != null){
-                if (p1.left == null){
-                    p1.left = p2.left;
+            if (node2.left != null){
+                if (node1.left == null){
+                    node1.left = node2.left;
                 }else {
-                    queue.offer(p1.left);
-                    queue.offer(p2.left);
+                    queue.offer(node1.left);
+                    queue.offer(node2.left);
                 }
             }
 
-            if (p2.right != null){
-                if (p1.right == null){
-                    p1.right = p2.right;
+            if (node2.right != null){
+                if (node1.right == null){
+                    node1.right = node2.right;
                 }else {
-                    queue.offer(p1.right);
-                    queue.offer(p2.right);
+                    queue.offer(node1.right);
+                    queue.offer(node2.right);
                 }
             }
         }
@@ -125,7 +109,7 @@ public class code617_MergeTrees {
         return head1;
     }
 
-        public static void printTree(Node head) {
+    public static void printTree(Node head) {
         System.out.println("Binary Tree:");
         printInOrder(head, 0, "H", 17);
         System.out.println();
@@ -169,7 +153,7 @@ public class code617_MergeTrees {
         printTree(head1);
         printTree(head2);
 
-        Node head = mergeTrees1(head1, head2);
+        Node head = mergeTrees2(head1, head2);
         printTree(head);
 
     }

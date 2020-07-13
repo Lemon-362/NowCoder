@@ -25,12 +25,12 @@ public class No_code37 {
         while (l <= r){
             mid = (l + r) >> 1;
 
-            if (arr[mid] < aim){
-                l = mid + 1;
-            }else if (arr[mid] > aim){
+            if (arr[mid] > aim){
                 r = mid - 1;
+            }else if (arr[mid] < aim){
+                l = mid + 1;
             }else {
-                if (mid + 1 < arr.length && arr[mid + 1] == arr[mid]){
+                if (mid + 1 < arr.length && arr[mid + 1] == aim){
                     l = mid + 1;
                 }else {
                     return mid;
@@ -49,14 +49,14 @@ public class No_code37 {
 
         int mid = (l + r) >> 1;
 
-        if (arr[mid] < aim){
-            l = mid + 1;
-            return getLeftIndex(arr, l, r, aim);
-        }else if (arr[mid] > aim){
+        if (arr[mid] > aim){
             r = mid - 1;
             return getLeftIndex(arr, l, r, aim);
+        }else if (arr[mid] < aim){
+            l = mid + 1;
+            return getLeftIndex(arr, l, r, aim);
         }else {
-            if (mid - 1 > -1 && arr[mid - 1] == arr[mid]){
+            if (mid - 1 > -1 && arr[mid - 1] == aim){
                 r = mid - 1;
                 return getLeftIndex(arr, l, r, aim);
             }else {

@@ -13,24 +13,24 @@ public class No_code27 {
         process1(s, 0, s.length - 1);
     }
 
-    public static void process1(char[] str, int i, int j){
+    public static void process1(char[] str, int l, int r){
         // base case
-        if (i == j){
+        if (l == r){
             System.out.println(String.valueOf(str));
             return;
         }
 
         HashSet<Character> set = new HashSet<>();
 
-        for (int k = i; k <= j; k++) {
-            if (!set.contains(str[k])){
-                set.add(str[k]);
+        for (int i = l; i <= r; i++) {
+            if (!set.contains(str[i])){
+                set.add(str[i]);
 
-                swap(str, k, i);
+                swap(str, i, l);
 
-                process1(str, i + 1, j);
+                process1(str, l + 1, r);
 
-                swap(str, k, i);
+                swap(str, i, l);
             }
         }
     }

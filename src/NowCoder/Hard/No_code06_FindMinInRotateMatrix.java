@@ -80,6 +80,7 @@ public class No_code06_FindMinInRotateMatrix {
      *   那么只能循环遍历
      *
      *  时间复杂度: O(logN)
+     *  TODO 二分查找仅适用于没有重复元素的情况，如果有重复元素，只能遍历
      */
     public static int findMinInRotateArr(int[] arr){
         if (arr == null || arr.length < 1){

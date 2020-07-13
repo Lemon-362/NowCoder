@@ -7,7 +7,7 @@ import java.util.Queue;
  * 101. 判断是否是堆成二叉树(镜像二叉树)
  * 剑指code58
  */
-public class code101_IsMirrorTree {
+public class code1_IsMirrorTree {
     public static class Node {
         private int value;
         private Node left;

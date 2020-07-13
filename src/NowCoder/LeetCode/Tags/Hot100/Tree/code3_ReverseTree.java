@@ -7,7 +7,7 @@ import java.util.Queue;
  * 226. 翻转二叉树(镜像二叉树)
  *
  */
-public class code226_ReverseTree {
+public class code3_ReverseTree {
     public static class Node{
         private int value;
         private Node left;

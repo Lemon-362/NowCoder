@@ -36,9 +36,10 @@ public class No_code28 {
             return arr[0];
         }
 
-        int num = bfprt(arr, 0, arr.length - 1, arr.length / 2);
+        int num = getKthMinNum(arr, arr.length / 2);
 
-        int times = 0;
+        int times =  0;
+
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == num){
                 times++;
@@ -46,6 +47,22 @@ public class No_code28 {
         }
 
         return times > arr.length / 2 ? num : 0;
+    }
+
+    public static int getKthMinNum(int[] arr, int k){
+        int[] copyArr = copyArr(arr);
+
+        return bfprt(copyArr, 0, copyArr.length / 2, k - 1);
+    }
+
+    public static int[] copyArr(int[] arr){
+        int[] res = new int[arr.length];
+
+        for (int i = 0; i < arr.length; i++) {
+            res[i] = arr[i];
+        }
+
+        return res;
     }
 
     public static int bfprt(int[] arr, int l, int r, int k){
@@ -107,7 +124,6 @@ public class No_code28 {
 
     public static int getMedian(int[] arr, int l, int r){
         selectSort(arr, l, r);
-
         int mid = (l + r) >> 1;
 
         return arr[mid];
@@ -119,7 +135,7 @@ public class No_code28 {
             for (int j = i + 1; j <= r; j++) {
                 minIndex = arr[minIndex] > arr[j] ? j : minIndex;
             }
-            swap(arr, i, minIndex);
+            swap(arr, minIndex, i);
         }
     }
 
@@ -139,7 +155,7 @@ public class No_code28 {
         int times = 1;
         int res = arr[0];
 
-        for (int i = 1; i < arr.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
             if (arr[i] == res){
                 times++;
             }else {
@@ -154,7 +170,7 @@ public class No_code28 {
 
         int k = 0;
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == res){
+            if (arr[i] == res) {
                 k++;
             }
         }

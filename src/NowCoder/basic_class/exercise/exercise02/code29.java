@@ -36,7 +36,7 @@ public class code29 {
                 }else {
                     mostRight.right = null;
 
-                    if (pre != null && pre.value > cur.value){
+                    if (pre != null && pre.value >= cur.value){
                         return false;
                     }
                     pre = cur;
@@ -44,7 +44,7 @@ public class code29 {
                     cur = cur.right;
                 }
             }else {
-                if (pre != null && pre.value > cur.value){
+                if (pre != null && pre.value >= cur.value){
                     return false;
                 }
                 pre = cur;

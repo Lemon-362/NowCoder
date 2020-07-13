@@ -17,16 +17,16 @@ public class No_code66 {
             return 0;
         }
 
-        if (!isValid(i, j, k)) {
+        if (isValid(i, j, k)) {
+            flag[i][j] = true;
+
+            return 1 + process(m, n, k, i + 1, j, flag)
+                    + process(m, n, k, i - 1, j, flag)
+                    + process(m, n, k, i, j + 1, flag)
+                    + process(m, n, k, i, j - 1, flag);
+        }else {
             return 0;
         }
-
-        flag[i][j] = true;
-
-        return 1 + process(m, n, k, i + 1, j, flag)
-                + process(m, n, k, i - 1, j, flag)
-                + process(m, n, k, i, j + 1, flag)
-                + process(m, n, k, i, j - 1, flag);
     }
 
     public static boolean isValid(int i, int j, int k) {

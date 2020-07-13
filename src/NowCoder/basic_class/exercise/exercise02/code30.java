@@ -40,10 +40,10 @@ public class code30 {
             return 0;
         }
 
-       Node cur = head;
+        Node cur = head;
         while (cur != null){
-            cur = cur.left;
             level++;
+            cur = cur.left;
         }
 
         return level - 1;

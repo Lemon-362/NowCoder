@@ -1,14 +1,10 @@
-package NowCoder.LeetCode.Tags.Hot100.Tree;
+package NowCoder.LeetCode.Tags.Hot100.Tree.exercise;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-/**
- * 104. 二叉树的最大深度
- *
- */
-public class code104_MaxDepth {
-    public static class Node{
+public class code3 {
+    public static class Node {
         private int value;
         private Node left;
         private Node right;
@@ -18,63 +14,45 @@ public class code104_MaxDepth {
         }
     }
 
-    /**
-     *  TODO 方法一: 深度优先搜索DFS, 递归, 写ReturnData
-     *
-     *  由于ReturnData只有一个值maxDepth, 所以可以省略
-     */
-    public static int maxDepth1(Node head){
-        if (head == null){
-            return 0;
+    public static Node reverseTree1(Node head) {
+        if (head == null) {
+            return null;
         }
 
-        return process(head);
+        Node temp = head.left;
+        head.left = head.right;
+        head.right = temp;
+
+        reverseTree1(head.left);
+        reverseTree1(head.right);
+
+        return head;
     }
 
-    public static int process(Node head){
-        // base case
-        if (head == null){
-            return 0;
+    public static Node reverseTree2(Node head) {
+        if (head == null) {
+            return null;
         }
 
-        int leftDepth = process(head.left);
-        int rightDepth = process(head.right);
-
-        return Math.max(leftDepth, rightDepth) + 1;
-    }
-
-    /**
-     * TODO 方法二: 宽度优先搜索BFS, 按层遍历, 一直遍历到最深的一层
-     *  但是这里必须使用size在每一次while循环中遍历当前层的节点
-     */
-    public static int maxDepth2(Node head){
-        if (head == null){
-            return 0;
-        }
-
-        int depth = 0;
         Queue<Node> queue = new LinkedList<>();
         queue.offer(head);
 
         while (!queue.isEmpty()){
-            int size = queue.size();
-            // 每一次while循环, 表示遍历到一层上, 记录层数
-            depth++;
+            Node cur = queue.poll();
 
-            for (int i = 0; i < size; i++) {
-                Node cur = queue.poll();
-
-                if (cur.left != null){
-                    queue.offer(cur.left);
-                }
-
-                if (cur.right != null){
-                    queue.offer(cur.right);
-                }
+            if (cur.left != null){
+                queue.offer(cur.left);
             }
+            if (cur.right != null){
+                queue.offer(cur.right);
+            }
+
+            Node temp = cur.left;
+            cur.left = cur.right;
+            cur.right = temp;
         }
 
-        return depth;
+        return head;
     }
 
     public static void printTree(Node head) {
@@ -113,11 +91,8 @@ public class code104_MaxDepth {
         head.left.left = new Node(5);
         head.left.right = new Node(7);
         head.right.left = new Node(9);
-        head.left.left.left = new Node(1);
 
         printTree(head);
-
-        System.out.println(maxDepth2(head)); // 4
+        printTree(reverseTree2(head));
     }
-
 }

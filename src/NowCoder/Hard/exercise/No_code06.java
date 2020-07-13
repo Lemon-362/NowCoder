@@ -2,6 +2,7 @@ package NowCoder.Hard.exercise;
 
 public class No_code06 {
     // 旋转数组：将一个非递减的数组最开始的几个数搬到数组末尾
+    // TODO 二分查找仅适用于没有重复元素的情况，如果有重复元素，只能遍历
     public static int getMin(int[] arr) {
         if (arr == null || arr.length < 1) {
             return 0;
@@ -14,23 +15,22 @@ public class No_code06 {
         while (i < j){
             mid = (i + j) >> 1;
 
-            // base case
-            if (j - i == 1){
-                mid = j;
-                break;
+            if (arr[i] < arr[j]){
+                return arr[i];
             }
 
-            // 1
-            if (arr[i] == arr[mid] && arr[mid] == arr[j]){
+            if (j - i == 1){
+                mid = j;
+            }
+
+            if (arr[mid] == arr[i] && arr[mid] == arr[j]) {
                 return findInSort(arr, i, j);
             }
 
-            // 2
             if (arr[mid] >= arr[i]){
-                i = mid;
+                i = mid + 1;
             }else if (arr[mid] <= arr[j]){
-                // 3
-                j = mid;
+                j = mid - 1;
             }
         }
 

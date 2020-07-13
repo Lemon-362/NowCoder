@@ -7,7 +7,7 @@ package NowCoder.LeetCode.Tags.Hot100.Tree;
  *  TODO 注意: 这里求的是直径, 而不是节点的个数(距离)
  *      需要将 距离 - 1 才能得到直径
  */
-public class code543_MaxDistance {
+public class code6_MaxDistance {
     public static class Node {
         public int value;
         public Node left;

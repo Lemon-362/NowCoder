@@ -18,15 +18,15 @@ public class code01_RegularExpressionMatch {
                     && process(str, exp, i + 1, j + 1);
         }
 
-        // 3.1
+        // 3.2
         while (i < str.length && (exp[j] == str[i] || exp[j] == '.')){
-            if (process(str, exp, i, j + 2)) {
+            if (process(str, exp, i, j + 2)){
                 return true;
             }
             i++;
         }
 
-        // 3.2
+        // 3.1
         return process(str, exp, i, j + 2);
     }
 

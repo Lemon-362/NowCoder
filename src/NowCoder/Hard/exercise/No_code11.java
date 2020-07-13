@@ -22,6 +22,7 @@ public class No_code11 {
             if ((n & 1) == 1){
                 count++;
             }
+
             n = n >> 1;
         }
 

@@ -20,7 +20,7 @@ public class No_code67 {
         dp[4] = 4;
 
         for (int i = 5; i < dp.length; i++) {
-            int num = 0;
+            int num = Integer.MIN_VALUE;
             for (int j = 1; j <= i / 2; j++) {
                 num = Math.max(num, dp[j] * dp[i - j]);
             }
@@ -53,7 +53,7 @@ public class No_code67 {
 
         res *= n;
 
-        return (int) (res % 1000000007);
+        return (int)(res % 1000000007);
     }
 
     public static void main(String[] args) {

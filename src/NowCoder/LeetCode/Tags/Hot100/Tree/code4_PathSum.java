@@ -7,7 +7,7 @@ package NowCoder.LeetCode.Tags.Hot100.Tree;
  *  路径不需要从根节点开始，也不需要在叶子节点结束，但是路径方向必须是向下的（只能从父节点到子节点）。
  *
  */
-public class code437_PathSum {
+public class code4_PathSum {
     public static class Node{
         private int value;
         private Node left;

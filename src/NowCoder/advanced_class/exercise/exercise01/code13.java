@@ -54,24 +54,24 @@ public class code13 {
         Node cur = head;
         Node mostRight = null;
 
-        while (cur != null) {
+        while (cur != null){
             mostRight = cur.left;
-            if (mostRight != null) {
-                while (mostRight.right != null && mostRight.right != cur) {
+            if (mostRight != null){
+                while (mostRight.right != null && mostRight.right != cur){
                     mostRight = mostRight.right;
                 }
-                if (mostRight.right == null) {
+                if (mostRight.right == null){
                     mostRight.right = cur;
 
                     cur = cur.left;
-                } else {
-                    mostRight.right = null;
-
+                }else {
                     System.out.print(cur.value + " ");
+
+                    mostRight.right = null;
 
                     cur = cur.right;
                 }
-            } else {
+            }else {
                 System.out.print(cur.value + " ");
 
                 cur = cur.right;
@@ -103,9 +103,9 @@ public class code13 {
 
                     cur = cur.right;
                 }else {
-                    mostLeft.left = null;
-
                     System.out.print(cur.value + " ");
+
+                    mostLeft.left = null;
 
                     cur = cur.left;
                 }
@@ -115,6 +115,8 @@ public class code13 {
                 cur = cur.left;
             }
         }
+
+        System.out.println();
     }
 
     public static void morrisPos(Node head) {

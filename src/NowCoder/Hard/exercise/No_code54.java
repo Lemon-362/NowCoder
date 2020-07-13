@@ -7,7 +7,7 @@ public class No_code54 {
 
     public int index;
 
-    public No_code54() {
+    public No_code54(){
         for (int i = 0; i < arr.length; i++) {
             arr[i] = -1;
         }
@@ -28,17 +28,13 @@ public class No_code54 {
         int res = -1;
 
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] >= 0 && minIndex > arr[i]){
+            if (arr[i] >=0 && arr[i] < minIndex){
                 minIndex = arr[i];
                 res = i;
             }
         }
 
-        if (res == -1){
-            return '#';
-        }else {
-            return (char) res;
-        }
+        return res == -1 ? '#' : (char) res;
     }
 
     public static void main(String[] args) {
