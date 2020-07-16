@@ -29,6 +29,7 @@ public class code11_LowestCommonAncestor {
      *  o1和o2不可能在root的同一侧子树上，否则最近公共祖先不可能是root，而是root那一侧向下的孩子
      *
      *  递归：假设以cur为头的子树上求解, 返回o1和o2的公共祖先
+     *  TODO 递归函数返回的是公共祖先/找到的指定节点o1/找到的指定节点o2
      *  1. base case:
      *  (1) cur==null, 返回null
      *  (2) cur==o1 || cur==o2, 公共祖先就是cur本身
@@ -48,14 +49,15 @@ public class code11_LowestCommonAncestor {
             return head;
         }
 
+        // 假设左右孩子都返回了节点给我，可能是公共节点，也可能是找到的指定节点p或q
         Node left = lowestCommonAncestor(head.left, p, q);
         Node right = lowestCommonAncestor(head.right, p, q);
 
-        if (left != null && right != null){
+        if (left != null && right != null){ // 如果左右都不为空，说明pq分别在两侧，那么公共祖先就是head头节点
             return head;
-        }else if (left == null && right == null){
+        }else if (left == null && right == null){ // 如果左右都为null，说明pq不在这个子树上
             return null;
-        }else {
+        }else { // 如果左右有一个为空，那么直接返回不为空的那个，不为空的可能是找到的p或q，也可能是找到的公共祖先
             return left == null ? right : left;
         }
     }

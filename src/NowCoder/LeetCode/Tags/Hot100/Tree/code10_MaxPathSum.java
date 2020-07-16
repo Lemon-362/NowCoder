@@ -54,6 +54,7 @@ public class code10_MaxPathSum {
         int rightMaxPathSum = Math.max(process(head.right), 0);
 
         // 以head节点为头的子树的最大路径和：head节点+左右子树的最大路径和
+        // TODO 为什么不需要和 中+左/中+右 比较：因为在上面左右的值已经和0比较了，最小就是0，那么中+左/中+右一定是小于中+左+右的
         // 必须要head头节点, 如果不要的话, 就相当于是左右子树的递归了, 而左右子树的递归的最大值在上面已经找到了
         int curMaxPathSum = head.value + leftMaxPathSum + rightMaxPathSum;
 

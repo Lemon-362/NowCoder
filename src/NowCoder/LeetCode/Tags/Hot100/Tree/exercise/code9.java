@@ -31,6 +31,7 @@ public class code9 {
         Node temp = head.right;
 
         head.right = head.left;
+
         head.left = null;
 
         while (head.right != null){
@@ -49,15 +50,15 @@ public class code9 {
 
         while (cur != null){
             if (cur.left != null){
-                Node temp = cur.left;
+                Node left = cur.left;
 
-                while (temp.right != null){
-                    temp = temp.right;
+                while (left.right != null){
+                    left = left.right;
                 }
 
-                temp.right = cur.right;
-                cur.right = cur.left;
+                left.right = cur.right;
 
+                cur.right = cur.left;
                 cur.left = null;
             }
 
