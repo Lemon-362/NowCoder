@@ -51,7 +51,7 @@ public class code1 {
             Node right = queue.poll();
 
             if (left == null && right == null){
-                continue;
+                return true;
             }else if (left == null || right == null){
                 return false;
             }
@@ -88,8 +88,8 @@ public class code1 {
         head1.right.right = new Node(4);
 
         System.out.println(isMirrorTree1(head)); // true
-        System.out.println(isMirrorTree1(head1)); // false
         System.out.println(isMirrorTree2(head)); // true
+        System.out.println(isMirrorTree1(head1)); // false
         System.out.println(isMirrorTree2(head1)); // false
     }
 }

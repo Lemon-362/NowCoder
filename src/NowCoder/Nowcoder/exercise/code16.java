@@ -1,7 +1,5 @@
 package NowCoder.Nowcoder.exercise;
 
-import NowCoder.Nowcoder.code16_MergeTwoLinkedList;
-
 public class code16 {
     public static class Node {
         private int value;

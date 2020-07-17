@@ -5,6 +5,7 @@ public class QuickSort {
         if (arr == null || arr.length < 2) {
             return;
         }
+
         quickSort(arr, 0, arr.length - 1);
     }
 
@@ -12,6 +13,7 @@ public class QuickSort {
         if (l < r) {
             swap(arr, r, l + (int) (Math.random() * (r - l + 1)));
             int[] p = partition(arr, l, r);
+
             quickSort(arr, l, p[0] - 1);
             quickSort(arr, p[1] + 1, r);
         }
@@ -32,7 +34,7 @@ public class QuickSort {
             }
         }
 
-        swap(arr, r, more);
+        swap(arr, more, r);
 
         return new int[]{less + 1, more};
     }
@@ -42,6 +44,5 @@ public class QuickSort {
         arr[i] = arr[j];
         arr[j] = tmp;
     }
-
 
 }

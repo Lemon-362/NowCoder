@@ -1,8 +1,5 @@
 package NowCoder.Nowcoder.exercise;
 
-import NowCoder.Nowcoder.code18_MirrorTree;
-
-import javax.print.attribute.standard.NumberUp;
 import java.util.LinkedList;
 import java.util.Queue;
 

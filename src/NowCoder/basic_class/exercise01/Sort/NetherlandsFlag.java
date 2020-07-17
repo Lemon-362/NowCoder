@@ -5,23 +5,25 @@ public class NetherlandsFlag {
         if (arr == null || arr.length < 2) {
             return null;
         }
-        return partition(arr, 0, arr.length - 1, num);
 
+        return partition(arr, 0, arr.length - 1, num);
     }
 
-    public static int[] partition(int[] arr, int l, int r, int num) {
+    public static int[] partition(int[] arr, int l, int r, int num){
         int less = l - 1;
         int more = r + 1;
         int cur = l;
-        while (cur < more) {
-            if (arr[cur] < num) {
+
+        while (cur < more){
+            if (arr[cur] < num){
                 swap(arr, ++less, cur++);
-            } else if (arr[cur] > num) {
+            }else if (arr[cur] > num){
                 swap(arr, --more, cur);
-            } else {
+            }else {
                 cur++;
             }
         }
+
         return new int[]{less + 1, more - 1};
     }
 

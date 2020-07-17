@@ -1,7 +1,5 @@
 package NowCoder.Nowcoder.exercise;
 
-import NowCoder.Nowcoder.code22_PrintByLevel;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;

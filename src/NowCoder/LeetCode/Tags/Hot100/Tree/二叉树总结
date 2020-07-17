@@ -1,11 +1,58 @@
 TODO 二叉树的总结
 1.二叉树的两种遍历方式:
 (1) 深度优先搜索DFS: 其实就是先序遍历
-    可以使用递归实现, 非递归的Morris遍历实现
+    可以使用递归实现, 后序遍历，先向左向右递归（假设下级可以返回信息给我），然后处理当前层
+    也可以非递归的Morris遍历实现
     TODO 对于递归函数, 不要深入思考怎么递归的, 只需要知道
      (1) 递归函数的功能(以当前节点为头的子树要求出什么), 可以假设下级能够返回信息给我, 利用下级的信息加工出函数功能
      (2) 递归函数的base case(出口)
      (3) 利用下级信息, 加工出当前递归函数向上返回的信息(return ...)
 
+    TODO 要考虑剪枝问题
+
 (2) 宽度优先搜索BFS: 其实就是按层遍历
-    可以使用Queue队列实现
+    可以使用Queue队列实现 TODO 一般按层遍历都是用Queue, 而不是递归
+
+    也可以递归实现，先处理当前层，然后向左向右递归
+
+模板：
+(1) 深度优先
+    public static ReturnData process(Node head){
+        // base case
+        if (head == null){
+            return new ReturnData(...);
+        }
+
+        // 先递归到叶节点, 即假设下级可以返回信息给我
+        ReturnData leftData = process(head.left);
+        ReturnData rightData = process(head.right);
+
+        // 分析可能性, 列出所需要的信息, 整合信息成ReturnData
+        // 利用下级的信息加工出可能性的情况
+
+        // 向上返回相同的信息
+        return new ReturnData(...);
+    }
+
+(2) 宽度优先
+    public static ... process(Node head){
+        // base case
+        if (head == null){
+            return ...;
+        }
+
+        // 分析可能性, 处理当前层
+
+        // 处理完当前层的可能性, 再向下递归
+        ReturnData leftData = process(head.left);
+        ReturnData rightData = process(head.right);
+
+        // 返回当前层的信息
+        return ...;
+    }
+
+
+平衡二叉树: 左右子树的高度差不超过1
+搜索二叉树: 左子树<head, 右子树>head
+后继节点: 中序遍历的下一个, 右子树上最左的节点(有右孩子时) 或者 父节点的左孩子是当前节点(无右孩子时)
+前驱节点: 中序遍历的前一个, 左子树上最右的节点(有左孩子时) 或者 父节点的右孩子是当前节点(无左孩子时)

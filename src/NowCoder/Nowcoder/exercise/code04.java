@@ -1,9 +1,5 @@
 package NowCoder.Nowcoder.exercise;
 
-import NowCoder.Nowcoder.code04_ReconTreeByPreAndInOrder;
-
-import java.util.Arrays;
-
 public class code04 {
     public static class Node {
         private int value;

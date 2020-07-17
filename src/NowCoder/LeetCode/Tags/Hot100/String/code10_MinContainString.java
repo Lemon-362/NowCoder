@@ -72,23 +72,25 @@ public class code10_MinContainString {
                 count++;
             }
             // 当count==t的长度时, 说明包含了所有字符, 此时移动头部left
-            while (count == t.length()){ // 只要窗口中应该包含t中字符的个数count != t的长度, 就退出循环
-                // 更新长度
-                if (len > right - left + 1){
-                    len = right - left + 1;
-                    res = s.substring(left, right + 1);
-                }
+            if (count == t.length()) {
+                while (left <= right && count == t.length()) { // 只要窗口中应该包含t中字符的个数count != t的长度, 就退出循环
+                    // 更新长度
+                    if (len > right - left + 1) {
+                        len = right - left + 1;
+                        res = s.substring(left, right + 1);
+                    }
 
-                int chh = s.charAt(left) - 65;
-                // 如果当前字符的出现次数 == need中该字符应该出现的次数, 则说明left位于该字符处
-                // 此时left要往后移动了, 所以该位置的字符要移出窗口, count--
-                if (need[chh] != 0 && contain[chh] == need[chh]){
-                    count--;
-                }
-                // 移出left处的字符
-                contain[chh]--;
+                    int chh = s.charAt(left) - 65;
+                    // 如果当前字符的出现次数 == need中该字符应该出现的次数, 则说明left位于该字符处
+                    // 此时left要往后移动了, 所以该位置的字符要移出窗口, count--
+                    if (need[chh] != 0 && contain[chh] == need[chh]) {
+                        count--;
+                    }
+                    // 移出left处的字符
+                    contain[chh]--;
 
-                left++;
+                    left++;
+                }
             }
 
             right++;
@@ -101,7 +103,7 @@ public class code10_MinContainString {
         String s = "aaaaaaaaaaaabbbbbcdd";
         String t = "abcdd";
 
-        System.out.println(minContainString(s, t)); // BANC
+        System.out.println(minContainString(s, t)); // abbbbbcdd
 
     }
 

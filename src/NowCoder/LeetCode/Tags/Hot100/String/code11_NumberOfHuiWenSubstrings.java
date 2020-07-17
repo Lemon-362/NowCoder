@@ -100,8 +100,15 @@ public class code11_NumberOfHuiWenSubstrings {
 
     public static void main(String[] args) {
         String s = "aaaa";
+        System.out.println(numberOfHuiWenSubstrings1(s)); // 10
+        System.out.println(numberOfHuiWenSubstrings2(s));
 
-        System.out.println(numberOfHuiWenSubstrings1(s));
+        s = "aaa";
+        System.out.println(numberOfHuiWenSubstrings1(s)); // 6
+        System.out.println(numberOfHuiWenSubstrings2(s));
+
+        s = "abc";
+        System.out.println(numberOfHuiWenSubstrings1(s)); // 3
         System.out.println(numberOfHuiWenSubstrings2(s));
     }
 }

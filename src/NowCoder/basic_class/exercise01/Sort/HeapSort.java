@@ -27,7 +27,7 @@ public class HeapSort {
             if (largest == index) {
                 break;
             }
-            swap(arr, index, largest);
+            swap(arr, largest, index);
             index = largest;
             left = 2 * index + 1;
         }
@@ -39,6 +39,7 @@ public class HeapSort {
             index = (index - 1) / 2;
         }
     }
+
 
     public static void swap(int[] arr, int i, int j) {
         int temp = arr[i];
