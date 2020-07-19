@@ -1,7 +1,7 @@
 package NowCoder.LeetCode.Tags.Hot100.Tree;
 
 /**
- * 543. 二叉树的直径
+ * 543. 二叉树的最大直径
  *  进阶code22的maxDistance
  *
  *  TODO 注意: 这里求的是直径, 而不是节点的个数(距离)

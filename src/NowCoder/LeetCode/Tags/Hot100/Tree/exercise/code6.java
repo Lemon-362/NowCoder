@@ -20,18 +20,18 @@ public class code6 {
     }
 
     public static class ReturnData {
+        private int height;
         private int maxDistance;
-        private int depth;
 
-        public ReturnData(int maxDistance, int depth) {
+        public ReturnData(int height, int maxDistance) {
+            this.height = height;
             this.maxDistance = maxDistance;
-            this.depth = depth;
         }
     }
 
-    public static ReturnData process(Node head) {
+    public static ReturnData process(Node head){
         // base case
-        if (head == null) {
+        if (head == null){
             return new ReturnData(0, 0);
         }
 
@@ -45,12 +45,12 @@ public class code6 {
         int rightDistance = rightData.maxDistance;
 
         // 3
-        int curDistance = leftData.depth + rightData.depth + 1;
+        int curDistance = leftData.height + rightData.height + 1;
 
         int maxDistance = Math.max(curDistance, Math.max(leftDistance, rightDistance));
-        int depth = Math.max(leftData.depth, rightData.depth) + 1;
+        int height = Math.max(leftData.height, rightData.height) + 1;
 
-        return new ReturnData(maxDistance, depth);
+        return new ReturnData(height, maxDistance);
     }
 
     public static void main(String[] args) {

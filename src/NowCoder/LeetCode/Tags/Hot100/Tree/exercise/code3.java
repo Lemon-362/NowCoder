@@ -38,18 +38,23 @@ public class code3 {
         queue.offer(head);
 
         while (!queue.isEmpty()){
-            Node cur = queue.poll();
+            int size = queue.size();
 
-            if (cur.left != null){
-                queue.offer(cur.left);
-            }
-            if (cur.right != null){
-                queue.offer(cur.right);
-            }
+            for (int i = 0; i < size; i++) {
+                Node cur = queue.poll();
 
-            Node temp = cur.left;
-            cur.left = cur.right;
-            cur.right = temp;
+                if (cur.left != null){
+                    queue.offer(cur.left);
+                }
+
+                if (cur.right != null){
+                    queue.offer(cur.right);
+                }
+
+                Node temp = cur.left;
+                cur.left = cur.right;
+                cur.right = temp;
+            }
         }
 
         return head;
@@ -93,6 +98,6 @@ public class code3 {
         head.right.left = new Node(9);
 
         printTree(head);
-        printTree(reverseTree2(head));
+        printTree(reverseTree1(head));
     }
 }

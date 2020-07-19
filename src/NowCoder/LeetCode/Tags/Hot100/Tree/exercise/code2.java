@@ -44,8 +44,8 @@ public class code2 {
         queue.offer(head);
 
         while (!queue.isEmpty()){
-            int size = queue.size();
             depth++;
+            int size = queue.size();
 
             for (int i = 0; i < size; i++) {
                 Node cur = queue.poll();

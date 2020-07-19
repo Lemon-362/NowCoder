@@ -14,22 +14,6 @@ public class code7 {
         }
     }
 
-    /**
-     *  TODO 按层遍历, 宽度优先搜索BFS
-     *      逐层累加对应的节点
-     *      方法一: 递归版本
-     *  process递归函数: 表示合并当前层的两个节点
-     *  (1) base case:
-     *      head1==null, 直接返回head2
-     *      head2==null, 直接返回head1
-     *      head1==null&&head2==null，直接返回null（叶节点末尾）
-     *  (2) 合并当前层节点, 变成新的头节点head
-     *      head的左孩子和右孩子, 通过process向左和向右递归返回给我, 都交给递归处理
-     *      处理结束, 直接返回新的头节点head
-     *
-     *  时间复杂度: O(N)
-     *  空间复杂度: O(h), 最差情况递归到最深处, 高度是h
-     */
     public static Node mergeTrees1(Node head1, Node head2){
         if (head1 == null && head2 == null){
             return null;
@@ -52,12 +36,12 @@ public class code7 {
             return head1;
         }
 
-        Node head = new Node(head1.value + head2.value);
+        head1.value += head2.value;
 
-        head.left = process(head1.left, head2.left);
-        head.right = process(head1.right, head2.right);
+        head1.left = process(head1.left, head2.left);
+        head1.right = process(head1.right, head2.right);
 
-        return head;
+        return head1;
     }
 
     public static Node mergeTrees2(Node head1, Node head2){

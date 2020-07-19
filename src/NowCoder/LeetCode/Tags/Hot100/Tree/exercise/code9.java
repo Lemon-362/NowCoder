@@ -1,5 +1,8 @@
 package NowCoder.LeetCode.Tags.Hot100.Tree.exercise;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class code9 {
     public static class Node {
         private int value;
@@ -29,9 +32,7 @@ public class code9 {
         process(head.right);
 
         Node temp = head.right;
-
         head.right = head.left;
-
         head.left = null;
 
         while (head.right != null){
@@ -50,18 +51,17 @@ public class code9 {
 
         while (cur != null){
             if (cur.left != null){
-                Node left = cur.left;
+                Node temp = cur.left;
 
-                while (left.right != null){
-                    left = left.right;
+                while (temp.right != null){
+                    temp = temp.right;
                 }
 
-                left.right = cur.right;
+                temp.right = cur.right;
 
                 cur.right = cur.left;
                 cur.left = null;
             }
-
             cur = cur.right;
         }
     }

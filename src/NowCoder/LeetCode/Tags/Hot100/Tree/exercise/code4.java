@@ -18,8 +18,8 @@ public class code4 {
         }
 
         int res = process(head, sum);
-        res += pathSum(head.left, sum);
-        res += pathSum(head.right, sum);
+        res += process(head.left, sum);
+        res += process(head.right, sum);
 
         return res;
     }

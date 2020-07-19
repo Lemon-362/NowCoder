@@ -89,11 +89,11 @@ public class code5 {
         printInOrder(head); // 2 3 4 5 6 7 8
         System.out.println();
 
-//        Node head1 = convertBST1(head);
-//        printInOrder(head1); // 35 33 30 26 21 15 8
+        Node head1 = convertBST1(head);
+        printInOrder(head1); // 35 33 30 26 21 15 8
 
-        Node head2 = convertBST2(head);
-        printInOrder(head2); // 35 33 30 26 21 15 8
+//        Node head2 = convertBST2(head);
+//        printInOrder(head2); // 35 33 30 26 21 15 8
 
     }
 }

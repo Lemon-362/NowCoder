@@ -1,9 +1,6 @@
-package NowCoder.advanced_class.exercise;
+package NowCoder.Hard.HardSummary;
 
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 /*
     表达式计算：

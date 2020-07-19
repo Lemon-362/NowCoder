@@ -51,7 +51,7 @@ public class code1 {
             Node right = queue.poll();
 
             if (left == null && right == null){
-                return true;
+                continue;
             }else if (left == null || right == null){
                 return false;
             }

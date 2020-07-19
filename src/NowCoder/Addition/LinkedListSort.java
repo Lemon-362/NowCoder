@@ -1,10 +1,13 @@
-package NowCoder;
+package NowCoder.Addition;
 
-import java.util.HashMap;
-import java.util.Objects;
-
-public class test{
-    public static class Node {
+/**
+ * 一个链表，奇数位升序,偶数位降序，让链表整个变成升序的
+ *
+ *  思路：按照位置拆分成两个链表，对偶数位的链表反转，然后合并两个有序链表
+ *
+ */
+public class LinkedListSort {
+        public static class Node {
         private int value;
         private Node next;
 
@@ -130,10 +133,9 @@ public class test{
         head.next.next.next.next.next.next.next = new Node(2);
         head.next.next.next.next.next.next.next.next = new Node(9);
 
-        printList(head);
+        printList(head); // 1 8 3 6 5 4 7 2 9
 
-        printList(linkedListSort1(head));
+        printList(linkedListSort1(head)); // 1 2 3 4 5 6 7 8 9
 
     }
-
 }
