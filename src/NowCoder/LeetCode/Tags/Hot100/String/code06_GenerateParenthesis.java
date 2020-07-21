@@ -50,12 +50,12 @@ public class code06_GenerateParenthesis {
             return;
         }
 
-        // 1. 要左括号(，不需要条件
+        // TODO 1. 要左括号(，不需要条件
         if (leftNum > 0) {
             process(leftNum - 1, rightNum, res + "(");
         }
 
-        // 2. 要右括号)，此时必须满足：左括号的剩余数量 < 右括号剩余数量
+        // TODO 2. 要右括号)，此时必须满足： 右括号的剩余数量 > 左括号的剩余数量
         if (rightNum > 0 && leftNum < rightNum){
             process(leftNum, rightNum - 1, res + ")");
         }

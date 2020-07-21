@@ -41,6 +41,10 @@ public class code10_MaxPathSum {
      *
      *  这里的全局变量其实和ReturnData类似，ReturnData也可以看成是一个全局变量
      *
+     *  TODO 这里和advance_code20_BiggestSubBSTInTree不同
+     *      因为这里要找的是一条路径，而不是子树
+     *      如果用code20的方法的话，求出的是一个子树的最大和，而不是一条路径
+     *
       */
     public static int process(Node head) {
         // base case

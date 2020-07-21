@@ -11,10 +11,10 @@ public class code02 {
         int R = -1;
         int C = -1;
         int len = 0;
-        int start = 0;
+        int start = -1;
 
         for (int i = 0; i < str.length; i++) {
-            pArr[i] = R > i ? Math.min(R - i, pArr[2*C-i]) : 1;
+            pArr[i] = R > i ? Math.min(R - i, pArr[2*C- i]) : 1;
             while (i + pArr[i] < str.length && i - pArr[i] > -1){
                 if (str[i+pArr[i]] == str[i-pArr[i]]){
                     pArr[i]++;
@@ -44,13 +44,12 @@ public class code02 {
 
         char[] str = manacherString(s);
         int len = 0;
-        int start = 0;
+        int start = -1;
 
         for (int i = 0; i < str.length; i++) {
             int R = 0;
             int l = i;
             int r = i;
-
             while (l > -1 && r < str.length){
                 if (str[l] == str[r]){
                     R++;

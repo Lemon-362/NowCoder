@@ -11,21 +11,27 @@ public class code11 {
         }
     }
 
+    // 深度优先
     public static Node lowestCommonAncestor(Node head, Node p, Node q) {
         // base case
-        if (head == null || head == p || head == q){
-            return head;
+        if (head == null){
+            return null;
+        }else if (head == p){
+            return p;
+        }else if (head == q){
+            return q;
         }
 
-        Node leftNode = lowestCommonAncestor(head.left, p, q);
-        Node rightNode = lowestCommonAncestor(head.right, p, q);
+        Node left = lowestCommonAncestor(head.left, p, q);
+        Node right = lowestCommonAncestor(head.right, p, q);
 
-        if (leftNode == null && rightNode == null){
-            return null;
-        }else if (leftNode != null & rightNode != null){
+        // 1
+        if (left != null && right != null){
             return head;
+        }else if (left == null && right == null){
+            return null;
         }else {
-            return leftNode == null ? rightNode : leftNode;
+            return left == null ? right : left;
         }
     }
 

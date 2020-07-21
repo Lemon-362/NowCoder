@@ -11,7 +11,7 @@ public class code10 {
         }
     }
 
-    public static int maxPathSum(Node head){
+    public static int maxPathSum(Node head) {
         if (head == null) {
             return 0;
         }
@@ -32,14 +32,14 @@ public class code10 {
         int leftValue = Math.max(process(head.left), 0);
         int rightValue = Math.max(process(head.right), 0);
 
-        int curValue = head.value + leftValue + rightValue;
+        int maxValue =  leftValue + rightValue + head.value;
 
-        res = Math.max(res, curValue);
+        res = Math.max(res, maxValue);
 
-        return head.value + Math.max(leftValue, rightValue);
+        return Math.max(leftValue, rightValue) + head.value;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Node head = new Node(-10);
         head.left = new Node(9);
         head.right = new Node(20);

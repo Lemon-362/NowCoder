@@ -8,19 +8,19 @@ public class code05 {
             return false;
         }
 
-        Stack<String> stack = new Stack<>();
+        Stack<Character> stack = new Stack<>();
 
         for (int i = 0; i < s.length(); i++) {
-            String value = s.substring(i, i + 1);
+            char ch = s.charAt(i);
 
-            if (value.equals("(")) {
-                stack.push(")");
-            } else if (value.equals("[")) {
-                stack.push("]");
-            } else if (value.equals("{")) {
-                stack.push("}");
-            } else {
-                if (!stack.isEmpty() && stack.peek().equals(value)){
+            if (ch == '('){
+                stack.push(')');
+            }else if (ch == '['){
+                stack.push(']');
+            }else if (ch == '{'){
+                stack.push('}');
+            }else {
+                if (!stack.isEmpty() && stack.peek() == ch){
                     stack.pop();
                 }else {
                     return false;

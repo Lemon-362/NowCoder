@@ -6,8 +6,8 @@ import java.util.List;
 public class code06 {
     public static List<String> list = new ArrayList<>();
 
-    public static List<String> generateParenthesis(int N){
-        if (N <= 0){
+    public static List<String> generateParenthesis(int N) {
+        if (N <= 0) {
             return null;
         }
 
@@ -16,15 +16,14 @@ public class code06 {
         return list;
     }
 
-    public static void process(int leftNum, int rightNum, String res){
+    public static void process(int leftNum, int rightNum, String res) {
         // base case
-        if (leftNum == 0 && rightNum == 0){
+        if (leftNum == 0 && rightNum == 0) {
             list.add(res);
-            return;
         }
 
         // 1
-        if (leftNum > 0 && leftNum <= rightNum){
+        if (leftNum > 0){
             process(leftNum - 1, rightNum, res + "(");
         }
 
@@ -32,6 +31,7 @@ public class code06 {
         if (rightNum > 0 && rightNum > leftNum){
             process(leftNum, rightNum - 1, res + ")");
         }
+
     }
 
     public static void main(String[] args) {

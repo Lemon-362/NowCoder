@@ -40,6 +40,41 @@ public class code01_LengthOfLongestSubstring {
         return len;
     }
 
+    /*
+    方法二:
+        利用剑指code54的字符流中第一个不重复的字符的方法, 将出现的位置保存在数组
+     */
+    public static int lengthOfLongestSubstring2(String s){
+
+        int[] arr = new int[128];
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = -1;
+        }
+
+        int len = 0;
+        int pre = -1;
+
+        char[] str = s.toCharArray();
+
+        for (int i = 0; i < str.length; i++) {
+            char ch = str[i];
+
+            if (arr[ch] == -1){
+                arr[ch] = i;
+            }else if (arr[ch] >= 0){
+                int temp = arr[ch];
+                arr[ch] = i;
+
+                len = Math.max(len, arr[ch] - 1 - pre);
+
+                pre = temp;
+            }
+        }
+
+        return len;
+    }
+
     public static void main(String[] args) {
         String s = "abcabcbb";
         System.out.println(lengthOfLongestSubstring(s)); // 3

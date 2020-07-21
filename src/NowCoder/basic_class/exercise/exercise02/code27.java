@@ -1,7 +1,5 @@
 package NowCoder.basic_class.exercise.exercise02;
 
-import NowCoder.basic_class.exercise01.Sort.QuickSort;
-
 import java.util.LinkedList;
 import java.util.Queue;
 

@@ -51,17 +51,18 @@ public class code9 {
 
         while (cur != null){
             if (cur.left != null){
-                Node temp = cur.left;
+                Node left = cur.left;
 
-                while (temp.right != null){
-                    temp = temp.right;
+                while (left.right != null){
+                    left = left.right;
                 }
 
-                temp.right = cur.right;
+                left.right = cur.right;
 
                 cur.right = cur.left;
                 cur.left = null;
             }
+
             cur = cur.right;
         }
     }
@@ -105,7 +106,7 @@ public class code9 {
 
         printTree(head);
 
-        flattenToList1(head);
+        flattenToList2(head);
 
         printTree(head);
     }

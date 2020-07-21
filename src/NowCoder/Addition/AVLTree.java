@@ -1,6 +1,6 @@
 package NowCoder.Addition;
 
-import NowCoder.advanced_class.class_4.AbstractSelfBalancingBinarySearchTree;
+import NowCoder.advanced_class.code.class_4.AbstractSelfBalancingBinarySearchTree;
 
 /**
  * 1. BST搜索二叉树

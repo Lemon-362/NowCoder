@@ -22,7 +22,7 @@ public class code12_Rob {
     }
 
     /**
-     * 递归: TODO 和进阶code23的MaxHappy类似
+     * 递归: TODO 深度优先 和进阶code23的MaxHappy类似
      *  process递归函数: 求以head为头的子树的最高金额
      *      首先假设下级能够返回给我process信息, 获得了当前左右子树的最高金额
      *      那么要求以head为头的子树的最高金额的话, 有两种情况

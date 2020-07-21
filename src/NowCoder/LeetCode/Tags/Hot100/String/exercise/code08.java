@@ -15,17 +15,22 @@ public class code08 {
         HashMap<String, List<String>> map = new HashMap<>();
 
         for (int i = 0; i < strs.length; i++) {
-            char[] str = strs[i].toCharArray();
+            String s = strs[i];
 
-            Arrays.sort(str);
+            char[] ch = s.toCharArray();
+            Arrays.sort(ch);
 
-            String key = String.valueOf(str);
+            String key = String.valueOf(ch);
 
             if (!map.containsKey(key)){
-                map.put(key, new ArrayList<>());
+                List<String> list = new ArrayList<>();
+                list.add(s);
+                map.put(key, list);
+            }else {
+                List<String> list = map.get(key);
+                list.add(s);
+                map.put(key, list);
             }
-
-            map.get(key).add(strs[i]);
         }
 
         for(String key : map.keySet()){

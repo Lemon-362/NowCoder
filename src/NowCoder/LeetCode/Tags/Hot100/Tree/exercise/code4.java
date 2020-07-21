@@ -24,6 +24,7 @@ public class code4 {
         return res;
     }
 
+    // 宽度优先
     public static int process(Node head, int sum){
         // base case
         if (head == null){

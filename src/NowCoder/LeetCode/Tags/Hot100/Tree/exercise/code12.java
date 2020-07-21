@@ -32,20 +32,19 @@ public class code12 {
         }
     }
 
-    public static ReturnData process(Node head) {
+    // 深度优先
+    public static ReturnData process(Node head){
         // base case
-        if (head == null) {
+        if (head == null){
             return new ReturnData(0, 0);
         }
-
-        int rob = head.value;
-        int no_rob = 0;
 
         ReturnData leftData = process(head.left);
         ReturnData rightData = process(head.right);
 
-        rob += leftData.no_rob + rightData.no_rob;
-        no_rob += Math.max(leftData.rob, leftData.no_rob) + Math.max(rightData.rob, rightData.no_rob);
+        int rob = head.value + leftData.no_rob + rightData.no_rob;
+        int no_rob = Math.max(leftData.rob, leftData.no_rob)
+                + Math.max(rightData.rob, rightData.no_rob);
 
         return new ReturnData(rob, no_rob);
     }

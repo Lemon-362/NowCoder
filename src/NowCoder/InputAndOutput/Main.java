@@ -1,7 +1,5 @@
 package InputAndOutput;
 
-import NowCoder.basic_class.exercise01.Trie.LowestLexicographyOrder;
-
 import java.util.*;
 
 public class Main {

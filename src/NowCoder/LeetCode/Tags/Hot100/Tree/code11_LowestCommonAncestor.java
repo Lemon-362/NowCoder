@@ -20,7 +20,7 @@ public class code11_LowestCommonAncestor {
         }
     }
 
-    /**
+    /**  TODO 深度优先
      *  如果root是o1和o2的最近公共祖先，则有以下几种情况：
      *  1. o1和o2在root的子树上，且分列root的两侧
      *  2. o1==root，o2在root的左/右子树上

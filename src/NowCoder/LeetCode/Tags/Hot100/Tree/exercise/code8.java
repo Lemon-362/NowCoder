@@ -13,7 +13,7 @@ public class code8 {
         for (int i = 2; i < dp.length; i++) {
             int num = 0;
             for (int j = 1; j <= i; j++) {
-                num += (dp[j - 1] * dp[i - j]);
+                num += dp[j - 1] * dp[i - j];
             }
             dp[i] = num;
         }

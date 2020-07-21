@@ -8,13 +8,13 @@ public class DataShare {
         private int value = 0;
 
         public synchronized void add() {
-            value++;
+            value += 10;
 
             System.out.println(Thread.currentThread().getName() + "add的value为: " + value);
         }
 
         public synchronized void dec() {
-            value--;
+            value -= 10;
 
             System.out.println(Thread.currentThread().getName() + "dec的value为: " + value);
         }
@@ -55,28 +55,12 @@ public class DataShare {
     public static void main(String[] args) {
         MyData data = new MyData();
 
-//        AddThread addThread = new AddThread(data);
-//        DecThread decThread = new DecThread(data);
-//
-//        for (int i = 0; i < 2; i++) {
-//            new Thread(addThread).start();
-//            new Thread(decThread).start();
-//        }
+        AddThread addThread = new AddThread(data);
+        DecThread decThread = new DecThread(data);
 
-        for (int i = 0; i < 2; i++) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    data.add();
-                }
-            }).start();
-
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    data.dec();
-                }
-            }).start();
+        for (int i = 0; i < 5; i++) {
+            new Thread(addThread).start();
+            new Thread(decThread).start();
         }
 
     }

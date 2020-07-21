@@ -10,7 +10,7 @@ public class code11 {
         int[] pArr = new int[str.length];
         int R = -1;
         int C = -1;
-        int count = 0;
+        int res = 0;
 
         for (int i = 0; i < str.length; i++) {
             pArr[i] = R > i ? Math.min(R - i, pArr[2*C-i]) : 1;
@@ -22,15 +22,15 @@ public class code11 {
                 }
             }
 
-            if (i + pArr[i] > R) {
+            if (i + pArr[i] > R){
                 R = i + pArr[i];
                 C = i;
             }
 
-            count += pArr[i] / 2;
+            res += pArr[i] / 2;
         }
 
-        return count;
+        return res;
     }
 
     public static int numberOfHuiWenSubstrings2(String s) {

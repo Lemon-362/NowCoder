@@ -26,6 +26,7 @@ public class code7 {
         return process(head1, head2);
     }
 
+    // 按层遍历，宽度优先
     public static Node process(Node head1, Node head2){
         // base case
         if (head1 == null && head2 == null){
@@ -137,7 +138,7 @@ public class code7 {
         printTree(head1);
         printTree(head2);
 
-        Node head = mergeTrees2(head1, head2);
+        Node head = mergeTrees1(head1, head2);
         printTree(head);
 
     }

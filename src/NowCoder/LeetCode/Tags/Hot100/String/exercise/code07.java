@@ -8,33 +8,39 @@ public class code07 {
             return 0;
         }
 
-        char[] str = s.toCharArray();
-
+        int L = 0;
+        int R = 0;
         int len = 0;
 
-        for (int i = 0; i < str.length; i++) {
-            if (str[i] == '('){
-                for (int j = i + 1; j < str.length; j++) {
-                    if ((j - i + 1) % 2 == 0 && str[j] == ')'){
-                        if (isValid(str, i, j)){
-                            len = Math.max(len, j - i + 1);
+        while (L < s.length()){
+            if (s.charAt(L) == '('){
+                R = L;
+                while (R < s.length()){
+                    if ((R - L + 1) % 2 == 0 && s.charAt(R) == ')'){
+                        if (isValid(s, L, R)){
+                            len = Math.max(len, R - L + 1);
                         }
                     }
+                    R++;
                 }
             }
+
+            L++;
         }
 
         return len;
     }
 
-    public static boolean isValid(char[] str, int i, int j){
+    public static boolean isValid(String s, int L, int R){
         Stack<Character> stack = new Stack<>();
 
-        for (int k = i; k <= j; k++) {
-            if (str[k] == '('){
+        for (int i = L; i <= R; i++) {
+            char ch = s.charAt(i);
+
+            if (ch == '('){
                 stack.push(')');
             }else {
-                if (!stack.isEmpty() && stack.peek() == str[k]){
+                if (!stack.isEmpty() && stack.peek() == ch){
                     stack.pop();
                 }else {
                     return false;
