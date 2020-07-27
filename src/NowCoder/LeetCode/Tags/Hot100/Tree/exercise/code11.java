@@ -16,20 +16,17 @@ public class code11 {
         // base case
         if (head == null){
             return null;
-        }else if (head == p){
-            return p;
-        }else if (head == q){
-            return q;
+        }else if (head == p || head == q){
+            return head;
         }
 
         Node left = lowestCommonAncestor(head.left, p, q);
         Node right = lowestCommonAncestor(head.right, p, q);
 
-        // 1
-        if (left != null && right != null){
-            return head;
-        }else if (left == null && right == null){
+        if (left == null && right == null){
             return null;
+        }else if (left != null && right != null){
+            return head;
         }else {
             return left == null ? right : left;
         }

@@ -51,7 +51,7 @@ public class code24_FindPath {
 
         // 判断: num==0, 且该节点是叶节点(到底了)
         if (num == 0 && head.left == null && head.right == null){
-//            res.add(new LinkedList<>(list));
+            // TODO 因为这里是在外面定义的list，都是用同一个对象，但是放入res中要用不同的引用
             res.add(new ArrayList<>(list));
         }
 

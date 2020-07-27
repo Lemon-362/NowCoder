@@ -1,9 +1,9 @@
 package NowCoder.Nowcoder.Tags.String;
 
 public class code54 {
-    private int[] arr = new int[128];
+    public int[] arr = new int[256];
 
-    private int index;
+    public int index;
 
     public code54(){
         for (int i = 0; i < arr.length; i++) {
@@ -14,6 +14,7 @@ public class code54 {
     }
 
     public void insert(char ch){
+
         if (arr[ch] == -1){
             arr[ch] = index;
         }else if (arr[ch] >= 0){
@@ -24,17 +25,17 @@ public class code54 {
     }
 
     public char getChar(){
+        int indexx = Integer.MAX_VALUE;
         char res = ' ';
-        int index = Integer.MAX_VALUE;
 
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] >= 0 && arr[i] < index){
-                index = arr[i];
+            if (arr[i] >= 0 && indexx > arr[i]){
                 res = (char) i;
+                indexx = arr[i];
             }
         }
 
-        return index != Integer.MAX_VALUE ? res : '#';
+        return indexx == Integer.MAX_VALUE ? '#' : res;
     }
 
     public static void main(String[] args) {

@@ -16,14 +16,15 @@ public class code06 {
         return list;
     }
 
-    public static void process(int leftNum, int rightNum, String res) {
+    public static void process(int leftNum, int rightNum, String res){
         // base case
-        if (leftNum == 0 && rightNum == 0) {
+        if (leftNum == 0 && rightNum == 0){
             list.add(res);
+            return;
         }
 
         // 1
-        if (leftNum > 0){
+        if (leftNum > 0 && leftNum <= rightNum){
             process(leftNum - 1, rightNum, res + "(");
         }
 
@@ -31,7 +32,6 @@ public class code06 {
         if (rightNum > 0 && rightNum > leftNum){
             process(leftNum, rightNum - 1, res + ")");
         }
-
     }
 
     public static void main(String[] args) {

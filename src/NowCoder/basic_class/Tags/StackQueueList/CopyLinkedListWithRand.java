@@ -28,8 +28,8 @@ public class CopyLinkedListWithRand {
 
         cur = head;
         while (cur != null){
-            map.get(cur).next = map.get(cur.next);
             map.get(cur).rand = map.get(cur.rand);
+            map.get(cur).next = map.get(cur.next);
             cur = cur.next;
         }
 
@@ -65,7 +65,6 @@ public class CopyLinkedListWithRand {
         cur = head;
         Node res = cur.next;
         Node copy = null;
-
         while (cur != null){
             next = cur.next.next;
             copy = cur.next;

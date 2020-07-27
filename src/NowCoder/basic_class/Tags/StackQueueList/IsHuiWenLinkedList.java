@@ -16,19 +16,23 @@ public class IsHuiWenLinkedList {
         if (head == null || head.next == null) {
             return true;
         }
-        Node cur = head;
+
         Stack<Node> stack = new Stack<>();
-        while (cur != null) {
+        Node cur = head;
+
+        while (cur != null){
             stack.push(cur);
             cur = cur.next;
         }
+
         cur = head;
-        while (cur != null) {
-            if (cur.value != stack.pop().value) {
+        while (!stack.isEmpty()){
+            if (stack.pop().value != cur.value){
                 return false;
             }
             cur = cur.next;
         }
+
         return true;
     }
 
@@ -37,47 +41,46 @@ public class IsHuiWenLinkedList {
             return true;
         }
 
-        Node n1 = head.next;
-        Node n2 = head.next.next;
+        Node p1 = head;
+        Node p2 = head.next;
 
-        while (n2.next != null && n2.next.next != null){
-            n1 = n1.next;
-            n2 = n2.next.next;
+        while (p2.next != null && p2.next.next != null){
+            p1 = p1.next;
+            p2 = p2.next.next;
         }
 
-        n2 = n1.next;
-        n1.next = null;
-        Node n3 = null;
+        Node p3 = p1.next;
+        p1.next = null;
 
-        while (n2 != null){
-            n3 = n2.next;
+        while (p3 != null){
+            p2 = p3.next;
 
-            n2.next = n1;
+            p3.next = p1;
 
-            n1 = n2;
-            n2 = n3;
+            p1 = p3;
+            p3 = p2;
         }
 
-        n3 = n1;
-        n2 = head;
+        p3 = p1;
+        p2 = head;
         boolean res = true;
 
-        while (n1 != null && n2 != null){
-            if (n1.value != n2.value){
+        while (p1 != null && p2 != null){
+            if (p1.value != p2.value){
                 res = false;
                 break;
             }
-            n1 = n1.next;
-            n2 = n2.next;
+            p1 = p1.next;
+            p2 = p2.next;
         }
 
-        while (n3 != null){
-            n2 = n3.next;
+        while (p3 != null){
+            p1 = p3.next;
 
-            n3.next = n1;
+            p3.next = p2;
 
-            n1 = n3;
-            n3 = n2;
+            p2 = p3;
+            p3 = p1;
         }
 
         return res;
@@ -99,8 +102,8 @@ public class IsHuiWenLinkedList {
         head.next.next.next.next = new Node(1);
 
         print(head);
-//        System.out.println(method01(head));
-        System.out.println(method02(head));
+        System.out.println(method01(head));
+//        System.out.println(method02(head));
         print(head);
 
     }

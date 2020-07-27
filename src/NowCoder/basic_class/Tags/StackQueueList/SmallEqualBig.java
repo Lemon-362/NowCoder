@@ -14,37 +14,42 @@ public class SmallEqualBig {
         if (head == null) {
             return null;
         }
-        Node cur = head;
-        Node next = null;
+
         int len = 0;
-        while (cur != null) {
+        Node cur = head;
+        while (cur != null){
             len++;
             cur = cur.next;
         }
+
         Node[] nodes = new Node[len];
         cur = head;
-        for (int i = 0; i < len; i++) {
+        for (int i = 0; i < nodes.length; i++) {
             nodes[i] = cur;
             cur = cur.next;
         }
+
         partition(nodes, num);
-        for (int i = 0; i < len - 1; i++) {
+
+        for (int i = 0; i < nodes.length - 1; i++) {
             nodes[i].next = nodes[i + 1];
         }
         nodes[len - 1].next = null;
+
         return nodes[0];
     }
 
-    public static void partition(Node[] nodes, int num) {
+    public static void partition(Node[] nodes, int num){
         int less = -1;
         int more = nodes.length;
         int cur = 0;
-        while (cur < more) {
-            if (nodes[cur].value < num) {
+
+        while (cur < more){
+            if (nodes[cur].value < num){
                 swap(nodes, ++less, cur++);
-            } else if (nodes[cur].value > num) {
+            }else if (nodes[cur].value > num){
                 swap(nodes, --more, cur);
-            } else {
+            }else {
                 cur++;
             }
         }
@@ -56,7 +61,7 @@ public class SmallEqualBig {
         nodes[j] = tmp;
     }
 
-    public static Node method02(Node head, int num) {
+    public static Node method02(Node head, int aim) {
         if (head == null) {
             return null;
         }
@@ -70,56 +75,54 @@ public class SmallEqualBig {
         Node cur = head;
         Node next = null;
 
-        while (cur != null) {
+        while (cur != null){
             next = cur.next;
             cur.next = null;
 
-            if (cur.value < num) {
-                if (sh == null) {
+            if (cur.value < aim){
+                if (sh == null){
                     sh = cur;
                     st = cur;
-                } else {
+                }else {
                     st.next = cur;
-                    st = cur;
+                    st = st.next;
                 }
-            } else if (cur.value > num) {
-                if (bh == null) {
+            }else if (cur.value > aim){
+                if (bh == null){
                     bh = cur;
                     bt = cur;
-                } else {
+                }else {
                     bt.next = cur;
-                    bt = cur;
+                    bt = bt.next;
                 }
-            } else {
-                if (eh == null) {
+            }else {
+                if (eh == null){
                     eh = cur;
                     et = cur;
-                } else {
+                }else {
                     et.next = cur;
-                    et = cur;
+                    et = et.next;
                 }
             }
 
             cur = next;
         }
 
-        if (st != null) {
+        if (st != null){
             st.next = eh;
-            et = et != null ? et : st;
+            et = et == null ? eh : et;
         }
-
-        if (et != null) {
+        if (et != null){
             et.next = bh;
         }
 
-        if (sh != null) {
+        if (sh != null){
             return sh;
-        } else if (eh != null) {
+        }else if (eh != null){
             return eh;
-        } else {
+        }else {
             return bh;
         }
-
     }
 
     public static void printLinkedList(Node head) {

@@ -1,4 +1,4 @@
-package NowCoder.Nowcoder.Tags.LinkedList;
+package NowCoder.Nowcoder.Tags.StackQueueList;
 
 import java.util.ArrayList;
 import java.util.Stack;

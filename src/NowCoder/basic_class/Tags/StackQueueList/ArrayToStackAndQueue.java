@@ -13,6 +13,7 @@ public class ArrayToStackAndQueue {
         public void push(int num){
             if (index == stack.length){
                 System.out.println("栈满");
+                return;
             }
 
             stack[index++] = num;
@@ -21,6 +22,7 @@ public class ArrayToStackAndQueue {
         public Integer pop(){
             if (index == 0){
                 System.out.println("栈空");
+                return null;
             }
 
             return stack[--index];
@@ -29,9 +31,10 @@ public class ArrayToStackAndQueue {
         public Integer peek(){
             if (index == 0){
                 System.out.println("栈空");
+                return null;
             }
 
-            return stack[index-1];
+            return stack[index - 1];
         }
     }
 
@@ -43,33 +46,35 @@ public class ArrayToStackAndQueue {
 
         public ArrayToQueue(int initSize) {
             this.queue = new int[initSize];
-            this.size = 0;
             this.start = 0;
             this.end = 0;
+            this.size = 0;
         }
 
         public void push(int num){
             if (size == queue.length){
                 System.out.println("队列满");
+                return;
             }
-
-            queue[end] = num;
 
             size++;
 
-            end = end == queue.length - 1 ? 0 : end + 1;
+            queue[start] = num;
+
+            start = start == queue.length - 1 ? 0 : start + 1;
         }
 
         public Integer poll(){
             if (size == 0){
                 System.out.println("队列空");
+                return null;
             }
-
-            int res = queue[start];
 
             size--;
 
-            start = start == queue.length - 1 ? 0 : start + 1;
+            int res = queue[end];
+
+            end = end == queue.length - 1 ? 0 : end + 1;
 
             return res;
         }
@@ -77,9 +82,10 @@ public class ArrayToStackAndQueue {
         public Integer peek(){
             if (size == 0){
                 System.out.println("队列空");
+                return null;
             }
 
-            return queue[start];
+            return queue[end];
         }
     }
 

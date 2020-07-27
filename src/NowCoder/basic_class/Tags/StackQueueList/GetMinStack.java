@@ -16,27 +16,32 @@ public class GetMinStack {
             if (minStack.isEmpty()){
                 minStack.push(num);
             }else {
-                if (this.getMin() > num){
+                if (num < this.getMin()){
                     minStack.push(num);
                 }else {
                     minStack.push(this.getMin());
                 }
             }
 
-            this.numStack.push(num);
+            numStack.push(num);
+        }
+
+        public Integer pop(){
+            if (numStack.isEmpty() && minStack.isEmpty()) {
+                return null;
+            }
+
+            minStack.pop();
+
+            return numStack.pop();
         }
 
         public Integer getMin(){
-            if (minStack.isEmpty() && numStack.isEmpty()){
+            if (numStack.isEmpty() && minStack.isEmpty()){
                 return null;
             }else {
                 return minStack.peek();
             }
-        }
-
-        public Integer pop(){
-            minStack.pop();
-            return numStack.pop();
         }
     }
 

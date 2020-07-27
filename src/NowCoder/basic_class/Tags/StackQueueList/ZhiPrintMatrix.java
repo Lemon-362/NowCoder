@@ -12,9 +12,9 @@ public class ZhiPrintMatrix {
         int dC = 0;
         int endR = arr.length;
         int endC = arr[0].length;
-        boolean flag = false;
+        boolean flag = true;
 
-        while (tR < endR) {
+        while (tR < endR && tC < endC){
             print(arr, tR, tC, dR, dC, flag);
             tR = tC == endC - 1 ? tR + 1 : tR;
             tC = tC == endC - 1 ? tC : tC + 1;
@@ -25,13 +25,13 @@ public class ZhiPrintMatrix {
     }
 
     public static void print(int[][] arr, int tR, int tC, int dR, int dC, boolean flag) {
-        if (flag) {
-            while (tR != dR + 1) {
-                System.out.print(arr[tR++][tC--] + " ");
-            }
-        } else {
-            while (dR != tR - 1) {
+        if (flag){
+            while (dR != tR - 1){
                 System.out.print(arr[dR--][dC++] + " ");
+            }
+        }else {
+            while (tR != dR + 1){
+                System.out.print(arr[tR++][tC--] + " ");
             }
         }
     }

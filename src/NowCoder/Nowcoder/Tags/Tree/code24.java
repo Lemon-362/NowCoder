@@ -15,39 +15,38 @@ public class code24 {
         }
     }
 
-    public static List<List<Integer>> res = new ArrayList<>();
-
-   public static List<List<Integer>> findPath(Node head, int aim){
-        if (head == null){
+    public static List<List<Integer>> findPath(Node head, int aim) {
+        if (head == null) {
             return null;
         }
 
         process(head, aim);
 
         return res;
-   }
+    }
 
-   public static List<Integer> list = new ArrayList<>();
+    public static List<List<Integer>> res = new ArrayList<>();
 
-   // 深度优先
-   public static void process(Node head, int aim) {
+    public static List<Integer> list = new ArrayList<>();
+
+    public static void process(Node head, int aim){
         // base case
-       if (head == null){
-           return;
-       }
+        if (head == null){
+            return;
+        }
 
-       list.add(head.value);
-       aim -= head.value;
+        aim -= head.value;
+        list.add(head.value);
 
-       if (aim == 0 && head.left == null && head.right == null){
-           res.add(new ArrayList<>(list));
-       }else {
-           process(head.left, aim);
-           process(head.right, aim);
-       }
+        if (aim == 0 && head.left == null && head.right == null){
+            res.add(new ArrayList<>(list));
+        }else {
+            process(head.left, aim);
+            process(head.right, aim);
+        }
 
-       list.remove(list.size() - 1);
-   }
+        list.remove(list.size() - 1);
+    }
 
     public static void main(String[] args) {
         Node head = new Node(5);

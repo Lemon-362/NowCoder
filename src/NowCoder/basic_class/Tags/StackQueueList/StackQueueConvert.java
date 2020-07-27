@@ -6,8 +6,8 @@ import java.util.Stack;
 
 public class StackQueueConvert {
     public static class QueueToStack {
-        private Queue<Integer> stack;
-        private Queue<Integer> help;
+        public Queue<Integer> stack;
+        public Queue<Integer> help;
 
         public QueueToStack() {
             this.stack = new LinkedList<>();
@@ -19,7 +19,7 @@ public class StackQueueConvert {
         }
 
         public Integer pop(){
-            if (stack.isEmpty()){
+            if (stack.isEmpty() && help.isEmpty()){
                 return null;
             }
 
@@ -35,7 +35,7 @@ public class StackQueueConvert {
         }
 
         public Integer peek(){
-            if (stack.isEmpty()){
+            if (stack.isEmpty() && help.isEmpty()){
                 return null;
             }
 
@@ -51,10 +51,10 @@ public class StackQueueConvert {
             return res;
         }
 
-        public void swap() {
-            Queue<Integer> tmp = stack;
+        public void swap(){
+            Queue<Integer> temp = stack;
             stack = help;
-            help = tmp;
+            help = temp;
         }
     }
 

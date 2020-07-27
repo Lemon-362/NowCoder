@@ -5,24 +5,26 @@ public class RotateMatrix {
         if (arr == null) {
             return;
         }
+
         int tR = 0;
         int tC = 0;
         int dR = arr.length - 1;
         int dC = arr[0].length - 1;
-        while (tR < dR) {
+
+        while (tR <= dR){
             print(arr, tR++, tC++, dR--, dC--);
         }
     }
 
-    public static void print(int[][] arr, int tR, int tC, int dR, int dC) {
-        int time = dR - tR;
-        int tmp = 0;
-        for (int i = 0; i < time; i++) {
-            tmp = arr[tR][tC + i];
+    public static void print(int[][] arr, int tR, int tC, int dR, int dC){
+        int times = dR - tR;
+
+        for (int i = 0; i < times; i++) {
+            int temp = arr[tR][tC + i];
             arr[tR][tC + i] = arr[dR - i][tC];
             arr[dR - i][tC] = arr[dR][dC - i];
             arr[dR][dC - i] = arr[tR + i][dC];
-            arr[tR + i][dC] = tmp;
+            arr[tR + i][dC] = temp;
         }
     }
 

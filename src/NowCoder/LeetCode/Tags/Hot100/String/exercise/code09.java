@@ -19,14 +19,13 @@ public class code09 {
             return s1.length - i;
         }
 
+        // 1
         if (s1[i] == s2[j]){
             return process(s1, s2, i + 1, j + 1);
         }else {
-            // 1
-            int res1 = 1 + process(s1, s2, i + 1, j);
             // 2
+            int res1 = 1 + process(s1, s2, i + 1, j);
             int res2 = 1 + process(s1, s2, i + 1, j + 1);
-            // 3
             int res3 = 1 + process(s1, s2, i, j + 1);
 
             return Math.min(res1, Math.min(res2, res3));
@@ -51,23 +50,32 @@ public class code09 {
 //            return s1.length - i;
 //        }
         dp[s1.length][s2.length] = 0;
-
         for (int j = 0; j < dp[0].length; j++) {
             dp[s1.length][j] = s2.length - j;
         }
-
         for (int i = 0; i < dp.length; i++) {
             dp[i][s2.length] = s1.length - i;
         }
 
+        // 1
+//        if (s1[i] == s2[j]){
+//            return process(s1, s2, i + 1, j + 1);
+//        }else {
+//            // 2
+//            int res1 = 1 + process(s1, s2, i + 1, j);
+//            int res2 = 1 + process(s1, s2, i + 1, j + 1);
+//            int res3 = 1 + process(s1, s2, i, j + 1);
+//
+//            return Math.min(res1, Math.min(res2, res3));
+//        }
         for (int i = s1.length - 1; i >= 0; i--) {
             for (int j = s2.length - 1; j >= 0; j--) {
                 if (s1[i] == s2[j]){
                     dp[i][j] = dp[i + 1][j + 1];
                 }else {
-                    int res1 = dp[i + 1][j] + 1;
-                    int res2 = dp[i + 1][j + 1] + 1;
-                    int res3 = dp[i][j + 1] + 1;
+                    int res1 = 1 + dp[i + 1][j];
+                    int res2 = 1 + dp[i][j + 1];
+                    int res3 = 1 + dp[i + 1][j + 1];
 
                     dp[i][j] = Math.min(res1, Math.min(res2, res3));
                 }

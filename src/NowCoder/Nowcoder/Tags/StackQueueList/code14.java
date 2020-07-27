@@ -1,4 +1,4 @@
-package NowCoder.Nowcoder.Tags.LinkedList;
+package NowCoder.Nowcoder.Tags.StackQueueList;
 
 public class code14 {
     public static class Node {

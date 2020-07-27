@@ -6,49 +6,48 @@ public class code10 {
             return "";
         }
 
-        int[] need = new int[128];
         int[] contain = new int[128];
-
-        for (int i = 0; i < t.length(); i++) {
-            char ch = t.charAt(i);
-            need[ch]++;
-        }
-
-        int l = 0;
-        int r = 0;
-        int len = s.length() + 1;
+        int[] need = new int[128];
+        int L = 0;
+        int R = 0;
         int count = 0;
+        int len = s.length() + 1;
         String res = "";
 
-        while (r < s.length()){
-            char ch = s.charAt(r);
+        for (int i = 0; i < t.length(); i++) {
+            need[t.charAt(i)]++;
+        }
+
+        while (R < s.length()){
+
+            char ch = s.charAt(R);
 
             contain[ch]++;
 
-            if (need[ch] > 0 && contain[ch] <= need[ch]){
+            if (need[ch] != 0 && contain[ch] <= need[ch]){
                 count++;
             }
 
             if (count == t.length()){
-                while (l <= r && count == t.length()){
-                    if (len > r - l + 1){
-                        len = r - l + 1;
-                        res = s.substring(l, r + 1);
+                while (L <= R && count == t.length()){
+                    if (len > (R - L + 1)){
+                        len = R - L + 1;
+                        res = s.substring(L, R + 1);
                     }
 
-                    char chh = s.charAt(l);
+                    char chh = s.charAt(L);
 
-                    if (need[chh] > 0 && contain[chh] == need[chh]){
+                    if (need[chh] != 0 && need[chh] == contain[chh]){
                         count--;
                     }
 
                     contain[chh]--;
 
-                    l++;
+                    L++;
                 }
             }
 
-            r++;
+            R++;
         }
 
         return len == s.length() + 1 ? "" : res;

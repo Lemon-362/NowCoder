@@ -11,21 +11,21 @@ public class PrintMatrixSpiralOrder {
         int dR = arr.length - 1;
         int dC = arr[0].length - 1;
 
-        while (tR <= dR && tC <= dC) {
+        while (tR <= dR && tC <= dC){
             print(arr, tR++, tC++, dR--, dC--);
         }
     }
 
-    public static void print(int[][] arr, int tR, int tC, int dR, int dC) {
-        if (tR == dR) {
+    public static void print(int[][] arr, int tR, int tC, int dR, int dC){
+        if (tR == dR){
             for (int i = tC; i <= dC; i++) {
                 System.out.print(arr[tR][i] + " ");
             }
-        } else if (tC == dC) {
+        }else if (tC == dC){
             for (int i = tR; i <= dR; i++) {
                 System.out.print(arr[i][tC] + " ");
             }
-        } else {
+        }else {
             int curR = tR;
             int curC = tC;
             while (curC < dC){

@@ -1,51 +1,63 @@
 package Concurrency;
 
+import org.junit.Test;
+
+import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.CyclicBarrier;
 
 public class CountDownLatchTest {
 
+//    public static void main(String[] args) {
+//
+//        final CountDownLatch latch = new CountDownLatch(10);
+//        for (int i = 0; i < 10; i++) {
+//            //lambda中只能只用final的变量
+//            final int times = i;
+//            new Thread(() -> {
+//                try {
+//                    System.out.println("子线程" + Thread.currentThread().getName() + "正在赶路");
+//                    Thread.sleep(1000 * times);
+//                    System.out.println("子线程" + Thread.currentThread().getName() + "到公司了");
+//                    //调用latch的countDown方法使计数器-1
+//                    latch.countDown();
+//                    System.out.println("子线程" + Thread.currentThread().getName() + "开始工作");
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }).start();
+//        }
+//
+//
+//        try {
+//            System.out.println("门卫等待员工上班中...");
+//            //主线程阻塞等待计数器归零
+//            latch.await();
+//            System.out.println("员工都来了,门卫去休息了");
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     public static void main(String[] args) {
 
-        final CountDownLatch latch = new CountDownLatch(2);
-
-        new Thread(){
-            @Override
-            public void run() {
-                System.out.println("子线程"+Thread.currentThread().getName()+"正在执行");
+        final CyclicBarrier cyclicBarrier = new CyclicBarrier(10,()->{
+            System.out.println("所有人都准备好了裁判开始了");
+        });
+        for (int i = 0; i < 10; i++) {
+            // lambda中只能只用final的变量
+            final int times = i;
+            new Thread(() -> {
                 try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
+                    System.out.println("子线程" + Thread.currentThread().getName() + "正在准备");
+                    Thread.sleep(1000 * times);
+                    System.out.println("子线程" + Thread.currentThread().getName() + "准备好了");
+                    cyclicBarrier.await();
+                    System.out.println("子线程" + Thread.currentThread().getName() + "开始跑了");
+                } catch (InterruptedException | BrokenBarrierException e) {
                     e.printStackTrace();
                 }
-                System.out.println("子线程"+Thread.currentThread().getName()+"执行完毕");
-                // 计数器 - 1
-                latch.countDown();
-            }
-        }.start();
-
-        new Thread(){
-            @Override
-            public void run() {
-                System.out.println("子线程"+Thread.currentThread().getName()+"正在执行");
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("子线程"+Thread.currentThread().getName()+"执行完毕");
-                // 计数器 - 1
-                latch.countDown();
-            }
-        }.start();
-
-        System.out.println("等待2个子线程执行完毕。。。");
-        try {
-            latch.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            }).start();
         }
-        System.out.println("2个子线程已经执行完毕");
-        System.out.println("继续执行主线程");
-
     }
 }

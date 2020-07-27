@@ -13,6 +13,7 @@ public class code07 {
         int len = 0;
 
         while (L < s.length()){
+
             if (s.charAt(L) == '('){
                 R = L;
                 while (R < s.length()){
@@ -61,7 +62,9 @@ public class code07 {
         int len = 0;
 
         for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '(') {
+            char ch = s.charAt(i);
+
+            if (ch == '('){
                 stack.push(i);
             }else {
                 stack.pop();
