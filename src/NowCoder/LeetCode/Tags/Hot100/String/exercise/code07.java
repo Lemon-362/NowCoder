@@ -16,14 +16,18 @@ public class code07 {
 
             if (s.charAt(L) == '('){
                 R = L;
+
                 while (R < s.length()){
+
                     if ((R - L + 1) % 2 == 0 && s.charAt(R) == ')'){
-                        if (isValid(s, L, R)){
+                        if (isValid(s, L, R)) {
                             len = Math.max(len, R - L + 1);
                         }
                     }
+
                     R++;
                 }
+
             }
 
             L++;
@@ -32,15 +36,17 @@ public class code07 {
         return len;
     }
 
-    public static boolean isValid(String s, int L, int R){
+    public static boolean isValid(String s, int l, int r){
+
         Stack<Character> stack = new Stack<>();
 
-        for (int i = L; i <= R; i++) {
+        for (int i = l; i <= r; i++) {
             char ch = s.charAt(i);
 
             if (ch == '('){
                 stack.push(')');
             }else {
+
                 if (!stack.isEmpty() && stack.peek() == ch){
                     stack.pop();
                 }else {
@@ -49,7 +55,7 @@ public class code07 {
             }
         }
 
-        return stack.isEmpty();
+        return true;
     }
 
     public static int longestValidParentheses2(String s){

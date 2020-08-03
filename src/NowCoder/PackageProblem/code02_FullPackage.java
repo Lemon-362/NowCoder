@@ -55,7 +55,31 @@ public class code02_FullPackage {
             对于当前第i个物品, 可以取0个,1个,..., 只要满足取了之后的体积小于当前状态总体积j
 
      */
-    public static void process1(int[] v, int[] w, int N, int V){
+    // 最初版本: 二维数组, 01背包最初版本 + 无限次选择
+    public static int process1(int[] v, int[] w, int N, int V){
+
+        int[][] dp = new int[N + 1][V + 1];
+
+        dp[0][0] = 0;
+
+        for (int i = 1; i <= N; i++) {
+            for (int j = 0; j <= V; j++) {
+                // 1
+                dp[i][j] = dp[i - 1][j];
+                // 2
+                if (j >= v[i]){
+                    for (int k = 0; k * v[i] <= j; k++) {
+                        dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - k * v[i]] + k * w[i]);
+                    }
+                }
+            }
+        }
+
+        return dp[N][V];
+    }
+
+    // 优化1: 一维数组, 01背包的优化 + 无限次选择
+    public static int process2(int[] v, int[] w, int N, int V){
 
         int[] dp = new int[V + 1];
 
@@ -63,6 +87,7 @@ public class code02_FullPackage {
 
         for (int i = 1; i <= N; i++) {
             for (int j = V; j >= v[i]; j--) { // 第i个物品的所有状态体积
+                // TODO 只有在j>=v[i], 才能选第i个物品
                 // 每次更新当前状态下的最大价值
                 for (int k = 0; k * v[i] <= j; k++) { // 对于第i个物品, 可以选0个,1个,...
                     // 当选择1个的时候, 依赖的是前i-1个物品, 总体积是j-v[i]的结果
@@ -72,23 +97,8 @@ public class code02_FullPackage {
             }
         }
 
-        System.out.println(dp[V]);
+        return dp[V];
     }
-
-    /*
-    总结:
-        处理第i个物品时, 完全背包问题的模板
-            for j: V -> v[i]
-                for k: 0 -> k*v[i]<=j
-                    f[j]=max(f[j], f[j-k*v[i]] + k*w[i])
-
-        完全背包问题
-            for i: 1 -> N
-                for j: V -> v[i]
-                    for k: 0 -> k*v[i]<=j
-                        f[j]=max(f[j], f[j-k*v[i]] + k*w[i])
-
-     */
 
     /*
     优化方法:
@@ -109,7 +119,8 @@ public class code02_FullPackage {
             }
 
      */
-    public static void process2(int[] v, int[] w, int N, int V){
+    // 优化2:
+    public static int process3(int[] v, int[] w, int N, int V){
 
         int[] dp = new int[V + 1];
 
@@ -117,14 +128,45 @@ public class code02_FullPackage {
 
         for (int i = 1; i <= N; i++) {
             for (int j = v[i]; j <= V; j++) {
+                /*
+                当采用正序计算时, dp[j]表示的是当前第i个物品,j体积时的价值
+                而不是01背包的第i-1个物品的价值
+                所以, 从前往后可以确保 dp[j-v[i]] 选择的是第i个物品(本次循环), 而不是第i-1个物品(上一次循环)
+                 */
                 dp[j] = Math.max(dp[j], dp[j - v[i]] + w[i]);
             }
         }
 
-        System.out.println(dp[V]);
+        return dp[V];
     }
 
+    /*
+    总结:
+        (1) 01背包 完全背包的状态转移方程
+            f[j] = max{f[j], f[j - v[i]] + w[i]}
+
+        (2) 区别
+        - 01背包:
+            内层循环从后往前计算, 用的是上一次的结果
+            for (int i = 1; i <= N; i++) {
+                for (int j = V; j >= v[i]; j--) {
+                    dp[j] = Math.max(dp[j], dp[j - v[i]] + w[i]);
+                }
+            }
+
+        - 完全背包:
+            内层循环从前往后计算, 用的是当前i物品的结果, 所以可以重复多次使用
+            for (int i = 1; i <= N; i++) {
+                for (int j = v[i]; j <= V; j++) {
+                    dp[j] = Math.max(dp[j], dp[j - v[i]] + w[i]);
+                }
+            }
+
+     */
+
     public static void main(String[] args) {
+        // Scanner
+        /*
         // 读入数据的代码
         Scanner sc = new Scanner(System.in);
         // 物品的数量为N
@@ -143,9 +185,20 @@ public class code02_FullPackage {
         }
         sc.close();
 
-        process1(v, w, N, V); // 10
+         System.out.println(process1(v, w, N, V));
 
-//        process2(v, w, N, V);
+//       System.out.println(process2(v, w, N, V));
+         */
+
+        int N = 4;
+        int V = 5;
+        // TODO 如果是Scanner, 那么要将v和w数组定义成N+1长度, 从1位置开始接收值
+        int[] v = {0, 1, 2, 3, 4};
+        int[] w = {0, 2, 4, 4, 5};
+
+        System.out.println(process1(v, w, N, V)); // 10
+        System.out.println(process2(v, w, N, V)); // 10
+        System.out.println(process3(v, w, N, V)); // 10
     }
 
 /*

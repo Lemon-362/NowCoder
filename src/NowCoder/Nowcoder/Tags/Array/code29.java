@@ -1,9 +1,9 @@
-package NowCoder.advanced_class.Tags.BFPRT;
+package NowCoder.Nowcoder.Tags.Array;
 
-public class code06 {
+public class code29 {
     public static class getMinNumByHeap {
         public static int[] getMinByHeap(int[] arr, int k) {
-            if (arr == null || arr.length < 1 || k < 1) {
+            if (arr == null || arr.length < 1 || k > arr.length) {
                 return null;
             }
 
@@ -41,7 +41,6 @@ public class code06 {
             heap[index] = num;
             while (heap[index] > heap[(index - 1) / 2]) {
                 swap(heap, index, (index - 1) / 2);
-                index = (index - 1) / 2;
             }
         }
 
@@ -54,7 +53,7 @@ public class code06 {
 
     public static class getMinNumByBFPRT {
         public static int[] getMinByBFPRT(int[] arr, int k) {
-            if (arr == null || arr.length < 1 || k < 1) {
+            if (arr == null || arr.length < 1 || k > arr.length) {
                 return null;
             }
 
@@ -74,24 +73,6 @@ public class code06 {
             }
 
             return res;
-        }
-
-        public static int[] partition(int[] arr, int l, int r, int num) {
-            int less = l - 1;
-            int more = r + 1;
-            int cur = l;
-
-            while (cur < more) {
-                if (arr[cur] < num) {
-                    swap(arr, ++less, cur++);
-                } else if (arr[cur] > num) {
-                    swap(arr, --more, cur);
-                } else {
-                    cur++;
-                }
-            }
-
-            return new int[]{less + 1, more - 1};
         }
 
         public static int getKthMinNum(int[] arr, int k) {
@@ -119,6 +100,23 @@ public class code06 {
             }
         }
 
+        public static int[] partition(int[] arr, int l, int r, int num) {
+            int less = l - 1;
+            int more = r + 1;
+            int cur = l;
+            while (cur < more) {
+                if (arr[cur] < num) {
+                    swap(arr, ++less, cur++);
+                } else if (arr[cur] > num) {
+                    swap(arr, --more, cur);
+                } else {
+                    cur++;
+                }
+            }
+
+            return new int[]{less + 1, more - 1};
+        }
+
         public static int medianInMedians(int[] arr, int l, int r) {
             int len = r - l + 1;
             int offset = len % 5 == 0 ? 0 : 1;
@@ -139,23 +137,24 @@ public class code06 {
         }
 
         public static int getMedian(int[] arr, int l, int r) {
-            insertSort(arr, l, r);
+            selectSort(arr, l, r);
             int mid = (l + r) >> 1;
-
             return arr[mid];
         }
 
-        public static void insertSort(int[] arr, int l, int r) {
-            for (int i = l + 1; i <= r; i++) {
-                for (int j = i - 1; j >= 0 && arr[j] > arr[j + 1]; j--) {
-                    swap(arr, j, j + 1);
+        public static void selectSort(int[] arr, int l, int r) {
+            for (int i = l; i <= r; i++) {
+                int minIndex = i;
+                for (int j = i + 1; j <= r; j++) {
+                    minIndex = arr[minIndex] > arr[j] ? j : minIndex;
                 }
+                swap(arr, i, minIndex);
             }
         }
 
         public static int[] copyArray(int[] arr) {
             int[] res = new int[arr.length];
-            for (int i = 0; i < res.length; i++) {
+            for (int i = 0; i < arr.length; i++) {
                 res[i] = arr[i];
             }
             return res;
@@ -172,7 +171,7 @@ public class code06 {
         if (arr == null) {
             return;
         }
-        for (int i = arr.length - 1; i >= 0; i--) {
+        for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }
         System.out.println();
@@ -190,11 +189,11 @@ public class code06 {
 
     public static void main(String[] args) {
         int[] arr = {6, 9, 1, 3, 1, 2, 2, 5, 6, 1, 3, 5, 9, 7, 2, 5, 6, 1, 9};
-        // 5 3 2 3 1 1 2 2 1 1
-        printArrayByHeap(getMinNumByHeap.getMinByHeap(arr, 10)); // 1 1 2 2 1 1 3 2 3 5
+        printArrayByHeap(getMinNumByHeap.getMinByHeap(arr, 10)); // 5 3 2 3 1 1 2 2 1 1
         printArrayByBFPRT(getMinNumByBFPRT.getMinByBFPRT(arr, 10)); // 1 3 1 2 2 1 3 2 1 5
+
         int[] arr2 = {3, 2, 1, 5, 4, 7};
-        printArrayByHeap(getMinNumByHeap.getMinByHeap(arr2, 3)); // 1 2 3
+        printArrayByHeap(getMinNumByHeap.getMinByHeap(arr2, 3)); // 3 2 1
         printArrayByBFPRT(getMinNumByBFPRT.getMinByBFPRT(arr2, 3)); // 2 1 3
     }
 }

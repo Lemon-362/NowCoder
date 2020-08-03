@@ -2,8 +2,6 @@ package InputAndOutput;
 
 import java.util.*;
 
-import static java.util.Arrays.compare;
-
 public class test {
     static int m;
     public static void main(String[] args) {

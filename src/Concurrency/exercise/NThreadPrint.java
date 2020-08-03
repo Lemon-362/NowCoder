@@ -1,6 +1,7 @@
 package Concurrency.exercise;
 
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class NThreadPrint {
 
@@ -17,11 +18,11 @@ public class NThreadPrint {
      *  3. 上一个信号量是i-1，而对于i==0，则是最后一个信号量
      *
      */
-    private static int result = 0;
+    private static final AtomicInteger value = new AtomicInteger(0);
 
     public static void main(String[] args) throws InterruptedException {
 
-        int N = 3;
+        int N = 2;
 
         Thread[] threads = new Thread[N];
 
@@ -42,7 +43,8 @@ public class NThreadPrint {
         // 遍历信号量数组，首先持有上一个信号量，然后打印，最后释放当前信号量
         for (int i = 0; i < N; i++) {
             // 上一个线程的信号量
-            final Semaphore lastSemaphore = i == 0 ? syncObjects[N - 1] : syncObjects[i - 1];
+            final Semaphore lastSemaphore = i == 0 ? syncObjects[N - 1] :
+                    syncObjects[i - 1];
             // 当前线程的信号量
             final Semaphore curSemaphore = syncObjects[i];
             // 当前线程号
@@ -56,9 +58,10 @@ public class NThreadPrint {
                             // 持有上一个信号量的许可，上一个许可-1
                             lastSemaphore.acquire();
 
-                            System.out.println("thread" + index + ": " + result++);
+                            System.out.println("thread" + index + ": " +
+                                    value.getAndIncrement());
 
-                            if (result > 100) {
+                            if (value.get() > 10) {
                                 System.exit(0);
                             }
 

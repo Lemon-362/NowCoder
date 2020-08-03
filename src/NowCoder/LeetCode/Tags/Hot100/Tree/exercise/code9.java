@@ -14,32 +14,32 @@ public class code9 {
         }
     }
 
-    public static void flattenToList1(Node head){
-        if (head == null){
+    public static void flattenToList1(Node head) {
+        if (head == null) {
             return;
         }
 
         process(head);
     }
 
-    public static void process(Node head){
+    public static void process(Node head) {
         // base case
-        if (head == null){
+        if (head == null) {
             return;
         }
 
         process(head.left);
         process(head.right);
 
-        Node temp = head.right;
+        Node right = head.right;
         head.right = head.left;
         head.left = null;
 
-        while (head.right != null){
+        while (head.right != null) {
             head = head.right;
         }
 
-        head.right = temp;
+        head.right = right;
     }
 
     public static void flattenToList2(Node head) {
@@ -49,11 +49,12 @@ public class code9 {
 
         Node cur = head;
 
-        while (cur != null){
-            if (cur.left != null){
+        while (cur != null) {
+            if (cur.left != null) {
+
                 Node left = cur.left;
 
-                while (left.right != null){
+                while (left.right != null) {
                     left = left.right;
                 }
 

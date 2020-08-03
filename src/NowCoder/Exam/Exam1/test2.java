@@ -1,4 +1,4 @@
-package NowCoder;
+package NowCoder.Exam.Exam1;
 
 import java.util.Scanner;
 import java.util.Stack;

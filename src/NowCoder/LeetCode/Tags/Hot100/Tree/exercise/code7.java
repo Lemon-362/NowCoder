@@ -138,7 +138,7 @@ public class code7 {
         printTree(head1);
         printTree(head2);
 
-        Node head = mergeTrees1(head1, head2);
+        Node head = mergeTrees2(head1, head2);
         printTree(head);
 
     }

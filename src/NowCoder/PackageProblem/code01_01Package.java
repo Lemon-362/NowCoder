@@ -61,7 +61,7 @@ public class code01_01Package {
          6. 时间复杂度: O(N*V)
             空间复杂度: O(N*V)
      */
-    public static void process1(int[] v, int[] w, int N, int V){
+    public static int process1(int[] v, int[] w, int N, int V){
         /*
             定义一个二阶矩阵dp[N+1][V+1],
             这里之所以要N+1和V+1，是因为第0行表示只能选择第0个物品的时候，即没有物品的时候
@@ -87,16 +87,22 @@ public class code01_01Package {
 
         for (int i = 1; i <= N; i++) { // 遍历N个物品
             for (int j = 0; j <= V; j++) { // 遍历当前物品的每个状态
-                if (j >= v[i]) { // 如果选择第i个物品, 那么潜在含义就是第i个物品的体积是小于总体积j的
-                    // 如果大于的话, 选择了第i个物品, 那么剩下的体积是j - v[i], 是小于0的
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - v[i]] + w[i]);
-                } else {
-                    dp[i][j] = dp[i - 1][j];
+                // 1
+                dp[i][j] = dp[i - 1][j];
+                // 2
+                if (j >= v[i]){
+                    dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - v[i]] + w[i]);
                 }
             }
         }
 
-        System.out.println(dp[N][V]);
+//        int res = 0;
+//        for (int j = 0; j < dp[0].length; j++) {
+//            res = Math.max(res, dp[N][j]);
+//        }
+//
+//        return res;
+        return dp[N][V];
     }
 
     /*
@@ -127,21 +133,36 @@ public class code01_01Package {
             每次依赖前面的旧值, 更新后面成新值
 
      */
-    public static void process2(int[] v, int[] w, int N, int V){
+    public static int process2(int[] v, int[] w, int N, int V){
         // 只记录当前第i个物品的每个状态
         int[] dp = new int[V + 1];
 
         dp[0] = 0;
 
         for (int i = 1; i <= N; i++) { // 遍历N个物品
-            for (int j = V; j >= v[i]; j--) { // 遍历当前物品的每个状态
-                // 仅在当前总体积j >= 当前物品的体积时, 才更新
-                // TODO 可以将else的判断移除掉了, 因为这里进行判断的时候就是和其前一个物品的状态在进行判断
+//            for (int j = V; j >= 0; j--) { // 遍历当前物品的每个状态
+//                // 1
+//                dp[j] = dp[j];
+//                // 2 仅在当前总体积j >= 当前物品的体积v[i]时, 才更新
+//                // TODO 可以将else的判断移除掉了, 因为这里进行判断的时候就是和其前一个物品的状态在进行判断
+//                if (j >= v[i]) {
+//                    dp[j] = Math.max(dp[j], dp[j - v[i]] + w[i]);
+//                }
+//            }
+            // 优化, 由于dp[j]此时记录的是i-1的状态, 所以只需要在循环的条件来判断
+            // 如果 j>=v[i], 那么我们才进入循环更新dp[j]的值(可能2), 否则就是 dp[j]原来的值(可能1)
+            for (int j = V; j >= v[i]; j--) { // TODO 进入循环表示一定要选择第i个物品
                 dp[j] = Math.max(dp[j], dp[j - v[i]] + w[i]);
             }
         }
 
-        System.out.println(dp[V]);
+//        int res = 0;
+//        for (int j = 0; j < dp.length; j++) {
+//            res = Math.max(res, dp[j]);
+//        }
+//
+//        return res;
+        return dp[V];
     }
 
     /*
@@ -161,6 +182,8 @@ public class code01_01Package {
      */
 
     public static void main(String[] args) {
+
+        /*
         // 读入数据的代码
         Scanner sc = new Scanner(System.in);
         // 物品的数量为N
@@ -179,9 +202,18 @@ public class code01_01Package {
         }
         sc.close();
 
-        process1(v, w, N, V); // 8
+        System.out.println(process1(v, w, N, V));
 
-//        process2(v, w, N, V);
+//       System.out.println(process2(v, w, N, V));
+         */
+
+        int N = 4;
+        int V = 5;
+        // TODO 如果是Scanner, 那么要将v和w数组定义成N+1长度, 从1位置开始接收值
+        int[] v = {0, 1, 2, 3, 4};
+        int[] w = {0, 2, 4, 4, 5};
+
+        System.out.println(process1(v, w, N, V)); // 8
     }
 
 }

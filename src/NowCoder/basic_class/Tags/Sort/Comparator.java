@@ -22,8 +22,8 @@ public class Comparator {
 //            SelectionSort.selectionSort(arr);
 //            InsertionSort.insertionSort(arr);
 //            MergeSort.mergeSort(arr);
-            QuickSort.quickSort(arr);
-//            HeapSort.heapSort(arr);
+//            QuickSort.quickSort(arr);
+            HeapSort.heapSort(arr);
             // 比较
             if (!comparator(arr, newArr)) {
                 flag = false;
@@ -42,8 +42,8 @@ public class Comparator {
 //        SelectionSort.selectionSort(arr);
 //        InsertionSort.insertionSort(arr);
 //        MergeSort.mergeSort(arr);
-        QuickSort.quickSort(arr);
-//        HeapSort.heapSort(arr);
+//        QuickSort.quickSort(arr);
+        HeapSort.heapSort(arr);
         // 打印排序后的数组
         printArr(arr);
     }

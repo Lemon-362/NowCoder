@@ -25,17 +25,18 @@ public class code10 {
 
     public static int process(Node head){
         // base case
-        if (head == null) {
+        if (head == null){
             return 0;
         }
 
-        int leftSum = Math.max(0, process(head.left));
-        int rightSum = Math.max(0, process(head.right));
+        int left = Math.max(0, process(head.left));
+        int right = Math.max(0, process(head.right));
 
-        int maxSum = leftSum + rightSum + head.value;
-        res = Math.max(res, maxSum);
+        int maxValue = left + right + head.value;
 
-        return Math.max(leftSum, rightSum) + head.value;
+        res = Math.max(res, maxValue);
+
+        return Math.max(left, right) + head.value;
     }
 
     public static void main(String[] args) {

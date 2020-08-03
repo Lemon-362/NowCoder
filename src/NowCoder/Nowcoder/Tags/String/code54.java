@@ -5,7 +5,7 @@ public class code54 {
 
     public int index;
 
-    public code54(){
+    public code54() {
         for (int i = 0; i < arr.length; i++) {
             arr[i] = -1;
         }
@@ -21,17 +21,18 @@ public class code54 {
             arr[ch] = -2;
         }
 
-        index++;
+        this.index++;
     }
 
     public char getChar(){
-        int indexx = Integer.MAX_VALUE;
+
         char res = ' ';
+        int indexx = Integer.MAX_VALUE;
 
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] >= 0 && indexx > arr[i]){
-                res = (char) i;
                 indexx = arr[i];
+                res = (char) i;
             }
         }
 

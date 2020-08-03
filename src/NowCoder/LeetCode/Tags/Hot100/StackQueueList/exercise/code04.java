@@ -24,15 +24,15 @@ public class code04 {
             return null;
         }
 
-        Node newHead = new Node(Integer.MIN_VALUE);
-        Node cur = newHead;
-
         PriorityQueue<Node> pQ = new PriorityQueue<>(new Comparator<Node>() {
             @Override
             public int compare(Node o1, Node o2) {
                 return o1.value - o2.value;
             }
         });
+
+        Node newHead = new Node(Integer.MIN_VALUE);
+        Node cur = newHead;
 
         for (int i = 0; i < nodes.length; i++) {
             pQ.add(nodes[i]);
@@ -44,15 +44,12 @@ public class code04 {
             cur.next = node;
             cur = cur.next;
 
-            if (node.next != null) {
+            if (node.next != null){
                 pQ.add(node.next);
             }
         }
 
-        Node res = newHead.next;
-        newHead.next = null;
-
-        return res;
+        return newHead.next;
     }
 
     public static Node mergeKLists2(Node[] nodes){
@@ -60,10 +57,10 @@ public class code04 {
             return null;
         }
 
-        return mergerKLists(nodes, 0, nodes.length - 1);
+        return mergeKLists(nodes, 0, nodes.length - 1);
     }
 
-    public static Node mergerKLists(Node[] nodes, int l, int r){
+    public static Node mergeKLists(Node[] nodes, int l, int r){
         // base case
         if (l == r){
             return nodes[l];
@@ -71,13 +68,14 @@ public class code04 {
 
         int mid = (l + r) >> 1;
 
-        Node left = mergerKLists(nodes, l, mid);
-        Node right = mergerKLists(nodes, mid + 1, r);
+        Node left = mergeKLists(nodes, l, mid);
+        Node right = mergeKLists(nodes, mid + 1, r);
 
-        return mergeTwoLists(left, right);
+        return merge(left, right);
     }
 
-    public static Node mergeTwoLists(Node head1, Node head2){
+    public static Node merge(Node head1, Node head2){
+        // base case
         if (head1 == null && head2 == null){
             return null;
         }else if (head1 == null){
@@ -90,10 +88,10 @@ public class code04 {
 
         if (head1.value < head2.value){
             head = head1;
-            head.next = mergeTwoLists(head1.next, head2);
+            head.next = merge(head1.next, head2);
         }else {
             head = head2;
-            head.next = mergeTwoLists(head1, head2.next);
+            head.next = merge(head1, head2.next);
         }
 
         return head;

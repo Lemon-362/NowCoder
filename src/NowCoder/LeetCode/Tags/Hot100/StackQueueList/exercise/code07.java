@@ -36,10 +36,10 @@ public class code07 {
         Node left = mergeSort(head);
         Node right = mergeSort(next);
 
-        return mergeTwoLists(left, right);
+        return merge(left, right);
     }
 
-    public static Node mergeTwoLists(Node head1, Node head2){
+    public static Node merge(Node head1, Node head2){
         // base case
         if (head1 == null && head2 == null){
             return null;
@@ -50,19 +50,20 @@ public class code07 {
         }
 
         Node head = null;
+
         if (head1.value < head2.value){
             head = head1;
-            head.next = mergeTwoLists(head1.next, head2);
+            head.next = merge(head1.next, head2);
         }else {
             head = head2;
-            head.next = mergeTwoLists(head1, head2.next);
+            head.next = merge(head1, head2.next);
         }
 
         return head;
     }
 
     public static Node findMidNode(Node head){
-        if (head == null || head.next == null){
+        if (head == null){
             return null;
         }
 

@@ -1,8 +1,22 @@
 package NowCoder.advanced_class.Tags.Manacher;
 
-public class code05 {
-    public static String shortestEnd(String s) {
-        if (s == null || s.length() < 1) {
+/*
+    Manacher应用：
+		只在字符串后添加字符，如何添加使得整个字符串形成回文，并且添加的个数最少？
+		返回需要添加的字符
+
+
+	解法：
+	    改进最长回文右边界，当右边界到达字符串末尾时，
+	    一定是从某一位置开始到字符串末尾都是回文，此时添加的个数是最少的。
+	    记录此时的回文半径，并break。
+	    然后，在后面添加回文之前的逆序
+	    TODO 就算到达右边界时没有回文，单独的一个字符也可以形成回文，
+	        所以在到达右边界时计算最长回文子串长度，一定是有值的
+ */
+public class code05_Manacher_ShortestEnd {
+    public static String shortestEnd(String s){
+        if (s == null || s.length() < 1){
             return null;
         }
 
@@ -14,7 +28,8 @@ public class code05 {
 
         for (int i = 0; i < str.length; i++) {
             pArr[i] = R > i ? Math.min(R - i, pArr[2 * C - i]) : 1;
-            while (i - pArr[i] > -1 && i + pArr[i] < str.length) {
+
+            while (i + pArr[i] < str.length && i - pArr[i] > -1) {
                 if (str[i + pArr[i]] == str[i - pArr[i]]) {
                     pArr[i]++;
                 } else {
@@ -27,7 +42,7 @@ public class code05 {
                 C = i;
             }
 
-            if (R == str.length) {
+            if (R == str.length){
                 len = pArr[i] - 1;
                 break;
             }
@@ -35,13 +50,13 @@ public class code05 {
 
         StringBuilder sb = new StringBuilder();
         for (int i = s.length() - len - 1; i >= 0; i--) {
-            sb.append(s.substring(i, i + 1));
+            sb.append(s.charAt(i));
         }
 
         return sb.toString();
     }
 
-    public static char[] manacherString(String s) {
+    public static char[] manacherString(String s){
         char[] str = s.toCharArray();
         char[] res = new char[2 * str.length + 1];
         int index = 0;
@@ -54,7 +69,7 @@ public class code05 {
     }
 
     public static void main(String[] args) {
-        String str2 = "abcd1234321";
+        String str2 = "abcd123321";
         System.out.println(shortestEnd(str2)); // dcba
     }
 }

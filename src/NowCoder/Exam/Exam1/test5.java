@@ -1,4 +1,4 @@
-package NowCoder;
+package NowCoder.Exam.Exam1;
 
 public class test5 {
 

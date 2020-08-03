@@ -8,18 +8,18 @@ public class code10 {
 
         int[] contain = new int[128];
         int[] need = new int[128];
-        int L = 0;
-        int R = 0;
-        int count = 0;
-        int len = s.length() + 1;
-        String res = "";
 
         for (int i = 0; i < t.length(); i++) {
             need[t.charAt(i)]++;
         }
 
-        while (R < s.length()){
+        int count = 0;
+        int len = s.length() + 1;
+        String res = "";
+        int L = 0;
+        int R = 0;
 
+        while (R < s.length()){
             char ch = s.charAt(R);
 
             contain[ch]++;
@@ -30,18 +30,18 @@ public class code10 {
 
             if (count == t.length()){
                 while (L <= R && count == t.length()){
-                    if (len > (R - L + 1)){
+                    if (len > R - L + 1){
                         len = R - L + 1;
                         res = s.substring(L, R + 1);
                     }
 
-                    char chh = s.charAt(L);
+                    ch = s.charAt(L);
 
-                    if (need[chh] != 0 && need[chh] == contain[chh]){
+                    if (need[ch] != 0 && need[ch] == contain[ch]){
                         count--;
                     }
 
-                    contain[chh]--;
+                    contain[ch]--;
 
                     L++;
                 }
