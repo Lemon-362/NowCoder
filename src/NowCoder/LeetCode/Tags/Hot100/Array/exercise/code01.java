@@ -2,6 +2,14 @@ package NowCoder.LeetCode.Tags.Hot100.Array.exercise;
 
 import java.util.HashMap;
 
+/*
+169. 多数元素
+    给定一个大小为 n 的数组，找到其中的多数元素。
+    多数元素是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。
+    你可以假设数组是非空的，并且给定的数组总是存在多数元素。
+
+TODO 剑指Offer的code28_MoreThanHalfNum
+ */
 public class code01 {
     /*
     方法一: HashMap记录出现次数
@@ -17,16 +25,16 @@ public class code01 {
         HashMap<Integer, Integer> map = new HashMap<>();
 
         for (int i = 0; i < arr.length; i++) {
-            if (!map.containsKey(arr[i])) {
+            if (!map.containsKey(arr[i])){
                 map.put(arr[i], 1);
-            } else {
+            }else {
                 int times = map.get(arr[i]) + 1;
 
-                if (times > arr.length / 2) {
+                if (times > arr.length / 2){
                     return arr[i];
+                }else {
+                    map.put(arr[i], times);
                 }
-
-                map.put(arr[i], times);
             }
         }
 
@@ -47,25 +55,25 @@ public class code01 {
             return 0;
         }
 
-        int res = arr[0];
         int times = 1;
+        int res = arr[0];
 
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == res) {
+            if (res == arr[i]){
                 times++;
-            } else {
+            }else {
                 times--;
 
-                if (times == 0) {
-                    times = 1;
+                if (times == 0){
                     res = arr[i];
+                    times = 1;
                 }
             }
         }
 
         times = 0;
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == res) {
+            if (arr[i] == res){
                 times++;
             }
         }
@@ -87,7 +95,7 @@ public class code01 {
 
         int times = 0;
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == res) {
+            if (arr[i] == res){
                 times++;
             }
         }
@@ -95,36 +103,36 @@ public class code01 {
         return times > arr.length / 2 ? res : 0;
     }
 
-    public static int bfprt(int[] arr, int l, int r, int k) {
+    public static int bfprt(int[] arr, int l, int r, int k){
         // base case
-        if (l == r) {
+        if (l == r){
             return arr[l];
         }
 
         int num = medianInMedians(arr, l, r);
 
-        int[] p = partition(arr, l, r, num);
+        int[] p = partition(arr,l ,r ,num);
 
-        if (k >= p[0] && k <= p[1]) {
+        if (k >= p[0] && k <= p[1]){
             return num;
-        } else if (k < p[0]) {
+        }else if (k < p[0]){
             return bfprt(arr, l, p[0] - 1, k);
-        } else {
+        }else {
             return bfprt(arr, p[1] + 1, r, k);
         }
     }
 
-    public static int[] partition(int[] arr, int l, int r, int num) {
+    public static int[] partition(int[] arr, int l, int r, int num){
         int less = l - 1;
         int more = r + 1;
         int cur = l;
 
-        while (cur < more) {
-            if (arr[cur] < num) {
+        while (cur < more){
+            if (arr[cur] < num){
                 swap(arr, ++less, cur++);
-            } else if (arr[cur] > num) {
+            }else if (arr[cur] > num){
                 swap(arr, --more, cur);
-            } else {
+            }else {
                 cur++;
             }
         }
@@ -132,7 +140,7 @@ public class code01 {
         return new int[]{less + 1, more - 1};
     }
 
-    public static int medianInMedians(int[] arr, int l, int r) {
+    public static int medianInMedians(int[] arr, int l, int r){
         int len = r - l + 1;
         int offset = len % 5 == 0 ? 0 : 1;
         int group = len / 5 + offset;
@@ -141,10 +149,9 @@ public class code01 {
         for (int i = 0; i < mArr.length; i++) {
             int start = l + 5 * i;
             int end = start + 4;
-
-            if (i == mArr.length - 1) {
+            if (i == mArr.length - 1){
                 mArr[i] = getMedian(arr, start, r);
-            } else {
+            }else {
                 mArr[i] = getMedian(arr, start, end);
             }
         }
@@ -152,18 +159,19 @@ public class code01 {
         return bfprt(mArr, 0, mArr.length - 1, mArr.length / 2);
     }
 
-    public static int getMedian(int[] arr, int l, int r) {
-        insertSort(arr, l, r);
+    public static int getMedian(int[] arr, int l, int r){
+        selectSort(arr, l, r);
         int mid = (l + r) >> 1;
-
         return arr[mid];
     }
 
-    public static void insertSort(int[] arr, int l, int r) {
-        for (int i = l + 1; i <= r; i++) {
-            for (int j = i - 1; j >= 0 && arr[j] > arr[j + 1]; j--) {
-                swap(arr, j, j + 1);
+    public static void selectSort(int[] arr, int l, int r){
+        for (int i = l; i <= r; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j <= r; j++) {
+                minIndex = arr[j] < arr[minIndex] ? j : minIndex;
             }
+            swap(arr, i, minIndex);
         }
     }
 

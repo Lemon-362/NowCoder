@@ -43,6 +43,7 @@ public class code02_MoveZeros {
             return;
         }
 
+        // 非零元素移动到的位置
         int count = 0;
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] != 0){
@@ -66,6 +67,7 @@ public class code02_MoveZeros {
             return;
         }
 
+        // 0元素移动到的位置
         int j = 0;
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] != 0){

@@ -28,17 +28,17 @@ public class code07_SlidingWindowMaxArray {
         int index = 0;
 
         for (int i = 0; i < arr.length; i++) {
-            while (!list.isEmpty() && arr[i] >= arr[list.peekLast()]){
+            while (!list.isEmpty() && arr[i] >= arr[list.peekLast()]) {
                 list.pollLast();
             }
 
             list.addLast(i);
 
-            if (list.peekFirst() == i - w){
+            if (list.peekFirst() == i - w) {
                 list.pollFirst();
             }
 
-            if (i >= w - 1){
+            if (i >= w - 1) {
                 res[index++] = arr[list.peekFirst()];
             }
         }

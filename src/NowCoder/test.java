@@ -1,47 +1,7 @@
-package NowCoder.Nowcoder.exercise;
+package NowCoder;
 
-public class code11 {
-    public static int numberOf1(int n) {
-        int count = 0;
-
-        for (int i = 31; i >= 0; i--) {
-            int path = (n >> i) & 1;
-
-            if (path == 1){
-                count++;
-            }
-        }
-
-        return count;
-    }
-
-    public static int count1(int n) {
-        int count = 0;
-
-        while (n > 0){
-            if ((n & 1) == 1){
-                count++;
-            }
-
-            n = n >> 1;
-        }
-
-        return count;
-    }
-
-    public static int count2(int n) {
-        int count = 0;
-
-        while (n > 0){
-            count++;
-
-            n = (n - 1) & n;
-        }
-
-        return count;
-    }
-
-        /*
+public class test {
+    /*
     variable-precision SWAR算法:
 
         0x55555555 = 0101 0101 0101 0101 0101 0101 0101 0101
@@ -49,7 +9,7 @@ public class code11 {
 
      */
 
-    public static int count3(int x) {
+    public static int method(int x) {
 
         // 计算每两位为一组的二进制形式包含1的个数
         x = (x & 0x55555555) + ((x >> 1) & 0x55555555);
@@ -67,9 +27,8 @@ public class code11 {
     }
 
     public static void main(String[] args) {
-        System.out.println(numberOf1(33211)); // 8
-        System.out.println(count1(33211));
-        System.out.println(count2(33211));
-        System.out.println(count3(33211));
+
+        System.out.println(method(33211));
+
     }
 }

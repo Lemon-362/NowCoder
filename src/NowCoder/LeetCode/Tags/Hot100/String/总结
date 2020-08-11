@@ -13,3 +13,10 @@ pArr[i]表示的是使用分隔符后的str的回文半径
 
 4. 字符串的组合
 二叉树 + 递归 + 剪枝: 考虑每一层的两个分支, 并写出在何时能够选择该条分支(剪枝)
+
+5. 在递归回溯算法中, 如果process的参数是List, 而不是String
+那么在process递归中, list.add一个元素后, 
+在回溯时(process递归函数退出时), 应该list.remove(list.size() - 1)移出最后一个元素
+这样才能回溯到上一个节点处
+另外, 在process的base case中, 因为共用的一个list
+所以应该用res.add(new ArrayList<>(list)), 而不是直接res.add(list)

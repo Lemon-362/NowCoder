@@ -1,0 +1,21 @@
+### 递归回溯算法
+
+# 热题Array_code08_SubSets
+1. 在递归回溯算法中, 如果process的参数是List, 而不是String
+(1) process递归中, list.add一个元素后, 
+    在回溯时(process递归函数退出时), 应该list.remove(list.size() - 1)移出最后一个元素
+    这样才能回溯到上一个节点处
+(2) 在process的base case中, 因为共用的一个list
+所以应该用res.add(new ArrayList<>(list)), 而不是直接res.add(list)
+
+# 热题Array_code10_CombinationSum
+2. 在递归时, 如果当前层有多种选择, 并且每层的选择都是依次递减的
+那么, 需要在process函数中使用for循环, 来来表当前层的每种选择情况
+在for循环内, 首先考虑i位置处的选择, 然后从i位置的选择向下递归
+如果是list, 回溯时还需要remove
+
+# 热题Array_code21_SearchWord
+3. 在递归时, 为了保证当前字符不再被使用
+使用 char temp = board[i][j] 来保存当前字符
+然后在递归之前设置为 board[i][j] = '#'
+最后在process下次递归结束后设置回来 board[i][j] = temp

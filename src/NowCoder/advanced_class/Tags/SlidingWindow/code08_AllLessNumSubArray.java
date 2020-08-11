@@ -1,6 +1,7 @@
 package NowCoder.advanced_class.Tags.SlidingWindow;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /*
     滑动窗口最大值更新结构的应用：最大值-最小值<=num的子数组数量
@@ -15,27 +16,30 @@ public class code08_AllLessNumSubArray {
         if (arr == null) {
             return -1;
         }
+
         int res = 0;
-        for (int i = 0; i < arr.length; i++) { // 以每个位置开头
+
+        for (int i = 0; i < arr.length; i++) {
             for (int j = i; j < arr.length; j++) {
-                // 找以i开头的i-j上所有满足条件的数组
-                if (isValid(arr, i, j, num)) {
+                if (isValid(arr, i, j, num)){
                     res++;
                 }
             }
         }
+
         return res;
     }
 
-    public static boolean isValid(int[] arr, int i, int j, int num) {
-        // 对每个数组进行判断
+    public static boolean isValid(int[] arr, int i, int j, int aim){
         int max = Integer.MIN_VALUE;
         int min = Integer.MAX_VALUE;
+
         for (int k = i; k <= j; k++) {
             max = Math.max(max, arr[k]);
             min = Math.min(min, arr[k]);
         }
-        return max - min <= num;
+
+        return max - min <= aim;
     }
 
     /* 窗口更新结构法
@@ -55,6 +59,7 @@ public class code08_AllLessNumSubArray {
         int l = 0;
         int r = 0;
 
+        // 以每个位置开头
         while (l < arr.length){
             while (r < arr.length){
                 while (!maxList.isEmpty() && arr[r] >= arr[maxList.peekLast()]){

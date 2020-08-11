@@ -6,6 +6,13 @@ package NowCoder.advanced_class.Tags.Manacher;
     解法：
         先对原始字符串加#分隔符，然后求每个位置上的pArr回文半径数组，衍生出R和C
         首先对于当前位置一定有一个可以不用验证的区域，然后再往外扩，如果两边扩后仍相等，则pArr+1
+
+    TODO 和回文相关的计算公式
+        (1) pArr是manacherString的回文半径
+        (2) String的回文直径 = pArr[i] - 1
+        (3) String的回文半径 = pArr[i] / 2
+        (4) String的回文个数 = pArr[i] / 2
+
  */
 public class code04_Manacher {
     // 法一：暴力法
@@ -29,7 +36,7 @@ public class code04_Manacher {
         int len = 0;
 
         for (int i = 0; i < str.length; i++) {
-            pArr[i] = R > i ? Math.min(R - i, pArr[2 * C - i]) : 1;
+            pArr[i] = R > i ? Math.min(pArr[2 * C - i], R - i) : 1;
             while (i + pArr[i] < str.length && i - pArr[i] > -1){
                 if (str[i + pArr[i]] == str[i - pArr[i]]){
                     pArr[i]++;
@@ -49,7 +56,7 @@ public class code04_Manacher {
         return len;
     }
 
-    public static char[] manacherString(String s){
+    public static char[] manacherString(String s) {
         char[] str = s.toCharArray();
         char[] res = new char[2 * str.length + 1];
         int index = 0;
@@ -62,7 +69,7 @@ public class code04_Manacher {
     }
 
     public static void main(String[] args) {
-        String str1 = "abc123321ab";
+        String str1 = "abc1234321ab";
         String str2 = "babad";
         System.out.println(maxLength(str1)); // 7
     }

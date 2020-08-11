@@ -14,7 +14,7 @@ import java.util.List;
     你可以假定返回的数组不算在额外空间内
 
  */
-public class code03 {
+public class code03_FindDisapperedNumbers {
 
     /*
     方法一: HashMap

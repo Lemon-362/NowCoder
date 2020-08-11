@@ -2,6 +2,11 @@ package NowCoder.LeetCode.Tags.Hot100.Array.exercise;
 
 import java.util.HashMap;
 
+/*
+1. 两数之和:
+    给定一个整数数组 arr 和一个目标值 target
+    请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
+ */
 public class code06 {
     public static int[] twoSum(int[] arr, int aim) {
         if (arr == null || arr.length < 1) {

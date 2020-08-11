@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 TODO 剑指Offer的code28_MoreThanHalfNum
  */
-public class code01_majorityElement {
+public class code01_MajorityElement {
 
     /*
     方法一: HashMap记录出现次数

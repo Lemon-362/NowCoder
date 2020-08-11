@@ -28,9 +28,7 @@ public class code02_KMP_ShortestHaveTwice {
             return new KMP(1, s);
         }
 
-        char[] str = s.toCharArray();
-
-        int len = getNextArr(str);
+        int len = getNextArr(s.toCharArray());
 
         return new KMP(len, s.substring(len));
     }
