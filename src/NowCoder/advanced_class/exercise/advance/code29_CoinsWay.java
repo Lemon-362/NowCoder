@@ -118,6 +118,31 @@ public class code29_CoinsWay {
         return dp[0][aim];
     }
 
+    public static int minCoin3(int[] coins, int amount) {
+        // 每个子问题(金额为amount时最少硬币数)的最优解
+        int[] dp = new int[amount + 1];
+        // 需要全部初始化为最大值
+        for (int i = 0; i < dp.length; i++) {
+            dp[i] = Integer.MAX_VALUE;
+        }
+        // base case
+        dp[0] = 0;
+        // 遍历dp数组, 找每个子问题的最优解
+        for (int i = 0; i < dp.length; i++) {
+            // 当前子问题: 金额为i时最少硬币数dp[i]
+            for (int j = 0; j < coins.length; j++) {
+                // 无解: 选出的coins[j]硬币面值已经大于了所需金额i
+                if (coins[j] > i) {
+                    continue;
+                }
+                dp[i] = Math.min(dp[i], 1 + dp[i - coins[j]]);
+            }
+        }
+
+        // 最终目标: dp[amount]
+        return dp[amount];
+    }
+
     public static void main(String[] args) {
         int[] arr = {10, 5, 1, 25};
         long start = 0;

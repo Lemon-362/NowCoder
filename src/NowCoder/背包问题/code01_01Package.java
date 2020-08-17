@@ -1,6 +1,4 @@
-package NowCoder.PackageProblem;
-
-import java.util.Scanner;
+package NowCoder.背包问题;
 
 /*
 01背包问题: TODO 每个物品只能使用一次, 1: 选择, 0: 不选择
@@ -90,8 +88,8 @@ public class code01_01Package {
                 // 1
                 dp[i][j] = dp[i - 1][j];
                 // 2
-                if (j >= v[i]){
-                    dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - v[i]] + w[i]);
+                if (j >= v[i - 1]){
+                    dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - v[i - 1]] + w[i - 1]);
                 }
             }
         }
@@ -210,8 +208,8 @@ public class code01_01Package {
         int N = 4;
         int V = 5;
         // TODO 如果是Scanner, 那么要将v和w数组定义成N+1长度, 从1位置开始接收值
-        int[] v = {0, 1, 2, 3, 4};
-        int[] w = {0, 2, 4, 4, 5};
+        int[] v = {1, 2, 3, 4};
+        int[] w = {2, 4, 4, 5};
 
         System.out.println(process1(v, w, N, V)); // 8
     }

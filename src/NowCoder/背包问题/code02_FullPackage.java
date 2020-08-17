@@ -1,6 +1,4 @@
-package NowCoder.PackageProblem;
-
-import java.util.Scanner;
+package NowCoder.背包问题;
 
 /*
 完全背包问题: TODO 每个物品可以选无限次 0,1,2,...

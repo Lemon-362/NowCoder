@@ -1,15 +1,17 @@
-package NowCoder.LeetCode.Tags.Hot100.Array;
+package NowCoder.LeetCode.Tags.Hot100.Array.exercise;
 
-import NowCoder.LeetCode.Tags.Hot100.Array.exercise.code20;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 /*
 56. 合并区间
     给出一个区间的集合，请合并所有重叠的区间
 
  */
-public class code20_MergeIntervals {
+public class code20 {
+
     public static class Data{
         private int start;
         private int end;
@@ -20,17 +22,6 @@ public class code20_MergeIntervals {
         }
     }
 
-    /*
-    类似于basic_code38_BestArrange
-        basic是要按照结束时间排序, 然后看之前的结束时间是否在当前的开始时间后
-
-        本题应该按照start排序
-        然后看之前的end是否在当前的开始时间后
-        (1) 如果不在, 说明不在当前区间内, 是一个独立的区间
-        (2) 如果在, 说明可以合并, 此时需要看当前区间的end和之前的end哪个大, 放哪个
-
-        由于start和end永远是一对, 所以用ArrayList存储时, 只要保证每次是存这一对即可
-     */
     public static int[][] merge(int[][] arr) {
 
         Data[] data = new Data[arr.length];
@@ -56,7 +47,6 @@ public class code20_MergeIntervals {
                 list.add(data[i].start);
                 list.add(data[i].end);
             }else { // 在区间内或者超过区间
-                // TODO list的get获取元素并不会将该元素弹出, 所以必须手动remove
                 list.remove(list.size() - 1);
                 // 要看当前end和lastEnd哪个更长
                 int curEnd = data[i].end;
@@ -78,8 +68,8 @@ public class code20_MergeIntervals {
 
     public static void main(String[] args) {
 
-        int[][] arr = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
-//        int[][] arr = {{1, 4}, {2, 3}};
+//        int[][] arr = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
+        int[][] arr = {{1, 4}, {2, 3}};
 
         int[][] res = merge(arr);
         for (int i = 0; i < res.length; i++) {
@@ -94,5 +84,4 @@ public class code20_MergeIntervals {
 
 //        1 4
     }
-
 }

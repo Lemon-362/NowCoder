@@ -1,4 +1,4 @@
-package NowCoder.LeetCode.Tags.Hot100.总结;
+package NowCoder.二分查找;
 
 public class BinarySearch {
 
@@ -30,10 +30,31 @@ public class BinarySearch {
                 [left, mid - 1] ==> right = mid - 1
                 [mid + 1, right] ==> left = mid + 1
 
-        2. 寻找左边界
-            return left的解释:
-            TODO 前提: 搜索区间是左闭右开, 即 while(left < right)
-            表示arr中 小于aim 的元素有left个
+        2.
+        int left = 0;
+        int right = arr.length - 1;
+
+        while (left <= right)
+
+        if (arr[mid] == aim)
+            (1) TODO 寻找一个数 ==> return mid;
+            (2) TODO 寻找左边界 ==> right = mid - 1;
+            (3) TODO 寻找右边界 ==> left = mid + 1;
+
+        if (arr[mid] < aim)
+            left = mid + 1;
+        if (arr[mid] > aim)
+            right = mid - 1;
+
+        TODO 寻找一个数 ==> return -1;
+        TODO 寻找左边界 ==> if (left >= arr.length || arr[left] != aim) {
+                                return -1;
+                            }
+                            return left;
+        TODO 寻找右边界 ==> if (right < 0 || arr[right] != aim) {
+                                return -1;
+                            }
+                            return right;
 
      */
 

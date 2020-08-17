@@ -1,4 +1,4 @@
-package NowCoder.PackageProblem.exercise;
+package NowCoder.背包问题.exercise;
 
 public class code02 {
 

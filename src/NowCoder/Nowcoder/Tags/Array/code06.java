@@ -44,6 +44,41 @@ public class code06 {
         return arr[0];
     }
 
+    public static int search(int[] arr, int aim) {
+        if (arr == null || arr.length < 1) {
+            return -1;
+        }
+
+        int left = 0;
+        int right = arr.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (arr[mid] == aim) {
+                return mid;
+            }
+
+            // 左半边数组
+            if (arr[mid] >= arr[left]) {
+                // 看aim在是否在左半边
+                if (aim >= arr[left] && aim < arr[mid]) { // aim在左半边, 且aim在mid左边
+                    right = mid - 1;
+                } else { // aim在mid右边
+                    left = mid + 1;
+                }
+            } else { // 右半边数组
+                if (aim <= arr[right] && aim > arr[mid]) { // aim在mid右边
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
+            }
+        }
+
+        return -1;
+    }
+
     public static void main(String[] args) {
         int[] arr1 = {7, 0, 1, 1, 1, 1, 1, 2, 3, 4};
         int[] arr2 = {3, 4, 5, 1, 2, 3};

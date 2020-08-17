@@ -1,4 +1,4 @@
-package NowCoder.PackageProblem.exercise;
+package NowCoder.背包问题.exercise;
 
 /*
 01背包问题: TODO 每个物品只能使用一次, 1: 选择, 0: 不选择
